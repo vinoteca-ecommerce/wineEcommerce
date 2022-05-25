@@ -1,8 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import style from './PreCategory.module.css';
 import AddIcon from '@mui/icons-material/Add';
+import { getWines } from '../../redux/actions/actions';
 
 export const PreCategory = () => {
+    const dispatch = useDispatch();
+    const wines = useSelector((state) => state.wines);
+
+    useEffect(()=>{
+        dispatch(getWines())
+    },[dispatch])
+
+    console.log(wines)
   return (
     <div className={style.container}>
             <div className={style.card}>
