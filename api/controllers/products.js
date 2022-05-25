@@ -11,7 +11,6 @@ const getWines = async( req, res = response )  =>{
     const [total, products] = await Promise.all([
       Product.countDocuments(query),
       Product.find(query)
-        .populate('user', 'name')
         .populate('category', 'name')
         .skip(Number(start))
         .limit(Number(limit)),
