@@ -7,8 +7,8 @@
 }
 
 .card {
-    height: 265px;/*254px;*/
-    width: 190px;
+    height: 344px;/*254px;*/
+    width: 236px;/*190px;*/
     position: relative;
     transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius: .8em;
@@ -29,7 +29,7 @@
     background: url("../../images/tinto.jpg"); 
     background-size: 100% 100%;
     background-repeat:no-repeat;
-    background-size: cover;
+    background-size: fill;
 }
 
 .cardImageBlanco {
@@ -53,7 +53,19 @@
     border-radius: .8em;
     position: absolute;
     transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    background: url("../../images/rosado2.jpg"); 
+    background: url("../../images/rosado.jpg"); 
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-size: fill;
+}
+
+.cardImageEspumoso {
+    height: 100%;
+    width: 100%;
+    border-radius: .8em;
+    position: absolute;
+    transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background: url("../../images/espumoso.jpg"); 
     background-size: 100% 100%;
     background-repeat:no-repeat;
     background-size: fill;
@@ -68,7 +80,7 @@
     flex-direction: column;
     background-color: #f5f5f5;
     height: 10%;
-    width: 83.4%;
+    width: 86.6%;
     bottom: 0;
     border-radius: .8em .8em 0 0;
     transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -114,7 +126,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 84%;
+    width: 88%;
     padding: 0 1rem;
     margin: 0;
 }
@@ -134,6 +146,7 @@
     border-radius: 1em;
     background-color: #ffffff;
     color: rgb(41, 41, 41);
+    opacity: .8;
 }
 
 .textTitleAll{
