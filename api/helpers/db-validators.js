@@ -17,9 +17,16 @@ const userExistById=async(id='')=>{
         throw new Error (`The ID ${id} doesn't exists.`)
     }
 }
+const categoryValidator =  async(id = '')=>{
+    
+    const categoryExist = await Category.findById(id);
+    if(!categoryExist){
+        throw new Error(`The category: ${id} doesnt exist.`)
+    }
+}
 
 
 module.exports = {
-    rolValidator,
+    rolValidator, categoryValidator,
     userExistById
 }
