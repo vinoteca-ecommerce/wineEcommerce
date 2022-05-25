@@ -1,5 +1,6 @@
 const { response } = require("express");
 const User = require('../models/user')
+const bcryptjs=require('bcryptjs')
 
 
 
@@ -21,6 +22,42 @@ const getUsers=async(req,res=response)=>{
 
 }
 
+const updateUser=async(req,res=response)=>{
+  const {id}=req.params
+  const {password,google,email,...rest}=req.body
+
+  if(password){
+    const salt=bcryptjs.genSalt(10);
+    rest.password=bcryptjs.hashSync(password,salt)
+  }
+
+  const user= await User.findByIdAndUpdate(id,rest)
+
+  res.json({
+    msg:'User updated properly.'
+  })
+
+}
+
+
+const deleteUser=async(req,res=response)=>{
+  const {id}=req.params
+
+  const user= await User.findByIdAndUpdate(id,{state:false})
+
+
+  res.json({user})
+}
+
+const undeleteUser=async(req,res=response)=>{
+  const {id}=req.params
+
+  const user= await User.findByIdAndUpdate(id,{state:true})
+
+  res.send(user)
+
+}
+
 
 
 const getUserById=async (req,res=response)=>{
@@ -38,12 +75,15 @@ console.log(id)
 
 const postUser = async (req, res=response) => {
     const body = req.body; 
-    const usuario = new User(body);
-  
+    const user = new User(body);
 
-    await usuario.save();
+    //encriptacion
+    const salt=bcryptjs.genSaltSync(10);
+    user.password=bcryptjs.hashSync(user.password,salt)
+
+    await user.save();
   
-    res.status(201).json(usuario);
+    res.status(201).json(user);
   };
   
 
@@ -51,5 +91,8 @@ const postUser = async (req, res=response) => {
   module.exports = {
     postUser,
     getUserById,
-    getUsers
+    getUsers,
+    updateUser,
+    deleteUser,
+    undeleteUser
   }
