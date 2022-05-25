@@ -11,8 +11,15 @@ const rolValidator = async(role = '') =>{
     }
 }
 
+const userExistById=async(id='')=>{
+    const validateUser= await User.findById(id)
+    if(!validateUser){
+        throw new Error (`The ID ${id} doesn't exists.`)
+    }
+}
 
 
 module.exports = {
-    rolValidator
+    rolValidator,
+    userExistById
 }
