@@ -11,6 +11,13 @@ const rolValidator = async(role = '') =>{
     }
 }
 
+const emailExist = async(email = '')=>{
+    const emailValid = await User.findOne({email});
+    if(emailValid){
+        throw new Error(`The email: ${email} already exist`)
+    }
+}
+
 
 const userExistById=async(id='')=>{
     const validateUser= await User.findById(id)
@@ -29,6 +36,8 @@ const categoryValidator =  async(id = '')=>{
 }
 
 module.exports = {
-    rolValidator, categoryValidator,
-    userExistById
+    rolValidator, 
+    categoryValidator,
+    userExistById,
+    emailExist
 }
