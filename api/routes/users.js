@@ -2,7 +2,10 @@ const {Router} = require('express');
 const { check } = require('express-validator');
 const { postUser, getUserById, getUsers, updateUser, deleteUser, undeleteUser }  = require('../controllers/users');
 const { validation } = require('../middlewares/validator')
-const{ rolValidator, userExistById } = require('../helpers/db-validators');
+// const { jwtValidator } = require('../middlewares/jwtvalidator')
+// const { adminRole, hasRole } = require('../middlewares/rolevalidator')
+const {jwtValidator, adminRole, hasRole} = require('../middlewares')
+const{ rolValidator, userExistById, emailExist } = require('../helpers/db-validators');
 
 const router = Router();
 
@@ -19,6 +22,7 @@ validation
 router.post('/',[ 
     check('name', 'Name is required').not().isEmpty(),
     check('password', 'Password must contain at least 6 characters').isLength({min: 6}),
+    check('email').custom(emailExist),
     check('role').custom(rolValidator),
 validation
 ] ,postUser)
@@ -32,6 +36,8 @@ validation
 
 
 router.delete('/:id',[
+    jwtValidator,
+    hasRole('ADMIN_ROLE','SALES_ROLE'),
     check('id', 'no es un id valido').isMongoId(),
     check('id').custom(userExistById),
 validation

@@ -42,8 +42,8 @@ const updateUser=async(req,res=response)=>{
 
 const deleteUser=async(req,res=response)=>{
   const {id}=req.params
-
   const user= await User.findByIdAndUpdate(id,{state:false})
+
 
 
   res.json({user})
@@ -74,12 +74,12 @@ console.log(id)
 }
 
 const postUser = async (req, res=response) => {
-    const body = req.body; 
-    const user = new User(body);
+    const {name, password, email, role} = req.body; 
+    const user = new User({name, password, email, role});
 
     //encriptacion
     const salt=bcryptjs.genSaltSync(10);
-    user.password=bcryptjs.hashSync(user.password,salt)
+    user.password=bcryptjs.hashSync(password,salt)
 
     await user.save();
   
