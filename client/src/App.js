@@ -3,14 +3,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { PreCategory } from './components/PreCategory/PreCategory';
+import { NavBar } from './components/NavBar/NavBar';
 
 function App() {
   return (
     <div className="App">
       {/*PONER SUS RUTAS/COMPONENTES PARA HACER PRUEBAS jejeje*/}
       <Routes>
-        <Route path="/" element={<PreCategory />} />
+        <Route path='/' element={<NavBar/>}/>
       </Routes>
     </div>
   );
