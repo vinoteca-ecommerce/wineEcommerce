@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { postProduct, getWines } = require('../controllers/products');
+const { postProduct, getAll } = require('../controllers/products');
 const { validation } = require('../middlewares/validator')
 const { categoryValidator } =require('../helpers/db-validators')
 
@@ -9,7 +9,7 @@ const router = Router();
 
 
 
-router.get('/', getWines);
+
 
 router.post('/', [ 
     check('name', 'The name is required').not().isEmpty(),
@@ -19,5 +19,6 @@ router.post('/', [
 ], postProduct );
 
 
+router.get('/',getAll)
 
 module.exports = router;
