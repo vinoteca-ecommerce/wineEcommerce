@@ -56,7 +56,7 @@ const getAll = async( req, res = response )  =>{
   if(name){   
     let x = products.filter((e) =>
     e.name.toLowerCase().includes(name.toLowerCase()))
-    x.length>0?namefiltred=x:res.json("msg: Nombre no encontrado")
+    x.length>0?namefiltred=x:res.json("msg: Name not found")
 
 }else{
      namefiltred = products
@@ -114,7 +114,7 @@ res.json({
   sortAbc
 })
 }
-if(orden==="pricemax"){
+if(orden==="pricemax"){ 
   let sortAbc = producerFilter.sort(function(a,b){
     if(b.price > a.price){
       return 1;
