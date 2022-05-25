@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+
+.imgBox{
+    background-image: url('../../images/wineLanding.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.imgBox h1{
+    text-align: right;
+    margin: 200px;
+   color: rgb(7, 7, 7);
+   font-weight: bold;
+   font-size: 50px;
+}
+.imgBox p{
+    text-align: center;
+    margin: 400px;
+   color: rgb(255, 249, 249);
+   font-weight: bold;
+   font-size: 25px;
+}
+
