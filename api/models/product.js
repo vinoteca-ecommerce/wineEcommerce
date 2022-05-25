@@ -24,11 +24,11 @@ const ProductSchema = Schema({
   img: {
     type: String,
   },
-  // category: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Category",
-  //   require: true,
-  // },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+    require: true,
+  },
   stock: {
     type: Number,
     min: [0, "Stock cant be negative"],
