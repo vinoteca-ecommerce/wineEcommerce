@@ -30,6 +30,14 @@ export const PreCategory = () => {
             </div>
 
             <div className={style.card}>
+                <div className={style.cardImageEspumoso}></div>
+                <div className={style.cardDescription}>
+                    <p className={style.textTitle}>Sparkling </p>
+                    {/*<p className={style.textBody}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>*/}
+                </div>
+            </div>
+
+            <div className={style.card}>
                 <div className={style.cardImage}></div>
                 <div className={style.cardDescriptionAll}>
                     <p className={style.textTitleAll}><AddIcon/></p>

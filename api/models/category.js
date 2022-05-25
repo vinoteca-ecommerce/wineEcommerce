@@ -10,11 +10,12 @@ const CategorySchema = Schema({
     default: true,
     required: true,
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
 });
+
+CategorySchema.methods.toJSON = function (){
+  const { _id, ...data } = this.toObject();
+  return data
+}
+
 
 module.exports = model("Category", CategorySchema);
