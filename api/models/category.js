@@ -10,7 +10,7 @@ const CategorySchema = Schema({
     default: true,
     required: true,
   },
-  usuario: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
