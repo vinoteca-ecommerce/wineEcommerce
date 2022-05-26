@@ -35,7 +35,7 @@ const getAll = async( req, res = response )  =>{
 
   const { limit = 10 , start = 0 } = req.query;
   const query = { state: true  };
-  const {name,category,strain,country,producer,orden} = req.query
+  const {name,category,strain,country,producer,orden,pmax,pmin} = req.query
  
   const [total, products] = await Promise.all([
     Product.countDocuments(query),
@@ -46,12 +46,13 @@ const getAll = async( req, res = response )  =>{
   ]);
 
 
-  if(name || strain || category || country || producer || orden ){
+  if(name || strain || category || country || producer || orden || (pmax && pmin)){
     let namefiltred = []
     let strainFiltred =[]
     let categoryFiltred = []
     let countryFiltred =[] 
     let producerFilter =[]
+    let pricemaxmin =[]
  
   if(name){   
     let x = products.filter((e) =>
@@ -84,10 +85,15 @@ if(country){
   e.producer === producer)} else {
      producerFilter = countryFiltred
   } 
+if(pmax && pmin){
+ pricemaxmin = producerFilter.filter((e) =>
+ e.price > pmin && e.price < pmax )} else {
+  pricemaxmin = producerFilter 
+}
 
-if(producerFilter.length>0){
+if(pricemaxmin.length>0){
   if(!orden || orden === 'abc'){
-    let sortAbc = producerFilter.sort(function(a,b){
+    let sortAbc = pricemaxmin.sort(function(a,b){
       if(a.name.toLowerCase() > b.name.toLowerCase()){
         return 1;
     }
@@ -97,11 +103,12 @@ if(producerFilter.length>0){
     return 0
   })
   res.json({
+    total,
     sortAbc
   })
   }
 if(orden === 'cba'){
-  let sortAbc = producerFilter.sort(function(a,b){
+  let sortAbc = pricemaxmin.sort(function(a,b){
     if(b.name.toLowerCase() > a.name.toLowerCase()){
       return 1;
   }
@@ -111,11 +118,12 @@ if(orden === 'cba'){
   return 0
 })
 res.json({
+  total,
   sortAbc
 })
 }
 if(orden==="pricemax"){ 
-  let sortAbc = producerFilter.sort(function(a,b){
+  let sortAbc = pricemaxmin.sort(function(a,b){
     if(b.price > a.price){
       return 1;
   }
@@ -127,11 +135,12 @@ if(orden==="pricemax"){
 
 
   res.json({
+    total,
     sortAbc
   })
 }
 if(orden==="pricemin"){
-  let sortAbc = producerFilter.sort(function(a,b){
+  let sortAbc = pricemaxmin.sort(function(a,b){
     if(a.price > b.price){
       return 1;
   }
@@ -143,6 +152,7 @@ if(orden==="pricemin"){
 
 
   res.json({
+    total,
     sortAbc
   })
 }
@@ -151,6 +161,7 @@ if(orden==="pricemin"){
 }
 else{
   res.json({
+    total,
     products
   });
 }
