@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWines } from '../../redux/actions/actions';
 import { CardProduct } from '../CardProduct/CardProduct';
 import { Container } from '@mui/system';
+
+import { Filters } from '../Filters/Filters';
+
 import { ProductsPagination } from '../Pagination/ProductsPagination';
 
 export const Products = () => {
@@ -41,7 +44,13 @@ export const Products = () => {
                 </div>
             ))}
         </Container>
+
+        <Container>
+                <Filters/>
+        </Container>
+
         <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
+
     </div>
   )
 }
