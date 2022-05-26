@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWines } from '../../redux/actions/actions';
 import { CardProduct } from '../CardProduct/CardProduct';
 import { Container } from '@mui/system';
+import { Filters } from '../Filters/Filters';
 
 export const Products = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,9 @@ export const Products = () => {
                                 img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
                 </div>
             ))}
+        </Container>
+        <Container>
+                <Filters/>
         </Container>
     </div>
   )
