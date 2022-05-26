@@ -198,11 +198,61 @@ const deleteProduct = async (req, res = response)=>{
 
 }
 
+
+const addFav=async(req,res=response)=>{
+  const {id}=req.params;
+
+  const wine = await Product.findById(id)
+  
+
+  const find=req.user.favorites.find(v=>v.name===wine.name)
+  if (find){
+    return res.json({msg:'the wine is already con your favorites'})
+  }
+  await req.user.favorites.push(wine)
+  
+  req.user.save();
+  
+  return res.json(req.user.favorites)
+}
+
+
+const getFavs=async(req,res=response)=>{
+
+  const favs= req.user.favorites;
+  
+  return res.send({
+    total:favs.length,  
+    favs
+  })
+}
+
+
+const deleteFavs=async(req,res=response)=>{
+  const {id}=req.params
+
+  const wine = await Product.findById(id)
+
+  req.user.favorites=req.user.favorites.filter(w=>w.name!==wine.name)
+
+  req.user.save();
+
+  res.json({msg:'Wine deleted from your favorites succesfully.'})
+}
+
+
+
+
+
+
 module.exports = {
   postProduct,
   getAll,
   getProduct,
   productUpdate,
-  deleteProduct
+  deleteProduct,
+  addFav,
+  getFavs,
+  deleteFavs
 };
 
