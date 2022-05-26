@@ -51,7 +51,7 @@ export const NavBar = () => {
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'gray',
-              boxShadow:'16px 12px maroon',
+              boxShadow:'16px 12px #7f0000',
               textDecoration: 'none',
             }}
           >

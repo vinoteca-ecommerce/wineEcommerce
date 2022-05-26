@@ -1,7 +1,7 @@
 import {GET_WINES} from '../actions/actions';
 
 const initialState = {
-    wines: [],
+    wines: {},
 }
 
 const rootReducer = (state = initialState, action) => {
