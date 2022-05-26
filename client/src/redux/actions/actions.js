@@ -3,9 +3,9 @@ export const GET_WINES = 'GET_WINES';
 export const GET_NAME = 'GET_NAME';
 export const GET_CATEGORY = 'GET_CATEGORY';
 
-export const getWines = () => {
+export const getWines = (num) => {
     return async function (dispatch) {
-      return axios.get("http://localhost:8000/products/")
+      return axios.get("http://localhost:8000/products?start="+num)
       .then(response => {
         dispatch({ type: GET_WINES, payload: response.data });
       })

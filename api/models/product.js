@@ -29,6 +29,11 @@ const ProductSchema = Schema({
     ref: "Category",
     require: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    require: true,
+  },
   stock: {
     type: Number,
     min: [0, "Stock cant be negative"],
@@ -46,5 +51,11 @@ const ProductSchema = Schema({
       default: true,
   }
 });
+
+ProductSchema.methods.toJSON = function(){
+  const {__v, state, ...data} = this.toObject();
+  return data
+}
+
 
 module.exports = model("Product", ProductSchema);

@@ -2,35 +2,6 @@ const { response } = require("express");
 const Product = require("../models/product");
 
 
-
-
-
-
-const postProduct = async (req, res = response) => {
-  const { state, name, ...body } = req.body;
-
-  const productDB = await Product.findOne({ name });
-
-  if (productDB) {
-    return res.status(400).json({
-      msg: `The product:  ${name} already exist`,
-    });
-  }
-
-  const data = {
-    ...body,
-    name,
-  };
-  const product = new Product(data);
-
-  await product.save();
-
-  res.status(201).json(product);
-};
-
-
-
-
 const getAll = async( req, res = response )  =>{
 
   const { limit = 10 , start = 0 } = req.query;
@@ -40,6 +11,7 @@ const getAll = async( req, res = response )  =>{
   const [total, products] = await Promise.all([
     Product.countDocuments(query),
     Product.find(query)
+      .populate('user', 'name')
       .populate('category', 'name')
       .skip(Number(start))
       .limit(Number(limit)),
@@ -61,7 +33,6 @@ const getAll = async( req, res = response )  =>{
 
 }else{
      namefiltred = products
-     console.log(namefiltred)
   }
 if(strain){
     strainFiltred = namefiltred.filter((e) =>
@@ -166,9 +137,108 @@ else{
   });
 }
 
+};
+
+const getProduct = async(req, res = response) =>{
+
+  const { id } = req.params;
+
+  const wineById = await Product.findById(id)
+    .populate('user', 'name')
+    .populate('category', 'name');
+
+    res.json(wineById);
+
+};
+
+const productUpdate = async(req, res=response)=>{
+
+
+  const { id } = req.params;
+  const { state, user, category,...data } = req.body;
+
+  const product = await Product.findByIdAndUpdate(id, data, { new:true });
+
+  res.json(product);
+
+};
+
+
+const postProduct = async (req, res = response) => {
+  const { state, name, ...body } = req.body;
+
+  const productDB = await Product.findOne({ name });
+
+  if (productDB) {
+    return res.status(400).json({
+      msg: `The product:  ${name} already exist`,
+    });
+  }
+
+  const data = {
+    ...body,
+    name,
+    user : req.user._id,
+  
+  };
+  const product = new Product(data);
+
+  await product.save();
+
+  res.status(201).json(product);
+};
+
+const deleteProduct = async (req, res = response)=>{
+
+  const { id } = req.params;
+  
+  const deleteProduct = await Product.findByIdAndUpdate(id , { state: false }, { new:true });
+
+  res.status(200).json({deleteProduct});
+
 }
 
 
+const addFav=async(req,res=response)=>{
+  const {id}=req.params;
+
+  const wine = await Product.findById(id)
+  
+
+  const find=req.user.favorites.find(v=>v.name===wine.name)
+  if (find){
+    return res.json({msg:'the wine is already con your favorites'})
+  }
+  await req.user.favorites.push(wine)
+  
+  req.user.save();
+  
+  return res.json(req.user.favorites)
+}
+
+
+const getFavs=async(req,res=response)=>{
+
+  const favs= req.user.favorites;
+  
+  return res.send({
+    total:favs.length,  
+    favs
+  })
+}
+
+
+const deleteFavs=async(req,res=response)=>{
+  const {id}=req.params
+
+  const wine = await Product.findById(id)
+
+  req.user.favorites=req.user.favorites.filter(w=>w.name!==wine.name)
+
+  req.user.save();
+
+  res.json({msg:'Wine deleted from your favorites succesfully.'})
+}
 
 
 
@@ -178,254 +248,11 @@ else{
 module.exports = {
   postProduct,
   getAll,
+  getProduct,
+  productUpdate,
+  deleteProduct,
+  addFav,
+  getFavs,
+  deleteFavs
 };
 
-
-
-
-
-
-// const getAll = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-//   const {name,category,strain,country,producer} = req.query
- 
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query)
-//       .populate('category', 'name')
-//       .skip(Number(start))
-//       .limit(Number(limit)),
-//   ]);
-
-
-//   if(name && strain && category && country && producer ){
-//     const namefiltred = products.filter((e) =>
-//     e.name.toLowerCase().includes(name.toLowerCase())
-//   )
-//    const strainFiltred = namefiltred.filter((e) =>
-//    e.strain.toLowerCase() === strain.toLowerCase())
-   
-//  const categoryFiltred = strainFiltred.filter((e) =>
-//    e.category.name === category)
-//   const countryFiltred = categoryFiltred.filter((e) =>
-//    e.country.toLowerCase() === country.toLowerCase())
-//   const producerFilter = countryFiltred.filter((e) =>
-//   e.producer === producer)
-// if(producerFilter.length>0){
-//    res.json({
-//     producerFilter
-//   });}else{
-//     res.json({
-//       msg: "Vino no encontrado"
-//     })
-//   }
-// } 
-// else if(name && strain && category && country){
-//   const namefiltred = products.filter((e) =>
-//   e.name.toLowerCase().includes(name.toLowerCase())
-// )
-//  const strainFiltred = namefiltred.filter((e) =>
-//  e.strain.toLowerCase() === strain.toLowerCase())
- 
-// const categoryFiltred = strainFiltred.filter((e) =>
-//  e.category.name === category)
-// const countryFiltred = categoryFiltred.filter((e) =>
-//  e.country.toLowerCase() === country.toLowerCase())
-// if(countryFiltred.length>0){
-//  res.json({
-//   countryFiltred
-// });}else{
-//   res.json({
-//     msg: "Vino no encontrado"
-//   })
-// }
-// }else if(name && strain && category){
-//   const namefiltred = products.filter((e) =>
-//   e.name.toLowerCase().includes(name.toLowerCase())
-// )
-//  const strainFiltred = namefiltred.filter((e) =>
-//  e.strain.toLowerCase() === strain.toLowerCase())
- 
-// const categoryFiltred = strainFiltred.filter((e) =>
-//  e.category.name === category)
-
-
-
-// if(categoryFiltred.length>0){
-//  res.json({
-//   categoryFiltred
-// });}else{
-//   res.json({
-//     msg: "Vino no encontrado"
-//   })
-// }
-// }
-
-
-
-
-// else{
-//   res.json({
-//     products
-//   });
-// }
-
-// }
-// const getWinesABC = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query).skip(Number(start)).limit(Number(limit)),
-//   ]);
-
-//   let sortAbc = products.sort(function(a,b){
-//     if(a.name.toLowerCase() > b.name.toLowerCase()){
-//       return 1;
-//   }
-//   if(b.name.toLowerCase() > a.name.toLowerCase()){
-//       return -1
-//   }
-//   return 0
-// })
-
-
-//   res.json({
-//     total,
-//     sortAbc
-//   });
-
-// }
-// const getWinesCBA = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query).skip(Number(start)).limit(Number(limit)),
-//   ]);
-
-//   let sortAbc = products.sort(function(a,b){
-//     if(b.name.toLowerCase() > a.name.toLowerCase()){
-//       return 1;
-//   }
-//   if(a.name.toLowerCase() > b.name.toLowerCase()){
-//       return -1
-//   }
-//   return 0
-// })
-
-
-//   res.json({
-//     total,
-//     sortAbc
-//   });
-
-// }
-
-// const getWineshigherprice = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query).skip(Number(start)).limit(Number(limit)),
-//   ]);
-
-//   let sortAbc = products.sort(function(a,b){
-//     if(b.price > a.price){
-//       return 1;
-//   }
-//   if(a.price > b.price){
-//       return -1
-//   }
-//   return 0
-// })
-
-
-//   res.json({
-//     total,
-//     sortAbc
-//   });
-
-// }
-// const getWineslowerprice = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query).skip(Number(start)).limit(Number(limit)),
-//   ]);
-
-//   let sortAbc = products.sort(function(a,b){
-//     if(a.price > b.price){
-//       return 1;
-//   }
-//   if(b.price > a.price){
-//       return -1
-//   }
-//   return 0
-// })
-
-
-//   res.json({
-//     total,
-//     sortAbc
-//   });
-
-// }
-
-// const getName = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-//   const {name} = req.query
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query).skip(Number(start)).limit(Number(limit)),
-//   ]);
-
-//   if(name){
-//     const namefiltred = products.filter((e) =>
-//     e.name.toLowerCase().includes(name.toLowerCase())
-//   )
-//     res.json({
-//       namefiltred
-//     });
-//   }
- 
-// }
-
-
-
-
-
-// const getWines = async( req, res = response )  =>{
-
-//   const { limit = 10 , start = 0 } = req.query;
-//   const query = { state: true  };
-
-//   const [total, products] = await Promise.all([
-//     Product.countDocuments(query),
-//     Product.find(query)
-//       .populate('category', 'name')
-//       .skip(Number(start))
-//       .limit(Number(limit)),
-//   ]);
-
-
-//   res.json({
-//     total,
-//     products
-//   });
-
-// }
