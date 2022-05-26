@@ -1,19 +1,23 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { postUser, getUserById, getUsers, updateUser, deleteUser, undeleteUser }  = require('../controllers/users');
+const { postUser, getUserById, getUsers, updateUser, deleteUser, undeleteUser}  = require('../controllers/users');
 const { validation } = require('../middlewares/validator')
 // const { jwtValidator } = require('../middlewares/jwtvalidator')
 // const { adminRole, hasRole } = require('../middlewares/rolevalidator')
 const {jwtValidator, adminRole, hasRole} = require('../middlewares')
 const{ rolValidator, userExistById, emailExist } = require('../helpers/db-validators');
+;
 
 const router = Router();
 
 
-router.get('/',getUsers)
+router.get('/',[
+    jwtValidator,
+    hasRole('ADMIN_ROLE'),
+],getUsers)
 
 router.put('/:id',[
-    check('id', 'no es un id valido').isMongoId(),
+    check('id', 'Invalid ID').isMongoId(),
     check('id').custom(userExistById),
     check('role').custom(rolValidator),
 validation
@@ -28,7 +32,8 @@ validation
 ] ,postUser)
 
 router.get('/:id',[
-    check('id', 'no es un id valido').isMongoId(),
+    jwtValidator,
+    check('id', 'Invalid ID').isMongoId(),
     check('id').custom(userExistById),
 validation
 ]
@@ -37,8 +42,8 @@ validation
 
 router.delete('/:id',[
     jwtValidator,
-    hasRole('ADMIN_ROLE','SALES_ROLE'),
-    check('id', 'no es un id valido').isMongoId(),
+    hasRole('ADMIN_ROLE'),
+    check('id', 'Invalid ID').isMongoId(),
     check('id').custom(userExistById),
 validation
 ],deleteUser)
@@ -46,12 +51,12 @@ validation
 
 //undelete users
 router.patch('/:id',[
-    check('id', 'no es un id valido').isMongoId(),
+    jwtValidator,
+    hasRole('ADMIN_ROLE'),
+    check('id', 'Invalid ID').isMongoId(),
     check('id').custom(userExistById),
 validation
 ],undeleteUser)
-
-
 
 
 

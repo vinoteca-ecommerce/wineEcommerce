@@ -34,6 +34,10 @@ const UserSchema = Schema({
     type: Boolean,
     default: false,
   },
+  favorites:{
+    type:Array,
+    default:[]
+  }
 });
 
 UserSchema.methods.toJSON = function(){

@@ -85,7 +85,7 @@ const postUser = async (req, res=response) => {
   
     res.status(201).json(user);
   };
-  
+
 
 
   module.exports = {
