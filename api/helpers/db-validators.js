@@ -35,9 +35,20 @@ const categoryValidator =  async(id = '')=>{
     }
 }
 
+const productIdValidator = async (id='')=>{
+    
+    const productExist = await Product.findById(id);
+    if(!productExist){
+        throw new Error(`The product : ${id} doesnt exist`)
+    }
+
+
+}
+
 module.exports = {
     rolValidator, 
     categoryValidator,
     userExistById,
-    emailExist
+    emailExist,
+    productIdValidator
 }
