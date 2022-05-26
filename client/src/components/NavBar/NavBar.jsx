@@ -13,13 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const pages = ['Productos', 'Contacto', 'Acerca de'];
 const settings = ['Perfil', 'Cerrar sesión'];
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -86,18 +85,23 @@ export const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem >
+                  <Button href='/products' textAlign="center">Productos</Button>
                 </MenuItem>
-              ))}
+                <MenuItem >
+                  <Button href='/about' textAlign="center">Nosotros</Button>
+                </MenuItem>
+                <MenuItem >
+                  <Button href='/contact' textAlign="center">Contacto</Button>
+                </MenuItem>
+              
             </Menu>
           </Box>
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -112,15 +116,27 @@ export const NavBar = () => {
             VINOTECA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
               <Button
-                key={page}
+                href='/products'
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block'}}
               >
-                {page}
+               Productos
               </Button>
-            ))}
+              <Button
+                href='/about'
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'black', display: 'block'}}
+              >
+               Nosotros
+              </Button>
+              <Button
+                href='/contact'
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'black', display: 'block'}}
+              >
+               Contacto
+              </Button>
           </Box>
             <Box>
           <IconButton sx={{mr:'20px'}}>
