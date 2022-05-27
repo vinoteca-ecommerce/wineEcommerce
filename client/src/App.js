@@ -6,6 +6,7 @@ import { Products } from './components/Products/Products';
 import { CardDetail } from './components/CardDetail/CardDetail';
 import {Aboutus} from './components/About/About.jsx'
 import Footer from './components/Footer/Footer';
+import {Contact} from './components/Contact/Contact'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
+        <Route path='/contact' element={<Contact/>}/>
       </Routes>
       <Footer/>
     </div>
