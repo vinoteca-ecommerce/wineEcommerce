@@ -11,6 +11,7 @@ class Server{
         this.port = process.env.PORT;
         this.path = {
             products: '/products',
+            category: '/category',
             users: '/users',
             auth: '/auth'
         }
@@ -40,6 +41,7 @@ class Server{
     routes(){
 
         this.app.use(this.path.auth, require('../routes/auth'));
+        this.app.use(this.path.category, require('../routes/category'));
         this.app.use(this.path.products, require('../routes/products'));
         this.app.use(this.path.users, require('../routes/users'));
 

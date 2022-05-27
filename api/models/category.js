@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const CategorySchema = Schema({
   name: {
     type: String,
-    enum: ["Blanco", "Tinto", "Espumante", "Rose"],
+    required: true,
   },
   state: {
     type: Boolean,
