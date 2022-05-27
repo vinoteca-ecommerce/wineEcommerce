@@ -1,15 +1,28 @@
 import React from "react";
 import style from '../Landing/Landing.module.css'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import {NavLink} from 'react-router-dom'
+
 
 export const Landing = () =>{
     return (
-       <div className={style.container}>
-         <div className={style.imgBox}>
-                   <h1> Discover your favorite wine</h1> 
-                  <div><KeyboardArrowDownIcon fontSize="large"/> </div>         
-             </div>
-       </div>      
+    <div className={style.imgBox}>
+          <span> Descubrí nuestros mejores vinos
+           
+          </span> 
+           <p>Seleccionados de excelentes bodegas</p>
+      
+        <div className={style.containerBtn}>
+            <div className={style.scrolldown}>
+            <div className={style.chevrons}>
+        <div className={style.chevrondown}></div>
+            <div className={style.chevrons}></div>
+         </div>
+        </div> 
+       </div> 
+         
+  </div>
+           
     )
 }
+
 
