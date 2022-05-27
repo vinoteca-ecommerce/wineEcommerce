@@ -8,19 +8,15 @@ const bcryptjs=require('bcryptjs')
 const getUsers=async(req,res=response)=>{
   const { limit,start=0 }=req.query
  
-  const [total, users]=await Promise.all([
-    User.countDocuments({state:true}),
-    User.find({state:true})
-  ])
-
+  const users =await User.find({state:true})
   const result = users.slice(start, limit)
+
   res.json({
-    Users:total,
+    Users: result.length,
     result
   })
 
 }
-
 const updateUser=async(req,res=response)=>{
   const { id }=req.params
   const { password,google,email,...rest }=req.body

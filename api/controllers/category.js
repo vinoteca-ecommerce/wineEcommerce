@@ -5,15 +5,13 @@ const getCategories = async (req, res = response) => {
   const { limit , start = 0 } = req.query;
   const query = { state: true };
 
-  const [total, categories] = await Promise.all([
-    Category.countDocuments(query),
-    Category.find(query)
-  ]);
+  const categories = await Category.find(query);
+ 
 
   const result = categories.slice(start, limit)
 
   res.json({
-    total,
+    total: result.length,
     result,
   });
 };
@@ -35,6 +33,7 @@ const getCategoriesId = async (req, res = response) => {
     result
   });
 };
+
 
 const postCategory = async (req, res = response) => {
   const name = req.body.name.toUpperCase();

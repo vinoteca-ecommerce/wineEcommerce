@@ -2,15 +2,12 @@ const { response } = require("express");
 const Product = require("../models/product");
 
 const getAll = async (req, res = response) => {
-  const { limit, start = 0 } = req.query;
+  const { limit, start = 0 } = req.query; 
   const query = { state: true };
-  const { name, strain, category, country, producer, orden, pmax, pmin } =
-    req.query;
+  const { name, strain, category, country, producer, orden, pmax, pmin } = req.query;
 
-  const [total, products] = await Promise.all([
-    Product.countDocuments(query),
-    Product.find(query).populate("user", "name").populate("category", "name"),
-  ]);
+  const  products= await Product.find(query).populate("user", "name").populate("category", "name");
+  
 
   if (
     name ||
@@ -240,6 +237,78 @@ const deleteFavs = async (req, res = response) => {
   res.json({ msg: "Wine deleted from your favorites succesfully." });
 };
 
+const addToCart=async(req,res=response)=>{
+  const {id}=req.params
+  const {quantity}=req.body
+
+  const wine= await Product.findById(id)
+  const find= req.user.cart.find(e=>e.name==wine.name)
+  let index= req.user.cart.indexOf(find)
+  console.log(find)
+  // console.log(req.user.cart[index])
+  if(!find){
+   if(wine.stock>=quantity){
+
+     req.user.cart.push(wine)
+     index=req.user.cart.indexOf(wine)
+
+     req.user.cart[index].quantity=quantity;
+
+     await req.user.save();
+
+
+     }
+   else{
+     return res.json({msg:'No stock available'})
+   }  
+  }else{
+    if(wine.stock>=quantity){
+
+      req.user.cart=req.user.cart.filter(v=>v.name!==find.name)
+
+      req.user.cart.push(wine)
+      index=req.user.cart.indexOf(wine)
+
+      req.user.cart[index].quantity=quantity;
+
+      await req.user.save();
+
+  }else{
+     return res.json({msg:'No stock available'})
+    }
+  }
+
+  res.status(200).json({
+    msg:'Product added to the cart succesfully!',
+    cart:req.user.cart
+  })
+}
+
+const getCart=async(req,res=response)=>{
+
+  let total=0
+  const cart= req.user.cart
+  cart.map(t=>{
+    total+=t.price*t.quantity
+  })
+
+  return res.json({
+    total,
+    cart
+  })
+}
+
+const deleteCart=async(req,res=response)=>{
+  const {id}=req.params
+
+  const wine = await Product.findById(id)
+
+  req.user.cart=req.user.cart.filter(w=>w.name!==wine.name)
+
+  req.user.save();
+
+  res.json({msg:'Wine deleted from your favorites succesfully.'})
+}
 module.exports = {
   postProduct,
   getAll,
@@ -249,5 +318,8 @@ module.exports = {
   addFav,
   getFavs,
   deleteFavs,
-};
+  addToCart,
+  deleteCart,
+  getCart
 
+};
