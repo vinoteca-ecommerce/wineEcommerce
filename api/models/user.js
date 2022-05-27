@@ -37,6 +37,10 @@ const UserSchema = Schema({
   favorites:{
     type:Array,
     default:[]
+  },
+  cart:{
+    type:Array,
+    default:[]
   }
 });
 
