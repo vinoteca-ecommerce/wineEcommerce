@@ -1,10 +1,11 @@
 const { response } = require("express");
+const { arrayBuffer } = require("stream/consumers");
 const Product = require("../models/product");
 
 
 const getAll = async( req, res = response )  =>{
 
-  const { limit = 10 , start = 0 } = req.query;
+  const { limit , start = 0 } = req.query;
   const query = { state: true  };
   const {name,category,strain,country,producer,orden,pmax,pmin} = req.query
  
@@ -29,31 +30,48 @@ const getAll = async( req, res = response )  =>{
   if(name){   
     let x = products.filter((e) =>
     e.name.toLowerCase().includes(name.toLowerCase()))
-    x.length>0?namefiltred=x:res.json("msg: Name not found")
+    x.length>0?namefiltred=x:res.status(404).json("msg: Name not found")
 
 }else{
      namefiltred = products
   }
 if(strain){
     strainFiltred = namefiltred.filter((e) =>
-   e.strain.toLowerCase() === strain.toLowerCase())}else{
+   e.strain.toLowerCase() === strain.toLowerCase())
+   if(strainFiltred.length == 0){
+    res.status(404).json("msg: Strain not found")
+  }
+  }
+ else{
       strainFiltred = namefiltred
    }
    
 if(category){   
   categoryFiltred = strainFiltred.filter((e) =>
-   e.category.name === category)}else{
+   e.category.name.toLowerCase() === category.toLowerCase())
+   if(categoryFiltred.length == 0){
+    res.status(404).json("msg: Category not found")
+  }
+  }else{
       categoryFiltred = strainFiltred
    }
 
 if(country){
    countryFiltred = categoryFiltred.filter((e) =>
-   e.country.toLowerCase() === country.toLowerCase())} else{
+   e.country.toLowerCase() === country.toLowerCase())
+   if(countryFiltred.length == 0){
+    res.status(404).json("msg: Country not found")
+  }
+  } else{
      countryFiltred = categoryFiltred
    }
   if(producer){
    producerFilter = countryFiltred.filter((e) =>
-  e.producer === producer)} else {
+  e.producer === producer)
+  if(producerFilter.length == 0){
+    res.status(404).json("msg: Producer not found")
+  }
+} else {
      producerFilter = countryFiltred
   } 
 if(pmax && pmin){
@@ -74,7 +92,7 @@ if(pricemaxmin.length>0){
     return 0
   })
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
   }
@@ -89,7 +107,7 @@ if(orden === 'cba'){
   return 0
 })
 res.json({
-  total,
+  total: sortAbc.length,
   sortAbc
 })
 }
@@ -106,7 +124,7 @@ if(orden==="pricemax"){
 
 
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
 }
@@ -123,7 +141,7 @@ if(orden==="pricemin"){
 
 
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
 }
@@ -132,7 +150,7 @@ if(orden==="pricemin"){
 }
 else{
   res.json({
-    total,
+    total:products.length,
     products
   });
 }
