@@ -27,17 +27,18 @@ const updateUser=async(req,res=response)=>{
   const {password,google,email,...rest}=req.body
 
   if(password){
-    const salt=bcryptjs.genSalt(10);
+    const salt=bcryptjs.genSaltSync(10);
     rest.password=bcryptjs.hashSync(password,salt)
   }
 
   const user= await User.findByIdAndUpdate(id,rest)
 
-  res.json({
-    msg:'User updated properly.'
-  })
+  res.status(200).json({
+    user,
+  });
+};
 
-}
+
 
 
 const deleteUser=async(req,res=response)=>{

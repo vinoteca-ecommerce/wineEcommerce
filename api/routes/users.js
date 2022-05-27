@@ -1,10 +1,8 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
 const { postUser, getUserById, getUsers, updateUser, deleteUser, undeleteUser}  = require('../controllers/users');
-const { validation } = require('../middlewares/validator')
-// const { jwtValidator } = require('../middlewares/jwtvalidator')
-// const { adminRole, hasRole } = require('../middlewares/rolevalidator')
-const {jwtValidator, adminRole, hasRole} = require('../middlewares')
+const { validation } = require('../middlewares/validator');
+const {jwtValidator, adminRole, hasRole} = require('../middlewares');
 const{ rolValidator, userExistById, emailExist } = require('../helpers/db-validators');
 ;
 
