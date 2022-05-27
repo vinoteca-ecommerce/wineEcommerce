@@ -1,39 +1,32 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import React from "react";
+import {useDispatch,  } from 'react-redux'
 
 //---Import Actions--//
 import {
-    getWines,
     getWineCategory,
 } from '../../redux/actions/actions'
 
 
 export const Filters = () =>{
  const dispatch = useDispatch();
- const allWines = useSelector((state) => state.wines)
- const category = useSelector((state) => state.winesCopy)
- const [status, setStatus] = useState('')
-
-useEffect (()=>{
-    dispatch(getWines())
-},[dispatch])
 
 //---Filter by Category--//
 const handleFilterCategory = (e) =>{
-   dispatch(getWineCategory(e.target.value))
+    console.log(e.target.value)
+    dispatch(getWineCategory(e.target.value))
 }
 
 
     return(
 <div className='defaultValue'>
     <select>
-        <option value='SortPrice' selected disabled>PRECIO</option>
+        <option value='SortPrice' >PRECIO</option>
         <option value='pricemax'>Max⬆</option>
         <option value='pricemin'>Min⬇</option>
     </select>
 
     <select onChange={e => handleFilterCategory(e)}>
-    <option value='FilterCategory' selected disabled>TIPO</option>
+    <option value='FilterCategory' >TIPO</option>
         <option value='Tinto'>Tinto</option>
         <option value='Blanco'>Blanco</option>
         <option value='Rose'>Rose</option>
@@ -41,11 +34,16 @@ const handleFilterCategory = (e) =>{
     </select>
 
     <select> 
-    <option value='FilterWinery' selected disabled>BODEGA</option>
+    <option value='FilterWinery' >BODEGA</option>
     </select> 
    
     
-    <select>PAIS</select>
+    <select>
+        <option value="hola1">H</option>
+        <option value="hola2">HO</option>
+        <option value="hola3">HOL</option>
+        <option value="hola4">HOLA</option>
+    </select>
 </div>
 
     )

@@ -23,9 +23,10 @@ export const getWineName = (name) => {
   }
 }
 
-export const getWineCategory = (name) => {
+export const getWineCategory = (category) => {
+  console.log(category)
   return async function (dispatch){
-    return axios.get(`http://localhost:8000/products/?category=${name}`)
+    return axios.get(`http://localhost:8000/products/?category=${category}`)
     .then(response => {
       dispatch({ type: GET_CATEGORY, payload: response.data})
     })
