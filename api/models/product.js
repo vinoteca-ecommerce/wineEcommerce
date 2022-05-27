@@ -49,6 +49,10 @@ const ProductSchema = Schema({
   state:{
       type: Boolean,
       default: true,
+  },
+  quantity:{
+    type:Number,
+    default:0
   }
 });
 
