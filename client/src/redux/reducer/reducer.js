@@ -13,7 +13,10 @@ const rootReducer = (state = initialState, action) => {
         case GET_WINES:
           return{
             ...state,
-            wines: action.payload
+            wines: action.payload,
+            winesCopy: action.payload
+        }   
+
         }
         
         case SET_WINES_CLEAN:
@@ -21,17 +24,18 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               wines: {}
           }   
+
         
         case GET_NAME:
             return {
                 ...state,
-                winesCopy: action.payload
+                wines: action.payload
             }
 
         case GET_CATEGORY:
             return {
                 ...state,
-                winesCopy: action.payload
+                wines: action.payload
             }
 
         default: return {...state}

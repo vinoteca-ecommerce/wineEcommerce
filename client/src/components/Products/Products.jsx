@@ -10,8 +10,9 @@ import { ProductsPagination } from '../Pagination/ProductsPagination';
 
 export const Products = () => {
     const dispatch = useDispatch();
-    const wines = useSelector((state) => state.wines);
-
+    var wines = useSelector((state) => state.wines);
+    console.log(wines)
+    console.log(wines.sortAbc)
     const [page,setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
 
@@ -42,17 +43,25 @@ export const Products = () => {
   return (
     <div>
         <Container  maxWidth="xl" sx={{display:'flex', justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
-                {wines && wines.products?.length !== 0 && wines?.products?.map(wine =>(
-                    <div  key={wine._id}>
-                        <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
-                                    img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
-                    </div>
-                ))}
+
+            {wines && wines.products?.length !== 0 && wines?.products?.map(wine =>(
+                <div  key={wine._id}>
+                    <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
+                                img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
+                </div>
+            ))}
+            {wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
+                <div key={wine._id}>
+                    <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
+                                img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
+                </div>
+            ))}
+
         </Container>
 
-        <Container>
-                <Filters/>
-        </Container>
+       
+        <Filters />
+      
 
         <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
 
