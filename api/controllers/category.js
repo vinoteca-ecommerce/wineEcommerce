@@ -2,34 +2,37 @@ const { response } = require("express");
 const { Category, Product } = require("../models");
 
 const getCategories = async (req, res = response) => {
-  const { limit = 15, start = 0 } = req.query;
+  const { limit , start = 0 } = req.query;
   const query = { state: true };
 
   const [total, categories] = await Promise.all([
     Category.countDocuments(query),
-    Category.find(query).skip(Number(start)).limit(Number(limit)),
+    Category.find(query)
   ]);
+
+  const result = categories.slice(start, limit)
 
   res.json({
     total,
-    categories,
+    result,
   });
 };
 
 const getCategoriesId = async (req, res = response) => {
   const { id } = req.params;
-  const { limit = 15, start = 0 } = req.query;
+  const { limit, start = 0 } = req.query;
   const query = { category: id };
 
   const productsCategory = await  Product.find(query)
       .populate("category", "name")
-      .skip(Number(start))
-      .limit(Number(limit))
+      
 ;
-    const total =  productsCategory.length
+   
+    const result = productsCategory.slice(start, limit)
+
     res.json({
-    total,
-    productsCategory,
+    total: result.length,
+    result
   });
 };
 
