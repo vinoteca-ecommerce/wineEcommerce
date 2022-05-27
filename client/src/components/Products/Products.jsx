@@ -64,10 +64,10 @@ export const Products = () => {
 
             <select value={category} onChange={(e)=>setCategory(e.target.value)}>
                 <option value='' >TIPO</option>
-                <option value='Tinto'>Tinto</option>
-                <option value='Blanco'>Blanco</option>
-                <option value='Rosado'>Rose</option>
-                <option value='Espumante'>Espumante</option>
+                <option value='TINTO'>Tinto</option>
+                <option value='BLANCO'>Blanco</option>
+                <option value='ROSADO'>Rose</option>
+                <option value='ESPUMANTE'>Espumante</option>
             </select>
 
             <select> 

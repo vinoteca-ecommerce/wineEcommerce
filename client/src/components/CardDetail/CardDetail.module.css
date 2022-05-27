@@ -4,12 +4,13 @@
     align-items: flex-start;
     flex-wrap: wrap;
     margin: 5em;
+    padding: 4em 0;
     
 }
 
 .img{
-    margin-right: 1em;
-    border: 1px solid red
+    margin-right: 2em;
+    /*border: 1px solid red;*/
 }
 
 .img img{
@@ -18,22 +19,23 @@
 
 .datail{
     width: 30%;
-    border: 1px solid red
+    /*border: 1px solid red:*/
 }
 
 h3{
-    margin-left: 1em;
+    font-size: 1.5em;
+    margin-left: .7em;
 }
 
 .p{
-    margin: 1em;
+    margin: 1.2em;
 }
 .price p{
     margin: 0;
 }
 
 .border{
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #d1d1d1;
     padding-bottom: 1em;
     margin: 1em;
 }
@@ -45,11 +47,28 @@ h3{
     padding: 1em;
 }
 
-
+.price p{
+    font-size: 2em;
+}
 
 .btn{
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1em;
+}
+
+.btn Button{
+    background-color: #7f0000;
+    width: 100%;
+}
+
+.btn Button:hover{
+    background-color: #7f0000e0;
+    
+}
+
+.price Button:hover{
+    background-color: transparent;
+    color: #ff0000;
 }
