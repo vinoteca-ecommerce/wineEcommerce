@@ -21,15 +21,14 @@ const getCategoriesId = async (req, res = response) => {
   const { limit = 15, start = 0 } = req.query;
   const query = { category: id };
 
-  const [totalOfCategories, productsCategory] = await Promise.all([
-    Category.countDocuments(query),
-    Product.find(query)
+  const productsCategory = await  Product.find(query)
       .populate("category", "name")
       .skip(Number(start))
-      .limit(Number(limit)),
-  ]);
-  res.json({
-    totalOfCategories,
+      .limit(Number(limit))
+;
+    const total =  productsCategory.length
+    res.json({
+    total,
     productsCategory,
   });
 };
