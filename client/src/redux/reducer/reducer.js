@@ -17,7 +17,6 @@ const rootReducer = (state = initialState, action) => {
             winesCopy: action.payload
         }   
 
-        }
         
         case SET_WINES_CLEAN:
             return{
