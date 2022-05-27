@@ -8,7 +8,7 @@ export const PreCategory = () => {
             <div className={style.card}>
                 <div className={style.cardImageTinto}></div>
                 <div className={style.cardDescription}>
-                    <p className={style.textTitle}>Red</p>
+                    <p className={style.textTitle}>Tinto</p>
                     {/*<p className={style.textBody}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>*/}
                 </div>
             </div>
@@ -16,7 +16,7 @@ export const PreCategory = () => {
             <div className={style.card}>
                 <div className={style.cardImageBlanco}></div>
                 <div className={style.cardDescription}>
-                    <p className={style.textTitle}>White</p>
+                    <p className={style.textTitle}>Blanco</p>
                     {/*<p className={style.textBody}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>*/}
                 </div>
             </div>
@@ -24,7 +24,7 @@ export const PreCategory = () => {
             <div className={style.card}>
                 <div className={style.cardImageRosado}></div>
                 <div className={style.cardDescription}>
-                    <p className={style.textTitle}>Rosé</p>
+                    <p className={style.textTitle}>Rosado</p>
                     {/*<p className={style.textBody}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>*/}
                 </div>
             </div>
@@ -32,7 +32,7 @@ export const PreCategory = () => {
             <div className={style.card}>
                 <div className={style.cardImageEspumoso}></div>
                 <div className={style.cardDescription}>
-                    <p className={style.textTitle}>Sparkling </p>
+                    <p className={style.textTitle}>Espumante </p>
                     {/*<p className={style.textBody}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>*/}
                 </div>
             </div>

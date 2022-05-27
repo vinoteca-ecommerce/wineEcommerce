@@ -11,6 +11,8 @@
     background-color: rgba(45,21,21,255);
     background-attachment: fixed;
     color: rgba(245, 245, 220, 0.76);
+    overflow: hidden;
+    margin-top: 5em;
 }
 .orderDiv{
     display: flex;

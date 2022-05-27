@@ -1,4 +1,4 @@
-import {GET_WINES, GET_NAME, GET_CATEGORY} from '../actions/actions';
+import {GET_WINES, GET_NAME, GET_CATEGORY, SET_WINES_CLEAN} from '../actions/actions';
 
 const initialState = {
     wines: {},
@@ -16,12 +16,22 @@ const rootReducer = (state = initialState, action) => {
             wines: action.payload,
             winesCopy: action.payload
         }   
+
+        }
+        
+        case SET_WINES_CLEAN:
+            return{
+              ...state,
+              wines: {}
+          }   
+
         
         case GET_NAME:
             return {
                 ...state,
                 wines: action.payload
             }
+
         case GET_CATEGORY:
             return {
                 ...state,
