@@ -74,7 +74,7 @@ if(pricemaxmin.length>0){
     return 0
   })
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
   }
@@ -89,7 +89,7 @@ if(orden === 'cba'){
   return 0
 })
 res.json({
-  total,
+  total: sortAbc.length,
   sortAbc
 })
 }
@@ -106,7 +106,7 @@ if(orden==="pricemax"){
 
 
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
 }
@@ -123,7 +123,7 @@ if(orden==="pricemin"){
 
 
   res.json({
-    total,
+    total: sortAbc.length,
     sortAbc
   })
 }
