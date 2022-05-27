@@ -4,7 +4,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
-import style from './ProductsPagination.module.css'
 
 export const ProductsPagination = ({setPage,page, totalPage}) => {
 

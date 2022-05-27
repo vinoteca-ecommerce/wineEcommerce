@@ -7,7 +7,7 @@ export const Landing = () =>{
        <div className={style.container}>
          <div className={style.imgBox}>
                    <h1> Discover your favorite wine</h1> 
-                  <div><KeyboardArrowDownIcon/> </div>         
+                  <div><KeyboardArrowDownIcon fontSize="large"/> </div>         
              </div>
        </div>      
     )
