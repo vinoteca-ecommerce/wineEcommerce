@@ -7,6 +7,7 @@ import { CardDetail } from './components/CardDetail/CardDetail';
 import {Aboutus} from './components/About/About.jsx'
 import Footer from './components/Footer/Footer';
 
+
 function App() {
   return (
     <div className="App">
