@@ -8,7 +8,7 @@ export const CardProduct = (id, name, producer, year, description, price, img, c
   return (
     
     <div className={style.card}>
-            <Link to={`/cardDetail${id.id}`} style={{textDecoration:'none', color:'black'}}>
+            <Link to={`/cardDetail/${id.id}`} style={{textDecoration:'none', color:'black'}}>
                 <img className={style.cardImg} src={id.img} alt={id.name}/>
                 <div className={style.cardInfo}>
                     <p className={style.textTitle}>{id.name}</p>
