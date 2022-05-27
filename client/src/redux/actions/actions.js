@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const GET_WINES = 'GET_WINES';
-export const SET_WINES_CLEAN = 'GET_WINES';
+export const SET_WINES_CLEAN = 'SET_WINES_CLEAN';
 export const GET_NAME = 'GET_NAME';
 export const GET_CATEGORY = 'GET_CATEGORY';
 
