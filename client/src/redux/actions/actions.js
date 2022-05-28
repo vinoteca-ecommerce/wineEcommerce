@@ -2,12 +2,11 @@ import axios from 'axios';
 export const GET_WINES = 'GET_WINES';
 export const SET_WINES_CLEAN = 'SET_WINES_CLEAN';
 export const GET_NAME = 'GET_NAME';
-//export const GET_CATEGORY = 'GET_CATEGORY';
 export const SET_FILTER = 'SET_FILTER';
 
-export const getWines = (num,category) => {
+export const getWines = (num,category,orden) => {
     return async function (dispatch) {
-      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}`)
+      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}`)
       .then(response => {
         dispatch({ type: GET_WINES, payload: response.data });
       })
@@ -39,16 +38,6 @@ export const getWineName = (name) => {
   }
 }
 
-/*export const getWineCategory = (category) => {
-  console.log(category)
-  return async function (dispatch){
-    return axios.get(`http://localhost:8000/products/?category=${category}`)
-    .then(response => {
-      dispatch({ type: GET_CATEGORY, payload: response.data})
-    })
-    .catch(err => console.error(err))
-  }
-}*/
 
 export const setFilter = (options) => {
   return { type: SET_FILTER, payload:options };
