@@ -19,6 +19,8 @@ export const Products = () => {
 
     const[category,setCategory] = useState(categoryR);
 
+    let wines_paginates = [];
+
     useEffect(()=>{
         let op ={}
         //if(categoryR === '') setCategory('')
@@ -51,7 +53,12 @@ export const Products = () => {
         //setTotalPage(num)
         if(typeof num === 'number') console.log(num)
     }*/
-    
+    if(wines?.result?.length){
+        for (let i = (page * 10) - 10; i < page*10; i++) {
+            if(wines?.result[i] !== undefined) wines_paginates.push(wines?.result[i])
+        }
+    }
+    //console.log()
 
   return (
     <div>
@@ -63,7 +70,7 @@ export const Products = () => {
             </select>
 
             <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                <option value='' >TIPO</option>
+                <option value='' >Todos</option>
                 <option value='TINTO'>Tinto</option>
                 <option value='BLANCO'>Blanco</option>
                 <option value='ROSADO'>Rose</option>
@@ -84,18 +91,18 @@ export const Products = () => {
         </div>
         <Container  maxWidth="xl" sx={{display:'flex', justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
 
-            {wines && wines.products?.length !== 0 && wines?.products?.map(wine =>(
+            {wines && wines.result?.length !== 0 && wines_paginates.map(wine =>(
                 <div  key={wine._id}>
                     <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
                                 img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
                 </div>
             ))}
-            {wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
+            {/*wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
                 <div key={wine._id}>
                     <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
                                 img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
                 </div>
-            ))}
+            ))*/}
 
         </Container>
       
