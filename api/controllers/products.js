@@ -80,9 +80,9 @@ const getAll = async (req, res = response) => {
           }
           return 0;
         });
-        const result = sortAbc.slice(start, limit);
+        const result = sortAbc
         res.json({
-          total: result.length,
+          total: sortAbc.length,
           result,
         });
       }
@@ -96,9 +96,9 @@ const getAll = async (req, res = response) => {
           }
           return 0;
         });
-        const result = sortAbc.slice(start, limit);
+        const result = sortAbc
         res.json({
-          total: result.length,
+          total: sortAbc.length,
           result,
         });
       }
@@ -113,9 +113,9 @@ const getAll = async (req, res = response) => {
           return 0;
         });
 
-        const result = sortAbc.slice(start, limit);
+        const result = sortAbc
         res.json({
-          total: result.length,
+          total: sortAbc.length,
           result,
         });
       }
@@ -130,17 +130,17 @@ const getAll = async (req, res = response) => {
           return 0;
         });
 
-        const result = sortAbc.slice(start, limit);
+        const result = sortAbc
         res.json({
-          total: result.length,
+          total: sortAbc.length,
           result,
         });
       }
     }
   } else {
-    const result = products.slice(start, limit);
+    const result = products
     res.json({
-      total: result.length,
+      total: products.length,
       result,
     });
   }

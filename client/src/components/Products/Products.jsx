@@ -7,28 +7,34 @@ import { Container } from '@mui/system';
 import { ProductsPagination } from '../Pagination/ProductsPagination';
 
 export const Products = () => {
-    const dispatch = useDispatch();
-    var wines = useSelector((state) => state.wines);
-    var categoryR = useSelector((state) => state.category);
 
-    //console.log(wines)
-    //console.log(wines.sortAbc)
+    const dispatch = useDispatch();
+
+    let wines = useSelector((state) => state.wines);
+    //let allStrains = useSelector((state) => state.allStrains);
+    let categoryR = useSelector((state) => state.category);
+    let ordenR = useSelector((state) => state.orden);
+    //let strainR = useSelector((state) => state.strain);
 
     const [page,setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
 
     const[category,setCategory] = useState(categoryR);
+    const[orden,setOrden] = useState(ordenR);
+    //const[strain,setStrain] = useState(strainR);
+
+    let wines_paginates = [];
 
     useEffect(()=>{
-        let op ={}
-        //if(categoryR === '') setCategory('')
-        op = {category}
-        dispatch(setFilter(op))
+        dispatch(setWineClean());
+        let op ={};
+        op = {category, orden};
+        dispatch(setFilter(op));
 
-        if(page === 1) dispatch(getWines(0,category));
-        else dispatch(getWines((page*10)-10,category))
+        if(page === 1) dispatch(getWines(0,category,orden/*,strain*/));
+        else dispatch(getWines((page*10)-10,category,orden/*,strain*/));
 
-    },[dispatch,categoryR,category,page])
+    },[dispatch,categoryR,category,page,orden/*,strain*/])
 
     /*useEffect(()=>{
         if(page === 1) dispatch(getWines(0));
@@ -51,51 +57,58 @@ export const Products = () => {
         //setTotalPage(num)
         if(typeof num === 'number') console.log(num)
     }*/
-    
+    if(wines?.result?.length){
+        for (let i = (page * 10) - 10; i < page*10; i++) {
+            if(wines?.result[i] !== undefined) wines_paginates.push(wines?.result[i])
+        }
+    }
+    //console.log()
 
   return (
     <div>
         <div className='defaultValue'>
-            <select>
-                <option value='SortPrice' >PRECIO</option>
+            <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                <option value='' >Precio</option>
                 <option value='pricemax'>Max⬆</option>
                 <option value='pricemin'>Min⬇</option>
             </select>
 
             <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                <option value='' >TIPO</option>
+                <option value='' >Todos</option>
                 <option value='TINTO'>Tinto</option>
                 <option value='BLANCO'>Blanco</option>
                 <option value='ROSADO'>Rose</option>
                 <option value='ESPUMANTE'>Espumante</option>
             </select>
 
-            <select> 
-            <option value='FilterWinery' >BODEGA</option>
-            </select> 
-        
+            <select /*value={strain} onChange={(e)=>setStrain(e.target.value)}*/> 
+                <option value='' >Todas</option>
+                {/*allStrains?.map((strain)=>(
+                    <option key={strain} value={strain}>{strain}</option> 
+                ))*/}
+            </select>
             
-            <select>
-                <option value="hola1">H</option>
-                <option value="hola2">HO</option>
-                <option value="hola3">HOL</option>
-                <option value="hola4">HOLA</option>
+            <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                <option value=''>Alfabeto</option>
+                <option value="abc">A-Z</option>
+                <option value="cba">Z-A</option>
             </select>
         </div>
+        
         <Container  maxWidth="xl" sx={{display:'flex', justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
 
-            {wines && wines.products?.length !== 0 && wines?.products?.map(wine =>(
+            {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
                 <div  key={wine._id}>
                     <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
                                 img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
                 </div>
             ))}
-            {wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
+            {/*wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
                 <div key={wine._id}>
                     <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
                                 img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
                 </div>
-            ))}
+            ))*/}
 
         </Container>
       
