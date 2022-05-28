@@ -25,6 +25,7 @@ export const Products = () => {
 
     let wines_paginates = [];
 
+    //Filter Config
     useEffect(()=>{
         dispatch(setWineClean());
         let op ={};
@@ -36,85 +37,65 @@ export const Products = () => {
 
     },[dispatch,categoryR,category,page,orden/*,strain*/])
 
-    /*useEffect(()=>{
-        if(page === 1) dispatch(getWines(0));
-        else dispatch(getWines((page*10)-10))
-
-        return () => {
-            dispatch(setWineClean());
-        }
-
-    },[dispatch,page,category])*/
-
+    //Total pages
     useEffect(()=>{
         let num = Math.ceil((wines?.total / 10))
         if(typeof num === 'number') setTotalPage(num)
     },[wines?.total])
 
-    //console.log(wines.products[0]._id)
-    /*if(typeof wines?.total === 'number'){
-        let num = Math.ceil((wines.total / 10))
-        //setTotalPage(num)
-        if(typeof num === 'number') console.log(num)
-    }*/
+    //Pagination
     if(wines?.result?.length){
         for (let i = (page * 10) - 10; i < page*10; i++) {
             if(wines?.result[i] !== undefined) wines_paginates.push(wines?.result[i])
         }
     }
-    //console.log()
 
   return (
     <div>
-        <div className='defaultValue'>
-            <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
-                <option value='' >Precio</option>
-                <option value='pricemax'>Max⬆</option>
-                <option value='pricemin'>Min⬇</option>
-            </select>
+        {Object.keys(wines).length === 0 ? <h2>Loading...</h2>
+        :<div>
+            <div className='defaultValue'>
+                <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                    <option value='' >Precio</option>
+                    <option value='pricemax'>Max⬆</option>
+                    <option value='pricemin'>Min⬇</option>
+                </select>
 
-            <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                <option value='' >Todos</option>
-                <option value='TINTO'>Tinto</option>
-                <option value='BLANCO'>Blanco</option>
-                <option value='ROSADO'>Rose</option>
-                <option value='ESPUMANTE'>Espumante</option>
-            </select>
+                <select value={category} onChange={(e)=>setCategory(e.target.value)}>
+                    <option value='' >Todos</option>
+                    <option value='TINTO'>Tinto</option>
+                    <option value='BLANCO'>Blanco</option>
+                    <option value='ROSADO'>Rose</option>
+                    <option value='ESPUMANTE'>Espumante</option>
+                </select>
 
-            <select /*value={strain} onChange={(e)=>setStrain(e.target.value)}*/> 
-                <option value='' >Todas</option>
-                {/*allStrains?.map((strain)=>(
-                    <option key={strain} value={strain}>{strain}</option> 
-                ))*/}
-            </select>
+                <select /*value={strain} onChange={(e)=>setStrain(e.target.value)}*/> 
+                    <option value='' >Todas</option>
+                    {/*allStrains?.map((strain)=>(
+                        <option key={strain} value={strain}>{strain}</option> 
+                    ))*/}
+                </select>
+                
+                <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                    <option value=''>Alfabeto</option>
+                    <option value="abc">A-Z</option>
+                    <option value="cba">Z-A</option>
+                </select>
+            </div>
             
-            <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
-                <option value=''>Alfabeto</option>
-                <option value="abc">A-Z</option>
-                <option value="cba">Z-A</option>
-            </select>
-        </div>
-        
-        <Container  maxWidth="xl" sx={{display:'flex', justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
+            <Container  maxWidth="xl" sx={{display:'flex', justifyContent:'center', alignItems:'center', flexWrap:'wrap'}}>
 
-            {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
-                <div  key={wine._id}>
-                    <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
-                                img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
-                </div>
-            ))}
-            {/*wines && wines.sortAbc?.length !== 0 && wines?.sortAbc?.map(wine=>(
-                <div key={wine._id}>
-                    <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
-                                img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
-                </div>
-            ))*/}
+                {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
+                    <div  key={wine._id}>
+                        <CardProduct id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
+                                    img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
+                    </div>
+                ))}
+                
+            </Container>
 
-        </Container>
-      
-
-        <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
-
+            <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
+        </div>}
     </div>
   )
 }
