@@ -1,6 +1,23 @@
 const { response } = require("express");
 const Product = require("../models/product");
 
+
+const getAllProducers = async (req, res = response) => {
+ 
+  const query = { state: true };
+  
+
+  const  products= await Product.find(query).populate("user", "name").populate("category", "name");
+  const array = []
+products.map(e => array.push(e.producer))
+console.log(array)
+const dataArr = new Set(array)
+console.log(dataArr)
+const producer = Array.from(dataArr)
+res.json({producer});
+
+}
+
 const getAll = async (req, res = response) => {
   const { limit, start = 0 } = req.query; 
   const query = { state: true };
@@ -320,6 +337,7 @@ module.exports = {
   deleteFavs,
   addToCart,
   deleteCart,
-  getCart
+  getCart,
+  getAllProducers
 
 };

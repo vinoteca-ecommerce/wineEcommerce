@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart } = require('../controllers/products');
+const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart,getAllProducers } = require('../controllers/products');
 const {jwtValidator, adminRole} = require('../middlewares')
 const { validation } = require('../middlewares/validator')
 const { categoryValidator , productIdValidator} =require('../helpers/db-validators')
@@ -11,6 +11,7 @@ const router = Router();
 
 router.get('/',getAll)
 
+router.get('/producer',getAllProducers)
 
 router.post('/', [
     jwtValidator, 
