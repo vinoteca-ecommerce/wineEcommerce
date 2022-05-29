@@ -6,6 +6,7 @@ const initialState = {
     category: '',
     orden: '',
     strain: '',
+    
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -35,6 +36,8 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wines: action.payload
+                // name: action.payload.name,
+                
             }
 
         case SET_FILTER:
