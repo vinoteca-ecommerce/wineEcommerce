@@ -25,7 +25,10 @@ const getAll = async (req, res = response) => {
 
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   
-
+  const removeAccents = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+ 
+  } 
   if (
     name ||
     strain ||
@@ -44,7 +47,7 @@ const getAll = async (req, res = response) => {
 
     if (name) {
       let x = products.filter((e) =>
-        e.name.toLowerCase().includes(name.toLowerCase())
+      removeAccents(e.name).toLowerCase().includes(removeAccents(name).toLowerCase())
       );
       x.length > 0 ? (namefiltred = x) : res.json("msg: Name not found");
     } else {
