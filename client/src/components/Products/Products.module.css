@@ -107,16 +107,16 @@ grid-template-columns: 1fr 5fr;
 
 }
 
-.containerCards div{
+/*.containerCards div{
     margin: 10px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     height:auto;
-    /* padding: 2px; */
-    /* overflow: hidden;
-    position: relative; */
-}
+    padding: 2px; 
+    overflow: hidden;
+    position: relative; 
+}*/
 
 
 .pagination{

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWines, setWineClean, setFilter, getWineName } from '../../redux/actions/actions';
+import { getWines, setWineClean, setFilter, getWineName, getStrains } from '../../redux/actions/actions';
 import { CardProduct } from '../CardProduct/CardProduct';
 // import { Container } from '@mui/system';
 import {SearchBar} from '../SearchBar/SearchBar'
@@ -11,22 +11,23 @@ export const Products = () => {
     
     const dispatch = useDispatch();
     let wines = useSelector((state) => state.wines);
-    //let allStrains = useSelector((state) => state.allStrains);
+    let allProducers = useSelector((state) => state.allProducers);
     let categoryR = useSelector((state) => state.category);
     let ordenR = useSelector((state) => state.orden);
-    //let strainR = useSelector((state) => state.strain);
+    let producerR = useSelector((state) => state.producer);
 
     const [page,setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
 
     const[category,setCategory] = useState(categoryR);
     const[orden,setOrden] = useState(ordenR);
-    //const[strain,setStrain] = useState(strainR);
+    const[producer,setProducer] = useState(producerR);
+
+    let wines_paginates = [];
 
     //SEARCH BAR
     const handleSearch = (value) =>{
         dispatch(getWineName(value))
-        // console.log(value)
         setPage(1)
     }
     
@@ -34,19 +35,19 @@ export const Products = () => {
     const HandleReload = () => {
         window.location.reload();
       };
-    let wines_paginates = [];
 
     //Filter Config
     useEffect(()=>{
         dispatch(setWineClean());
         let op ={};
-        op = {category, orden};
+        op = {category, orden, producer};
         dispatch(setFilter(op));
+        dispatch(getStrains());
 
-        if(page === 1) dispatch(getWines(0,category,orden/*,strain*/));
-        else dispatch(getWines((page*10)-10,category,orden/*,strain*/));
+        if(page === 1) dispatch(getWines(0,category,orden,producer));
+        else dispatch(getWines((page*10)-10,category,orden,producer));
 
-    },[dispatch,categoryR,category,page,orden/*,strain*/])
+    },[dispatch,categoryR,category,page,orden,producer])
 
     //Total pages
     useEffect(()=>{
@@ -88,11 +89,11 @@ export const Products = () => {
                     <option value='ESPUMANTE'>Espumante</option>
                 </select>
 
-                <select /*value={strain} onChange={(e)=>setStrain(e.target.value)}*/> 
+                <select value={producer} onChange={(e)=>setProducer(e.target.value)}> 
                     <option value='' >Todas</option>
-                    {/*allStrains?.map((strain)=>(
-                        <option key={strain} value={strain}>{strain}</option> 
-                    ))*/}
+                    {allProducers?.producer?.map((produ)=>(
+                        <option key={produ} value={produ}>{produ}</option> 
+                    ))}
                 </select>
                 
                 <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
