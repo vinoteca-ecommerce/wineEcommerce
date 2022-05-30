@@ -9,7 +9,7 @@ export const PreCategory = () => {
     const dispatch = useDispatch();
   return (
     <div className={style.container}>
-        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'TINTO',orden:""}))}>
+        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'TINTO',orden:"",strain:""}))}>
             <div className={style.card}>
                 <div className={style.cardImageTinto}></div>
                 <div className={style.cardDescription}>
@@ -19,7 +19,7 @@ export const PreCategory = () => {
             </div>
         </Link>
 
-        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'BLANCO',orden:""}))}>
+        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'BLANCO',orden:"",strain:""}))}>
             <div className={style.card}>
                 <div className={style.cardImageBlanco}></div>
                 <div className={style.cardDescription}>
@@ -29,7 +29,7 @@ export const PreCategory = () => {
             </div>
         </Link>
 
-        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'ROSADO',orden:""}))}>
+        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'ROSADO',orden:"",strain:""}))}>
             <div className={style.card}>
                 <div className={style.cardImageRosado}></div>
                 <div className={style.cardDescription}>
@@ -39,7 +39,7 @@ export const PreCategory = () => {
             </div>
         </Link>
 
-        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'ESPUMANTE',orden:""}))}>
+        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:'ESPUMANTE',orden:"",strain:""}))}>
             <div className={style.card}>
                 <div className={style.cardImageEspumoso}></div>
                 <div className={style.cardDescription}>
@@ -49,7 +49,7 @@ export const PreCategory = () => {
             </div>
         </Link>
 
-        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:"",orden:""}))}>
+        <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:"",orden:"",strain:""}))}>
             <div className={style.card}>
                 <div className={style.cardImage}></div>
                 <div className={style.cardDescriptionAll}>
