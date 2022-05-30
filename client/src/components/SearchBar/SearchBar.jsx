@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export const SearchBar = ({onSearch}) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('');
 
 
   const handleSearchValue = (e) => {
