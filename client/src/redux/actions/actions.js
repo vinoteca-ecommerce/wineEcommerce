@@ -30,7 +30,7 @@ export const getWinesById = (id) => {
 
 export const getWineName = (name) => {
     return async function(dispatch){
-      return axios.get(`http://localhost:8000/products/${name}`)
+      return axios.get(`http://localhost:8000/products/?name=${name}`)
     .then(response => {
       dispatch({ type: GET_NAME, payload: response.data});
     })
