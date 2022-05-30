@@ -1,6 +1,6 @@
 .card {
     width: 240px;
-    height: 400px;
+    height: auto;/*400px;*/
     padding: .8em;
     background: #f5f5f5;
     position: relative;
@@ -15,7 +15,6 @@
     width: 100%;
     border-radius: .5rem;
     transition: .3s ease;
-    object-fit: fill;
    }
    
    .cardInfo {

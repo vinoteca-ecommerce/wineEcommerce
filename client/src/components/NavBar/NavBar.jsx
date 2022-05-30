@@ -35,7 +35,7 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{background:'white'}}>
+    <AppBar position="sticky" sx={{background:'white'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -86,13 +86,13 @@ export const NavBar = () => {
               }}
             >
                 <MenuItem >
-                  <Button href='/products' textAlign="center">Productos</Button>
+                  <Button href='/products' textalign="center">Productos</Button>
                 </MenuItem>
                 <MenuItem >
-                  <Button href='/about' textAlign="center">Nosotros</Button>
+                  <Button href='/about' textalign="center">Nosotros</Button>
                 </MenuItem>
                 <MenuItem >
-                  <Button href='/contact' textAlign="center">Contacto</Button>
+                  <Button href='/contact' textalign="center">Contacto</Button>
                 </MenuItem>
               
             </Menu>
