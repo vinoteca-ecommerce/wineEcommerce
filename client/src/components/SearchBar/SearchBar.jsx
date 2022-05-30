@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 
-
 export const SearchBar = ({onSearch}) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
+
+
   const handleSearchValue = (e) => {
     setValue(e.target.value);
   };
@@ -12,6 +13,7 @@ export const SearchBar = ({onSearch}) => {
     if(!value){
       return alert('Por Favor escribe el nombre del vino que buscas')
     } else{
+      console.log(value)
     onSearch(value)
     setValue('')
     }

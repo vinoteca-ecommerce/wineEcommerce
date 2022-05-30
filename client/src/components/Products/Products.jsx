@@ -29,7 +29,11 @@ export const Products = () => {
         // console.log(value)
         setPage(1)
     }
-  
+    
+    //reload
+    const HandleReload = () => {
+        window.location.reload();
+      };
     let wines_paginates = [];
 
     //Filter Config
@@ -68,8 +72,8 @@ export const Products = () => {
             </div>
 
             <div className={style.filtersCard}>
+                <button onClick={HandleReload} >Refresh</button>
                <SearchBar onSearch={handleSearch}/>
-
                 <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
                     <option value='' >Precio</option>
                     <option value='pricemax'>Max⬆</option>
