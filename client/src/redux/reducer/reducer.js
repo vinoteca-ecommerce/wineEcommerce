@@ -1,5 +1,5 @@
 
-import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES} from '../actions/actions';
+import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES, GET_STRAIN} from '../actions/actions';
 
 
 const initialState = {
@@ -7,7 +7,6 @@ const initialState = {
     allProducers: [],
     category: '',
     orden: '',
-
     strain: '',
     categories: [],
 

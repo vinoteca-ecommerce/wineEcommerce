@@ -5,7 +5,7 @@ export const GET_NAME = 'GET_NAME';
 export const SET_FILTER = 'SET_FILTER';
 export const POST_WINE = 'POST_WINE';
  export const GET_CATEGORIES = 'GET_CATEGORIES';
-
+export const GET_STRAIN = 'GET_STRAIN'
 
 
 export const getWines = (num,category,orden,strain) => {
