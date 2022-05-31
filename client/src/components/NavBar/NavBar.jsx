@@ -156,7 +156,7 @@ export const NavBar = () => {
           </Box>
             <Box>
           <IconButton sx={{mr:'20px'}}>
-          <AddShoppingCartIcon fontSize='large' />
+          <Link to='/shoppingCar' style={{color:'grey'}}><AddShoppingCartIcon fontSize='large'/></Link>
           </IconButton>
           </Box>
             {currentUser?(

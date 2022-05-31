@@ -102,15 +102,16 @@ export const Products = () => {
                     <option value="cba">Z-A</option>
                 </select>
             </div>
-            <div className={style.containerCards}>
             
+            <div className={style.containerCards}>
                 {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
                     
                     <div key={wine._id}>
-                        <CardProduct  id={wine._id} name={wine.name} producer={wine.producer} year={wine.year} description={wine.description} price={wine.price}
-                                    img={wine.img} category={wine.category.name} stock={wine.stock} country={wine.country}  strain={wine.strain}/>
+                        <CardProduct  id={wine._id} name={wine.name}  price={wine.price} img={wine.img} category={wine.category.name}/>
                     </div>
-                ))} </div> 
+                ))} 
+            </div> 
+
            <div className={style.pagination}>
             <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
            </div>

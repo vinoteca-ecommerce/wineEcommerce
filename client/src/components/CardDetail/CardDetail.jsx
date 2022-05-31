@@ -24,7 +24,33 @@ export const CardDetail = () => {
       if(cont > 1) setCont(cont-1)
     }
     else setCont(cont+1)
-    
+  }
+
+  const handleClickShopping = (id)=>{
+    let state = JSON.parse(localStorage.getItem('ShoppingCar'));
+    let sum = 0;
+    let index = undefined;
+
+    if(localStorage.id){
+      console.log('asd')
+    }
+    if(state){
+      for(let i=0 ; i<state?.length ; i++){
+        if(state[i].id === id){
+          sum = state[i].cont + cont;
+          index = i; 
+        }
+      }
+
+      if(sum) state?.push({id,cont:sum});
+      else state?.push({id,cont});
+
+      if(index !== undefined) state.splice(index,1);
+
+      localStorage.setItem('ShoppingCar', JSON.stringify(state));
+    }
+    else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont}]));
+    //localStorage.clear()
   }
 
   return (
@@ -49,7 +75,7 @@ export const CardDetail = () => {
             </div>
           </div>
           <div className={style.btn}>
-          <Button variant="contained">Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
+          <Button variant="contained" onClick={()=>handleClickShopping(id)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
           </div>
           
         </div>
