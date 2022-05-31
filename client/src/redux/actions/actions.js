@@ -1,4 +1,5 @@
 import axios from 'axios';
+import authHeader from '../../components/services/auth-header';
 export const GET_WINES = 'GET_WINES';
 export const SET_WINES_CLEAN = 'SET_WINES_CLEAN';
 export const GET_NAME = 'GET_NAME';
@@ -48,8 +49,9 @@ export const setFilter = (options) => {
 };
 // {headers: authHeader()}
 export const postWine = (data) => {
+  console.log(data)
   return async function(dispatch){
-    return axios.post('http://localhost:8000/users', data)
+    return axios.post('http://localhost:8000/products', data, { headers: authHeader() } )
     .then(response => {
       dispatch({type: POST_WINE, payload: response.data})
     })
