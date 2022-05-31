@@ -186,7 +186,7 @@ export const AdminDashboard = () => {
            </li>
            
               <label > Categoria: </label>
-              <select onChange={e=>handleSelect(e)} >
+              <select placeholder="Categoria" onChange={e=>handleSelect(e)} >
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
                 ))}
@@ -203,7 +203,7 @@ export const AdminDashboard = () => {
               />
           </li>
       
-              <button type="submit"> Submit </button>
+              <button type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
         </ul>
       </form>
     </div>
