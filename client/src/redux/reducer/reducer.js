@@ -7,7 +7,7 @@ const initialState = {
     allProducers: [],
     category: '',
     orden: '',
-    strain: '',
+    producer: '',
     categories: [],
 
     

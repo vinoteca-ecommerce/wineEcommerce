@@ -19,9 +19,9 @@ export const getProduct = () => {
   };
 };
 
-export const getWines = (num,category,orden,strain) => {
+export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
-      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${strain}`)
+      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${producer}`)
       .then(response => {
         dispatch({ type: GET_WINES, payload: response.data });
       })
