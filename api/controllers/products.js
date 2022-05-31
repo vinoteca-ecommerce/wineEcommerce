@@ -1,18 +1,21 @@
 const { response } = require("express");
 const Product = require("../models/product");
+const axios = require("axios")
 
 
 const getAllProducers = async (req, res = response) => {
  
   const query = { state: true };
   
+
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   const array = []
-
-  products.map(e => array.push(e.producer))
-  const dataArr = new Set(array)
-  const producer = Array.from(dataArr)
-  res.json({producer});
+products.map(e => array.push(e.producer))
+console.log(array)
+const dataArr = new Set(array)
+console.log(dataArr)
+const producer = Array.from(dataArr)
+res.json({producer});
 
 }
 
@@ -23,10 +26,7 @@ const getAll = async (req, res = response) => {
 
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   
-  const removeAccents = (str) => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
- 
-  } 
+
   if (
     name ||
     strain ||
@@ -45,7 +45,7 @@ const getAll = async (req, res = response) => {
 
     if (name) {
       let x = products.filter((e) =>
-      removeAccents(e.name).toLowerCase().includes(removeAccents(name).toLowerCase())
+        e.name.toLowerCase().includes(name.toLowerCase())
       );
       x.length > 0 ? (namefiltred = x) : res.json("msg: Name not found");
     } else {
@@ -54,17 +54,15 @@ const getAll = async (req, res = response) => {
     if (strain) {
       strainFiltred = namefiltred.filter(
         (e) => e.strain.toLowerCase() === strain.toLowerCase()
-      )
-      strainFiltred.length>0?strainFiltred:res.status(404).json("msg: Strain not found")
+      );
     } else {
       strainFiltred = namefiltred;
     }
 
     if (category) {
       categoryFiltred = strainFiltred.filter(
-        (e) => e.category.name.toLowerCase() === category.toLowerCase()
+        (e) => e.category.name === category
       );
-      categoryFiltred.length>0?categoryFiltred:res.status(404).json("msg: Category not found")
     } else {
       categoryFiltred = strainFiltred;
     }
@@ -72,14 +70,12 @@ const getAll = async (req, res = response) => {
     if (country) {
       countryFiltred = categoryFiltred.filter(
         (e) => e.country.toLowerCase() === country.toLowerCase()
-        );
-        countryFiltred.length>0?countryFiltred:res.status(404).json("msg: Country not found")
+      );
     } else {
       countryFiltred = categoryFiltred;
     }
     if (producer) {
       producerFilter = countryFiltred.filter((e) => e.producer === producer);
-      producerFilter.length>0?producerFilter:res.status(404).json("msg: Producer not found")
     } else {
       producerFilter = countryFiltred;
     }
@@ -331,6 +327,48 @@ const deleteCart=async(req,res=response)=>{
 
   res.json({msg:'Wine deleted from your favorites succesfully.'})
 }
+
+const paymentMP = async(req,res)=>{
+  const url = "https://api.mercadopago.com/checkout/preferences"
+
+  const body ={
+    
+    items: [{
+      title: "pack de martin",
+      picture_url:"",
+      quantity:5,
+      unit_price:20,
+    },
+    {
+      title: "pack de camilo",
+      picture_url:"",
+      quantity:5,
+      unit_price:200,
+    }
+  ],
+  back_urls:{
+    failure:"/failure",
+    pending:"/pending",
+    success:"/success"
+}
+};
+const payment = await axios.post(url,body,{
+
+
+  
+  headers:{
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+  }
+})
+res.json(payment.data)
+//devuelve el link de pago unicamente .data devuelve todo el array 
+console.log(process.env.ACCESS_TOKEN)
+}
+
+
+
+
 module.exports = {
   postProduct,
   getAll,
@@ -343,6 +381,7 @@ module.exports = {
   addToCart,
   deleteCart,
   getCart,
-  getAllProducers
+  getAllProducers,
+  paymentMP
 
-};
+}
