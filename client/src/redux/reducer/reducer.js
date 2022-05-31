@@ -1,4 +1,4 @@
-import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER} from '../actions/actions';
+import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES} from '../actions/actions';
 
 const initialState = {
     wines: {},
@@ -6,6 +6,7 @@ const initialState = {
     category: '',
     orden: '',
     strain: '',
+    categories: [],
     
 }
 
@@ -35,9 +36,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_NAME:
             return {
                 ...state,
-                wines: action.payload
-                // name: action.payload.name,
-                
+                wines: action.payload   
             }
 
         case SET_FILTER:
@@ -46,6 +45,15 @@ const rootReducer = (state = initialState, action) => {
                 category: action.payload.category,
                 orden: action.payload.orden,
                 strain: action.payload.strain,
+            }
+        case POST_WINE:
+            return {
+                ...state,
+            }
+        case GET_CATEGORIES:
+            return{
+                ...state,
+                categories: action.payload,
             }
 
         default: return {...state}

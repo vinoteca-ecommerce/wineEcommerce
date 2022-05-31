@@ -7,6 +7,8 @@ import { CardDetail } from './components/CardDetail/CardDetail';
 import {Aboutus} from './components/About/About.jsx'
 import Footer from './components/Footer/Footer';
 import {Contact} from './components/Contact/Contact'
+import { AdminDashboard } from './components/AdminDashboard/AdminDashboard';
+
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/admin' element={<AdminDashboard/>}/>
       </Routes>
       <Footer/>
     </div>

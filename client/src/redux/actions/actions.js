@@ -3,6 +3,8 @@ export const GET_WINES = 'GET_WINES';
 export const SET_WINES_CLEAN = 'SET_WINES_CLEAN';
 export const GET_NAME = 'GET_NAME';
 export const SET_FILTER = 'SET_FILTER';
+export const POST_WINE = 'POST_WINE';
+ export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 export const getWines = (num,category,orden) => {
     return async function (dispatch) {
@@ -42,4 +44,23 @@ export const getWineName = (name) => {
 export const setFilter = (options) => {
   return { type: SET_FILTER, payload:options };
 };
+// {headers: authHeader()}
+export const postWine = (data) => {
+  return async function(dispatch){
+    return axios.post('http://localhost:8000/users', data)
+    .then(response => {
+      dispatch({type: POST_WINE, payload: response.data})
+    })
+ .catch(err => console.error(err))
+  }
+}
 
+export const getCategories = () => {
+  return async function(dispatch){
+    return axios.get('http://localhost:8000/category')
+    .then(response => {
+      dispatch({type: GET_CATEGORIES, payload: response.data})
+    })
+   .catch(err => console.error(err))
+  }
+}
