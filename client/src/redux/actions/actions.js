@@ -5,9 +5,19 @@ export const SET_WINES_CLEAN = 'SET_WINES_CLEAN';
 export const GET_NAME = 'GET_NAME';
 export const SET_FILTER = 'SET_FILTER';
 export const POST_WINE = 'POST_WINE';
- export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const GET_STRAIN = 'GET_STRAIN'
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_STRAIN = 'GET_STRAIN';
+export const GET_PRODUCT = 'GET_PRODUCT'
 
+export const getProduct = () => {
+  return async function (dispatch) {
+    return axios.get(`http://localhost:8000/products`)
+    .then(response => {
+      dispatch({ type: GET_PRODUCT, payload: response.data });
+    })
+    .catch(err => console.error(err))
+  };
+};
 
 export const getWines = (num,category,orden,strain) => {
     return async function (dispatch) {

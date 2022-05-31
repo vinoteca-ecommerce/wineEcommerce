@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Link from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, postWine } from "../../redux/actions/actions";
 
@@ -86,6 +86,7 @@ export const AdminDashboard = () => {
   
   return (
     <div>
+      <nav><Link  to='/admin/delete'> Borrar Producto </Link> </nav>
       <h3> Formulario de agregar Vino </h3>
       <form onSubmit={e=>handleSubmit(e)}>
         <ul>
@@ -192,7 +193,7 @@ export const AdminDashboard = () => {
                 ))}
               </select>      
             <li>
-            <label>DESCRIPCION:  </label>
+            <label>Descripcion:  </label>
             <textarea 
               type="text" 
               placeholder="Descripcion"
