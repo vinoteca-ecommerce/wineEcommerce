@@ -7,6 +7,7 @@ import { getCategories, postWine } from "../../redux/actions/actions";
 export const AdminDashboard = () => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories);
+  const [error, setError] = useState({})
   const [input, setInput] = useState({
     name:'',
     year:'',
@@ -16,7 +17,8 @@ export const AdminDashboard = () => {
     price: "",
     country: "",
     strain: '',
-    producer:''
+    producer:'',
+    stock: ''
   });
 
   useEffect(() => {
@@ -36,7 +38,8 @@ export const AdminDashboard = () => {
       price: "",
       country: "",
       strain: '',
-      producer:''
+      producer:'',
+      stock: ''
   
     })
   }
@@ -55,12 +58,35 @@ export const AdminDashboard = () => {
         ...state,
         [e.target.name]: e.target.value,
       };
+      setError(validate(newState))
       return newState;
     });
   }
+  
+  function validate(input){
+    let error = {};
+    if(input.name.length < 4){
+      error.name = 'Nombre debe ser valido'
+    }
+    if(input.producer.length < 4){
+      error.producer = 'Nombre del productor es obligatorio'
+    }
+    if(!input.price){
+      error.price = 'Precio es obligatorio'
+    }
+    if(input.country.length < 4){
+      error.country = 'Pais del vino es obligatorio' 
+    }
+    if(!input.strain){
+      error.strain = 'Cepa es obligatorio'
+    }
+    return error
+  }
 
+  
   return (
     <div>
+      <h3> Formulario de agregar Vino </h3>
       <form onSubmit={e=>handleSubmit(e)}>
         <ul>
           <li>
@@ -71,18 +97,20 @@ export const AdminDashboard = () => {
               value={input.name}
               name='name'
               autoComplete="off"
-              onChange={handleOnChange} />
+              onChange={handleOnChange}/>
+              {error.name && <p>{error.name}</p>}  
           </li>
           <li>
             <label>Año:  </label>
             <input 
-              type="text" 
+              type="number" 
               placeholder="Año"
               value={input.year}
               name='year' 
               autoComplete="off"
               onChange={handleOnChange}
               />
+             
           </li>
           <li>
             <label>Cepa:  </label>
@@ -94,6 +122,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
+              {error.strain && <p>{error.strain}</p>}  
           </li>
           <li>
             <label>Pais:  </label>
@@ -105,6 +134,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
+              {error.country && <p>{error.country}</p>}  
           </li>
           <li>
             <label>Productor:  </label>
@@ -116,6 +146,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
+              {error.producer && <p>{error.producer}</p>}  
            </li>
            <li>
             <label>Link Imagen:  </label>
@@ -130,17 +161,30 @@ export const AdminDashboard = () => {
            </li>
           <li>
 
-            <label>PRECIO: $ </label>
+            <label>Precio: $ </label>
             <input 
-              type="text" 
+              type="number" 
               placeholder="Precio"
               value={input.price}
               name='price' 
               autoComplete="off"
               onChange={handleOnChange}
               />
+              {error.price && <p>{error.price}</p>}  
            </li>
-          
+           <li> 
+
+           <label>Stock:  </label>
+            <input 
+              type="number" 
+              placeholder="Stock"
+              value={input.stock}
+              name='stock' 
+              autoComplete="off"
+              onChange={handleOnChange}
+              />
+           </li>
+           
               <label > Categoria: </label>
               <select onChange={e=>handleSelect(e)} >
                 {category.result?.map((e) => (
