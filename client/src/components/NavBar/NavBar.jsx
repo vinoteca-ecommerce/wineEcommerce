@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React,{useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import authService from '../services/auth-service'
 
 const settings = ['Perfil', 'Cerrar sesión'];
 
@@ -19,6 +21,20 @@ export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   
+  const [currentUser, setCurrentUser] = useState(undefined)
+
+  useEffect(()=>{
+    const user= authService.getCurrentUser();
+    if(user){
+      setCurrentUser(user)
+    }
+  },[])
+
+  const logOut = ()=>{
+    authService.logout();
+    window.location.reload();
+  }
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -86,13 +102,13 @@ export const NavBar = () => {
               }}
             >
                 <MenuItem >
-                  <Button href='/products' textAlign="center">Productos</Button>
+                  <Button href='/products' textalign="center">Productos</Button>
                 </MenuItem>
                 <MenuItem >
-                  <Button href='/about' textAlign="center">Nosotros</Button>
+                  <Button href='/about' textalign="center">Nosotros</Button>
                 </MenuItem>
                 <MenuItem >
-                  <Button href='/contact' textAlign="center">Contacto</Button>
+                  <Button href='/contact' textalign="center">Contacto</Button>
                 </MenuItem>
               
             </Menu>
@@ -143,6 +159,7 @@ export const NavBar = () => {
           <AddShoppingCartIcon fontSize='large' />
           </IconButton>
           </Box>
+            {currentUser?(
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -165,13 +182,23 @@ export const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  <Typography textalign="center">Perfil</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem >
+                <Typography textaling='center' onClick={logOut}> Logout</Typography>
+                </MenuItem>
             </Menu>
           </Box>
+        ):(
+          <div>
+            <li>
+              <Link  className='letters' to={'/Login'}> Login </Link>  
+            </li>
+            <li>
+              <Link className='letters' to ={'/register'}> Register </Link></li>
+          </div>
+        )}
         </Toolbar>
       </Container>
     </AppBar>

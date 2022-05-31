@@ -6,15 +6,13 @@ const getAllProducers = async (req, res = response) => {
  
   const query = { state: true };
   
-
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   const array = []
-products.map(e => array.push(e.producer))
-console.log(array)
-const dataArr = new Set(array)
-console.log(dataArr)
-const producer = Array.from(dataArr)
-res.json({producer});
+
+  products.map(e => array.push(e.producer))
+  const dataArr = new Set(array)
+  const producer = Array.from(dataArr)
+  res.json({producer});
 
 }
 
@@ -56,15 +54,17 @@ const getAll = async (req, res = response) => {
     if (strain) {
       strainFiltred = namefiltred.filter(
         (e) => e.strain.toLowerCase() === strain.toLowerCase()
-      );
+      )
+      strainFiltred.length>0?strainFiltred:res.status(404).json("msg: Strain not found")
     } else {
       strainFiltred = namefiltred;
     }
 
     if (category) {
       categoryFiltred = strainFiltred.filter(
-        (e) => e.category.name === category
+        (e) => e.category.name.toLowerCase() === category.toLowerCase()
       );
+      categoryFiltred.length>0?categoryFiltred:res.status(404).json("msg: Category not found")
     } else {
       categoryFiltred = strainFiltred;
     }
@@ -72,12 +72,14 @@ const getAll = async (req, res = response) => {
     if (country) {
       countryFiltred = categoryFiltred.filter(
         (e) => e.country.toLowerCase() === country.toLowerCase()
-      );
+        );
+        countryFiltred.length>0?countryFiltred:res.status(404).json("msg: Country not found")
     } else {
       countryFiltred = categoryFiltred;
     }
     if (producer) {
       producerFilter = countryFiltred.filter((e) => e.producer === producer);
+      producerFilter.length>0?producerFilter:res.status(404).json("msg: Producer not found")
     } else {
       producerFilter = countryFiltred;
     }

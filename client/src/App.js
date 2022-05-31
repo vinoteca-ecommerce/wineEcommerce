@@ -6,8 +6,11 @@ import { Products } from './components/Products/Products';
 import { CardDetail } from './components/CardDetail/CardDetail';
 import {Aboutus} from './components/About/About.jsx'
 import Footer from './components/Footer/Footer';
-import {Contact} from './components/Contact/Contact'
 import { AdminDashboard } from './components/AdminDashboard/AdminDashboard';
+import {Contact} from './components/Contact/Contact';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register';
+import Private from './components/Login/Private'
 
 
 
@@ -17,6 +20,9 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route exact path='/login' element={<Login/>}/>
+       <Route exact path='/register' element={<Register/>}/>
+       <Route exact path='/private' element={<Private/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>

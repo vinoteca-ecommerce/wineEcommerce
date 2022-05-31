@@ -25,8 +25,7 @@ router.post('/',[
     check('name', 'Name is required').not().isEmpty(),
     check('password', 'Password must contain at least 6 characters').isLength({min: 6}),
     check('email').custom(emailExist),
-    check('role').custom(rolValidator),
-validation
+    validation
 ] ,postUser)
 
 router.get('/:id',[

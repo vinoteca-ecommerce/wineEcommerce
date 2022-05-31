@@ -6,9 +6,11 @@ export const SET_FILTER = 'SET_FILTER';
 export const POST_WINE = 'POST_WINE';
  export const GET_CATEGORIES = 'GET_CATEGORIES';
 
-export const getWines = (num,category,orden) => {
+
+
+export const getWines = (num,category,orden,strain) => {
     return async function (dispatch) {
-      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}`)
+      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${strain}`)
       .then(response => {
         dispatch({ type: GET_WINES, payload: response.data });
       })
@@ -55,6 +57,7 @@ export const postWine = (data) => {
   }
 }
 
+
 export const getCategories = () => {
   return async function(dispatch){
     return axios.get('http://localhost:8000/category')
@@ -64,3 +67,15 @@ export const getCategories = () => {
    .catch(err => console.error(err))
   }
 }
+
+export const getStrains = () => {
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/products/producer`)
+  .then(response => {
+    dispatch({ type: GET_STRAIN, payload: response.data});
+  })
+  .catch(err => console.error(err))
+}
+}
+
+

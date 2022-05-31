@@ -5,10 +5,6 @@ const UserSchema = Schema({
     type: String,
     required: [true, "Name is required"],
   },
-//   birthday_date:{
-//     type: Date,
-//     required: true
-//   },
   email: {
     type: String,
     unique: true,
@@ -23,7 +19,7 @@ const UserSchema = Schema({
   },
   role: {
     type: String,
-    required: true,
+    default: 'USER_ROLE',
     enum: ["ADMIN_ROLE", "SALES_ROLE", "USER_ROLE"],
   },
   state: {
