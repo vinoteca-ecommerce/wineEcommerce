@@ -20,6 +20,7 @@ import {UserDirection} from './components/UserProfile/UserDirection'
 
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
+import { PrivateUpdate } from './components/AdminDashboard/PrivateUpdate';
 
 
 
@@ -52,7 +53,16 @@ function App() {
             </PrivateDeleteDash>
           }
         />
-         <Route path='/admin/update/:id' element={<UpdateProduct/>}/>
+
+<Route
+          path="/admin/update/:id"
+          element={
+            <PrivateUpdate>
+              <UpdateProduct />
+            </PrivateUpdate>
+          }
+        />
+         
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userOrders' element={<UserOrders/>}/>
