@@ -1,14 +1,15 @@
+const jwt_decode= require('jwt-decode')
 const  { response } = require('express');
 const bcryptjs = require('bcryptjs');
 const {jwtGenerator} = require('../helpers/jwtgenerator')
 const User = require('../models/user');
-
+const { googleVerify } = require('../helpers/google-verify');
 
 const loginController = async(req, res = response) => {
 
     const { email, password } = req.body;
 
-    try {
+    try {   
         
         const user = await User.findOne({ email });
         if(!user){
@@ -41,11 +42,48 @@ const loginController = async(req, res = response) => {
             msg: 'Please contact with the administrator.'
         });
     }
-
-
-   
 }
 
+const googleSingIn=async(req,res)=>{
+    const {id_token}=req.body;
+
+    try {
+        const {name, email , picture}=jwt_decode(id_token)
+        
+        let user= await User.findOne({email});
+        
+        if(!user){
+            
+            const data={
+                name,
+                email,
+                img:picture,
+                password:'/._./',
+                google:true
+            }
+            user= new User(data)
+            await user.save();
+        }
+        if(!user.state){
+            return res.status(401).json({
+                msg:'blocked user.'
+            })
+        }
+
+        const token = await jwtGenerator(user.id);
+
+        res.json({
+            token,
+            user})
+    } catch (error) {
+        res.status(400).send('bad request, contact the admin')
+    }
+}
+
+
+
+
 module.exports = {
-    loginController
+    loginController,
+    googleSingIn
 }

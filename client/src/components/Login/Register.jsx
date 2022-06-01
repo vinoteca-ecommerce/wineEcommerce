@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import authService from "../services/auth-service";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const Register = ()=>{
@@ -10,7 +11,35 @@ const Register = ()=>{
 
     const navigate = useNavigate()
 
+    function handleCredentialResponse(response) {
 
+      const id_token=response.credential
+      console.log("ID: " + response.credential);
+      axios.post('http://localhost:8000/auth/google',{id_token})
+        .then(resp=>{
+          console.log(resp)
+          if(resp.data.token){
+            localStorage.setItem('user', JSON.stringify(resp.data))
+          }
+          navigate('/');
+          window.location.reload()
+        return resp.data
+
+        })
+        .catch(err=>console.log('hubo un error',err))
+   }
+
+    useEffect(()=>{
+      /* global google*/
+      google.accounts.id.initialize({
+        client_id:"532220759696-a4234dpvkfififbf8pagjsmihvj8plof.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      })
+
+      google.accounts.id.renderButton(
+        document.getElementById('singInDiv'),
+        {theme:"outline", size:"large"})
+    },[])
     const handleRegister = async(e)=>{
         e.preventDefault();
         console.log(1)
@@ -56,6 +85,7 @@ const Register = ()=>{
           />
           <button>Register</button>
         </form>
+        <div id="singInDiv"></div>
       </div>
       );
 
