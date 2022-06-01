@@ -3,6 +3,9 @@ import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, postWine } from "../../redux/actions/actions";
 
+// STYLE
+import Style from "./AddProduct.module.css"
+
 
 export const AddProduct = () => {
   const dispatch = useDispatch();
@@ -86,128 +89,139 @@ export const AddProduct = () => {
 
   
   return (
-    <div>
-      <nav><Link  to='/admin/delete'> Borrar Producto </Link>  </nav>
-      <h3> Formulario de agregar Vino </h3>
-      <form onSubmit={e=>handleSubmit(e)}>
-        <ul>
-          <li>
-            <label>Nombre:  </label>
-            <input 
-              type="text" 
-              placeholder="Nombre"
-              value={input.name}
-              name='name'
-              autoComplete="off"
-              onChange={handleOnChange}/>
-              {error.name && <p>{error.name}</p>}  
-          </li>
-          <li>
-            <label>Año:  </label>
-            <input 
-              type="number" 
-              placeholder="Año"
-              value={input.year}
-              name='year' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-             
-          </li>
-          <li>
-            <label>Cepa:  </label>
-            <input 
-              type="text" 
-              placeholder="Cepa"
-              value={input.strain}
-              name='strain'
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-              {error.strain && <p>{error.strain}</p>}  
-          </li>
-          <li>
-            <label>Pais:  </label>
-            <input 
-              type="text" 
-              placeholder="Pais"
-              value={input.country}
-              name='country' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-              {error.country && <p>{error.country}</p>}  
-          </li>
-          <li>
-            <label>Productor:  </label>
-            <input 
-              type="text" 
-              placeholder="Productor"
-              value={input.producer}
-              name='producer' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-              {error.producer && <p>{error.producer}</p>}  
-           </li>
-           <li>
-            <label>Link Imagen:  </label>
-            <input 
-              type="text" 
-              placeholder="Link Imagen"
-              value={input.img}
-              name='img' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-           </li>
-          <li>
-
-            <label>Precio: $ </label>
-            <input 
-              type="number" 
-              placeholder="Precio"
-              value={input.price}
-              name='price' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-              {error.price && <p>{error.price}</p>}  
-           </li>
-           <li> 
-
-           <label>Stock:  </label>
-            <input 
-              type="number" 
-              placeholder="Stock"
-              value={input.stock}
-              name='stock' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-           </li>
-           
-              <label > Categoria: </label>
-              <select placeholder="Categoria" onChange={e=>handleSelect(e)} >
-                {category.result?.map((e) => (
-                  <option value={e._id} key={e._id}> {e.name} </option>
-                ))}
-              </select>      
+    <div className={Style.backg}>
+      <Link to='/admin/delete'><button className={Style.nav} > Borrar Producto </button></Link>
+      <div className={Style.froms}>
+        <h3> Formulario de agregar Vino </h3>
+        <form onSubmit={e=>handleSubmit(e)}>
+          <ul>
             <li>
-            <label>Descripcion:  </label>
-            <textarea 
-              type="text" 
-              placeholder="Descripcion"
-              value={input.description}
-              name='description'
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-          </li>
-      
-              <button type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
-        </ul>
-      </form>
+              <label>Nombre:  </label>
+              <input 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Nombre"
+                value={input.name}
+                name='name'
+                autoComplete="off"
+                onChange={handleOnChange}/>
+                {error.name && <p>{error.name}</p>}  
+            </li>
+            <li>
+              <label>Año:  </label>
+              <input 
+                className={Style.inputs}
+                type="number" 
+                placeholder="Año"
+                value={input.year}
+                name='year' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+              
+            </li>
+            <li>
+              <label>Cepa:  </label>
+              <input 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Cepa"
+                value={input.strain}
+                name='strain'
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+                {error.strain && <p>{error.strain}</p>}  
+            </li>
+            <li>
+              <label>Pais:  </label>
+              <input 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Pais"
+                value={input.country}
+                name='country' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+                {error.country && <p>{error.country}</p>}  
+            </li>
+            <li>
+              <label>Productor:  </label>
+              <input 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Productor"
+                value={input.producer}
+                name='producer' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+                {error.producer && <p>{error.producer}</p>}  
+            </li>
+            <li>
+              <label>Link Imagen:  </label>
+              <input 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Link Imagen"
+                value={input.img}
+                name='img' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+            </li>
+            <li>
+
+              <label>Precio: $ </label>
+              <input 
+                className={Style.inputs}
+                type="number" 
+                placeholder="Precio"
+                value={input.price}
+                name='price' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+                {error.price && <p>{error.price}</p>}  
+            </li>
+            <li> 
+
+            <label>Stock:  </label>
+              <input 
+                className={Style.inputs}
+                type="number" 
+                placeholder="Stock"
+                value={input.stock}
+                name='stock' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+            </li>
+            
+                <label > Categoria: </label>
+                <select className={Style.inputs} placeholder="Categoria" onChange={e=>handleSelect(e)} >
+                  {category.result?.map((e) => (
+                    <option value={e._id} key={e._id}> {e.name} </option>
+                  ))}
+                </select>      
+              <li>
+              <label>Descripcion:  </label>
+              <textarea 
+                className={Style.inputs}
+                type="text" 
+                placeholder="Descripcion"
+                value={input.description}
+                name='description'
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+            </li>
+        
+                <button className={Style.buttom} type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
+          </ul>
+        </form>
+      </div>
     </div>
   );
 };
