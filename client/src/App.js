@@ -10,7 +10,6 @@ import { AdminDashboard } from './components/AdminDashboard/AdminDashboard';
 import {Contact} from './components/Contact/Contact';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
-import Private from './components/Login/Private';
 import { DeleteAndUpdate } from './components/AdminDashboard/DeleteAndUpdate';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
 
@@ -24,7 +23,6 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route exact path='/login' element={<Login/>}/>
        <Route exact path='/register' element={<Register/>}/>
-       <Route exact path='/private' element={<Private/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
