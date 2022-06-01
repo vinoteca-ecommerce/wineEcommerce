@@ -12,6 +12,9 @@ import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import { DeleteAndUpdate } from './components/AdminDashboard/DeleteAndUpdate';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
+import {UserProfile} from './components/UserProfile/UserProfile'
+import {UserOrders} from './components/UserProfile/UserOrders'
+import {UserDirection} from './components/UserProfile/UserDirection'
 
 
 
@@ -22,7 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route exact path='/login' element={<Login/>}/>
-       <Route exact path='/register' element={<Register/>}/>
+        <Route exact path='/register' element={<Register/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
@@ -30,6 +33,9 @@ function App() {
         <Route path='/admin/post' element={<AdminDashboard/>}/>
         <Route path='/admin/delete' element={<DeleteAndUpdate/>}/>
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
+        <Route path='/userProfile' element={<UserProfile/>}/>
+        <Route path='/userOrders' element={<UserOrders/>}/>
+        <Route path='/userDirection' element={<UserDirection/>}/>
       </Routes>
       <Footer/>
     </div>
