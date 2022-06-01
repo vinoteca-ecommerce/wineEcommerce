@@ -21,14 +21,14 @@ export const CardProduct = ({id, name, price, img, category}) => {
             }
           }
     
-          if(sum) state?.push({id,cont:sum});
-          else state?.push({id,cont:1});
+          if(sum) state?.push({id,cont:sum,name,price,img,category});
+          else state?.push({id,cont:1,name,price,img,category});
     
           if(index !== undefined) state.splice(index,1);
     
           localStorage.setItem('ShoppingCar', JSON.stringify(state));
         }
-        else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1}]));
+        else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category}]));
         //localStorage.clear()
       }
 
