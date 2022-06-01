@@ -6,15 +6,21 @@ import { Products } from './components/Products/Products';
 import { CardDetail } from './components/CardDetail/CardDetail';
 import {Aboutus} from './components/About/About.jsx'
 import Footer from './components/Footer/Footer';
-import { AdminDashboard } from './components/AdminDashboard/AdminDashboard';
+import { AddProduct } from './components/AdminDashboard/AddProduct';
 import {Contact} from './components/Contact/Contact';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
-import { DeleteAndUpdate } from './components/AdminDashboard/DeleteAndUpdate';
+import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
+import {  UpdateProduct } from './components/AdminDashboard/UpdateProduct';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
+
 import {UserProfile} from './components/UserProfile/UserProfile'
 import {UserOrders} from './components/UserProfile/UserOrders'
 import {UserDirection} from './components/UserProfile/UserDirection'
+
+import { PrivateDash } from './components/AdminDashboard/PrivateDash';
+import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
+
 
 
 
@@ -30,8 +36,23 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/admin/post' element={<AdminDashboard/>}/>
-        <Route path='/admin/delete' element={<DeleteAndUpdate/>}/>
+        <Route
+          path="/admin/post"
+          element={
+            <PrivateDash>
+              <AddProduct />
+            </PrivateDash>
+          }
+        />
+             <Route
+          path="/admin/delete"
+          element={
+            <PrivateDeleteDash>
+              <DeleteProduct />
+            </PrivateDeleteDash>
+          }
+        />
+         <Route path='/admin/update/:id' element={<UpdateProduct/>}/>
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userOrders' element={<UserOrders/>}/>

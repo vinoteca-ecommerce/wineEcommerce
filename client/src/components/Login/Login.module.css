@@ -1,0 +1,45 @@
+.backg{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.googleLogin{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* padding-left: 20rem; */
+    padding-bottom: 1%;
+}
+.h1{
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+.form{
+    padding-bottom: 2.8%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.p{
+    padding-bottom: 1%;
+}
+.login{
+    padding-bottom: 0.5%;
+    /* border-radius: 4rem; */
+}
+.buttom{
+    padding: 0.5rem;
+    background-color: rgba(45,21,21,255);
+    color: rgba(245, 245, 220, 0.76);
+    border: 2px solid rgba(245, 245, 220, 0.76);
+    border-radius: 0.4rem;
+}
+.buttom:hover{
+    /* background-color: rgba(245, 245, 220, 0.76); */
+    background-color: white;
+    color: rgba(45,21,21,255);
+    border: 2px solid black;
+}
+.messi{
+    border-radius: 0.3rem;
+}
