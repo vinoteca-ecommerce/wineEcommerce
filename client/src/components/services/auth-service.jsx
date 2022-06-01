@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 
+
 const signup = (email, password)=>{
     return axios
         .post("http://localhost:8000/auth/login",{
