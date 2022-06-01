@@ -12,6 +12,8 @@ import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import { DeleteAndUpdate } from './components/AdminDashboard/DeleteAndUpdate';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
+import { PrivateDash } from './components/AdminDashboard/PrivateDash';
+import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
 
 
 
@@ -27,8 +29,23 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/admin/post' element={<AdminDashboard/>}/>
-        <Route path='/admin/delete' element={<DeleteAndUpdate/>}/>
+
+        <Route
+          path="/admin/post"
+          element={
+            <PrivateDash>
+              <AdminDashboard />
+            </PrivateDash>
+          }
+        />
+             <Route
+          path="/admin/delete"
+          element={
+            <PrivateDeleteDash>
+              <DeleteAndUpdate />
+            </PrivateDeleteDash>
+          }
+        />
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
       </Routes>
       <Footer/>
