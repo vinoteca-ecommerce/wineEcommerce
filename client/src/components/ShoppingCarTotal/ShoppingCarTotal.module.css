@@ -1,0 +1,45 @@
+.containerTotal{
+    width: 20%;
+    height: 250px;
+    margin: 0 auto 2em auto;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    position: sticky;
+    top: 8em;
+
+}
+
+.containerTotal h4{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #f5f5f5;
+    padding: .16em;
+}
+
+.containerTotal p{
+    padding: 2.1em 2em;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center ;
+    justify-content: space-around;
+    
+    border-bottom: 1px solid #eaeaea;
+}
+
+.containerTotal p h5{
+    font-weight: 400;
+    margin: 0;
+}
+
+.containerTotal p h6{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 800px){
+    .containerTotal{
+        width: 80%;
+    }
+}
