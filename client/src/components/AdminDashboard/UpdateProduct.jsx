@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, postWine } from "../../redux/actions/actions";
+import { updateProduct, getCategories } from "../../redux/actions/actions";
 
 
-export const AdminDashboard = () => {
+export const UpdateProduct = () => {
+  const { id } = useParams()
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories);
-  const [error, setError] = useState({})
-  const [input, setInput] = useState({
+  const [ input, setInput ] = useState({
     name:'',
     year:'',
     description:'',
@@ -20,28 +20,39 @@ export const AdminDashboard = () => {
     producer:'',
     stock: ''
   });
-
+  
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch]);
-
+  }, [dispatch,setInput, id]);
+  
+ 
   function handleSubmit(e){
     e.preventDefault()
-    console.log(input)
-    dispatch(postWine(input))
-    setInput({
-      name:'',
-      year:'',
-      description:'',
-      img:'',
-      category: '',
-      price: "",
-      country: "",
-      strain: '',
-      producer:'',
-      stock: ''
   
-    })
+      dispatch(updateProduct(id, input))
+      alert('Vino actualizado correctamente')
+      setInput({
+        name:'',
+        year:'',
+        description:'',
+        img:'',
+        category: '',
+        price: "",
+        country: "",
+        strain: '',
+        producer:'',
+        stock: ''
+      })
+  }
+
+  function handleOnChange(e) {
+    setInput((state) => {
+      const newState = {
+        ...state,
+        [e.target.name]: e.target.value,
+      };
+      return newState;
+    });
   }
 
   function handleSelect(e){
@@ -52,43 +63,12 @@ export const AdminDashboard = () => {
   }
 
 
-  function handleOnChange(e) {
-    setInput((state) => {
-      const newState = {
-        ...state,
-        [e.target.name]: e.target.value,
-      };
-      setError(validate(newState))
-      return newState;
-    });
-  }
-  
-  function validate(input){
-    let error = {};
-    if(input.name.length < 4){
-      error.name = 'Nombre debe ser valido'
-    }
-    if(input.producer.length < 4){
-      error.producer = 'Nombre del productor es obligatorio'
-    }
-    if(!input.price){
-      error.price = 'Precio es obligatorio'
-    }
-    if(input.country.length < 4){
-      error.country = 'Pais del vino es obligatorio' 
-    }
-    if(!input.strain){
-      error.strain = 'Cepa es obligatorio'
-    }
-    return error
-  }
-
-  
   return (
     <div>
-      <nav><Link  to='/admin/delete'> Borrar Producto </Link> </nav>
-      <h3> Formulario de agregar Vino </h3>
-      <form onSubmit={e=>handleSubmit(e)}>
+      <nav><Link  to='/admin/post'> Agregar Vino </Link>
+        <Link  to='/admin/delete'> Modificar Vino </Link> </nav>
+      <h3> Modificar Vino </h3>
+      <form onSubmit={handleSubmit}>
         <ul>
           <li>
             <label>Nombre:  </label>
@@ -99,7 +79,7 @@ export const AdminDashboard = () => {
               name='name'
               autoComplete="off"
               onChange={handleOnChange}/>
-              {error.name && <p>{error.name}</p>}  
+           
           </li>
           <li>
             <label>Año:  </label>
@@ -123,7 +103,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
-              {error.strain && <p>{error.strain}</p>}  
+            
           </li>
           <li>
             <label>Pais:  </label>
@@ -135,7 +115,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
-              {error.country && <p>{error.country}</p>}  
+           
           </li>
           <li>
             <label>Productor:  </label>
@@ -147,7 +127,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
-              {error.producer && <p>{error.producer}</p>}  
+           
            </li>
            <li>
             <label>Link Imagen:  </label>
@@ -171,7 +151,7 @@ export const AdminDashboard = () => {
               autoComplete="off"
               onChange={handleOnChange}
               />
-              {error.price && <p>{error.price}</p>}  
+           
            </li>
            <li> 
 
@@ -185,7 +165,6 @@ export const AdminDashboard = () => {
               onChange={handleOnChange}
               />
            </li>
-           
               <label > Categoria: </label>
               <select placeholder="Categoria" onChange={e=>handleSelect(e)} >
                 {category.result?.map((e) => (
@@ -204,7 +183,7 @@ export const AdminDashboard = () => {
               />
           </li>
       
-              <button type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
+              <button type="submit" value = 'Create' > Submit </button>
         </ul>
       </form>
     </div>
