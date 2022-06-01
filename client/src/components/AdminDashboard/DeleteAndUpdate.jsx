@@ -27,7 +27,7 @@ export const DeleteAndUpdate = () => {
         <h3> Formulario de borrar Vino </h3>
         {wine.result?.map(e=>   <div key={e._id}>
             <CardProduct  id={e._id} name={e.name} price={e.price}
-                            img={e.img} category={e.category.name} stock={e.stock}/>
+                        img={e.img} category={e.category.name} stock={e.stock}/>
          </div>)
 
       
