@@ -1,13 +1,20 @@
 import React, { useEffect,useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage } from '../../redux/actions/actions';
 
 export const ShoppingCar = () => {
+    const dispatch = useDispatch();
+    const shoppingcar = useSelector((state) => state.shoppingcar);
 
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
+
+    useEffect(()=>{
+        dispatch(setLocalStorage(store))
+    },[dispatch])
 
 
     //REVISAR CODIGO
@@ -18,7 +25,7 @@ export const ShoppingCar = () => {
           if(cont > 1) setCont(cont-1)
         }
         else setCont(cont+1)*/
-        let sum = 0;
+        /*let sum = 0;
         let index = undefined;
     
         if(store){
@@ -37,8 +44,15 @@ export const ShoppingCar = () => {
           if(index !== undefined) store.splice(index,1);
     
           localStorage.setItem('ShoppingCar', JSON.stringify(store));
-          window.location.reload();
+          dispatch(setLocalStorage(store))
+          //window.location.reload();
+          
+        }*/
+        if(operation === 'sub'){
+            dispatch(subLocalStorage(id))
         }
+        else if(operation === 'add') dispatch(addLocalStorage(id))
+        else dispatch(deleteLocalStorage(id));
       }
     
 
@@ -55,9 +69,10 @@ export const ShoppingCar = () => {
                     <td>SubTotal</td>
                 </tr>
             </thead>
-            {store?.map((st)=>(
+            {shoppingcar?.map((st)=>(
                 <tbody>
                     <tr>
+                        <Button onClick={()=>handleClick('del',st.id)} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}}><DeleteIcon/></Button>
                         <td><img src={st.img} alt={st.name} style={{width:'100px',height:'auto'}}/></td>
                         <td>{st.name}</td>
                         <td>${st.price}.00</td>

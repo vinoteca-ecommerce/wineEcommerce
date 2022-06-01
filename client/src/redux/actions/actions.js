@@ -8,6 +8,10 @@ export const POST_WINE = 'POST_WINE';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_STRAIN = 'GET_STRAIN';
 export const GET_PRODUCT = 'GET_PRODUCT'
+export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';
+export const ADD_LOCAL_STORAGE = 'ADD_LOCAL_STORAGE';
+export const SUB_LOCAL_STORAGE = 'SUB_LOCAL_STORAGE';
+export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -89,5 +93,24 @@ export const getStrains = () => {
   .catch(err => console.error(err))
 }
 }
+
+
+
+export const setLocalStorage = (data) => {
+  return { type: SET_LOCAL_STORAGE, payload: data };
+};
+
+export const addLocalStorage = (data) => {
+  return { type: ADD_LOCAL_STORAGE, payload: data };
+};
+
+export const subLocalStorage = (data) => {
+  return { type: SUB_LOCAL_STORAGE, payload: data };
+};
+
+export const deleteLocalStorage = (data) => {
+  return { type: DELETE_LOCAL_STORAGE, payload: data };
+};
+
 
 
