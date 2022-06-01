@@ -188,15 +188,15 @@ gap: 1em;
    
 }
 
-.containerCards div{
+.containerCards{
     justify-content: center;
     margin: 2px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     height:auto;
-   
 }
+
 .pagination{
     grid-column: span 2;
      padding: 5px;
