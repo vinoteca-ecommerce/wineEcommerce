@@ -195,8 +195,8 @@ export const NavBar = () => {
             <li>
               <Link  className='letters' to={'/Login'}> Login </Link>  
             </li>
-            <li>
-              <Link className='letters' to ={'/register'}> Register </Link></li>
+            {/* <li>
+              <Link className='letters' to ={'/register'}> Register </Link></li> */}
           </div>
         )}
         </Toolbar>

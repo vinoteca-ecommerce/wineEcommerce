@@ -13,8 +13,14 @@ import Register from './components/Login/Register';
 import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
 import {  UpdateProduct } from './components/AdminDashboard/UpdateProduct';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
+
+import {UserProfile} from './components/UserProfile/UserProfile'
+import {UserOrders} from './components/UserProfile/UserOrders'
+import {UserDirection} from './components/UserProfile/UserDirection'
+
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
+
 
 
 
@@ -48,6 +54,9 @@ function App() {
         />
          <Route path='/admin/update/:id' element={<UpdateProduct/>}/>
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
+        <Route path='/userProfile' element={<UserProfile/>}/>
+        <Route path='/userOrders' element={<UserOrders/>}/>
+        <Route path='/userDirection' element={<UserDirection/>}/>
       </Routes>
       <Footer/>
     </div>
