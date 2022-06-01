@@ -20,5 +20,5 @@ export function PrivateDeleteDash({ children }) {
   }
   let auth = aux();
 
-  return auth ? children : <Navigate to="/login" />;
+  return auth ? children : <Navigate to="/" />;
 }
