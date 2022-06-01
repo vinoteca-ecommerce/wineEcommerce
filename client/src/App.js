@@ -10,8 +10,9 @@ import { AdminDashboard } from './components/AdminDashboard/AdminDashboard';
 import {Contact} from './components/Contact/Contact';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
-import Private from './components/Login/Private'
+import Private from './components/Login/Private';
 import { DeleteAndUpdate } from './components/AdminDashboard/DeleteAndUpdate';
+import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/admin/post' element={<AdminDashboard/>}/>
         <Route path='/admin/delete' element={<DeleteAndUpdate/>}/>
+        <Route path='/shoppingCar' element={<ShoppingCar/>}/>
       </Routes>
       <Footer/>
     </div>

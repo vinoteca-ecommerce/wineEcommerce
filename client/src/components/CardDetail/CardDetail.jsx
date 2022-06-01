@@ -24,7 +24,31 @@ export const CardDetail = () => {
       if(cont > 1) setCont(cont-1)
     }
     else setCont(cont+1)
-    
+  }
+
+  const handleClickShopping = (id,name,price,img,category)=>{
+
+    let state = JSON.parse(localStorage.getItem('ShoppingCar'));
+    let sum = 0;
+    let index = undefined;
+
+    if(state){
+      for(let i=0 ; i<state?.length ; i++){
+        if(state[i].id === id){
+          sum = state[i].cont + cont;
+          index = i; 
+        }
+      }
+
+      if(sum) state?.push({id,cont:sum,name,price,img,category});
+      else state?.push({id,cont,name,price,img,category});
+
+      if(index !== undefined) state.splice(index,1);
+
+      localStorage.setItem('ShoppingCar', JSON.stringify(state));
+    }
+    else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category}]));
+    //localStorage.clear()
   }
 
   return (
@@ -49,7 +73,7 @@ export const CardDetail = () => {
             </div>
           </div>
           <div className={style.btn}>
-          <Button variant="contained">Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
+          <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
           </div>
           
         </div>
