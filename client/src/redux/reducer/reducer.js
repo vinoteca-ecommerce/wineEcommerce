@@ -1,6 +1,8 @@
 
+
 import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES, GET_STRAIN, GET_PRODUCT,
-    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE} from '../actions/actions';
+    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE,GET_STRAIN, DELETE_PRODUCT , UPDATE_PRODUCT} from '../actions/actions';
+
 
 
 const initialState = {
@@ -57,6 +59,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 categories: action.payload,
             }
+
 
         case GET_PRODUCT:
             return{
@@ -119,6 +122,17 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     shoppingcar: shoppingcarDelete
                 } 
+
+        case DELETE_PRODUCT:
+            return{
+                ...state,
+                wines: action.payload
+            }
+        case UPDATE_PRODUCT:
+            return{
+                ...state,
+                wines: action.payload
+            }       
 
         default: return {...state}
     }
