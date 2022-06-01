@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getWines } from '../../redux/actions/actions'
 import { deleteProduct } from '../../redux/actions/actions'
 
-
+//Styles
+import Style from "./DeleteProduct.module.css"
 
 export const DeleteProduct= () => {
 
@@ -27,34 +28,39 @@ export const DeleteProduct= () => {
 
    
   return (
-    <div>
-        <nav><Link  to='/admin/post'> Agrega Producto </Link> </nav>
-        <h3> Formulario de borrar Vino </h3>
+    <div className={Style.backg}>
+        <Link  to='/admin/post'><button className={Style.nav}> Agrega Producto</button> </Link>
         <div>
-          <h3>Producto a eliminar</h3>
-            <ul> 
-              <li> Nº </li>
-              <li> Nombre </li>
-              <li> Precio </li>
-              <li> Categoria </li>
-              <li> Stock </li>
-              <li>Operation</li>
-            </ul>
+          <h2 className={Style.littleTitle}>Producto a eliminar o modificar</h2>
+                <table>
+            <thead> 
+              <tr className={Style.tittle}>
+              <th> Nº </th>
+              <th> Nombre </th>
+              <th> Precio </th>
+              <th> Categoria </th>
+              <th> Stock </th>
+              <th>Operation</th>
+              </tr>
+            </thead>
                { wine.result?.map(((e,index)=>
-              <ul key={e._id}>
-                <li>{index + 1}</li>
-                <li>{e.name}</li>
-                <li>{e.price}</li>
-                <li>{e.category.name}</li>
-                <li>{e.stock}</li>
-                <li>
-                  <button onClick={()=>handleDelete(e._id)}> Delete   </button>
+              <tbody key={e._id} className={Style.tittle}>
+                <tr>
+                <td>{index + 1}</td>
+                <td>{e.name}</td>
+                <td>{e.price}</td>
+                <td>{e.category.name}</td>
+                <td>{e.stock}</td>
+                <td>
+                  <button className={Style.buttom} onClick={()=>handleDelete(e._id)}> Delete   </button>
 
-                  <Link to={'/admin/update/' + e._id}> Modificar Producto </Link>
-                  </li>
-              </ul>
+                  <Link to={'/admin/update/' + e._id}><button className={Style.buttom}> Modificar Producto </button></Link>
+                  </td>
+                </tr>
+              </tbody>
               ))
             } 
+              </table>
        </div>      
     </div>
   )
