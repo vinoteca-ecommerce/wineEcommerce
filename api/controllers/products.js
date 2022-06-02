@@ -262,8 +262,6 @@ const addToCart=async(req,res=response)=>{
   const wine= await Product.findById(id)
   const find= req.user.cart.find(e=>e.name==wine.name)
   let index= req.user.cart.indexOf(find)
-  console.log(find)
-  // console.log(req.user.cart[index])
   if(!find){
    if(wine.stock>=quantity){
 
@@ -304,14 +302,10 @@ const addToCart=async(req,res=response)=>{
 
 const getCart=async(req,res=response)=>{
 
-  let total=0
   const cart= req.user.cart
-  cart.map(t=>{
-    total+=t.price*t.quantity
-  })
+
 
   return res.json({
-    total,
     cart
   })
 }
@@ -326,6 +320,16 @@ const deleteCart=async(req,res=response)=>{
   req.user.save();
 
   res.json({msg:'Wine deleted from your favorites succesfully.'})
+}
+
+
+const pushToCart=async(req,res=response)=>{
+  const {data}=req.body
+
+  req.user.cart=[data]
+
+  req.user.save();
+  res.json(req.user.cart)
 }
 
 const paymentMP = async(req,res)=>{
@@ -369,6 +373,7 @@ console.log(process.env.ACCESS_TOKEN)
 
 
 
+
 module.exports = {
   postProduct,
   getAll,
@@ -379,6 +384,7 @@ module.exports = {
   getFavs,
   deleteFavs,
   addToCart,
+  pushToCart,
   deleteCart,
   getCart,
   getAllProducers,
