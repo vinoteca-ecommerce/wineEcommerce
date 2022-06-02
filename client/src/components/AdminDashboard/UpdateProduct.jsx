@@ -107,8 +107,7 @@ export const UpdateProduct = () => {
   }
 
 
-  }
-}
+
   return (
     <div>
       <nav><Link  to='/admin/post'> Agregar Vino </Link>
@@ -125,7 +124,7 @@ export const UpdateProduct = () => {
               value={input.name}
 
               name='name'
-              onClick={aux}
+           
               autoComplete="off"
               onChange={handleOnChange}/>
              {error.name && <p>{error.name}</p>}  
@@ -136,7 +135,7 @@ export const UpdateProduct = () => {
               type="number" 
               placeholder={wine.year}
               value={input.year}
-              onClick={aux}
+            
               name='year' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -150,7 +149,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.strain}
               value={input.strain}
-              onClick={aux}
+           
               name='strain'
               autoComplete="off"
               onChange={handleOnChange}
@@ -163,7 +162,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.country}
               value={input.country}
-              onClick={aux}
+         
               name='country' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -176,7 +175,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.producer}
               value={input.producer}
-              onClick={aux}
+     
               name='producer' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -189,7 +188,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.img}
               value={input.img}
-              onClick={aux}
+      
               name='img' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -202,7 +201,7 @@ export const UpdateProduct = () => {
               type="number" 
               placeholder={wine.price}
               value={input.price}
-              onClick={aux}
+        
               name='price' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -217,7 +216,7 @@ export const UpdateProduct = () => {
               type="number" 
               placeholder={wine.stock}
               value={input.stock}
-              onClick={aux}
+          
               name='stock' 
               autoComplete="off"
               onChange={handleOnChange}
@@ -242,7 +241,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.description}
               value={input.description}
-              onClick={aux}
+         
               name='description'
               autoComplete="off"
               onChange={handleOnChange}

@@ -30,7 +30,8 @@ const initialState = {
   categories: [],
   shoppingcar: [],
   users: [],
-  user: []
+  user: [],
+  linkmp: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -181,10 +182,9 @@ const rootReducer = (state = initialState, action) => {
       ...state
     }
    case MERCADO_PAGO:
-            return {
-                ...state,
-                linkmp: action.payload
-
+      return {
+    ...state,
+    linkmp: action.payload
     }
    
     default:

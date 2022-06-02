@@ -344,7 +344,7 @@ const paymentMP = async(req,res)=>{
   const url = "https://api.mercadopago.com/checkout/preferences"
   const body = req.body
 
-const payment = await axios.post(url,body,{
+  const payment = await axios.post(url,body,{
  
   headers:{
     "Content-Type": "application/json",

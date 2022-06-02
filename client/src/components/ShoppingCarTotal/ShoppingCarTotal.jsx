@@ -11,7 +11,7 @@ export const ShoppingCarTotal = () => {
     const linkmp = useSelector((state) => state.linkmp);
     let subtotal = 0;
     let total = 0;
-  
+
     for(let i=0; i<shoppingcar?.length ; i++){
         subtotal += shoppingcar[i]?.cont*shoppingcar[i]?.price;
     }
@@ -26,7 +26,7 @@ const [body, setBody] = useState({
                               }
                                           });
 function handleClick(){
-  
+
   setBody( shoppingcar.map(e=>body.items.push({
     title:e.name,
     unit_price:e.price,
@@ -35,7 +35,7 @@ function handleClick(){
 
   })))
   dispatch(postMP(body))
-  
+
   setBody({
     items:[],
     back_urls:{
@@ -50,20 +50,6 @@ function handleClick(){
 
 }
 
-// const body =[]
-// function handleClick(){
-//   shoppingcar.map(e=>body.push({
-//     name:e.name,
-//     price:e.price,
-//     quantity:e.cont,
-//     img:e.img,
-
-//   }))
-
-//   dispatch(postMP(body))
-  
-// }
-
 
 
 
@@ -73,8 +59,8 @@ function handleClick(){
         <p><h5>SubTotal: </h5><h6>${subtotal}.00</h6></p>
         <p><h5>Total: </h5><h6>${total}.00</h6></p>
         <Button onClick={handleClick} fullWidth sx={{mt:'10px'}}  variant="contained" > <Link to ='/confirm'> COMPRAR </Link> </Button>
-       
-       
+
+
     </div>
   )
 }
