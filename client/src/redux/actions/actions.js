@@ -140,9 +140,7 @@ export const addFavorites = (payload)=>{
   return async function(dispatch){
     return axios.post(`http://localhost:8000/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
     .then(response=>{
-      console.log('CARGASTE UN NUEVO WINE')
-      console.log(response.data)
-    return dispatch({
+      return dispatch({
       type: ADD_FAVS,
       payload: response.data
     })
