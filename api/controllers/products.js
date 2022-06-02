@@ -324,11 +324,10 @@ const deleteCart=async(req,res=response)=>{
 
 
 const pushToCart=async(req,res=response)=>{
-  const {data}=req.body
+  console.log(req.body)
+  req.user.cart.push(req.body)
 
-  req.user.cart=[data]
-
-  req.user.save();
+  req.user.update();
   res.json(req.user.cart)
 }
 

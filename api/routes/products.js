@@ -61,7 +61,7 @@ router.post('/cart/:id',[
 
 router.post('/cart',[
     jwtValidator,
-    validation
+    //validation
 ],pushToCart)
 
 router.get('/cart',[
