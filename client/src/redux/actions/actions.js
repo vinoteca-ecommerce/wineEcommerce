@@ -14,11 +14,16 @@ export const ADD_LOCAL_STORAGE = 'ADD_LOCAL_STORAGE';
 export const SUB_LOCAL_STORAGE = 'SUB_LOCAL_STORAGE';
 export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
-export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const GET_USERS = 'GET_USERS';
+export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
+export const  DELETE_USER = 'DELETE_USER';
+export const GET_USER = 'GET_USER';
 
-export const ALL_FAVORITES = 'ALL_FAVORITES'
-export const ADD_FAVS = 'ADD_FAVS'
+export const ALL_FAVORITES = 'ALL_FAVORITES';
+export const ADD_FAVS = 'ADD_FAVS';
+
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -112,6 +117,7 @@ export const updateProduct = (id, data)=>{
 }
 
 
+//CARRITO DE COMPRAS LOCAL STORAGE
 export const setLocalStorage = (data) => {
   return { type: SET_LOCAL_STORAGE, payload: data };
 };
@@ -129,6 +135,7 @@ export const deleteLocalStorage = (data) => {
 };
 
 
+//ADD FAVORITES
 export const addFavorites = (payload)=>{
   return async function(dispatch){
     return axios.post(`http://localhost:8000/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
@@ -142,3 +149,45 @@ export const addFavorites = (payload)=>{
     })
   }
 }
+
+//CARRITO DE COMPRAS BASE DE DATOS
+export const setShoppingCar = (data)=>{
+  return async function(dispatch){
+    return axios.post(`http://localhost:8000/products/cart`, data,  { headers: authHeader() })
+      .then(response =>{
+          dispatch({type: SET_SHOPPINGCAR, payload: response.data})
+      }).catch(err=> console.log(err))
+  }
+}
+
+export const getUsers = ()=>{
+    return async function(dispatch){
+      return axios.get('http://localhost:8000/users', { headers: authHeader() })
+      .then(response =>{
+        dispatch({type: GET_USERS, payload: response.data})
+      }).catch(err => console.log(err))
+    }
+}
+
+export const deleteUser = (id)=>{
+  return async function(dispatch){
+    return axios.delete(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
+      .then(response =>{ 
+        dispatch({type: DELETE_USER, payload: response.data})
+        
+      }).catch(err => console.log(err)) 
+  }
+
+}
+
+export const getUserById = (id)=>{
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
+      .then(response =>{ 
+        dispatch({type: GET_USER, payload: response.data})
+        
+      }).catch(err => console.log(err)) 
+  }
+
+}
+
