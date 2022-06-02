@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const {jwtGenerator} = require('../helpers/jwtgenerator')
 const User = require('../models/user');
 
+
 const loginController = async(req, res = response) => {
 
     const { email, password } = req.body;

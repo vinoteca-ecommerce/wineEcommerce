@@ -7,13 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
+import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import authService from '../services/auth-service'
+import authService from '../services/auth-service';
 
 const settings = ['Perfil', 'Cerrar sesión'];
 
@@ -195,8 +195,8 @@ export const NavBar = () => {
             <li>
               <Link  className='letters' to={'/Login'}> Login </Link>  
             </li>
-            <li>
-              <Link className='letters' to ={'/register'}> Register </Link></li>
+            {/* <li>
+              <Link className='letters' to ={'/register'}> Register </Link></li> */}
           </div>
         )}
         </Toolbar>
