@@ -21,7 +21,7 @@ import {UserDirection} from './components/UserProfile/UserDirection'
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
 import { PrivateUpdate } from './components/AdminDashboard/PrivateUpdate';
-
+import { Dashboard } from './components/AdminDashboard/Dashboard';
 
 
 
@@ -37,6 +37,7 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/admin/dashboard' element={<Dashboard/>}/>
         <Route
           path="/admin/post"
           element={
