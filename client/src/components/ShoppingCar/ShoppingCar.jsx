@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage } from '../../redux/actions/actions';
-import style from './ShoppingCar.module.css'
+import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage, setShoppingCar } from '../../redux/actions/actions';
+import style from './ShoppingCar.module.css';
 import { ShoppingCarTotal } from '../ShoppingCarTotal/ShoppingCarTotal';
+import authService from '../services/auth-service'
 
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
     const shoppingcar = useSelector((state) => state.shoppingcar);
+    const [currentUser,setCurrentUser] = useState(undefined)
 
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
 
     useEffect(()=>{
         dispatch(setLocalStorage(store))
+
+        const user= authService.getCurrentUser();
+        if(user){
+            setCurrentUser(user)
+            dispatch(setShoppingCar(store))
+        }
+
+        return () => {
+            dispatch(setShoppingCar(store))
+        }
+
     },[dispatch])
 
     const handleClick = (operation,id)=>{
@@ -25,7 +38,6 @@ export const ShoppingCar = () => {
         else if(operation === 'add') dispatch(addLocalStorage(id))
         else dispatch(deleteLocalStorage(id));
       }
-    
 
 
   return (
