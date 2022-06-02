@@ -1,21 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage } from '../../redux/actions/actions';
-import style from './ShoppingCar.module.css'
+import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage, setShoppingCar } from '../../redux/actions/actions';
+import style from './ShoppingCar.module.css';
 import { ShoppingCarTotal } from '../ShoppingCarTotal/ShoppingCarTotal';
+import authService from '../services/auth-service'
 
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
     const shoppingcar = useSelector((state) => state.shoppingcar);
+    //const [currentUser,setCurrentUser] = useState(undefined)
 
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
 
     useEffect(()=>{
         dispatch(setLocalStorage(store))
+        //console.log(store)
+        
+        const user= authService.getCurrentUser();
+        if(user){
+            //setCurrentUser(user)
+            if(store !== null) dispatch(setShoppingCar(store))
+        }
+        console.log(user)
+        return () => {
+            if(user && store !== null) dispatch(setShoppingCar(store));
+        }
+
     },[dispatch])
 
     const handleClick = (operation,id)=>{
@@ -25,12 +39,11 @@ export const ShoppingCar = () => {
         else if(operation === 'add') dispatch(addLocalStorage(id))
         else dispatch(deleteLocalStorage(id));
       }
-    
 
-
+      console.log(shoppingcar)
   return (
     <div className={style.container}>
-        {shoppingcar?.length === 0 ? <h2>Carrito vacio, ve a agregar productos!</h2>
+        {shoppingcar?.length === 0 || shoppingcar === null ? <h2>Carrito vacio, ve a agregar productos!</h2>
         :<><table className={style.table}>
             <thead className={style.tableHead}>
                 <tr>

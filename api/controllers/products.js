@@ -1,6 +1,8 @@
 const { response } = require("express");
 const Product = require("../models/product");
-const axios = require("axios")
+const User = require('../models/user')
+const axios = require("axios");
+
 
 
 const getAllProducers = async (req, res = response) => {
@@ -262,8 +264,6 @@ const addToCart=async(req,res=response)=>{
   const wine= await Product.findById(id)
   const find= req.user.cart.find(e=>e.name==wine.name)
   let index= req.user.cart.indexOf(find)
-  console.log(find)
-  // console.log(req.user.cart[index])
   if(!find){
    if(wine.stock>=quantity){
 
@@ -304,14 +304,10 @@ const addToCart=async(req,res=response)=>{
 
 const getCart=async(req,res=response)=>{
 
-  let total=0
   const cart= req.user.cart
-  cart.map(t=>{
-    total+=t.price*t.quantity
-  })
+
 
   return res.json({
-    total,
     cart
   })
 }
@@ -328,61 +324,28 @@ const deleteCart=async(req,res=response)=>{
   res.json({msg:'Wine deleted from your favorites succesfully.'})
 }
 
-// const paymentMP = async(req,res)=>{
-//   const url = "https://api.mercadopago.com/checkout/preferences"
-//   const data = req.body
-// console.log(data)
 
-//   const bodyaux ={
-    
-//     items: [{
-//       title: "pack de martin",
-//       picture_url:"",
-//       quantity:5,
-//       unit_price:20,
-//     },
-//     {
-//       title: "pack de camilo",
-//       picture_url:"",
-//       quantity:5,
-//       unit_price:200,
-//     }
-//   ],
-//   back_urls:{
-//     failure:"/failure",
-//     pending:"/pending",
-//     success:"/success"
-// }
-// };
-// const payment = await axios.post(url,bodyaux,{
+const pushToCart=async(req,res=response)=>{
 
-
+  const { email } = req.user
+  const user = await User.findOneAndUpdate({email}, {cart: req.body},(error,data) =>{
+    if (error){
+      console.log(error)
+    }else{
+      console.log(data)
+    }
+  } ).clone()
   
-//   headers:{
-//     "Content-Type": "application/json",
-//     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-//   }
-// })
-// res.json(payment.data)
-//devuelve el link de pago unicamente .data devuelve todo el array 
+  res.status(201).json(user.cart)
+}
 
-// }
 
 const paymentMP = async(req,res)=>{
   const url = "https://api.mercadopago.com/checkout/preferences"
   const body = req.body
-console.log(body)
-
-
-
-
-
-
 
 const payment = await axios.post(url,body,{
-
-
-  
+ 
   headers:{
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
@@ -396,6 +359,7 @@ res.send({url: payment.data.init_point})
 
 
 
+
 module.exports = {
   postProduct,
   getAll,
@@ -406,6 +370,7 @@ module.exports = {
   getFavs,
   deleteFavs,
   addToCart,
+  pushToCart,
   deleteCart,
   getCart,
   getAllProducers,

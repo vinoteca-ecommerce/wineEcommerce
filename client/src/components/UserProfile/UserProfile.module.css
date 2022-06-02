@@ -1,4 +1,7 @@
-
+.container{
+  height: 90vh;
+  width: 90vw;
+}
 
 .profileTitle{
   
@@ -11,12 +14,12 @@
 }
 
 .cardContainer{
+   display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
    
-  width: 85vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px; 
+    padding: 5px;
 }
 
 .card {
@@ -86,12 +89,10 @@
 }
 
 
-@media screen and (max-width: 850px){
+/* @media screen and (max-width: 850px){
 .cardContainer{
-  width: 70vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
+   padding: 10px;
+
+ 
 }
-}
+} */

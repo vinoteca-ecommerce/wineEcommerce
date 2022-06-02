@@ -7,7 +7,7 @@ import { deleteProduct } from '../../redux/actions/actions'
 //Styles
 import Style from "./DeleteProduct.module.css"
 
-export const DeleteProduct= () => {
+export const DashboardTable= () => {
 
 
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const DeleteProduct= () => {
 
     const handleDelete = (id)=>{
 
-      dispatch(deleteProduct(id))
+      dispatch(deleteProduct(id, {state: false}))
       alert('Vino eliminado correctamente')
       window.location.reload()
   }
@@ -29,8 +29,8 @@ export const DeleteProduct= () => {
    
   return (
     <div className={Style.backg}>
-        <Link  to='/admin/post'><button className={Style.nav}> Agrega Producto</button> </Link>
-        <Link to='/admin/users'button className={Style.nav}> Administrar Usuarios </Link>
+        <Link  to='/admin/post'className={Style.nav}>  Agrega Producto </Link>
+        <Link to='/admin/users' className={Style.nav}> Administrar Usuarios</Link>
         <div>
           <h2 className={Style.littleTitle}>Producto a eliminar o modificar</h2>
                 <table>

@@ -9,6 +9,7 @@ export const UpdateProduct = () => {
   const dispatch = useDispatch();
   const wine = useSelector((state)=> state.wines)
   const category = useSelector((state) => state.categories);
+  const [ error, setError ] = useState({})
   const [ input, setInput ] = useState({
     name:'',
     year:'',
@@ -22,16 +23,16 @@ export const UpdateProduct = () => {
     stock: ''
   });
   
-  
-console.log(wine)
-
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getWinesById(id))
   }, [dispatch,setInput, id]);
  
   function handleSubmit(e){
-    e.preventDefault()
+    if(!input.category || input.year <= 0 || input.price <= 0){
+      alert('Existe uno o mas campos con error')
+      e.preventDefault()
+    }else{
   
       dispatch(updateProduct(id, input))
       alert('Vino actualizado correctamente')
@@ -47,6 +48,7 @@ console.log(wine)
         producer:'',
         stock: ''
       })
+    }
   }
 
   function handleOnChange(e) {
@@ -55,6 +57,7 @@ console.log(wine)
         ...state,
         [e.target.name]: e.target.value,
       };
+      setError(validate(newState))
       return newState;
     });
   }
@@ -65,14 +68,44 @@ console.log(wine)
       category: e.target.value
     });
   }
+  // function aux(e){
+  //   if(e.target.value === ''){
+  
+  //     const x = e.target.name
+     
+  //   e.target.value = wine[x]?wine[x]:''
+ 
+  
+  //   }
+  // }
 
-function aux(e){
-  if(e.target.value == ''){
-    
-    const x = e.target.name
-    console.log(x)
-e.target.value = wine[x]?wine[x]:''
-console.log((wine.x))
+
+  function validate(input){
+    let error = {};
+    if(input.name.length < 4){
+      error.name = 'Nombre debe ser valido'
+    }
+    if(input.producer.length < 4){
+      error.producer = 'Nombre del productor es obligatorio'
+    }
+    if(!input.price){
+      error.price = 'Precio es obligatorio'
+    }
+    if(input.price < 0){
+      error.price = 'Debe tener precio valido'
+    }
+    if(input.country.length < 4){
+      error.country = 'Pais del vino es obligatorio' 
+    }
+    if(input.year <= 0){
+      error.year = 'Debe ser un año valido'
+    }
+    if(!input.strain){
+      error.strain = 'Cepa es obligatorio'
+    }
+    return error
+  }
+
 
   }
 }
@@ -85,73 +118,76 @@ console.log((wine.x))
         <ul>
           <li>
             <label>Nombre:  </label>
-            <input 
-              
+
+            <input   
               type="text" 
               placeholder={wine.name}
+              value={input.name}
+
               name='name'
               onClick={aux}
               autoComplete="off"
               onChange={handleOnChange}/>
-           
+             {error.name && <p>{error.name}</p>}  
           </li>
           <li>
             <label>Año:  </label>
             <input 
               type="number" 
-              placeholder="Año"
+              placeholder={wine.year}
               value={input.year}
               onClick={aux}
               name='year' 
               autoComplete="off"
               onChange={handleOnChange}
+              min='0'
               />
-             
+             {error.name && <p>{error.year}</p>}  
           </li>
           <li>
             <label>Cepa:  </label>
             <input 
               type="text" 
-              placeholder="Cepa"
+              placeholder={wine.strain}
               value={input.strain}
               onClick={aux}
               name='strain'
               autoComplete="off"
               onChange={handleOnChange}
               />
-            
+             {error.name && <p>{error.strain}</p>}  
           </li>
           <li>
             <label>Pais:  </label>
-            <input 
+            <input
               type="text" 
-              placeholder="Pais"
+              placeholder={wine.country}
               value={input.country}
               onClick={aux}
               name='country' 
               autoComplete="off"
               onChange={handleOnChange}
               />
-           
+            {error.name && <p>{error.country}</p>}  
           </li>
           <li>
             <label>Productor:  </label>
             <input 
               type="text" 
-              placeholder="Productor"
+              placeholder={wine.producer}
               value={input.producer}
               onClick={aux}
               name='producer' 
               autoComplete="off"
               onChange={handleOnChange}
               />
-           
+            {error.name && <p>{error.producer}</p>}  
            </li>
            <li>
             <label>Link Imagen:  </label>
-            <input 
+            <input    
               type="text" 
-              placeholder="Link Imagen"
+              placeholder={wine.img}
               value={input.img}
               onClick={aux}
               name='img' 
@@ -162,50 +198,59 @@ console.log((wine.x))
           <li>
 
             <label>Precio: $ </label>
-            <input 
+            <input      
               type="number" 
-              placeholder="Precio"
+              placeholder={wine.price}
               value={input.price}
               onClick={aux}
               name='price' 
               autoComplete="off"
               onChange={handleOnChange}
+              min='0'
               />
-           
+            {error.name && <p>{error.price}</p>}  
            </li>
            <li> 
 
            <label>Stock:  </label>
-            <input 
+            <input       
               type="number" 
-              placeholder="Stock"
+              placeholder={wine.stock}
               value={input.stock}
               onClick={aux}
               name='stock' 
               autoComplete="off"
               onChange={handleOnChange}
+              min='0'
               />
+               
            </li>
               <label > Categoria: </label>
-              <select placeholder="Categoria" onSelect={aux} >
+
+          
+              <select placeholder={wine.category} onChange={e=>handleSelect(e)} >
+                <option> Selecciona una categoria </option>
+
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
                 ))}
-              </select>      
+              </select>   
+              
             <li>
             <label>Descripcion:  </label>
-            <textarea 
+            <textarea       
               type="text" 
-              placeholder="Descripcion"
+              placeholder={wine.description}
               value={input.description}
               onClick={aux}
               name='description'
               autoComplete="off"
               onChange={handleOnChange}
-              />
+                />
+                 
           </li>
       
-              <button type="submit" value = 'Create' > Submit </button>
+              <button type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
         </ul>
       </form>
       
