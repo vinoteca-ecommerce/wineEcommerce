@@ -1,7 +1,7 @@
 
 
 import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES, GET_STRAIN, GET_PRODUCT,
-    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT} from '../actions/actions';
+    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT, MERCADO_PAGO} from '../actions/actions';
 
 
 
@@ -13,6 +13,7 @@ const initialState = {
     producer: '',
     categories: [],
     shoppingcar: [],
+    linkmp:'',
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -132,7 +133,14 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 wines: action.payload
-            }       
+            }   
+            
+            case MERCADO_PAGO:
+            return {
+                ...state,
+                linkmp: action.payload
+
+            }
 
         default: return {...state}
     }

@@ -11,9 +11,9 @@ const getAllProducers = async (req, res = response) => {
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   const array = []
 products.map(e => array.push(e.producer))
-console.log(array)
+
 const dataArr = new Set(array)
-console.log(dataArr)
+
 const producer = Array.from(dataArr)
 res.json({producer});
 
@@ -328,30 +328,57 @@ const deleteCart=async(req,res=response)=>{
   res.json({msg:'Wine deleted from your favorites succesfully.'})
 }
 
+// const paymentMP = async(req,res)=>{
+//   const url = "https://api.mercadopago.com/checkout/preferences"
+//   const data = req.body
+// console.log(data)
+
+//   const bodyaux ={
+    
+//     items: [{
+//       title: "pack de martin",
+//       picture_url:"",
+//       quantity:5,
+//       unit_price:20,
+//     },
+//     {
+//       title: "pack de camilo",
+//       picture_url:"",
+//       quantity:5,
+//       unit_price:200,
+//     }
+//   ],
+//   back_urls:{
+//     failure:"/failure",
+//     pending:"/pending",
+//     success:"/success"
+// }
+// };
+// const payment = await axios.post(url,bodyaux,{
+
+
+  
+//   headers:{
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+//   }
+// })
+// res.json(payment.data)
+//devuelve el link de pago unicamente .data devuelve todo el array 
+
+// }
+
 const paymentMP = async(req,res)=>{
   const url = "https://api.mercadopago.com/checkout/preferences"
+  const body = req.body
+console.log(body)
 
-  const body ={
-    
-    items: [{
-      title: "pack de martin",
-      picture_url:"",
-      quantity:5,
-      unit_price:20,
-    },
-    {
-      title: "pack de camilo",
-      picture_url:"",
-      quantity:5,
-      unit_price:200,
-    }
-  ],
-  back_urls:{
-    failure:"/failure",
-    pending:"/pending",
-    success:"/success"
-}
-};
+
+
+
+
+
+
 const payment = await axios.post(url,body,{
 
 
@@ -361,11 +388,11 @@ const payment = await axios.post(url,body,{
     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
   }
 })
-res.json(payment.data)
-//devuelve el link de pago unicamente .data devuelve todo el array 
-console.log(process.env.ACCESS_TOKEN)
-}
 
+
+res.send({url: payment.data.init_point})
+
+}
 
 
 

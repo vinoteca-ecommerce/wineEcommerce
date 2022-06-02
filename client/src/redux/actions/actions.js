@@ -16,7 +16,7 @@ export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
-
+export const MERCADO_PAGO = 'MERCADO_PAGO'
 
 
 export const getWines = (num,category,orden,producer) => {
@@ -129,3 +129,20 @@ export const deleteLocalStorage = (data) => {
 
 
 
+export const postMP = (data) => {
+  return async function(dispatch){
+    return axios.post('http://localhost:8000/products/payment',data)
+    .then(response => { 
+      
+      dispatch({type: MERCADO_PAGO, payload: response.data.url})
+    })
+ .catch(err => console.error(err))
+  }
+}
+
+// export function postMP(payload){
+//   return async function(dispatch){
+//     const respuesta = await axios.post('http://localhost:8000/products/payment',payload);
+//     return  respuesta
+//   }
+// }
