@@ -17,7 +17,8 @@ import {
   GET_USERS,
   DELETE_USER,
   GET_USER,
-  ADD_FAVS
+  ADD_FAVS,
+  MERCADO_PAGO
 } from "../actions/actions";
 
 const initialState = {
@@ -179,6 +180,13 @@ const rootReducer = (state = initialState, action) => {
     return{
       ...state
     }
+   case MERCADO_PAGO:
+            return {
+                ...state,
+                linkmp: action.payload
+
+    }
+   
     default:
       return { ...state };
   }

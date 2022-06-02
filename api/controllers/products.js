@@ -339,44 +339,23 @@ const pushToCart=async(req,res=response)=>{
   res.status(201).json(user.cart)
 }
 
+
 const paymentMP = async(req,res)=>{
   const url = "https://api.mercadopago.com/checkout/preferences"
+  const body = req.body
 
-  const body ={
-    
-    items: [{
-      title: "pack de martin",
-      picture_url:"",
-      quantity:5,
-      unit_price:20,
-    },
-    {
-      title: "pack de camilo",
-      picture_url:"",
-      quantity:5,
-      unit_price:200,
-    }
-  ],
-  back_urls:{
-    failure:"/failure",
-    pending:"/pending",
-    success:"/success"
-}
-};
 const payment = await axios.post(url,body,{
-
-
-  
+ 
   headers:{
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
   }
 })
-res.json(payment.data)
-//devuelve el link de pago unicamente .data devuelve todo el array 
-console.log(process.env.ACCESS_TOKEN)
-}
 
+
+res.send({url: payment.data.init_point})
+
+}
 
 
 
