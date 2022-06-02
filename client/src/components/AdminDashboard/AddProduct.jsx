@@ -30,10 +30,13 @@ export const AddProduct = () => {
 
  
   function handleSubmit(e){
-    e.preventDefault()
-
+    if(!input.category || input.year <= 0 || input.price <= 0){
+      alert('Existe uno o mas campos con error')
+      e.preventDefault()
+    }else{
+  
       dispatch(postWine(input))
-      alert('Vino agregado correctamente')
+      alert('Vino actualizado correctamente')
       setInput({
         name:'',
         year:'',
@@ -46,6 +49,7 @@ export const AddProduct = () => {
         producer:'',
         stock: ''
       })
+    }
   }
 
   function handleSelect(e){
@@ -78,8 +82,14 @@ export const AddProduct = () => {
     if(!input.price){
       error.price = 'Precio es obligatorio'
     }
+    if(input.price < 0){
+      error.price = 'Debe tener precio valido'
+    }
     if(input.country.length < 4){
       error.country = 'Pais del vino es obligatorio' 
+    }
+    if(input.year <= 0){
+      error.year = 'Debe ser un año valido'
     }
     if(!input.strain){
       error.strain = 'Cepa es obligatorio'
@@ -87,7 +97,6 @@ export const AddProduct = () => {
     return error
   }
 
-  
   return (
     <div className={Style.backg}>
       <Link to='/admin/delete'><button className={Style.nav} > Borrar Producto </button></Link>
@@ -117,8 +126,9 @@ export const AddProduct = () => {
                 name='year' 
                 autoComplete="off"
                 onChange={handleOnChange}
+                min= "0"
                 />
-              
+                {error.name && <p>{error.year}</p>} 
             </li>
             <li>
               <label>Cepa:  </label>
@@ -182,6 +192,7 @@ export const AddProduct = () => {
                 name='price' 
                 autoComplete="off"
                 onChange={handleOnChange}
+                min='0'
                 />
                 {error.price && <p>{error.price}</p>}  
             </li>
@@ -196,11 +207,13 @@ export const AddProduct = () => {
                 name='stock' 
                 autoComplete="off"
                 onChange={handleOnChange}
+                min='0'
                 />
             </li>
             
                 <label > Categoria: </label>
                 <select className={Style.inputs} placeholder="Categoria" onChange={e=>handleSelect(e)} >
+                <option> Selecciona una categoria </option>
                   {category.result?.map((e) => (
                     <option value={e._id} key={e._id}> {e.name} </option>
                   ))}
