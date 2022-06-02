@@ -16,10 +16,10 @@ export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-
+export const GET_USERS = 'GET_USERS';
 export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
-
-
+export const  DELETE_USER = 'DELETE_USER';
+export const GET_USER = 'GET_USER';
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -141,5 +141,33 @@ export const setShoppingCar = (data)=>{
   }
 }
 
+export const getUsers = ()=>{
+    return async function(dispatch){
+      return axios.get('http://localhost:8000/users', { headers: authHeader() })
+      .then(response =>{
+        dispatch({type: GET_USERS, payload: response.data})
+      }).catch(err => console.log(err))
+    }
+}
 
+export const deleteUser = (id)=>{
+  return async function(dispatch){
+    return axios.delete(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
+      .then(response =>{ 
+        dispatch({type: DELETE_USER, payload: response.data})
+        
+      }).catch(err => console.log(err)) 
+  }
 
+}
+
+export const getUserById = (id)=>{
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
+      .then(response =>{ 
+        dispatch({type: GET_USER, payload: response.data})
+        
+      }).catch(err => console.log(err)) 
+  }
+
+}

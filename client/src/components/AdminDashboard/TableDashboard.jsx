@@ -29,7 +29,8 @@ export const DashboardTable= () => {
    
   return (
     <div className={Style.backg}>
-        <Link  to='/admin/post'><button className={Style.nav}> Agrega Producto</button> </Link>
+        <Link  to='/admin/post'className={Style.nav}>  Agrega Producto </Link>
+        <Link to='/admin/users' className={Style.nav}> Administrar Usuarios</Link>
         <div>
           <h2 className={Style.littleTitle}>Producto a eliminar o modificar</h2>
                 <table>

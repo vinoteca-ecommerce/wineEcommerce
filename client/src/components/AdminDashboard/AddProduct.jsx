@@ -99,7 +99,8 @@ export const AddProduct = () => {
 
   return (
     <div className={Style.backg}>
-      <Link to='/admin/delete'><button className={Style.nav} > Borrar Producto </button></Link>
+      <Link to='/admin/' className={Style.nav}> Dashboard / Borrar Producto </Link>
+      <Link to='/admin/users' className={Style.nav}> Administrar Usuarios</Link>
       <div className={Style.froms}>
         <h3> Formulario de agregar Vino </h3>
         <form onSubmit={e=>handleSubmit(e)}>
@@ -114,7 +115,8 @@ export const AddProduct = () => {
                 name='name'
                 autoComplete="off"
                 onChange={handleOnChange}/>
-                {error.name && <p>{error.name}</p>}  
+                {error.name && <p>{error.name}</p> }   
+               
             </li>
             <li>
               <label>Año:  </label>
