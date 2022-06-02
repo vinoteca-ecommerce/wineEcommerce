@@ -134,7 +134,7 @@ export const deleteLocalStorage = (data) => {
 //CARRITO DE COMPRAS BASE DE DATOS
 export const setShoppingCar = (data)=>{
   return async function(dispatch){
-    return axios.post(`http://localhost:8000/products/cart`, data)
+    return axios.post(`http://localhost:8000/products/cart`, data,  { headers: authHeader() })
       .then(response =>{
           dispatch({type: SET_SHOPPINGCAR, payload: response.data})
       }).catch(err=> console.log(err))

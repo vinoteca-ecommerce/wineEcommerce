@@ -12,21 +12,22 @@ import authService from '../services/auth-service'
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
     const shoppingcar = useSelector((state) => state.shoppingcar);
-    const [currentUser,setCurrentUser] = useState(undefined)
+    //const [currentUser,setCurrentUser] = useState(undefined)
 
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
 
     useEffect(()=>{
         dispatch(setLocalStorage(store))
-
+        //console.log(store)
+        
         const user= authService.getCurrentUser();
         if(user){
-            setCurrentUser(user)
-            dispatch(setShoppingCar(store))
+            //setCurrentUser(user)
+            if(store !== null) dispatch(setShoppingCar(store))
         }
-
+        console.log(user)
         return () => {
-            dispatch(setShoppingCar(store))
+            if(user && store !== null) dispatch(setShoppingCar(store));
         }
 
     },[dispatch])
@@ -39,10 +40,10 @@ export const ShoppingCar = () => {
         else dispatch(deleteLocalStorage(id));
       }
 
-
+      console.log(shoppingcar)
   return (
     <div className={style.container}>
-        {shoppingcar?.length === 0 ? <h2>Carrito vacio, ve a agregar productos!</h2>
+        {shoppingcar?.length === 0 || shoppingcar === null ? <h2>Carrito vacio, ve a agregar productos!</h2>
         :<><table className={style.table}>
             <thead className={style.tableHead}>
                 <tr>
