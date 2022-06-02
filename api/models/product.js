@@ -23,6 +23,7 @@ const ProductSchema = Schema({
   },
   img: {
     type: String,
+  
   },
   category: {
     type: Schema.Types.ObjectId,

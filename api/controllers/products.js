@@ -1,6 +1,8 @@
 const { response } = require("express");
 const Product = require("../models/product");
-const axios = require("axios")
+const User = require('../models/user')
+const axios = require("axios");
+
 
 
 const getAllProducers = async (req, res = response) => {
@@ -11,9 +13,9 @@ const getAllProducers = async (req, res = response) => {
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   const array = []
 products.map(e => array.push(e.producer))
-console.log(array)
+
 const dataArr = new Set(array)
-console.log(dataArr)
+
 const producer = Array.from(dataArr)
 res.json({producer});
 
@@ -324,11 +326,17 @@ const deleteCart=async(req,res=response)=>{
 
 
 const pushToCart=async(req,res=response)=>{
-  console.log(req.body)
-  req.user.cart.push(req.body)
 
-  req.user.update();
-  res.json(req.user.cart)
+  const { email } = req.user
+  const user = await User.findOneAndUpdate({email}, {cart: req.body},(error,data) =>{
+    if (error){
+      console.log(error)
+    }else{
+      console.log(data)
+    }
+  } ).clone()
+  
+  res.status(201).json(user.cart)
 }
 
 const paymentMP = async(req,res)=>{
