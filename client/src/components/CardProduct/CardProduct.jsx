@@ -1,10 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from './CardProduct.module.css';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useDispatch } from 'react-redux';
+import { addFavorites } from '../../redux/actions/actions';
 
-export const CardProduct = ({id, name, price, img, category}) => {
-    //console.log(category)
+export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country}) => {
+    const dispatch = useDispatch();
+    let store = JSON.parse(localStorage.getItem('user'))
+    const handleFavs = ()=>{
+      // console.log("hola")
+      const input={
+        id: id,
+        name: name,
+        price: price,
+        img: img,
+        category: category,
+        year: year,
+        description: description,
+        strain: strain,
+        producer: producer,
+        country: country
+      }
+      // console.log(input)
+      dispatch(addFavorites(input))
+    }
+
     const handleClickShopping = (id)=>{
         let state = JSON.parse(localStorage.getItem('ShoppingCar'));
         let sum = 0;
@@ -33,7 +55,7 @@ export const CardProduct = ({id, name, price, img, category}) => {
       }
 
   return (
-    
+    /*  name, year, description, img, strain, producer,  ID  de category, price, country */
     <div className={style.card}>
             <Link to={`/cardDetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                 <img className={style.cardImg} src={img} alt={name}/>
@@ -44,6 +66,9 @@ export const CardProduct = ({id, name, price, img, category}) => {
             </Link>
             <div className={style.cardFooter}>
                 <span className={style.textTitle}>${price}.00</span>
+                {store && store.user.role && <div className={style.cardButton}>
+                    <FavoriteBorderIcon className={style.svgIcon} onClick={()=>handleFavs(name, year, description, img, strain, producer, id, price, country)}/>
+                </div>}
                 <div className={style.cardButton}>
                     <AddShoppingCartIcon className={style.svgIcon} onClick={()=>handleClickShopping(id)}/>
                 </div>

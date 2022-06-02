@@ -1,7 +1,7 @@
 
 
 import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES, GET_STRAIN, GET_PRODUCT,
-    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT} from '../actions/actions';
+    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT, ALL_FAVORITES, ADD_FAVS} from '../actions/actions';
 
 
 
@@ -13,6 +13,7 @@ const initialState = {
     producer: '',
     categories: [],
     shoppingcar: [],
+    favorites: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -133,7 +134,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wines: action.payload
             }       
-
+        case ADD_FAVS:
+            console.log('llego al reducer el add favs')
+            return{
+                ...state
+            }
         default: return {...state}
     }
 }

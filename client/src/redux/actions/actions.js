@@ -17,7 +17,8 @@ export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
-
+export const ALL_FAVORITES = 'ALL_FAVORITES'
+export const ADD_FAVS = 'ADD_FAVS'
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -128,4 +129,16 @@ export const deleteLocalStorage = (data) => {
 };
 
 
-
+export const addFavorites = (payload)=>{
+  return async function(dispatch){
+    return axios.post(`http://localhost:8000/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
+    .then(response=>{
+      console.log('CARGASTE UN NUEVO WINE')
+      console.log(response.data)
+    return dispatch({
+      type: ADD_FAVS,
+      payload: response.data
+    })
+    })
+  }
+}
