@@ -1,7 +1,7 @@
 
 
 import {GET_WINES, GET_NAME, SET_WINES_CLEAN, SET_FILTER,POST_WINE,GET_CATEGORIES, GET_STRAIN, GET_PRODUCT,
-    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT} from '../actions/actions';
+    SET_LOCAL_STORAGE, ADD_LOCAL_STORAGE, SUB_LOCAL_STORAGE, DELETE_LOCAL_STORAGE, DELETE_PRODUCT , UPDATE_PRODUCT, SET_SHOPPINGCAR} from '../actions/actions';
 
 
 
@@ -132,7 +132,15 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 wines: action.payload
-            }       
+            }      
+         
+        case SET_SHOPPINGCAR:
+                localStorage.removeItem("ShoppingCar");
+                localStorage.setItem('ShoppingCar', JSON.stringify(action.payload));
+            return{
+                ...state,
+                shoppingcar: action.payload
+            } 
 
         default: return {...state}
     }

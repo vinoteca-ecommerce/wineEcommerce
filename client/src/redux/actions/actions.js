@@ -14,8 +14,10 @@ export const ADD_LOCAL_STORAGE = 'ADD_LOCAL_STORAGE';
 export const SUB_LOCAL_STORAGE = 'SUB_LOCAL_STORAGE';
 export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
-export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+
+export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
 
 
 
@@ -111,6 +113,7 @@ export const updateProduct = (id, data)=>{
 }
 
 
+//CARRITO DE COMPRAS LOCAL STORAGE
 export const setLocalStorage = (data) => {
   return { type: SET_LOCAL_STORAGE, payload: data };
 };
@@ -126,6 +129,17 @@ export const subLocalStorage = (data) => {
 export const deleteLocalStorage = (data) => {
   return { type: DELETE_LOCAL_STORAGE, payload: data };
 };
+
+
+//CARRITO DE COMPRAS BASE DE DATOS
+export const setShoppingCar = (data)=>{
+  return async function(dispatch){
+    return axios.post(`http://localhost:8000/products/cart`, data)
+      .then(response =>{
+          dispatch({type: SET_SHOPPINGCAR, payload: response.data})
+      }).catch(err=> console.log(err))
+  }
+}
 
 
 

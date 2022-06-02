@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import authService from '../services/auth-service'
+import authService from '../services/auth-service';
 
 const settings = ['Perfil', 'Cerrar sesión'];
 
