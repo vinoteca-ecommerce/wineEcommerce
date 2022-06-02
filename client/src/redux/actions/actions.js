@@ -21,6 +21,10 @@ export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
 export const  DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 
+export const ALL_FAVORITES = 'ALL_FAVORITES';
+export const ADD_FAVS = 'ADD_FAVS';
+
+
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
       return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${producer}`)
@@ -131,6 +135,21 @@ export const deleteLocalStorage = (data) => {
 };
 
 
+//ADD FAVORITES
+export const addFavorites = (payload)=>{
+  return async function(dispatch){
+    return axios.post(`http://localhost:8000/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
+    .then(response=>{
+      console.log('CARGASTE UN NUEVO WINE')
+      console.log(response.data)
+    return dispatch({
+      type: ADD_FAVS,
+      payload: response.data
+    })
+    })
+  }
+}
+
 //CARRITO DE COMPRAS BASE DE DATOS
 export const setShoppingCar = (data)=>{
   return async function(dispatch){
@@ -171,3 +190,4 @@ export const getUserById = (id)=>{
   }
 
 }
+

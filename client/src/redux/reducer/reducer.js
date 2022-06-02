@@ -16,7 +16,8 @@ import {
   SET_SHOPPINGCAR,
   GET_USERS,
   DELETE_USER,
-  GET_USER
+  GET_USER,
+  ADD_FAVS
 } from "../actions/actions";
 
 const initialState = {
@@ -173,6 +174,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       }
+    case ADD_FAVS:
+    console.log('llego al reducer el add favs')
+    return{
+      ...state
+    }
     default:
       return { ...state };
   }
