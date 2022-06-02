@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from '../UserProfile/UserDirection.module.css'
-export const UserDirection = () => {
+import styles from '../UserProfile/UserAddress.module.css'
+export const UserAddress = () => {
   return (
     <>
       <div className={styles.title}>

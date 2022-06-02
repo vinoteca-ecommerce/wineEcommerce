@@ -16,7 +16,8 @@ import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
 
 import {UserProfile} from './components/UserProfile/UserProfile'
 import {UserOrders} from './components/UserProfile/UserOrders'
-import {UserDirection} from './components/UserProfile/UserDirection'
+import {UserAddress} from './components/UserProfile/UserAddress'
+import {UserAddressForm} from './components/UserProfile/UserAddressForm'
 
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
@@ -67,7 +68,9 @@ function App() {
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userOrders' element={<UserOrders/>}/>
-        <Route path='/userDirection' element={<UserDirection/>}/>
+        <Route path='/userAddress' element={<UserAddress/>}/>
+        <Route path='/userAddressForm' element={<UserAddressForm/>}/>
+        {/* <Route path='/userHelp' element={<UserHelp/>}/> */}
       </Routes>
       <Footer/>
     </div>
