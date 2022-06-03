@@ -20,7 +20,7 @@
 .containerTotal p{
     padding: 2.1em 2em;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     align-items: center ;
     justify-content: space-around;
@@ -29,13 +29,13 @@
 }
 
 .containerTotal p h5{
-    font-weight: 400;
+    font-weight: 900;
     margin: 0;
 }
 
 .containerTotal p h6{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 800px){

@@ -3,6 +3,7 @@ const  { response } = require('express');
 const bcryptjs = require('bcryptjs');
 const {jwtGenerator} = require('../helpers/jwtgenerator')
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 
 const loginController = async(req, res = response) => {
@@ -51,7 +52,7 @@ const googleSingIn=async(req,res)=>{
         const {name, email , picture}=jwt_decode(id_token)
         
         let user= await User.findOne({email});
-        
+        console.log(user)
         if(!user){
             
             const data={
@@ -80,10 +81,34 @@ const googleSingIn=async(req,res)=>{
     }
 }
 
+const verifyAccount=async(req,res)=>{
+    const{token}=req.params
+    let email=null
+    try {
+        const payload=jwt.verify(token, process.env.SECRETORPRIVATEKEY)
+        email=payload.uid
+    } catch (error) {
+        res.json({
+            status:'failed',
+            msg:error
+        })
+    }
+    return User.findById(email)
+        .then(user=>{
+
+            if(!user) throw new Error('User not found');
+            if(user.verified) return res.send('User already verified!');
+            user.verified=true;
+            user.save();
+            res.send('User verified')
+        })
+}
+
 
 
 
 module.exports = {
     loginController,
-    googleSingIn
+    googleSingIn,
+    verifyAccount
 }

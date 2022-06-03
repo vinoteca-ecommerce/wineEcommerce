@@ -29,13 +29,6 @@ router.put('/:id',[
     validation
 ] ,productUpdate)
 
-router.delete('/:id',[
-    jwtValidator,
-    adminRole,
-    check('id', 'This id doesnt exist').isMongoId(),
-    check('id').custom(productIdValidator),
-    validation
-], deleteProduct)
 
 router.post('/favs/:id',[
     jwtValidator,
@@ -69,7 +62,7 @@ router.get('/cart',[
     validation
 ],getCart)
 
-router.delete('/cart/:id',[
+router.delete('/cart',[
     jwtValidator,
     validation
 ],deleteCart)
@@ -77,6 +70,16 @@ router.delete('/cart/:id',[
 
 router.get('/:id', getProduct)
 
+
+router.delete('/:id',[
+    jwtValidator,
+    adminRole,
+    check('id', 'This id doesnt exist').isMongoId(),
+    check('id').custom(productIdValidator),
+    validation
+], deleteProduct)
+
 router.post('/payment', paymentMP)
+
 
 module.exports = router;

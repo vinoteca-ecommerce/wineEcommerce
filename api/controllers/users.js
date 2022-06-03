@@ -1,7 +1,8 @@
 const { response } = require("express");
 const User = require('../models/user')
 const bcryptjs=require('bcryptjs')
-const { jwtGenerator } = require('../helpers/jwtgenerator')
+const { jwtGenerator } = require('../helpers/jwtgenerator');
+const {    sendConfirmationEmail } = require("../helpers/mailler");
 
 
 
@@ -61,7 +62,7 @@ const getUserById=async (req,res=response)=>{
   const { id }=req.params
   
   const user=await User.findById(id);
-console.log(id)
+
   if(!user){
     return res.status(404).send(`The user with de ID ${id} doesn't exist.`)
   }  
@@ -73,13 +74,14 @@ console.log(id)
 const postUser = async (req, res=response) => {
     const { name, password, email, role } = req.body; 
     const user = new User({name, password, email, role});
-
     //encriptacion
     const salt=bcryptjs.genSaltSync(10);
     user.password=bcryptjs.hashSync(password,salt)
-
+    
     await user.save();
     const token = await jwtGenerator(user.id)
+
+    sendConfirmationEmail(user,token)
     res.status(201).json({
       user,
       token

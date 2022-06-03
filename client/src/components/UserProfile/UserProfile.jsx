@@ -43,7 +43,7 @@ export const UserProfile = () => {
             <p className={styles.card__content}>
               Editar direccion de envio o preferencias para tus pedidos{" "}
             </p>
-            {/* <div className={style.card__date}>April 15, 2022</div> */}
+
             <div className={styles.card__arrow}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ export const UserProfile = () => {
           </div>
 
           <div className={styles.card}>
-            <NavLink to="/userHelp">
+            <NavLink to="/contactForm">
               <h3 className={styles.card__title}>Ayuda</h3>
             </NavLink>
             <p className={styles.card__content}>
