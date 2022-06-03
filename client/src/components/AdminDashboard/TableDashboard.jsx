@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getWines } from '../../redux/actions/actions'
 import { deleteProduct } from '../../redux/actions/actions'
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 //Styles
-import Style from "./DeleteProduct.module.css"
+import style from "./DeleteProduct.module.css"
 
 export const DashboardTable= () => {
 
@@ -28,35 +31,33 @@ export const DashboardTable= () => {
 
    
   return (
-    <div className={Style.backg}>
-        <Link  to='/admin/post'className={Style.nav}>  Agrega Producto </Link>
-        <Link to='/admin/users' className={Style.nav}> Administrar Usuarios</Link>
-        <div>
-          <h2 className={Style.littleTitle}>Producto a eliminar o modificar</h2>
-                <table>
-            <thead> 
-              <tr className={Style.tittle}>
-              <th> Nº </th>
-              <th> Nombre </th>
-              <th> Precio </th>
-              <th> Categoria </th>
-              <th> Stock </th>
-              <th>Operation</th>
+    <div >
+        <Link  to='/admin/post' style={{textDecoration:'none'}}> <Button variant="outlined">Agregar Vino</Button>  </Link>
+        <Link to='/admin/users' style={{textDecoration:'none'}}> <Button variant="outlined">Usuarios</Button></Link>
+        <div className={style.container}>
+          <h2>Productos</h2>
+          <table className={style.table}>
+            <thead className={style.tableHead}> 
+              <tr>
+                <th> Nº </th>
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Categoria </th>
+                <th> Stock </th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
                { wine.result?.map(((e,index)=>
-              <tbody key={e._id} className={Style.tittle}>
-                <tr>
-                <td>{index + 1}</td>
-                <td>{e.name}</td>
-                <td>{e.price}</td>
-                <td>{e.category.name}</td>
-                <td>{e.stock}</td>
-                <td>
-                  <button className={Style.buttom} onClick={()=>handleDelete(e._id)}> Delete   </button>
-
-                  <Link to={'/admin/update/' + e._id}><button className={Style.buttom}> Modificar Producto </button></Link>
-                  </td>
+              <tbody key={e._id} className={style.tableBody}>
+                <tr >
+                  <td style={{width:'50px'}}>{index + 1}</td>
+                  <td>{e.name}</td>
+                  <td>${e.price}.00</td>
+                  <td>{e.category.name}</td>
+                  <td style={{width:'50px'}}>{e.stock}</td>
+                  <td style={{width:'50px'}}><Button style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}} onClick={()=>handleDelete(e._id)}><DeleteIcon/></Button></td>
+                  <td style={{width:'50px'}}><Link to={'/admin/update/' + e._id}><Button style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px'}}> <EditIcon/> </Button></Link></td>
                 </tr>
               </tbody>
               ))
