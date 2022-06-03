@@ -45,8 +45,28 @@ const purchaseStatus = async (req, res = response) => {
   res.status(201).json(purchase);
 };
 
+
+const updateState = async (req, res = response ) => {
+
+    const { id } = req.params
+    const { payment_id , status } = req.body;
+  
+    const filter = await Purchase.findOneAndUpdate({id}, {payment_id, status},(error,data) =>{
+      if (error){
+        console.log(error)
+      }else{
+        console.log(data)
+      }
+    } ).clone()
+    
+
+      res.status(201).json(filter)
+}
+
+
 module.exports = {
   purchaseStatus,
   getPurchase,
-  getPurchases
+  getPurchases,
+  updateState
 };
