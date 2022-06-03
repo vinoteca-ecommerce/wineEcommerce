@@ -16,11 +16,13 @@ export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
 export const MERCADO_PAGO = 'MERCADO_PAGO'
 
+//export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
+export const GET_SHOPPINGCAR = 'GET_SHOPPINGCAR';
+
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const GET_USERS = 'GET_USERS';
-export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
-export const  DELETE_USER = 'DELETE_USER';
+export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 
 export const ALL_FAVORITES = 'ALL_FAVORITES';
@@ -183,8 +185,17 @@ export const allFavs = (id)=>{
 export const setShoppingCar = (data)=>{
   return async function(dispatch){
     return axios.post(`http://localhost:8000/products/cart`, data,  { headers: authHeader() })
-      .then(response =>{
+      /*.then(response =>{
           dispatch({type: SET_SHOPPINGCAR, payload: response.data})
+      }).catch(err=> console.log(err))*/
+  }
+}
+
+export const getShoppingCar = ()=>{
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/products/cart`, { headers: authHeader() })
+      .then(response =>{
+          dispatch({type: GET_SHOPPINGCAR, payload: response.data.cart})
       }).catch(err=> console.log(err))
   }
 }
