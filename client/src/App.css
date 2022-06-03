@@ -2,9 +2,12 @@
   margin: 0;
   padding: 0;
 }
-body{
- font-family: 'Montserrat', sans-serif,'Great Vibes', cursive;
-}
+
+/* body {
+  font-family: 'Yantramanav', sans-serif,'Satisfy', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}  */
 
 /* .App {
   text-align: center;
