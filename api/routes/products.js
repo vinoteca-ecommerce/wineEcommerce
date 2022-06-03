@@ -77,6 +77,6 @@ router.delete('/cart/:id',[
 
 router.get('/:id', getProduct)
 
-router.post('/payment', paymentMP)
+router.post('/payment', paymentMP) 
 
 module.exports = router;

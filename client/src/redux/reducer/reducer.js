@@ -18,8 +18,12 @@ import {
   DELETE_USER,
   GET_USER,
   ADD_FAVS,
+
   ALL_FAVORITES,
   DELETE_FAV
+
+  MERCADO_PAGO
+
 } from "../actions/actions";
 
 const initialState = {
@@ -32,7 +36,11 @@ const initialState = {
   shoppingcar: [],
   users: [],
   user: [],
+
   favorites: []
+
+  linkmp: '',
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -196,6 +204,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favorites: action.payload
       }
+   case MERCADO_PAGO:
+      return {
+    ...state,
+    linkmp: action.payload
+    }
     default:
       return { ...state };
   }

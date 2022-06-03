@@ -22,9 +22,13 @@ import {UserAddressForm} from './components/UserProfile/UserAddressForm'
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 //import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
 import { PrivateUpdate } from './components/AdminDashboard/PrivateUpdate';
+
+import { Confirm } from './components/Confirm/Confirm';
+
 import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
+
 
 
 
@@ -40,6 +44,16 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
+
+        <Route 
+          path='/confirm'
+          element={
+            <PrivateDash>
+            <Confirm/>
+            </PrivateDash>
+          }
+        />
+        
         <Route
           path="/admin/"
           element={

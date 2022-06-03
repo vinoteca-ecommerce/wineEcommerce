@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, postWine } from "../../redux/actions/actions";
+import style from './UpdateProduct.module.css';
+import Button from '@mui/material/Button';
 
 // STYLE
-import Style from "./AddProduct.module.css"
+//import Style from "./AddProduct.module.css"
 
 
 export const AddProduct = () => {
@@ -98,30 +100,30 @@ export const AddProduct = () => {
   }
 
   return (
-    <div className={Style.backg}>
-      <Link to='/admin/' className={Style.nav}> Dashboard / Borrar Producto </Link>
-      <Link to='/admin/users' className={Style.nav}> Administrar Usuarios</Link>
-      <div className={Style.froms}>
-        <h3> Formulario de agregar Vino </h3>
+    <div>
+      <Link to='/admin/' style={{textDecoration:'none'}} ><Button variant="outlined" > Inicio </Button></Link>
+        
+        <div className={style.form}>
         <form onSubmit={e=>handleSubmit(e)}>
-          <ul>
-            <li>
+        <h3> Nuevo Vino </h3>
+            <div>
               <label>Nombre:  </label>
-              <input 
-                className={Style.inputs}
-                type="text" 
-                placeholder="Nombre"
-                value={input.name}
-                name='name'
-                autoComplete="off"
-                onChange={handleOnChange}/>
-                {error.name && <p>{error.name}</p> }   
-               
-            </li>
-            <li>
+              <div>
+                <input 
+                  type="text" 
+                  placeholder="Nombre"
+                  value={input.name}
+                  name='name'
+                  autoComplete="off"
+                  onChange={handleOnChange}
+                  className={error.name && style.danger}/>
+                  {error.name && <p>{error.name}</p> }   
+                </div>
+              </div>  
+            <div>
               <label>Año:  </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="number" 
                 placeholder="Año"
                 value={input.year}
@@ -129,52 +131,62 @@ export const AddProduct = () => {
                 autoComplete="off"
                 onChange={handleOnChange}
                 min= "0"
-                />
-                {error.name && <p>{error.year}</p>} 
-            </li>
-            <li>
+                className={error.year && style.danger}/>
+                {error.year && <p>{error.year}</p>} 
+                </div>
+              </div>
+            <div>
               <label>Cepa:  </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="text" 
                 placeholder="Cepa"
                 value={input.strain}
                 name='strain'
                 autoComplete="off"
                 onChange={handleOnChange}
+                className={error.strain && style.danger}
                 />
                 {error.strain && <p>{error.strain}</p>}  
-            </li>
-            <li>
+                </div>
+            </div>
+
+            <div>
               <label>Pais:  </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="text" 
                 placeholder="Pais"
                 value={input.country}
                 name='country' 
                 autoComplete="off"
                 onChange={handleOnChange}
+                className={error.country && style.danger}
                 />
                 {error.country && <p>{error.country}</p>}  
-            </li>
-            <li>
+                </div>
+            </div>
+
+            <div>
               <label>Productor:  </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="text" 
                 placeholder="Productor"
                 value={input.producer}
                 name='producer' 
                 autoComplete="off"
                 onChange={handleOnChange}
+                className={error.producer && style.danger}
                 />
                 {error.producer && <p>{error.producer}</p>}  
-            </li>
-            <li>
+                </div>
+            </div>
+
+            <div>
               <label>Link Imagen:  </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="text" 
                 placeholder="Link Imagen"
                 value={input.img}
@@ -182,12 +194,13 @@ export const AddProduct = () => {
                 autoComplete="off"
                 onChange={handleOnChange}
                 />
-            </li>
-            <li>
+                </div>
+            </div>
 
+            <div>
               <label>Precio: $ </label>
+              <div>
               <input 
-                className={Style.inputs}
                 type="number" 
                 placeholder="Precio"
                 value={input.price}
@@ -195,14 +208,16 @@ export const AddProduct = () => {
                 autoComplete="off"
                 onChange={handleOnChange}
                 min='0'
+                className={error.price && style.danger}
                 />
                 {error.price && <p>{error.price}</p>}  
-            </li>
-            <li> 
+                </div>
+            </div>
 
+            <div>
             <label>Stock:  </label>
+            <div>
               <input 
-                className={Style.inputs}
                 type="number" 
                 placeholder="Stock"
                 value={input.stock}
@@ -211,19 +226,25 @@ export const AddProduct = () => {
                 onChange={handleOnChange}
                 min='0'
                 />
-            </li>
-            
-                <label > Categoria: </label>
-                <select className={Style.inputs} placeholder="Categoria" onChange={e=>handleSelect(e)} >
+                </div>
+            </div>
+
+            <div>
+                <label style={{marginTop:'2em'}}> Categoria: </label>
+                <div>
+                <select style={{marginTop:'2em'}} placeholder="Categoria" onChange={e=>handleSelect(e)} >
                 <option> Selecciona una categoria </option>
                   {category.result?.map((e) => (
                     <option value={e._id} key={e._id}> {e.name} </option>
                   ))}
                 </select>      
-              <li>
-              <label>Descripcion:  </label>
-              <textarea 
-                className={Style.inputs}
+                </div>
+            </div>
+
+            <div>
+              <label style={{marginTop:'2em'}}>Descripcion:  </label>
+              <div>
+              <textarea style={{marginTop:'2em'}}
                 type="text" 
                 placeholder="Descripcion"
                 value={input.description}
@@ -231,12 +252,12 @@ export const AddProduct = () => {
                 autoComplete="off"
                 onChange={handleOnChange}
                 />
-            </li>
-        
-                <button className={Style.buttom} type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
-          </ul>
+                </div>
+            </div>
+                <Button variant="contained" className={style.button} type="submit"  disabled={Object.keys(error).length}> Crear </Button>
+
         </form>
+        </div>
       </div>
-    </div>
   );
 };
