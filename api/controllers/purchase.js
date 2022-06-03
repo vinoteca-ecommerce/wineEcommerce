@@ -42,7 +42,7 @@ const purchaseStatus = async (req, res = response) => {
 
   await purchase.save();
 
-  res.status(201).json(purchase);
+  res.status(201).json(purchase._id);
 };
 
 

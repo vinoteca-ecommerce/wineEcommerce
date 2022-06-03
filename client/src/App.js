@@ -28,6 +28,7 @@ import { Confirm } from './components/Confirm/Confirm';
 import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
+import { Succes } from './components/ResponePurchase/Succes';
 
 
 
@@ -44,16 +45,9 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
-
-        <Route 
-          path='/confirm'
-          element={
-            <PrivateDash>
-            <Confirm/>
-            </PrivateDash>
-          }
-        />
-        
+        <Route path='/success' element={<Succes/>}/>
+        <Route path='/confirm' element={<Confirm/>}/>
+   
         <Route
           path="/admin/"
           element={
