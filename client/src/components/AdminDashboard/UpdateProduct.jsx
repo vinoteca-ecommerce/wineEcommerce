@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProduct, getCategories, getWinesById } from "../../redux/actions/actions";
 import style from './UpdateProduct.module.css';
 import Button from '@mui/material/Button';
+import swal from 'sweetalert';
 
 export const UpdateProduct = () => {
   const { id } = useParams()
@@ -31,12 +32,22 @@ export const UpdateProduct = () => {
  
   function handleSubmit(e){
     if(!input.category || input.year <= 0 || input.price <= 0){
-      alert('Existe uno o mas campos con error')
+      swal({
+        title: "Error",
+        text: 'Falta completar correctamente el formulario',
+        icon: "error",
+        button: "Aceptar",
+      });
       e.preventDefault()
     }else{
   
       dispatch(updateProduct(id, input))
-      alert('Vino actualizado correctamente')
+      swal({
+        title: "Vino Modificado",
+        text: `Se modifico correctamente el producto`,
+        icon: "success",
+        button: "Aceptar",
+      });
       setInput({
         name:'',
         year:'',

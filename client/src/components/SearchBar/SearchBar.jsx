@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import Button from '@mui/material/Button';
+import SearchIcon from '@mui/icons-material/Search';
 
 export const SearchBar = ({onSearch}) => {
   const [value, setValue] = useState('');
@@ -19,16 +21,17 @@ export const SearchBar = ({onSearch}) => {
     }
   }
  return (
-<div>
-     <form className='searchform' onSubmit={handleSubmit}>
-                <input className='input' 
+<>
+     <form className='searchform' onSubmit={handleSubmit} style={{display:'block',marginTop:'1.6em', width:'180px'}}>
+                <input
+                style={{width:'180px'}}
                 onChange={handleSearchValue}
                 value={value}
                 type='search'
-                placeholder='Buscar vino...'>
-                </input>
-                <button type='submit'>Buscar</button>
+                placeholder='Buscar vino...'
+                />
+                <Button sx={{mt:'.5em'}} fullWidth size="small" variant="contained" type='submit'>Buscar <SearchIcon sx={{ml:'5px'}}/></Button>
             </form>
-</div>
+</>
  )
 }

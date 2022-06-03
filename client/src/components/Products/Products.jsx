@@ -6,6 +6,8 @@ import { CardProduct } from '../CardProduct/CardProduct';
 import {SearchBar} from '../SearchBar/SearchBar'
 import { ProductsPagination } from '../Pagination/ProductsPagination';
 import style from '../Products/Products.module.css'
+import Button from '@mui/material/Button';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 export const Products = () => {
     
@@ -57,7 +59,7 @@ export const Products = () => {
 
     //Pagination
     if(wines?.result?.length){
-        for (let i = (page * 10) - 10; i < page*10; i++) {
+        for (let i = (page * 9) - 9; i < page*9; i++) {
             if(wines?.result[i] !== undefined) wines_paginates.push(wines?.result[i])
         }
     }
@@ -73,34 +75,49 @@ export const Products = () => {
             </div>
 
             <div className={style.filtersCard}>
-                <button onClick={HandleReload} >Refresh</button>
-               <SearchBar onSearch={handleSearch}/>
-                <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
-                    <option value='' >Precio</option>
-                    <option value='pricemax'>Max⬆</option>
-                    <option value='pricemin'>Min⬇</option>
-                </select>
-
-                <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                    <option value='' >Tipos</option>
-                    <option value='TINTO'>Tinto</option>
-                    <option value='BLANCO'>Blanco</option>
-                    <option value='ROSADO'>Rose</option>
-                    <option value='ESPUMANTE'>Espumante</option>
-                </select>
-
-                <select value={producer} onChange={(e)=>setProducer(e.target.value)}> 
-                    <option value='' >Todas</option>
-                    {allProducers?.producer?.map((produ)=>(
-                        <option key={produ} value={produ}>{produ}</option> 
-                    ))}
-                </select>
+                <h4>Filtros</h4>
+                <div>
+                    <Button fullWidth size="small" variant="contained" onClick={HandleReload} >Refresh <RefreshIcon sx={{ml:'5px'}}/></Button>
+                </div>
                 
-                <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
-                    <option value=''>Alfabeto</option>
-                    <option value="abc">A-Z</option>
-                    <option value="cba">Z-A</option>
-                </select>
+                <div>
+                    <SearchBar onSearch={handleSearch}/>
+                </div>
+                
+                <div>
+                    <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                        <option value='' >Precio</option>
+                        <option value='pricemax'>Max⬆</option>
+                        <option value='pricemin'>Min⬇</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select value={category} onChange={(e)=>setCategory(e.target.value)}>
+                        <option value='' >Categoria</option>
+                        <option value='TINTO'>Tinto</option>
+                        <option value='BLANCO'>Blanco</option>
+                        <option value='ROSADO'>Rose</option>
+                        <option value='ESPUMANTE'>Espumante</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select value={producer} onChange={(e)=>setProducer(e.target.value)}> 
+                        <option value='' >Productor</option>
+                        {allProducers?.producer?.map((produ)=>(
+                            <option key={produ} value={produ}>{produ}</option> 
+                        ))}
+                    </select>
+                </div>
+                
+                <div>
+                    <select  value={orden} onChange={(e)=>setOrden(e.target.value)}>
+                        <option value=''>Alfabeto</option>
+                        <option value="abc">A-Z</option>
+                        <option value="cba">Z-A</option>
+                    </select>
+                </div>
             </div>
             
             <div className={style.containerCards}>

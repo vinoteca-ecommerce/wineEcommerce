@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import swal from 'sweetalert';
 
 export const CardDetail = () => {
 
@@ -46,8 +47,22 @@ export const CardDetail = () => {
       if(index !== undefined) state.splice(index,1);
 
       localStorage.setItem('ShoppingCar', JSON.stringify(state));
+      swal({
+        title: "Vino Añadido",
+        text: `${cont} ${name} agregado al carrito de compras`,
+        icon: "success",
+        button: "Aceptar",
+      });
     }
-    else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category}]));
+    else {
+      localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category}]));
+      swal({
+        title: "Vino Añadido",
+        text: `${cont} ${name} agregado al carrito de compras`,
+        icon: "success",
+        button: "Aceptar",
+      });
+    }
     //localStorage.clear()
   }
 

@@ -3,11 +3,12 @@
   padding: 0;
 }
 
-/* body {
-  font-family: 'Yantramanav', sans-serif,'Satisfy', cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}  */
+body{
+ /*font-family: 'Mont', sans-serif,'Great Vibes', cursive;*/
+ font-family: 'Mulish', sans-serif;
+font-family: 'Roboto Flex', sans-serif;
+}
+
 
 /* .App {
   text-align: center;

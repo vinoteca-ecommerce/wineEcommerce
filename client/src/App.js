@@ -49,9 +49,10 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
+
         <Route path='/success' element={<Succes/>}/>
         <Route path='/confirm' element={<Confirm/>}/>
-   
+
         <Route
           path="/admin/"
           element={

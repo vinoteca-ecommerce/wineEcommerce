@@ -6,6 +6,7 @@ import { deleteProduct } from '../../redux/actions/actions'
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import swal from 'sweetalert';
 
 //Styles
 import style from "./DeleteProduct.module.css"
@@ -21,14 +22,27 @@ export const DashboardTable= () => {
     }, [dispatch])
 
     const handleDelete = (id)=>{
-
-      dispatch(deleteProduct(id, {state: false}))
-      alert('Vino eliminado correctamente')
-      window.location.reload()
+      swal({
+        title: "¿Esta seguro que desea eliminar el producto?",
+        icon: "warning",
+        buttons: ["Cancelar","Eliminar"]
+      })
+      .then((willDelete)=>{
+        if(willDelete){
+          dispatch(deleteProduct(id, {state: false}))
+          swal({
+            title: "Producto Eliminado",
+            text: 'Se elimino correctamente el producto',
+            icon: "success",
+            button: "Aceptar",
+          })
+          .then(()=>{
+            window.location.reload()
+          })
+        }
+      })
   }
   
-
-
    
   return (
     <div >
