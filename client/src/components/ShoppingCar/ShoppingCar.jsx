@@ -58,13 +58,13 @@ export const ShoppingCar = () => {
             {shoppingcar?.map((st)=>(
                 <tbody key={st.id} className={style.tableBody}>
                     <tr>
-                        <td><Button onClick={()=>handleClick('del',st.id)} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}}><DeleteIcon fontSize='large'/></Button></td>
-                        <td><img src={st.img} alt={st.name} style={{width:'80px',height:'auto'}}/></td>
+                        <td style={{width:'40px'}}><Button onClick={()=>handleClick('del',st.id)} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}}><DeleteIcon fontSize='large'/></Button></td>
+                        <td><img src={st.img} alt={st.name} style={{width:'70px',height:'auto'}}/></td>
                         <td>{st.name}</td>
                         <td>${st.price}.00</td>
                         <td>
                             <Button onClick={()=>handleClick('sub',st.id)} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px',color:'#7f0000'}}><RemoveIcon/></Button>
-                            <p style={{display:'inline',color:'#7f0000',padding:'.2em .6em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1em'}}>{st.cont}</p>
+                            <p style={{display:'inline',color:'#7f0000',padding:'.2em .5em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1em'}}>{st.cont}</p>
                             <Button onClick={()=>handleClick('add',st.id)} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px',color:'#7f0000'}}><AddIcon/></Button>
                         </td>
                         <td>${st.cont*st.price}.00</td>

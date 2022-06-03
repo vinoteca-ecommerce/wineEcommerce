@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import {Link, useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct, getCategories, getWinesById } from "../../redux/actions/actions";
-
+import style from './UpdateProduct.module.css';
+import Button from '@mui/material/Button';
 
 export const UpdateProduct = () => {
   const { id } = useParams()
@@ -24,8 +25,6 @@ export const UpdateProduct = () => {
   });
   
   
-
-
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getWinesById(id))
@@ -72,16 +71,6 @@ export const UpdateProduct = () => {
       category: e.target.value
     });
   }
-  // function aux(e){
-  //   if(e.target.value === ''){
-  
-  //     const x = e.target.name
-     
-  //   e.target.value = wine[x]?wine[x]:''
- 
-  
-  //   }
-  // }
 
   function validate(input){
     let error = {};
@@ -111,98 +100,112 @@ export const UpdateProduct = () => {
 
   return (
     <div>
-      <nav><Link  to='/admin/post'> Agregar Vino </Link>
-        <Link  to='/admin/delete'> Modificar Vino </Link> </nav>
-      <h3> Modificar Vino </h3>
+      <Link to='/admin/' style={{textDecoration:'none'}} ><Button variant="outlined" > Inicio </Button></Link>
+      
+      <div className={style.form}>
+      
       <form onSubmit={handleSubmit}>
-        <ul>
-          <li>
-            <label>Nombre:  </label>
-            <input   
-              type="text" 
-              placeholder={wine.name}
-              value={input.name}
-              name='name'
-              autoComplete="off"
-              onChange={handleOnChange}/>
-             {error.name && <p>{error.name}</p>}  
-          </li>
-          <li>
+      <h3> Modificar Vino </h3>
+        <div>
+            <label >Nombre:  </label>
+            <div>
+              <input  
+                type="text" 
+                placeholder={wine.name}
+                value={input.name}
+                name='name'
+                autoComplete="off"
+                onChange={handleOnChange}
+                className={error.name && style.danger}/>
+                {error.name && <p>{error.name}</p>}
+              </div>   
+        </div>
+        <div>
             <label>Año:  </label>
-            <input 
-              type="number" 
-              placeholder={wine.year}
-              value={input.year}
-              name='year' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              min='0'
-              />
-             {error.name && <p>{error.year}</p>}  
-          </li>
-          <li>
+            <div>
+              <input 
+                type="number" 
+                placeholder={wine.year}
+                value={input.year}
+                name='year' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                min='0'
+                className={error.year && style.danger}/>
+              {error.year && <p>{error.year}</p>}
+             </div>
+        </div>  
+        <div>
             <label>Cepa:  </label>
-            <input 
-              type="text" 
-              placeholder={wine.strain}
-              value={input.strain}
-              name='strain'
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-             {error.name && <p>{error.strain}</p>}  
-          </li>
-          <li>
-            <label>Pais:  </label>
-            <input
-              type="text" 
-              placeholder={wine.country}
-              value={input.country}
-              name='country' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-            {error.name && <p>{error.country}</p>}  
-          </li>
-          <li>
+            <div>
+              <input
+                type="text" 
+                placeholder={wine.strain}
+                value={input.strain}
+                name='strain'
+                autoComplete="off"
+                onChange={handleOnChange}
+                className={error.strain && style.danger}/>
+              {error.strain && <p>{error.strain}</p>}
+             </div>  
+        </div>
+            <div>
+              <label>Pais:  </label>
+              <div>
+              <input
+                type="text" 
+                placeholder={wine.country}
+                value={input.country}
+                name='country' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                className={error.country && style.danger}/>
+              {error.country && <p>{error.country}</p>}  
+            </div>
+        </div>
+        <div>
             <label>Productor:  </label>
-            <input 
-              type="text" 
-              placeholder={wine.producer}
-              value={input.producer}
-              name='producer' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-            {error.name && <p>{error.producer}</p>}  
-           </li>
-           <li>
+            <div>
+              <input 
+                type="text" 
+                placeholder={wine.producer}
+                value={input.producer}
+                name='producer' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                className={error.producer && style.danger}/>
+              {error.producer && <p>{error.producer}</p>}
+            </div>  
+        </div>
+        <div>
             <label>Link Imagen:  </label>
-            <input    
-              type="text" 
-              placeholder={wine.img}
-              value={input.img}
-              name='img' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              />
-           </li>
-          <li>
-
-            <label>Precio: $ </label>
-            <input      
-              type="number" 
-              placeholder={wine.price}
-              value={input.price}
-              name='price' 
-              autoComplete="off"
-              onChange={handleOnChange}
-              min='0'
-              />
-            {error.name && <p>{error.price}</p>}  
-           </li>
-           <li> 
-
+            <div>
+              <input    
+                type="text" 
+                placeholder={wine.img}
+                value={input.img}
+                name='img' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                />
+            </div>
+        </div>
+        <div>
+            <label>Precio: </label>
+            <div>
+              <input      
+                type="number" 
+                placeholder={wine.price}
+                value={input.price}
+                name='price' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                min='0'
+                className={error.price && style.danger}/>
+              {error.price && <p>{error.price}</p>}  
+            </div>
+        </div>
+        <div>
            <label>Stock:  </label>
             <input       
               type="number" 
@@ -213,20 +216,20 @@ export const UpdateProduct = () => {
               onChange={handleOnChange}
               min='0'
               />
-               
-           </li>
-              <label > Categoria: </label>
+        </div>
+        <div>
+              <label style={{marginTop:'2em'}}> Categoria: </label>
           
-              <select placeholder={wine.category} onChange={e=>handleSelect(e)} >
+              <select style={{marginTop:'2em'}} placeholder={wine.category} onChange={e=>handleSelect(e)} >
                 <option> Selecciona una categoria </option>
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
                 ))}
               </select>   
-              
-            <li>
-            <label>Descripcion:  </label>
-            <textarea       
+        </div>
+        <div>
+            <label style={{marginTop:'2em'}}>Descripcion:  </label>
+            <textarea style={{marginTop:'2em'}}      
               type="text" 
               placeholder={wine.description}
               value={input.description}
@@ -234,12 +237,11 @@ export const UpdateProduct = () => {
               autoComplete="off"
               onChange={handleOnChange}
                 />
-                 
-          </li>
+        </div>
       
-              <button type="submit" value = 'Create' disabled={Object.keys(error).length}> Submit </button>
-        </ul>
+            <Button variant="contained" className={style.button} type="submit"  disabled={Object.keys(error).length}> Actualizar </Button>
       </form>
+      </div>
     </div>
   );
 };

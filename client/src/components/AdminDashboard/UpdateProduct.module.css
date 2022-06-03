@@ -1,0 +1,103 @@
+.form form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2em auto;
+    padding: 1em;
+    width: 40%;
+}
+
+.form form div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: .2em;
+}
+.form form div div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: red;
+    font-weight: 600;
+}
+
+.danger{
+    border: 1px solid red;
+    border-radius: .5rem;
+}
+
+.form form div label {
+    width: 110px;
+    font-weight: 800;
+    
+}
+
+.form form div input, .form form div textarea, .form form div select{
+    width: 300px;
+}
+
+.form form div select, .form form div textarea{
+    margin-top: 0em;
+}
+.form form div textarea{
+    min-width: 300px;
+    min-height: 50px;
+    max-width: 500px;
+    max-height: 200px;
+    margin-bottom: 1.5em;
+}
+
+.form form h3{
+    padding: 1em;
+}
+
+input, textarea, select {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: none;
+   }
+
+   textarea{
+    transition: 0 cubic-bezier(0, 0, 0, 1);
+   }
+   
+   input:focus, input:hover, .danger:focus, textarea:focus, textarea:hover, select:focus, select:hover {
+    outline: none;
+    padding: .2rem 0;
+    border-radius: .5rem;
+    border-color: #7a9cc6;
+   }
+    .danger:focus, .danger:hover {
+    outline: none;
+    padding: .2rem 0;
+    border-radius: .5rem;
+    border-color: red;
+   }
+   
+   input::placeholder {
+    color: #777;
+   }
+   
+   input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+   }
+
+   .button{
+       margin: 1em;
+   }
+   
+   
+   
+   
+   
+   
+   
