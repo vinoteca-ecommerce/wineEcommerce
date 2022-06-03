@@ -25,6 +25,7 @@ export const GET_USER = 'GET_USER';
 
 export const ALL_FAVORITES = 'ALL_FAVORITES';
 export const ADD_FAVS = 'ADD_FAVS';
+export const DELETE_FAV = 'DELETE_FAV';
 
 
 
@@ -148,7 +149,34 @@ export const addFavorites = (payload)=>{
       payload: response.data
     })
     })
+    .catch(err=>console.log(err)) 
   }
+}
+//DELETE FAVORITES
+export const deleteFav =(id)=>{
+  return async function(dispatch){
+    return axios.delete(`http://localhost:8000/products/favs/${id}`,{ headers: authHeader()  })
+    .then(response=>{
+      console.log(response)
+      dispatch({
+        type:DELETE_FAV, payload: response.data
+      })
+    })
+    .catch(err=>console.log(err)) 
+  }
+}
+// TODOS LOS FAVORITOS
+export const allFavs = (id)=>{
+  return async function(dispatch){
+    // return axios.get('http://localhost:8000/products/favs', { headers: authHeader()  })
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  })
+    .then(response => {
+      // console.log(response.data.favorites)
+      dispatch({ type: ALL_FAVORITES, payload: response.data.favorites });
+    })
+    .catch(err => console.error(err))
+  }
+
 }
 
 //CARRITO DE COMPRAS BASE DE DATOS

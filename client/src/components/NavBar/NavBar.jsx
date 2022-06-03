@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import authService from '../services/auth-service';
+import { useNavigate } from 'react-router';
 
 const settings = ['Perfil', 'Cerrar sesión'];
 
@@ -34,6 +35,12 @@ export const NavBar = () => {
     authService.logout();
     window.location.reload();
   }
+  //FAVORITES
+  const navigate = useNavigate();
+  const handleShowFavs = ()=>{
+    navigate('/userFavorites')
+  }
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -186,7 +193,10 @@ export const NavBar = () => {
                   <Typography textalign="center">Perfil</Typography>
                 </MenuItem>
                 <MenuItem >
-                <Typography textaling='center' onClick={logOut}> Logout</Typography>
+                <Typography textaling='center' onClick={()=>handleShowFavs()}>Favorites</Typography>
+                </MenuItem>
+                <MenuItem >
+                <Typography textaling='center' onClick={logOut}>Logout</Typography>
                 </MenuItem>
             </Menu>
           </Box>

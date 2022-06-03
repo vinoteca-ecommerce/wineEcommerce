@@ -18,7 +18,12 @@ import {
   DELETE_USER,
   GET_USER,
   ADD_FAVS,
+
+  ALL_FAVORITES,
+  DELETE_FAV
+
   MERCADO_PAGO
+
 } from "../actions/actions";
 
 const initialState = {
@@ -31,7 +36,11 @@ const initialState = {
   shoppingcar: [],
   users: [],
   user: [],
+
+  favorites: []
+
   linkmp: '',
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -176,17 +185,30 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       }
+    //ADD FAVS////////////////
     case ADD_FAVS:
     console.log('llego al reducer el add favs')
     return{
       ...state
     }
+    //DELETE FAVS////////////////
+    case DELETE_FAV:
+      console.log(action.payload)
+      return{
+      ...state
+      }
+    //ALL FAVS///////////////////////
+    case ALL_FAVORITES:
+      console.log(action.payload)
+      return{
+        ...state,
+        favorites: action.payload
+      }
    case MERCADO_PAGO:
       return {
     ...state,
     linkmp: action.payload
     }
-   
     default:
       return { ...state };
   }
