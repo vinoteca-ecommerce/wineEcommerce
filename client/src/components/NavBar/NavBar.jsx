@@ -15,12 +15,15 @@ import Tooltip from '@mui/material/Tooltip';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import authService from '../services/auth-service';
 import DashboardNav from '../AdminDashboard/DashboardNav';
+import { useNavigate } from 'react-router';
 
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
+
+  const navigate=useNavigate();
 
   useEffect(()=>{
     const user= authService.getCurrentUser();
@@ -29,6 +32,9 @@ export const NavBar = () => {
     }
   },[])
 
+  const handleGoFavorites=()=>{
+    navigate('/userFavorites')
+  }
 
   const logOut = ()=>{
     authService.logout();
@@ -186,6 +192,9 @@ export const NavBar = () => {
           >
               <MenuItem  onClick={handleCloseUserMenu}>
                 <Typography textalign="center" component='a' href='/userProfile'>Perfil</Typography>
+              </MenuItem>
+              <MenuItem >
+              <Typography textaling='center' onClick={()=>handleGoFavorites()}>Favorites</Typography>
               </MenuItem>
               <MenuItem >
               <Typography textaling='center' onClick={logOut}> Logout</Typography>
