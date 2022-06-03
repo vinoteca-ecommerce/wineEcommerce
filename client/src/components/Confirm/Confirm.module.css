@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    flex-direction: column;
+    margin: 5.95em 0 6em 0;
+}
+
+.container h3{
+    margin: 0;
+}

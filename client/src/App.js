@@ -10,20 +10,28 @@ import { AddProduct } from './components/AdminDashboard/AddProduct';
 import {Contact} from './components/Contact/Contact';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
-import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
+//import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
 import {  UpdateProduct } from './components/AdminDashboard/UpdateProduct';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
 
-import { UserProfile } from './components/UserProfile/UserProfile'
-import { UserOrders } from './components/UserProfile/UserOrders'
-import { UserAddress } from './components/UserProfile/UserAddress'
-import { UserAddressForm } from './components/UserProfile/UserAddressForm'
-
 import { ContactForm } from './components/ContactForm/ContactForm'
 
+import { UserAdmin } from './components/AdminDashboard/UsersAdmin';
+import {UserProfile} from './components/UserProfile/UserProfile'
+import {UserOrders} from './components/UserProfile/UserOrders'
+import {UserAddress} from './components/UserProfile/UserAddress'
+import {UserAddressForm} from './components/UserProfile/UserAddressForm'
+
+
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
-import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
+//import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
 import { PrivateUpdate } from './components/AdminDashboard/PrivateUpdate';
+
+import { Confirm } from './components/Confirm/Confirm';
+
+import { Dashboard } from './components/AdminDashboard/Dashboard';
+import { UserDetail } from './components/AdminDashboard/UserDetail';
+import UserFavorites from './components/Favorites/Favorites';
 
 
 
@@ -40,6 +48,24 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
+
+        <Route 
+          path='/confirm'
+          element={
+            <PrivateDash>
+            <Confirm/>
+            </PrivateDash>
+          }
+        />
+        
+        <Route
+          path="/admin/"
+          element={
+            <PrivateDash>
+              <Dashboard/>
+            </PrivateDash>
+          }
+        />
         <Route
           path="/admin/post"
           element={
@@ -48,16 +74,7 @@ function App() {
             </PrivateDash>
           }
         />
-             <Route
-          path="/admin/delete"
-          element={
-            <PrivateDeleteDash>
-              <DeleteProduct />
-            </PrivateDeleteDash>
-          }
-        />
-
-<Route
+        <Route
           path="/admin/update/:id"
           element={
             <PrivateUpdate>
@@ -65,7 +82,22 @@ function App() {
             </PrivateUpdate>
           }
         />
-         
+         <Route
+          path="/admin/users/"
+          element={
+            <PrivateUpdate>
+              <UserAdmin />
+            </PrivateUpdate>
+          }
+        />
+           <Route
+          path="/admin/users/:id"
+          element={
+            <PrivateDash>
+              <UserDetail/>
+            </PrivateDash>
+          }
+        />
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userOrders' element={<UserOrders/>}/>
@@ -73,6 +105,7 @@ function App() {
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>
         {/* <Route path='/userHelp' element={<UserHelp/>}/> */}
+        <Route path='/userFavorites' element={<UserFavorites/>}/>
       </Routes>
       <Footer/>
     </div>

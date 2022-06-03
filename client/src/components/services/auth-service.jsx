@@ -33,6 +33,7 @@ const register = (name, password, email, role)=>{
 
 const logout = ()=>{
     localStorage.removeItem('user')
+    localStorage.removeItem('ShoppingCar')
 }
 
 const getCurrentUser = ()=>{

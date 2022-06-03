@@ -1,6 +1,8 @@
 const { response } = require("express");
 const Product = require("../models/product");
-const axios = require("axios")
+const User = require('../models/user')
+const axios = require("axios");
+
 
 
 const getAllProducers = async (req, res = response) => {
@@ -11,9 +13,9 @@ const getAllProducers = async (req, res = response) => {
   const  products= await Product.find(query).populate("user", "name").populate("category", "name");
   const array = []
 products.map(e => array.push(e.producer))
-console.log(array)
+
 const dataArr = new Set(array)
-console.log(dataArr)
+
 const producer = Array.from(dataArr)
 res.json({producer});
 
@@ -262,8 +264,6 @@ const addToCart=async(req,res=response)=>{
   const wine= await Product.findById(id)
   const find= req.user.cart.find(e=>e.name==wine.name)
   let index= req.user.cart.indexOf(find)
-  console.log(find)
-  // console.log(req.user.cart[index])
   if(!find){
    if(wine.stock>=quantity){
 
@@ -304,66 +304,55 @@ const addToCart=async(req,res=response)=>{
 
 const getCart=async(req,res=response)=>{
 
-  let total=0
   const cart= req.user.cart
-  cart.map(t=>{
-    total+=t.price*t.quantity
-  })
+
 
   return res.json({
-    total,
     cart
   })
 }
 
 const deleteCart=async(req,res=response)=>{
-  const {id}=req.params
+  
 
-  const wine = await Product.findById(id)
+  req.user.cart=[];
 
-  req.user.cart=req.user.cart.filter(w=>w.name!==wine.name)
+  await req.user.save();
 
-  req.user.save();
-
-  res.json({msg:'Wine deleted from your favorites succesfully.'})
+  res.json({msg:'Carrito vaciado, anda a comprar mas.'})
 }
+
+
+const pushToCart=async(req,res=response)=>{
+
+  const { email } = req.user
+  const user = await User.findOneAndUpdate({email}, {cart: req.body},(error,data) =>{
+    if (error){
+      console.log(error)
+    }else{
+      console.log(data)
+    }
+  } ).clone()
+  
+  res.status(201).json(user.cart)
+}
+
 
 const paymentMP = async(req,res)=>{
   const url = "https://api.mercadopago.com/checkout/preferences"
+  const body = req.body
 
-  const body ={
-    
-    items: [{
-      title: "pack de martin",
-      picture_url:"",
-      quantity:5,
-      unit_price:20,
-    },
-    {
-      title: "pack de camilo",
-      picture_url:"",
-      quantity:5,
-      unit_price:200,
-    }
-  ],
-  back_urls:{
-    failure:"/failure",
-    pending:"/pending",
-    success:"/success"
-}
-};
-const payment = await axios.post(url,body,{
-
-
-  
+  const payment = await axios.post(url,body,{
+ 
   headers:{
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
   }
 })
-res.json(payment.data)
-//devuelve el link de pago unicamente .data devuelve todo el array 
-console.log(process.env.ACCESS_TOKEN)
+
+
+res.send({url: payment.data.init_point})
+
 }
 
 
@@ -379,6 +368,7 @@ module.exports = {
   getFavs,
   deleteFavs,
   addToCart,
+  pushToCart,
   deleteCart,
   getCart,
   getAllProducers,
