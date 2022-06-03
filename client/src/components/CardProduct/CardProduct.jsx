@@ -22,10 +22,10 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
 
     const handleDeleteFav = (id)=>{
       // console.log(id)
-      const chosenWine = FavoritesState.filter(wine=>wine._id===id)
+      const chosenWine1 = FavoritesState.filter(wine=>wine._id===id)
       // console.log(chosenWine)
       dispatch(deleteFav(id))
-      if(chosenWine.length>0){
+      if(chosenWine1.length!==0){
       alert('El vino seleccionado ha sido eliminado de tus favoritos')
       }
       else{
@@ -46,15 +46,18 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
         producer: producer,
         country: country
       }
-      const chosenWine = FavoritesState.filter(wine=>wine._id===id)
+      let arrayEmpty=[];
+      let chosenWine2 = FavoritesState.filter(wine=>wine._id===id)
       dispatch(addFavorites(input))
       dispatch(allFavs(store.user.uid))
       // console.log(chosenWine)
-      if(chosenWine.length===0){
-      alert('El vino seleccionado ha sido agregado a tus favoritos')
+      if(chosenWine2.length===0){
+      alert('El vino seleccionado ha sido agregado a tus favoritos');
+      chosenWine2=arrayEmpty;
       }
       else{
-      alert('El vino seleccionado ya forma parte de tus favoritos')
+      alert('El vino seleccionado ya forma parte de tus favoritos');
+      chosenWine2=arrayEmpty;
       }
     }
 
