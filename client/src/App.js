@@ -43,7 +43,16 @@ function App() {
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/confirm' element={<Confirm/>}/>
+
+        <Route 
+          path='/confirm'
+          element={
+            <PrivateDash>
+            <Confirm/>
+            </PrivateDash>
+          }
+        />
+        
         <Route
           path="/admin/"
           element={
