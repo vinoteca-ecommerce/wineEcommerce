@@ -313,15 +313,13 @@ const getCart=async(req,res=response)=>{
 }
 
 const deleteCart=async(req,res=response)=>{
-  const {id}=req.params
+  
 
-  const wine = await Product.findById(id)
+  req.user.cart=[];
 
-  req.user.cart=req.user.cart.filter(w=>w.name!==wine.name)
+  await req.user.save();
 
-  req.user.save();
-
-  res.json({msg:'Wine deleted from your favorites succesfully.'})
+  res.json({msg:'Carrito vaciado, anda a comprar mas.'})
 }
 
 
