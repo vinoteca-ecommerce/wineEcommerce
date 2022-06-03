@@ -13,7 +13,8 @@ import {
   DELETE_LOCAL_STORAGE,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
-  SET_SHOPPINGCAR,
+  //SET_SHOPPINGCAR,
+  GET_SHOPPINGCAR,
   GET_USERS,
   DELETE_USER,
   GET_USER,
@@ -163,13 +164,21 @@ const rootReducer = (state = initialState, action) => {
         wines: action.payload,
       };
 
-    case SET_SHOPPINGCAR:
+    /*case SET_SHOPPINGCAR:
       localStorage.removeItem("ShoppingCar");
       localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
       return {
         ...state,
         shoppingcar: action.payload,
-      };
+      };*/
+      case GET_SHOPPINGCAR:
+        localStorage.removeItem("ShoppingCar");
+        localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
+        return {
+          ...state,
+          shoppingcar: action.payload,
+        };
+
     case GET_USERS:
       return {
         ...state,
