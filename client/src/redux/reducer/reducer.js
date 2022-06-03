@@ -199,7 +199,7 @@ const rootReducer = (state = initialState, action) => {
       }
     //ALL FAVS///////////////////////
     case ALL_FAVORITES:
-      console.log(action.payload)
+      // console.log(action.payload)
       return{
         ...state,
         favorites: action.payload

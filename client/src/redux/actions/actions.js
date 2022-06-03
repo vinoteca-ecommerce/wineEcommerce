@@ -157,7 +157,7 @@ export const deleteFav =(id)=>{
   return async function(dispatch){
     return axios.delete(`http://localhost:8000/products/favs/${id}`,{ headers: authHeader()  })
     .then(response=>{
-      console.log(response)
+      // console.log(response)
       dispatch({
         type:DELETE_FAV, payload: response.data
       })
