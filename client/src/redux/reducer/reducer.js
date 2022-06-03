@@ -16,7 +16,9 @@ import {
   SET_SHOPPINGCAR,
   GET_USERS,
   DELETE_USER,
-  GET_USER
+  GET_USER,
+  ADD_FAVS,
+  MERCADO_PAGO
 } from "../actions/actions";
 
 const initialState = {
@@ -28,7 +30,8 @@ const initialState = {
   categories: [],
   shoppingcar: [],
   users: [],
-  user: []
+  user: [],
+  linkmp: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -173,6 +176,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       }
+    case ADD_FAVS:
+    console.log('llego al reducer el add favs')
+    return{
+      ...state
+    }
+   case MERCADO_PAGO:
+      return {
+    ...state,
+    linkmp: action.payload
+    }
+   
     default:
       return { ...state };
   }

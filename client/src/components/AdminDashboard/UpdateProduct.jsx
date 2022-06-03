@@ -24,12 +24,10 @@ export const UpdateProduct = () => {
     stock: ''
   });
   
-  
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getWinesById(id))
   }, [dispatch,setInput, id]);
-  
  
   function handleSubmit(e){
     if(!input.category || input.year <= 0 || input.price <= 0){
@@ -72,6 +70,7 @@ export const UpdateProduct = () => {
     });
   }
 
+
   function validate(input){
     let error = {};
     if(input.name.length < 4){
@@ -98,6 +97,8 @@ export const UpdateProduct = () => {
     return error
   }
 
+
+
   return (
     <div>
       <Link to='/admin/' style={{textDecoration:'none'}} ><Button variant="outlined" > Inicio </Button></Link>
@@ -105,6 +106,7 @@ export const UpdateProduct = () => {
       <div className={style.form}>
       
       <form onSubmit={handleSubmit}>
+
       <h3> Modificar Vino </h3>
         <div>
             <label >Nombre:  </label>
@@ -205,23 +207,27 @@ export const UpdateProduct = () => {
               {error.price && <p>{error.price}</p>}  
             </div>
         </div>
+
         <div>
            <label>Stock:  </label>
+           <div>
             <input       
               type="number" 
               placeholder={wine.stock}
               value={input.stock}
+          
               name='stock' 
               autoComplete="off"
               onChange={handleOnChange}
               min='0'
               />
-        </div>
+          </div>
+          </div>
         <div>
               <label style={{marginTop:'2em'}}> Categoria: </label>
-          
               <select style={{marginTop:'2em'}} placeholder={wine.category} onChange={e=>handleSelect(e)} >
                 <option> Selecciona una categoria </option>
+
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
                 ))}
@@ -233,6 +239,7 @@ export const UpdateProduct = () => {
               type="text" 
               placeholder={wine.description}
               value={input.description}
+         
               name='description'
               autoComplete="off"
               onChange={handleOnChange}
@@ -241,7 +248,9 @@ export const UpdateProduct = () => {
       
             <Button variant="contained" className={style.button} type="submit"  disabled={Object.keys(error).length}> Actualizar </Button>
       </form>
+
       </div>
+
     </div>
   );
 };
