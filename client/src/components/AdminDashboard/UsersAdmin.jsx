@@ -51,12 +51,14 @@ export const UserAdmin= () => {
           <div className={style.container}> 
           <h2> Usuarios Activos</h2>
             <table className={style.table}>
-            <thead className={style.tableHead}>       
+            <thead className={style.tableHead}>
+             <tr>      
               <th> Nº </th>
               <th> Nombre </th>
               <th> Email </th>
               <th> Rol </th>
-              <th></th>    
+              <th></th>
+              </tr>      
             </thead>
                { users.result?.map(((e,index)=>
               <tbody key={e.uid} className={style.tableBody}>

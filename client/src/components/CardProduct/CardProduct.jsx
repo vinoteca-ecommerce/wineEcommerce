@@ -50,7 +50,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
       let arrayEmpty=[];
       let chosenWine2 = FavoritesState.filter(wine=>wine._id===id)
       store && store.user && dispatch(allFavs(store.user.uid))
-      // console.log(chosenWine)
+     
       if(chosenWine2.length===0){
       store && store.user && dispatch(addFavorites(input))
       swal({
@@ -59,7 +59,6 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
         icon: "success",
         button: "Aceptar",
       });
-      console.log(FavoritesState)
       chosenWine2=arrayEmpty;
       }
       else{
@@ -80,7 +79,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
         let index = undefined;
     
         if(localStorage.id){
-          console.log('asd')
+         
         }
         if(state){
           for(let i=0 ; i<state?.length ; i++){

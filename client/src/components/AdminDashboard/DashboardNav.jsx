@@ -186,7 +186,7 @@ const  DashboardNav = () => {
                 <Typography textalign="center"  component="a" href='/'>Perfil</Typography>
               </MenuItem>
               <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center" textDecoratin='none' component="a" href='/admin/'>DashBoard</Typography>
+                <Typography textalign="center" textDecoration='none' component="a" href='/admin/'>DashBoard</Typography>
               </MenuItem>
               <MenuItem >
               <Typography textaling='center' onClick={logOut}> Logout</Typography>

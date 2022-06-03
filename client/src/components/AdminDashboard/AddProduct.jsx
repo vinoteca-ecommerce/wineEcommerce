@@ -266,7 +266,7 @@ export const AddProduct = () => {
                 />
                 </div>
             </div>
-                <Button variant="contained" className={style.button} type="submit"  disabled={Object.keys(error).length}> Crear </Button>
+                {!Object.keys(error).length ? <Button variant="contained" className={style.button} type="submit" > Crear </Button> : <Button disabled={true} variant="contained" className={style.button} type="submit" > Crear </Button>}
 
         </form>
         </div>

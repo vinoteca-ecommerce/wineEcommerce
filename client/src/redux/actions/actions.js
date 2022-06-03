@@ -261,7 +261,6 @@ export const putPurchase = (id, data)=>{
   return async function(dispatch){
     return axios.put(`http://localhost:8000/purchase/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
-      console.log(response.data)
       dispatch({type: PUT_PURCHASE, payload: response.data})
       }).catch(err=> console.log(err))
   }

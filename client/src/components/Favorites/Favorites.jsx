@@ -16,19 +16,16 @@ import { Link } from "react-router-dom";
 export default function UserFavorites(){
     let store = JSON.parse(localStorage.getItem('user'))
     const allMyFavs = useSelector(state=>state.favorites)
-    // console.log(allMyFavs.favs)
-    // console.log(store.user.uid)
-    
+
     const dispatch = useDispatch()
     
     useEffect(()=>{
-        // console.log('hola soy pedrito')
+        
         store && store.user && dispatch(allFavs(store.user.uid))
     },[dispatch])
 
     const handleDeleteFavs=(id)=>{
-        console.log("hola")
-        console.log(id)
+
         dispatch(deleteFav(id))
         alert('Favoritos actualizados')
         window.location.reload()

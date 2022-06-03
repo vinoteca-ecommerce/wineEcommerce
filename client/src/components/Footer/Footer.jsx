@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import githubLogo from "../../images/githublogo.png"
 import linkedinLogo from "../../images/logold.png"
 import wineLogo from "../../images/winelogo2.jpg"
@@ -6,8 +7,10 @@ import wineLogo from "../../images/winelogo2.jpg"
 import Style from "./Footer.module.css"
 
 export default function Footer(){
+    
+    const navigate = useNavigate()
     const handleOnClick = ()=>{
-        console.log("hola")
+       navigate('/about')
     }
     return(
         <div className={Style.bgcolor}>
