@@ -24,7 +24,8 @@ import {
   DELETE_FAV,
 
   MERCADO_PAGO,
-  POST_PURCHASE
+  POST_PURCHASE,
+  PUT_PURCHASE
 
 } from "../actions/actions";
 
@@ -38,10 +39,9 @@ const initialState = {
   shoppingcar: [],
   users: [],
   user: [],
-
   favorites: [],
-
   linkmp: '',
+  idPurchase:'',
 
 };
 
@@ -116,7 +116,7 @@ const rootReducer = (state = initialState, action) => {
         }
       }
       localStorage.removeItem("ShoppingCar");
-      localStorage.setItem("ShoppingCar", JSON.stringify(shoppingcarAdd));
+      localStorage.setItem("ShoppingCar", JSON.stringify(shoppingcarAdd))
       return {
         ...state,
         shoppingcar: shoppingcarAdd,
@@ -220,10 +220,18 @@ const rootReducer = (state = initialState, action) => {
     linkmp: action.payload
     }
   case POST_PURCHASE:
-   
+    
+    localStorage.setItem("idPurchase", JSON.stringify(action.payload));
       return {
        ...state,
+       idPurchase: action.payload
       }
+      case PUT_PURCHASE:
+        return {
+          ...state,
+          
+        };
+
     default:
       return { ...state };
   }

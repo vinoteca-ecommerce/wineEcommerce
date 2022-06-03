@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const PurchaseSchema = Schema({
   status: {
     type: String,
-    enum: ["APPROVED", "PENDING", "FAILED"],
+    enum: ["approved", "pending", "rejected"],
   },
   cart: {
     type: Array,

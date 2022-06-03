@@ -18,8 +18,7 @@ router.get('/all', [
 
 router.put('/:id', [
     jwtValidator,
-    adminRole,
-    validation
+    
 ],updateState)
 
 
