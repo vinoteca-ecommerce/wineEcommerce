@@ -24,6 +24,7 @@ import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 import { PrivateUpdate } from './components/AdminDashboard/PrivateUpdate';
 import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
+import UserFavorites from './components/Favorites/Favorites';
 
 
 
@@ -85,6 +86,7 @@ function App() {
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         {/* <Route path='/userHelp' element={<UserHelp/>}/> */}
+        <Route path='/userFavorites' element={<UserFavorites/>}/>
       </Routes>
       <Footer/>
     </div>

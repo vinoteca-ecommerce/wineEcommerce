@@ -3,6 +3,7 @@ import style from './CardProduct.module.css';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch } from 'react-redux';
 import { addFavorites } from '../../redux/actions/actions';
 
@@ -69,6 +70,9 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
                 {store && store.user.role && <div className={style.cardButton}>
                     <FavoriteBorderIcon className={style.svgIcon} onClick={()=>handleFavs(name, year, description, img, strain, producer, id, price, country)}/>
                 </div>}
+                {store && store.user.role && <div className={style.cardButton}>
+                  <FavoriteIcon/>
+                  </div>}
                 <div className={style.cardButton}>
                     <AddShoppingCartIcon className={style.svgIcon} onClick={()=>handleClickShopping(id)}/>
                 </div>
