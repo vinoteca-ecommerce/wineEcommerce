@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 
 //STYLES
 import Style from "./Favorites.module.css"
+import { Link } from "react-router-dom";
 
 export default function UserFavorites(){
     let store = JSON.parse(localStorage.getItem('user'))
@@ -63,7 +64,8 @@ export default function UserFavorites(){
             </Table>
         </TableContainer> 
         :<h2 className={Style.SecondOption}>
-            LOGEATE PARA PODER VER TUS FAVORITOS
+            <Link to={'/login'}><button className={Style.buttom}>LOGEATE PARA PODER VER TUS FAVORITOS</button></Link>
+            
         </h2>
         }
     </div>)
