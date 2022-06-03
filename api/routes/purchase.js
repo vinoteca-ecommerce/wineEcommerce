@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { purchaseStatus , getPurchase, getPurchases } = require('../controllers/purchase');
+const { purchaseStatus , getPurchase, getPurchases , updateState } = require('../controllers/purchase');
 const { jwtValidator, adminRole } = require('../middlewares')
 const { validation } = require('../middlewares/validator')
 
@@ -15,6 +15,12 @@ router.get('/all', [
     adminRole,
     validation
 ], getPurchases);
+
+router.put('/:id', [
+    jwtValidator,
+    
+],updateState)
+
 
 router.post('/', jwtValidator , purchaseStatus);
 

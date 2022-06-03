@@ -30,9 +30,9 @@ export const ShoppingCarTotal = () => {
   const [body, setBody] = useState({
     items:[],
     back_urls:{
-      failure:"http://localhost:3000/",
-      pending:"http://localhost:3000/",
-      success:"http://localhost:3000/"
+      failure:"http://localhost:3000/success",
+      pending:"http://localhost:3000/success",
+      success:"http://localhost:3000/success"
     }
   });
 

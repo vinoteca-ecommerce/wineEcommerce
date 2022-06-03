@@ -13,11 +13,15 @@ import Register from './components/Login/Register';
 //import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
 import {  UpdateProduct } from './components/AdminDashboard/UpdateProduct';
 import { ShoppingCar } from './components/ShoppingCar/ShoppingCar';
+
+import { ContactForm } from './components/ContactForm/ContactForm'
+
 import { UserAdmin } from './components/AdminDashboard/UsersAdmin';
 import {UserProfile} from './components/UserProfile/UserProfile'
 import {UserOrders} from './components/UserProfile/UserOrders'
 import {UserAddress} from './components/UserProfile/UserAddress'
 import {UserAddressForm} from './components/UserProfile/UserAddressForm'
+
 
 import { PrivateDash } from './components/AdminDashboard/PrivateDash';
 //import { PrivateDeleteDash } from './components/AdminDashboard/PrivateDeleteDash';
@@ -28,6 +32,7 @@ import { Confirm } from './components/Confirm/Confirm';
 import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
+import { Succes } from './components/ResponePurchase/Succes';
 
 
 
@@ -45,15 +50,9 @@ function App() {
         <Route path='/about' element={<Aboutus/>}/>
         <Route path='/contact' element={<Contact/>}/>
 
-        <Route 
-          path='/confirm'
-          element={
-            //<PrivateDash>
-            <Confirm/>
-            //</PrivateDash>
-          }
-        />
-        
+        <Route path='/success' element={<Succes/>}/>
+        <Route path='/confirm' element={<Confirm/>}/>
+
         <Route
           path="/admin/"
           element={
@@ -99,6 +98,7 @@ function App() {
         <Route path='/userOrders' element={<UserOrders/>}/>
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
+        <Route path='/contactForm' element={<ContactForm/>}/>
         {/* <Route path='/userHelp' element={<UserHelp/>}/> */}
         <Route path='/userFavorites' element={<UserFavorites/>}/>
       </Routes>

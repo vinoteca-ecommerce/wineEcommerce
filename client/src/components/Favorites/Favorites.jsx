@@ -11,18 +11,19 @@ import Paper from '@mui/material/Paper';
 
 //STYLES
 import Style from "./Favorites.module.css"
+import { Link } from "react-router-dom";
 
 export default function UserFavorites(){
     let store = JSON.parse(localStorage.getItem('user'))
     const allMyFavs = useSelector(state=>state.favorites)
     // console.log(allMyFavs.favs)
-    console.log(store.user.uid)
+    // console.log(store.user.uid)
     
     const dispatch = useDispatch()
     
     useEffect(()=>{
         // console.log('hola soy pedrito')
-        dispatch(allFavs(store.user.uid))
+        store && store.user && dispatch(allFavs(store.user.uid))
     },[dispatch])
 
     const handleDeleteFavs=(id)=>{
@@ -62,9 +63,10 @@ export default function UserFavorites(){
             )}
             </Table>
         </TableContainer> 
-        :<div>
-            POR FAVOR LOGEATE PARA PODER VER TUS FAVORITOS
-        </div>
+        :<h2 className={Style.SecondOption}>
+            <Link to={'/login'}><button className={Style.buttom}>LOGEATE PARA PODER VER TUS FAVORITOS</button></Link>
+            
+        </h2>
         }
     </div>)
 }
