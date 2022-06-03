@@ -40,7 +40,7 @@ export const ShoppingCar = () => {
 
   return (
     <div className={style.container}>
-        {shoppingcar?.length === 0 || shoppingcar === null ? <h2>Carrito vacio, ve a agregar productos!</h2>
+        {shoppingcar?.length === 0 || shoppingcar === null ? <h2 className={style.carrito}>Carrito vacio, ve a agregar productos!</h2>
         :<><table className={style.table}>
             <thead className={style.tableHead}>
                 <tr>
