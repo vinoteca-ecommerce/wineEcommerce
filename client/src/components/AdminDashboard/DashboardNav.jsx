@@ -7,34 +7,34 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import authService from '../services/auth-service';
-import DashboardNav from '../AdminDashboard/DashboardNav';
 
 
-export const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [currentUser, setCurrentUser] = useState(undefined)
 
-  useEffect(()=>{
-    const user= authService.getCurrentUser();
-    if(user){
-      setCurrentUser(user)
+const  DashboardNav = () => {
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [currentUser, setCurrentUser] = useState(undefined)
+
+    useEffect(()=>{
+      const user= authService.getCurrentUser();
+      if(user){
+        setCurrentUser(user)
+      }
+    },[])
+  
+  
+    const logOut = ()=>{
+      authService.logout();
+      window.location.reload();
     }
-  },[])
-
-
-  const logOut = ()=>{
-    authService.logout();
-    window.location.reload();
-  }
-
+    
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -50,10 +50,8 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  return  currentUser?.user.role === 'ADMIN_ROLE' ? ( 
-    <DashboardNav/>
-  ):(
-    <AppBar position="sticky" sx={{background:'white'}}>
+  return (
+    <AppBar position="sticky" sx={{background:' rgba(45,21,21,255)'}}>
     <Container maxWidth="xl">
       <Toolbar disableGutters>
         <Typography
@@ -67,8 +65,8 @@ export const NavBar = () => {
             fontFamily: 'monospace',
             fontWeight: 700,
             letterSpacing: '.3rem',
-            color: 'gray',
-            boxShadow:'16px 12px #7f0000',
+            color: 'rgba(245, 245, 220, 0.76)',
+            boxShadow:'16px 15px #7f0000',
             textDecoration: 'none',
           }}
         >
@@ -107,10 +105,10 @@ export const NavBar = () => {
                 <Button href='/products' textalign="center">Productos</Button>
               </MenuItem>
               <MenuItem >
-                <Button href='/about' textalign="center">Nosotros</Button>
+                <Button href='/about' textalign="center">Compras</Button>
               </MenuItem>
               <MenuItem >
-                <Button href='/contact' textalign="center">Contacto</Button>
+                <Button href='/admin/users' textalign="center">Usuarios</Button>
               </MenuItem>
             
           </Menu>
@@ -127,7 +125,7 @@ export const NavBar = () => {
             fontFamily: 'monospace',
             fontWeight: 700,
             letterSpacing: '.3rem',
-            color: 'gray',
+            color: 'rgba(245, 245, 220, 0.76)',
             textDecoration: 'none',
           }}
         >
@@ -135,25 +133,25 @@ export const NavBar = () => {
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
-              href='/products'
+              href='/admin'
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'black', display: 'block'}}
+              sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
              Productos
             </Button>
             <Button
-              href='/about'
+              href='/admin/'
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'black', display: 'block'}}
+              sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
-             Nosotros
+             Compras
             </Button>
             <Button
-              href='/contact'
+              href='/admin/users'
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'black', display: 'block'}}
+              sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
-             Contacto
+             Usuarios
             </Button>
         </Box>
           <Box>
@@ -185,7 +183,10 @@ export const NavBar = () => {
             onClose={handleCloseUserMenu}
           >
               <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center" component='a' href='/userProfile'>Perfil</Typography>
+                <Typography textalign="center"  component="a" href='/'>Perfil</Typography>
+              </MenuItem>
+              <MenuItem  onClick={handleCloseUserMenu}>
+                <Typography textalign="center" textDecoratin='none' component="a" href='/admin/'>DashBoard</Typography>
               </MenuItem>
               <MenuItem >
               <Typography textaling='center' onClick={logOut}> Logout</Typography>
@@ -206,3 +207,5 @@ export const NavBar = () => {
   </AppBar>
   );
 };
+
+export default DashboardNav;
