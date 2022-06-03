@@ -313,13 +313,22 @@ const getCart=async(req,res=response)=>{
 }
 
 const deleteCart=async(req,res=response)=>{
+  const { email } = req.user
+  const user = await User.findOneAndUpdate({email}, {cart: []},(error,data) =>{
+    if (error){
+      console.log(error)
+    }else{
+      console.log(data)
+    }
+  } ).clone()
   
+  res.status(201).json(user.cart)
 
-  req.user.cart=[];
+  // req.user.cart=[];
 
-  await req.user.save();
+  // await req.user.save();
 
-  res.json({msg:'Carrito vaciado, anda a comprar mas.'})
+  // res.json({msg:'Carrito vaciado, anda a comprar mas.'})
 }
 
 
