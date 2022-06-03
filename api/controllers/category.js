@@ -2,13 +2,12 @@ const { response } = require("express");
 const { Category, Product } = require("../models");
 
 const getCategories = async (req, res = response) => {
-  const { limit , start = 0 } = req.query;
+  const { limit, start = 0 } = req.query;
   const query = { state: true };
 
   const categories = await Category.find(query);
- 
 
-  const result = categories.slice(start, limit)
+  const result = categories.slice(start, limit);
 
   res.json({
     total: result.length,
@@ -21,19 +20,18 @@ const getCategoriesId = async (req, res = response) => {
   const { limit, start = 0 } = req.query;
   const query = { category: id };
 
-  const productsCategory = await  Product.find(query)
-      .populate("category", "name")
-      
-;
-   
-    const result = productsCategory.slice(start, limit)
+  const productsCategory = await Product.find(query).populate(
+    "category",
+    "name"
+  );
 
-    res.json({
+  const result = productsCategory.slice(start, limit);
+
+  res.json({
     total: result.length,
-    result
+    result,
   });
 };
-
 
 const postCategory = async (req, res = response) => {
   const name = req.body.name.toUpperCase();

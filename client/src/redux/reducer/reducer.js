@@ -19,15 +19,12 @@ import {
   DELETE_USER,
   GET_USER,
   ADD_FAVS,
-
   ALL_FAVORITES,
   DELETE_FAV,
-
   MERCADO_PAGO,
   POST_PURCHASE,
   PUT_PURCHASE,
-  DELETE_CART
-
+  DELETE_CART,
 } from "../actions/actions";
 
 const initialState = {
@@ -41,9 +38,8 @@ const initialState = {
   users: [],
   user: [],
   favorites: [],
-  linkmp: '',
-  idPurchase:'',
-
+  linkmp: "",
+  idPurchase: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -117,7 +113,7 @@ const rootReducer = (state = initialState, action) => {
         }
       }
       localStorage.removeItem("ShoppingCar");
-      localStorage.setItem("ShoppingCar", JSON.stringify(shoppingcarAdd))
+      localStorage.setItem("ShoppingCar", JSON.stringify(shoppingcarAdd));
       return {
         ...state,
         shoppingcar: shoppingcarAdd,
@@ -173,69 +169,64 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         shoppingcar: action.payload,
       };*/
-      case GET_SHOPPINGCAR:
-        localStorage.removeItem("ShoppingCar");
-        localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
-        return {
-          ...state,
-          shoppingcar: action.payload,
-        };
+    case GET_SHOPPINGCAR:
+      localStorage.removeItem("ShoppingCar");
+      localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
+      return {
+        ...state,
+        shoppingcar: action.payload,
+      };
 
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
       };
-    case  DELETE_USER:
-      return{
+    case DELETE_USER:
+      return {
         ...state,
-        users: action.payload
-      }
+        users: action.payload,
+      };
     case GET_USER:
-      return{
+      return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
     //ADD FAVS////////////////
     case ADD_FAVS:
-    console.log('llego al reducer el add favs')
-    return{
-      ...state
-    }
+      return {
+        ...state,
+      };
     //DELETE FAVS////////////////
     case DELETE_FAV:
-      console.log(action.payload)
-      return{
-      ...state
-      }
+      return {
+        ...state,
+      };
     //ALL FAVS///////////////////////
     case ALL_FAVORITES:
-      // console.log(action.payload)
-      return{
+      return {
         ...state,
-        favorites: action.payload
-      }
-   case MERCADO_PAGO:
+        favorites: action.payload,
+      };
+    case MERCADO_PAGO:
       return {
-    ...state,
-    linkmp: action.payload
-    }
-  case POST_PURCHASE:
-    
-    localStorage.setItem("idPurchase", JSON.stringify(action.payload));
+        ...state,
+        linkmp: action.payload,
+      };
+    case POST_PURCHASE:
+      localStorage.setItem("idPurchase", JSON.stringify(action.payload));
       return {
-       ...state,
-       idPurchase: action.payload
-      }
-      case PUT_PURCHASE:
-        return {
-          ...state,
-          
-        };
-        case DELETE_CART:
-          return{
-            ...state
-          }
+        ...state,
+        idPurchase: action.payload,
+      };
+    case PUT_PURCHASE:
+      return {
+        ...state,
+      };
+    case DELETE_CART:
+      return {
+        ...state,
+      };
 
     default:
       return { ...state };

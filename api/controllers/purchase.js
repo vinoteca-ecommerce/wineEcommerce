@@ -14,19 +14,16 @@ const getPurchase = async (req, res = response) => {
 };
 
 const getPurchases = async (req, res = response) => {
-
   const [total, purchases] = await Promise.all([
     Purchase.countDocuments(),
-    Purchase.find().populate('user', 'name')
-]);
-  
- 
+    Purchase.find().populate("user", "name"),
+  ]);
+
   res.status(201).json({
     total,
-    result: purchases
+    result: purchases,
   });
 };
-
 
 const purchaseStatus = async (req, res = response) => {
   const { payment_id, status, cart } = req.body;
@@ -45,28 +42,28 @@ const purchaseStatus = async (req, res = response) => {
   res.status(201).json(purchase._id);
 };
 
+const updateState = async (req, res = response) => {
+  const { id } = req.params;
+  const { payment_id, status } = req.body;
 
-const updateState = async (req, res = response ) => {
-
-    const { id } = req.params
-    const { payment_id , status } = req.body;
-  
-    const filter = await Purchase.findOneAndUpdate({id}, {payment_id, status},(error,data) =>{
-      if (error){
-        console.log(error)
-      }else{
-        console.log(data)
+  const filter = await Purchase.findByIdAndUpdate(
+    id,
+    { payment_id, status },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
       }
-    } ).clone()
-    
+    }
+  ).clone();
 
-      res.status(201).json(filter)
-}
-
+  res.status(201).json(filter);
+};
 
 module.exports = {
   purchaseStatus,
   getPurchase,
   getPurchases,
-  updateState
+  updateState,
 };

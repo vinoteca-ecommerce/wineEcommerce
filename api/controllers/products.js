@@ -324,11 +324,7 @@ const deleteCart=async(req,res=response)=>{
   
   res.status(201).json(user.cart)
 
-  // req.user.cart=[];
-
-  // await req.user.save();
-
-  // res.json({msg:'Carrito vaciado, anda a comprar mas.'})
+  
 }
 
 
@@ -343,7 +339,7 @@ const pushToCart=async(req,res=response)=>{
     }
   } ).clone()
   
-  res.status(201).json(user.cart)
+  res.status(201).json({msg: 'Done'})
 }
 
 
