@@ -20,7 +20,7 @@ import {
   ADD_FAVS,
 
   ALL_FAVORITES,
-  DELETE_FAV
+  DELETE_FAV,
 
   MERCADO_PAGO
 
@@ -37,7 +37,7 @@ const initialState = {
   users: [],
   user: [],
 
-  favorites: []
+  favorites: [],
 
   linkmp: '',
 
