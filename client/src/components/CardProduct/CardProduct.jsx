@@ -17,7 +17,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
     // const chosenWine = FavoritesState.filter(wine=>wine.name===name)
     // console.log(chosenWine)
     useEffect(()=>{
-      dispatch(allFavs(store.user.uid))
+      store && store.user && dispatch(allFavs(store.user.uid))
     },[dispatch])
 
     const handleDeleteFav = (id)=>{
@@ -48,8 +48,8 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
       }
       let arrayEmpty=[];
       let chosenWine2 = FavoritesState.filter(wine=>wine._id===id)
-      dispatch(addFavorites(input))
-      dispatch(allFavs(store.user.uid))
+      store && store.user && dispatch(addFavorites(input))
+      store && store.user && dispatch(allFavs(store.user.uid))
       // console.log(chosenWine)
       if(chosenWine2.length===0){
       alert('El vino seleccionado ha sido agregado a tus favoritos');
@@ -100,10 +100,10 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
             </Link>
             <div className={style.cardFooter}>
                 <span className={style.textTitle}>${price}.00</span>
-                {store && store.user.role && <div className={style.cardButton}>
+                {store && store.user && store.user.role  && <div className={style.cardButton}>
                     <FavoriteIcon className={style.svgIcon} onClick={()=>handleFavs(name, year, description, img, strain, producer, id, price, country)}/>
                 </div>}
-                {store && store.user.role && <div className={style.cardButton}>
+                {store && store.user && store.user.role  && <div className={style.cardButton}>
                   <FavoriteBorderIcon onClick={()=>handleDeleteFav(id)}/>
                   </div>}
                 <div className={style.cardButton}>
