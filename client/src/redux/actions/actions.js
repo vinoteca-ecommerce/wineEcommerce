@@ -25,6 +25,7 @@ export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 
+export const POST_PURCHASE = 'POST_PURCHASE';
 export const ALL_FAVORITES = 'ALL_FAVORITES';
 export const ADD_FAVS = 'ADD_FAVS';
 export const DELETE_FAV = 'DELETE_FAV';
@@ -242,9 +243,13 @@ export const postMP = (data) => {
   }
 }
 
-// export function postMP(payload){
-//   return async function(dispatch){
-//     const respuesta = await axios.post('http://localhost:8000/products/payment',payload);
-//     return  respuesta
-//   }
-// }
+export const postPurchase = (data) => {
+  return async function(dispatch){
+    return axios.post('http://localhost:8000/purchase',data,{ headers: authHeader()  } )
+    .then(response => { 
+      
+      dispatch({type: POST_PURCHASE, payload: response.data})
+    })
+ .catch(err => console.error(err))
+  }
+}

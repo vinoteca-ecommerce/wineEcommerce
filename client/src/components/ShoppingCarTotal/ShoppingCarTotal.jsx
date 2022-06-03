@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import style from './ShoppingCarTotal.module.css';
 import Button from '@mui/material/Button';
-import { postMP } from '../../redux/actions/actions';
+import { postMP, postPurchase } from '../../redux/actions/actions';
 import { Link } from "react-router-dom";
 import authService from '../services/auth-service'
 
@@ -46,7 +46,7 @@ export const ShoppingCarTotal = () => {
 
     })))
     dispatch(postMP(body))
-
+    dispatch(postPurchase({cart:body.items}))
     setBody({
       items:[],
       back_urls:{

@@ -13,6 +13,21 @@ const getPurchase = async (req, res = response) => {
   res.status(201).json(filter);
 };
 
+const getPurchases = async (req, res = response) => {
+
+  const [total, purchases] = await Promise.all([
+    Purchase.countDocuments(),
+    Purchase.find().populate('user', 'name')
+]);
+  
+ 
+  res.status(201).json({
+    total,
+    result: purchases
+  });
+};
+
+
 const purchaseStatus = async (req, res = response) => {
   const { payment_id, status, cart } = req.body;
 
@@ -33,4 +48,5 @@ const purchaseStatus = async (req, res = response) => {
 module.exports = {
   purchaseStatus,
   getPurchase,
+  getPurchases
 };

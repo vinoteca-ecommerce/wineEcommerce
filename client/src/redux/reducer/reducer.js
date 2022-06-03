@@ -23,7 +23,8 @@ import {
   ALL_FAVORITES,
   DELETE_FAV,
 
-  MERCADO_PAGO
+  MERCADO_PAGO,
+  POST_PURCHASE
 
 } from "../actions/actions";
 
@@ -218,6 +219,11 @@ const rootReducer = (state = initialState, action) => {
     ...state,
     linkmp: action.payload
     }
+  case POST_PURCHASE:
+   
+      return {
+       ...state,
+      }
     default:
       return { ...state };
   }
