@@ -30,7 +30,7 @@ export const ALL_FAVORITES = 'ALL_FAVORITES';
 export const ADD_FAVS = 'ADD_FAVS';
 export const DELETE_FAV = 'DELETE_FAV';
 export const PUT_PURCHASE ='PUT_PURCHASE'
-
+export const DELETE_CART = 'DELETE_CART'
 
 
 export const getWines = (num,category,orden,producer) => {
@@ -264,4 +264,15 @@ export const putPurchase = (id, data)=>{
           dispatch({type: PUT_PURCHASE, payload: response.data})
       }).catch(err=> console.log(err))
   }
+}
+
+export const deleteCart = ()=>{
+  return async function(dispatch){
+    return axios.delete(`http://localhost:8000/products/cart`, { headers: authHeader()  } )
+      .then(response =>{ 
+        dispatch({type: DELETE_CART, payload: response.data})
+        
+      }).catch(err => console.log(err)) 
+  }
+
 }

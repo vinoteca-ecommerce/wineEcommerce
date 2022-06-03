@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { putPurchase } from "../../redux/actions/actions";
+import { deleteCart, putPurchase } from "../../redux/actions/actions";
 
 export function Succes() {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const data = {
 
 useEffect(() => {
     dispatch(putPurchase(idPurchase,data))
+    dispatch(deleteCart())
     localStorage.removeItem('idPurchase')
     localStorage.removeItem('ShoppingCar')
 }, []);

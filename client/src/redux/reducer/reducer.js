@@ -25,7 +25,8 @@ import {
 
   MERCADO_PAGO,
   POST_PURCHASE,
-  PUT_PURCHASE
+  PUT_PURCHASE,
+  DELETE_CART
 
 } from "../actions/actions";
 
@@ -231,6 +232,10 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           
         };
+        case DELETE_CART:
+          return{
+            ...state
+          }
 
     default:
       return { ...state };
