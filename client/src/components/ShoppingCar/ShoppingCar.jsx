@@ -30,6 +30,7 @@ export const ShoppingCar = () => {
 
     },[dispatch])
 
+
     const handleClick = (operation,id)=>{
         if(operation === 'sub'){
             dispatch(subLocalStorage(id))

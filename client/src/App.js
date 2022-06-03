@@ -48,9 +48,9 @@ function App() {
         <Route 
           path='/confirm'
           element={
-            <PrivateDash>
+            //<PrivateDash>
             <Confirm/>
-            </PrivateDash>
+            //</PrivateDash>
           }
         />
         

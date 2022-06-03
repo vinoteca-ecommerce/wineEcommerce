@@ -5,6 +5,7 @@ import { deleteUser, getUsers} from '../../redux/actions/actions'
 import style from "./DeleteProduct.module.css"
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import swal from 'sweetalert';
 
 export const UserAdmin= () => {
 
@@ -19,10 +20,25 @@ export const UserAdmin= () => {
     
     
     const handleDelete = (id)=>{
-
-        dispatch(deleteUser(id))
-        alert('Vino eliminado correctamente')
-        window.location.reload()
+        swal({
+          title: "¿Esta seguro que desea eliminar el usuario?",
+          icon: "warning",
+          buttons: ["Cancelar","Eliminar"]
+        })
+        .then((willDelete)=>{
+          if(willDelete){
+            dispatch(deleteUser(id))
+            swal({
+              title: "Usuario Eliminado",
+              text: 'Se elimino correctamente el usuario',
+              icon: "success",
+              button: "Aceptar",
+            })
+            .then(()=>{
+              window.location.reload()
+            })
+          }
+        })
     }
     
 

@@ -6,6 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorites, allFavs, deleteFav } from '../../redux/actions/actions';
+import swal from 'sweetalert';
 
 export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country}) => {
     const dispatch = useDispatch();
@@ -52,13 +53,23 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
       // console.log(chosenWine)
       if(chosenWine2.length===0){
       store && store.user && dispatch(addFavorites(input))
-      alert('El vino seleccionado ha sido agregado a tus favoritos');
+      swal({
+        title: "Vino Añadido",
+        text: `${name} agregado a Favoritos`,
+        icon: "success",
+        button: "Aceptar",
+      });
       console.log(FavoritesState)
       chosenWine2=arrayEmpty;
       }
       else{
         dispatch(deleteFav(id))
-      alert('El vino seleccionado ya formaba parte de tus favoritos, fue eliminado');
+        swal({
+          title: "Vino Eliminado",
+          text: `${name} eliminado de Favoritos`,
+          icon: "success",
+          button: "Aceptar",
+        });
       chosenWine2=arrayEmpty;
       }
     }
@@ -85,8 +96,22 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
           if(index !== undefined) state.splice(index,1);
     
           localStorage.setItem('ShoppingCar', JSON.stringify(state));
+          swal({
+            title: "Vino Añadido",
+            text: `${name} agregado al carrito de compras`,
+            icon: "success",
+            button: "Aceptar",
+          });
         }
-        else localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category}]));
+        else{
+          localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category}]));
+          swal({
+            title: "Vino Añadido",
+            text: `${name} agregado al carrito de compras`,
+            icon: "success",
+            button: "Aceptar",
+          });
+        } 
         //localStorage.clear()
       }
 

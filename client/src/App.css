@@ -3,7 +3,9 @@
   padding: 0;
 }
 body{
- font-family: 'Montserrat', sans-serif,'Great Vibes', cursive;
+ /*font-family: 'Mont', sans-serif,'Great Vibes', cursive;*/
+ font-family: 'Mulish', sans-serif;
+font-family: 'Roboto Flex', sans-serif;
 }
 
 /* .App {
