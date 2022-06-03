@@ -70,6 +70,7 @@ router.delete('/cart',[
 
 router.get('/:id', getProduct)
 
+
 router.delete('/:id',[
     jwtValidator,
     adminRole,
@@ -79,5 +80,6 @@ router.delete('/:id',[
 ], deleteProduct)
 
 router.post('/payment', paymentMP)
+
 
 module.exports = router;

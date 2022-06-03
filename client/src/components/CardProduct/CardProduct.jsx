@@ -3,12 +3,35 @@ import style from './CardProduct.module.css';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useDispatch } from 'react-redux';
-import { addFavorites } from '../../redux/actions/actions';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorites, allFavs, deleteFav } from '../../redux/actions/actions';
 
 export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country}) => {
     const dispatch = useDispatch();
     let store = JSON.parse(localStorage.getItem('user'))
+    // console.log(store.user.favorites)
+    // console.log(id)
+    const FavoritesState = useSelector(state=>state.favorites)
+    // console.log(FavoritesState)
+    // const chosenWine = FavoritesState.filter(wine=>wine.name===name)
+    // console.log(chosenWine)
+    useEffect(()=>{
+      store && store.user && dispatch(allFavs(store.user.uid))
+    },[dispatch])
+    // console.log(FavoritesState)
+    // const handleDeleteFav = (id)=>{
+    //   // console.log(id)
+    //   const chosenWine1 = FavoritesState.filter(wine=>wine._id===id)
+    //   // console.log(chosenWine)
+    //   dispatch(deleteFav(id))
+    //   if(chosenWine1.length!==0){
+    //   alert('El vino seleccionado ha sido eliminado de tus favoritos')
+    //   }
+    //   else{
+    //   alert('El vino seleccionado no forma parte de tus favoritos')
+    //   }
+    // }
     const handleFavs = ()=>{
       // console.log("hola")
       const input={
@@ -23,8 +46,21 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
         producer: producer,
         country: country
       }
-      // console.log(input)
-      dispatch(addFavorites(input))
+      let arrayEmpty=[];
+      let chosenWine2 = FavoritesState.filter(wine=>wine._id===id)
+      store && store.user && dispatch(allFavs(store.user.uid))
+      // console.log(chosenWine)
+      if(chosenWine2.length===0){
+      store && store.user && dispatch(addFavorites(input))
+      alert('El vino seleccionado ha sido agregado a tus favoritos');
+      console.log(FavoritesState)
+      chosenWine2=arrayEmpty;
+      }
+      else{
+        dispatch(deleteFav(id))
+      alert('El vino seleccionado ya formaba parte de tus favoritos, fue eliminado');
+      chosenWine2=arrayEmpty;
+      }
     }
 
     const handleClickShopping = (id)=>{
@@ -66,9 +102,12 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
             </Link>
             <div className={style.cardFooter}>
                 <span className={style.textTitle}>${price}.00</span>
-                {store && store.user.role && <div className={style.cardButton}>
+                {store && store.user && store.user.role  && <div className={style.cardButton}>
                     <FavoriteBorderIcon className={style.svgIcon} onClick={()=>handleFavs(name, year, description, img, strain, producer, id, price, country)}/>
                 </div>}
+                {/* {store && store.user && store.user.role  && <div className={style.cardButton}>
+                  <FavoriteIcon onClick={()=>handleDeleteFav(id)}/>
+                  </div>} */}
                 <div className={style.cardButton}>
                     <AddShoppingCartIcon className={style.svgIcon} onClick={()=>handleClickShopping(id)}/>
                 </div>

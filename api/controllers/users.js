@@ -62,7 +62,7 @@ const getUserById=async (req,res=response)=>{
   const { id }=req.params
   
   const user=await User.findById(id);
-console.log(id)
+
   if(!user){
     return res.status(404).send(`The user with de ID ${id} doesn't exist.`)
   }  

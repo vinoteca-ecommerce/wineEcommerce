@@ -13,11 +13,19 @@ import {
   DELETE_LOCAL_STORAGE,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
-  SET_SHOPPINGCAR,
+  //SET_SHOPPINGCAR,
+  GET_SHOPPINGCAR,
   GET_USERS,
   DELETE_USER,
   GET_USER,
-  ADD_FAVS
+  ADD_FAVS,
+
+  ALL_FAVORITES,
+  DELETE_FAV,
+
+  MERCADO_PAGO,
+  POST_PURCHASE
+
 } from "../actions/actions";
 
 const initialState = {
@@ -29,7 +37,12 @@ const initialState = {
   categories: [],
   shoppingcar: [],
   users: [],
-  user: []
+  user: [],
+
+  favorites: [],
+
+  linkmp: '',
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -152,13 +165,21 @@ const rootReducer = (state = initialState, action) => {
         wines: action.payload,
       };
 
-    case SET_SHOPPINGCAR:
+    /*case SET_SHOPPINGCAR:
       localStorage.removeItem("ShoppingCar");
       localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
       return {
         ...state,
         shoppingcar: action.payload,
-      };
+      };*/
+      case GET_SHOPPINGCAR:
+        localStorage.removeItem("ShoppingCar");
+        localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
+        return {
+          ...state,
+          shoppingcar: action.payload,
+        };
+
     case GET_USERS:
       return {
         ...state,
@@ -174,11 +195,35 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       }
+    //ADD FAVS////////////////
     case ADD_FAVS:
     console.log('llego al reducer el add favs')
     return{
       ...state
     }
+    //DELETE FAVS////////////////
+    case DELETE_FAV:
+      console.log(action.payload)
+      return{
+      ...state
+      }
+    //ALL FAVS///////////////////////
+    case ALL_FAVORITES:
+      // console.log(action.payload)
+      return{
+        ...state,
+        favorites: action.payload
+      }
+   case MERCADO_PAGO:
+      return {
+    ...state,
+    linkmp: action.payload
+    }
+  case POST_PURCHASE:
+   
+      return {
+       ...state,
+      }
     default:
       return { ...state };
   }
