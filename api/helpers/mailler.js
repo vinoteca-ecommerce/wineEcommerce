@@ -14,8 +14,8 @@ const sendConfirmationEmail= async(user,token)=>{
       pass: "c3117350e386e4"
     }
   });
-
-  const urlConfirm=`http://localhost:8000/auth/verify/${token}`
+//Poner la variable para el deployment
+  const urlConfirm=`http://localhost:3000/confirmed?token=${token}`
   return transport.sendMail({
       from:'vinotecahenry@gmail.com',
       to:user.email,

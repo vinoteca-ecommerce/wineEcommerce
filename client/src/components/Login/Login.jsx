@@ -47,7 +47,7 @@ const Login=()=>{
         e.preventDefault();
         try{
             await authService.signup(email, password).then(
-                ()=>{
+                (resp)=>{
                     navigate('/');
                     window.location.reload()
                 },

@@ -47,8 +47,7 @@ const Register = ()=>{
             console.log(2)
             await authService.register(name, password,email).then(
                 (response)=>{
-                    console.log(3)
-                    navigate('/')
+                    navigate('/confirm')
                     window.location.reload()
                 }
             )
