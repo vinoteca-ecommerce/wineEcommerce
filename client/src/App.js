@@ -33,8 +33,11 @@ import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
 import { Succes } from './components/ResponePurchase/Succes';
+
 import AfterRegister from './components/Login/AfterRegister';
 import ConfirmAccount from './components/Login/ConfirmAccount';
+
+import { Purchase } from './components/AdminDashboard/Purchase';
 
 
 
@@ -57,6 +60,15 @@ function App() {
         <Route path='/confirm' element={<Confirm/>}/>
         <Route path='/confirmed' element={<ConfirmAccount/>}/>
 
+        <Route
+          path='/admin/purchase'
+          element={
+          <PrivateDash>
+            <Purchase/>  
+            </PrivateDash>
+          }
+          />
+          
         <Route
           path="/admin/"
           element={

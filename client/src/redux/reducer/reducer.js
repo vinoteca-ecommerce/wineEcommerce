@@ -23,6 +23,7 @@ import {
   DELETE_FAV,
   MERCADO_PAGO,
   POST_PURCHASE,
+  GET_PURCHASE,
   PUT_PURCHASE,
   DELETE_CART,
 } from "../actions/actions";
@@ -38,6 +39,7 @@ const initialState = {
   users: [],
   user: [],
   favorites: [],
+  purchase: [],
   linkmp: "",
   idPurchase: "",
 };
@@ -227,6 +229,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case GET_PURCHASE:
+      return {
+        ...state,
+        purchase: action.payload
+      }
 
     default:
       return { ...state };

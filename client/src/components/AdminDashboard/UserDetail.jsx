@@ -72,8 +72,6 @@ export const UserDetail = () => {
   
     return (
       <div>
-        <nav><Link  to='/admin/'> Administrar Usuarios </Link>
-          <Link  to='/admin/post'> Agregar Producto </Link> </nav>
         <h3> Modificar Usuario </h3>
         <form onSubmit={handleSubmit}>
           <ul>

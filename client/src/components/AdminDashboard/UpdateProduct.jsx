@@ -112,7 +112,6 @@ export const UpdateProduct = () => {
 
   return (
     <div>
-      <Link to='/admin/' style={{textDecoration:'none'}} ><Button variant="outlined" > Inicio </Button></Link>
       
       <div className={style.form}>
       

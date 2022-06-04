@@ -45,9 +45,6 @@ export const UserAdmin= () => {
    
   return (
     <div>
-        <Link to={'/admin/'} style={{textDecoration:'none'}}><Button variant="outlined">Inicio</Button></Link>
-        <Link to={'/admin/post'} style={{textDecoration:'none'}}> <Button variant="outlined">Agregar Vino </Button></Link>
-
           <div className={style.container}> 
           <h2> Usuarios Activos</h2>
             <table className={style.table}>
