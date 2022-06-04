@@ -14,7 +14,7 @@ export const ProductsPagination = ({setPage,page, totalPage}) => {
 
   return (
     <>  
-            {totalPage === 1 ? page
+            {totalPage === 1 ? <span></span>
             : page > 1 && page < totalPage ?
                 <div style={{display:"flex",justifyContent:"center",alignItems:"center", padding:"1em"}}>
                     <Button  style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px'}} onClick={()=>handleChange((totalPage-totalPage)+1)}><FirstPageIcon fontSize='small'/></Button>

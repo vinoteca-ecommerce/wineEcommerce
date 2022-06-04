@@ -53,7 +53,7 @@ export const Products = () => {
 
     //Total pages
     useEffect(()=>{
-        let num = Math.ceil((wines?.total / 10))
+        let num = Math.ceil((wines?.total / 9))
         if(typeof num === 'number') setTotalPage(num)
     },[wines?.total])
 
