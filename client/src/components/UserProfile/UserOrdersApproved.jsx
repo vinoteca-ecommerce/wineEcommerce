@@ -7,7 +7,7 @@ import CardPedidos from './CardPedidos';
 
 
 
-export const UserOrders= () => {
+export const UserOrdersApproved= () => {
   const dispatch = useDispatch()
   const userHistory = useSelector((state)=> state.orders) 
   
@@ -27,13 +27,13 @@ export const UserOrders= () => {
 
         <nav className="navBar">
           <ul className={styles.ulBreadcrumbs}>
-            <li>
-              <a href="/userProfile">HOME</a>
+          <li>
+              <a href="/userprofile">HOME</a>
             </li>
             <li>
-              <a href="/useroders">PEDIDOS</a>
+              <a href="/userorders">PEDIDOS</a>
         
-            </li> 
+            </li>
             <li>
               <a href="/userOrders/approved">PEDIDOS REALIZADOS</a>
             </li>
@@ -45,41 +45,31 @@ export const UserOrders= () => {
             </li>
           </ul>
         </nav>
+        <div className={styles.card}>
+
+        {userHistory?.length === 0 ? <h2>Agregar</h2> : 
+         userHistory.map((e)=>
+          e.status === 'approved' ? 
+             e.cart.map((e)=>
+             {return (
+              <CardPedidos
+                key={e._id}
+                title={e.title}
+                picture_url={e.picture_url} className={styles.img}
+                quantity={e.quantity}
+                unit_price={e.unit_price}
+              />
+            )}) : (
+            <p>'no hay compras'</p> 
+            )
+          
+         
+
+         )
+        }      
+        </div>
+        
       </div>
     </div>
   );
 }
-
-
-
-
-
-//ACTION
-// export const TYPES ={
-//   ADD_TO_CART = 'ADD_TO_CART',
-//   REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CAR',
-//   REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART',
-//   CLEAR_CART = 'CLEAR_CART'
-// }
-
-
-// REDUCER
-
-// export const shoppingInitilState = {
-//  products: [
-//    { id: 1, name: "wine1", price: 100 },
-//    { id: 2, name: "wine2", price: 200 },
-//    { id: 3, name: "wine3", price: 300 },
-//   ],
-//  cart: []
-// }
-
-// export function shoppingReducer(state,action){
-//   switch(action.type){
-
-//   }
-
-// }
-
-
-

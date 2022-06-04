@@ -34,6 +34,10 @@ import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
 import { Succes } from './components/ResponePurchase/Succes';
 import { Purchase } from './components/AdminDashboard/Purchase';
+import { UserOrdersPending } from './components/UserProfile/UserOrdersPending';
+import { UserOrdersApproved } from './components/UserProfile/UserOrdersApproved';
+import { UserOrdersRejected } from './components/UserProfile/UserOrdersRejected';
+
 
 
 
@@ -105,6 +109,9 @@ function App() {
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userOrders' element={<UserOrders/>}/>
+        <Route path='/userOrders/pending' element={<UserOrdersPending/>}/>
+        <Route path='/userOrders/approved' element={<UserOrdersApproved/>}/>
+        <Route path='/userOrders/rejected' element={<UserOrdersRejected/>}/>
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>
