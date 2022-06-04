@@ -33,7 +33,8 @@ export const ShoppingCarTotal = () => {
       failure:"http://localhost:3000/success",
       pending:"http://localhost:3000/success",
       success:"http://localhost:3000/success"
-    }
+    },
+    "auto_return": "approved"
   });
 
   function handleClick(){
