@@ -113,7 +113,6 @@ export const AddProduct = () => {
 
   return (
     <div>
-      <Link to='/admin/' style={{textDecoration:'none'}} ><Button variant="outlined" > Inicio </Button></Link>
         
         <div className={style.form}>
         <form onSubmit={e=>handleSubmit(e)}>

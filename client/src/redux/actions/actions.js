@@ -25,6 +25,7 @@ export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 
+export const GET_PURCHASE = 'GET_PURCHASE';
 export const POST_PURCHASE = 'POST_PURCHASE';
 export const ALL_FAVORITES = 'ALL_FAVORITES';
 export const ADD_FAVS = 'ADD_FAVS';
@@ -264,6 +265,16 @@ export const putPurchase = (id, data)=>{
       console.log(response.data)
       dispatch({type: PUT_PURCHASE, payload: response.data})
       }).catch(err=> console.log(err))
+  }
+}
+
+export const getPurchase = () => {
+  return async function(dispatch){
+    return axios.get('http://localhost:8000/purchase/all', {headers: authHeader()})
+    .then(response => {
+      dispatch({type: GET_PURCHASE, payload: response.data})
+    })
+    .catch(err=> console.log(err))
   }
 }
 
