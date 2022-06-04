@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 .container{
   height: 90vh;
   width: 100vw;
@@ -6,11 +8,12 @@
 .title{
   margin-top: 5px;
   margin-bottom: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  color:#54006c;
+ color:#5A5A5A;
   text-align: center;
-  /* font-family: 'Kanit', sans-serif; */
+  font-size: 15px;
+    font-family: 'Montserrat', Arial, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Style the list */
