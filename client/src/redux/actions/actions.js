@@ -24,6 +24,7 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
+export const GET_ORDERS = 'GET_ORDERS';
 
 export const GET_PURCHASE = 'GET_PURCHASE';
 export const POST_PURCHASE = 'POST_PURCHASE';
@@ -286,4 +287,13 @@ export const deleteCart = ()=>{
       }).catch(err => console.log(err)) 
   }
 
+}
+
+export const getOrders = () =>{
+  return async function(dispatch){
+    return axios.get('http://localhost:8000/purchase', {headers: authHeader()})
+    .then(response =>{
+      dispatch({ type: GET_ORDERS, payload: response.data})
+    }).catch(err => console.log(err))
+  }
 }

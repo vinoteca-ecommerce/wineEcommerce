@@ -11,8 +11,8 @@
 
 .cardimg {
  background-color: #ffcaa6;
- height: 40%;
- width: 100%;
+ height: 100px;
+ width: 100px;
  border-radius: .5rem;
  transition: .3s ease;
 }

@@ -24,6 +24,7 @@ import {
   MERCADO_PAGO,
   POST_PURCHASE,
   GET_PURCHASE,
+  GET_ORDERS,
   PUT_PURCHASE,
   DELETE_CART,
 } from "../actions/actions";
@@ -40,6 +41,7 @@ const initialState = {
   user: [],
   favorites: [],
   purchase: [],
+  orders: [],
   linkmp: "",
   idPurchase: "",
 };
@@ -234,7 +236,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         purchase: action.payload
       }
-
+    case GET_ORDERS:
+      return{
+        ...state,
+        orders: action.payload
+      }
     default:
       return { ...state };
   }

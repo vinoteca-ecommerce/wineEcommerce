@@ -4,19 +4,20 @@ import React from 'react'
 
 
 
-const CardPedidos = ({nombre, imagen, cantidad, precio}) => {
+const CardPedidos = ({title, picture_url, quantity, unit_price}) => {
+  
   return (
     <div className={styles.card}>
       <div className={styles.cardimg}>
-          {imagen}
+          <img src={picture_url} className={styles.cardimg} />
       </div>
       <div className={styles.cardinfo}>
-        <p className={styles.texttitle}>{nombre}</p>
-        <p className={styles.textbody}>{cantidad}</p>
+        <p className={styles.texttitle}>{title}</p>
+        <p className={styles.textbody}>{quantity}</p>
        
       </div>
       <div className={styles.cardfooter}>
-        <span className={styles.cardbutton}>${precio}</span>
+        <span className={styles.cardbutton}>${unit_price}</span>
       </div>
     </div>
   );
