@@ -68,7 +68,7 @@ export const CardDetail = () => {
 
   return (
     <div>
-      {id !== wines?._id ? <h2>Loading...</h2>
+      {id !== wines?._id ?  <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
       :
       <div className={style.container}>
         <div className={style.img}>

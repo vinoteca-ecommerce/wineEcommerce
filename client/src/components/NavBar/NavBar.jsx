@@ -15,7 +15,8 @@ import Tooltip from '@mui/material/Tooltip';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import authService from '../services/auth-service';
 import DashboardNav from '../AdminDashboard/DashboardNav';
-import { useNavigate } from 'react-router';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export const NavBar = () => {
@@ -23,18 +24,14 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
 
-  const navigate=useNavigate();
-
   useEffect(()=>{
-    const user= authService.getCurrentUser();
+    const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
+      console.log(user.user.img)
     }
   },[])
 
-  const handleGoFavorites=()=>{
-    navigate('/userFavorites')
-  }
 
   const logOut = ()=>{
     authService.logout();
@@ -62,11 +59,11 @@ export const NavBar = () => {
     <AppBar position="sticky" sx={{background:'white'}}>
     <Container maxWidth="xl">
       <Toolbar disableGutters>
+        <Link to='/' style={{textDecoration:'none'}}>
         <Typography
           variant="h6"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 5,
             display: { xs: 'none', md: 'flex' },
@@ -74,12 +71,13 @@ export const NavBar = () => {
             fontWeight: 700,
             letterSpacing: '.3rem',
             color: 'gray',
-            boxShadow:'16px 12px #7f0000',
+            boxShadow:'14px 12px #7f0000',
             textDecoration: 'none',
           }}
         >
          VINOTECA
         </Typography>
+        </Link>
 
         <Box sx={{flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
@@ -110,22 +108,22 @@ export const NavBar = () => {
             }}
           >
               <MenuItem >
-                <Button href='/products' textalign="center">Productos</Button>
+                <Link to='/products' style={{textDecoration:'none'}}><Button textalign="center">Productos</Button></Link>
               </MenuItem>
               <MenuItem >
-                <Button href='/about' textalign="center">Nosotros</Button>
+                <Link to='/about' style={{textDecoration:'none'}}><Button textalign="center">Nosotros</Button></Link>
               </MenuItem>
               <MenuItem >
-                <Button href='/contact' textalign="center">Contacto</Button>
+                <Link to='/contact' style={{textDecoration:'none'}}><Button textalign="center">Contacto</Button></Link>
               </MenuItem>
             
           </Menu>
         </Box>
+        <Link to='/' style={{textDecoration:'none'}}>
         <Typography
           variant="h5"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 2,
             display: { xs: 'flex', md: 'none' },
@@ -133,37 +131,42 @@ export const NavBar = () => {
             fontFamily: 'monospace',
             fontWeight: 700,
             letterSpacing: '.3rem',
+            fontSize:'20px',
             color: 'gray',
             textDecoration: 'none',
           }}
         >
           VINOTECA
         </Typography>
+        </Link>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              href='/products'
+            <Link style={{textDecoration:'none'}} to='/products'>
+              <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'black', display: 'block'}}
-            >
+              >
              Productos
-            </Button>
+              </Button>
+            </Link>
+            <Link style={{textDecoration:'none'}} to='/about'>
             <Button
-              href='/about'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'black', display: 'block'}}
             >
              Nosotros
             </Button>
+            </Link>
+            <Link style={{textDecoration:'none'}} to='/contact'>
             <Button
-              href='/contact'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'black', display: 'block'}}
             >
              Contacto
             </Button>
+            </Link>
         </Box>
           <Box>
-        <IconButton sx={{mr:'20px'}}>
+        <IconButton sx={{mr:'4px',mt:'1px',p:'6px 6px 1px 6px'}}>
         <Link to='/shoppingCar' style={{color:'grey'}}><AddShoppingCartIcon fontSize='large'/></Link>
         </IconButton>
         </Box>
@@ -171,7 +174,7 @@ export const NavBar = () => {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar src={currentUser?.user?.img || "/broken-image.jpg"} />
             </IconButton>
           </Tooltip>
           <Menu
@@ -191,24 +194,18 @@ export const NavBar = () => {
             onClose={handleCloseUserMenu}
           >
               <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center" component='a' href='/userProfile'>Perfil</Typography>
+                <Link to='/userProfile' style={{textDecoration:'none',color:'black'}}><Typography textalign="center">Perfil</Typography></Link>
               </MenuItem>
               <MenuItem >
-              <Typography textaling='center' onClick={()=>handleGoFavorites()}>Favorites</Typography>
+                <Link to='/userFavorites' style={{textDecoration:'none',color:'black'}}><Typography textaling='center'>Favorites</Typography></Link>
               </MenuItem>
               <MenuItem >
-              <Typography textaling='center' onClick={logOut}> Logout</Typography>
+                <Typography sx={{display:'flex',justifyContent:'center',alignItems:'center'}}onClick={logOut}>Logout <LogoutIcon sx={{ml:'5px'}}/></Typography>
               </MenuItem>
           </Menu>
         </Box>
       ):(
-        <div>
-          <li>
-            <Link  className='letters' to={'/Login'}> Login </Link>  
-          </li>
-          {/* <li>
-            <Link className='letters' to ={'/register'}> Register </Link></li> */}
-        </div>
+            <Link style={{textDecoration:'none'}}  to={'/Login'}><Button > Login <LoginIcon fontSize='medium' /></Button></Link>  
       )}
       </Toolbar>
     </Container>

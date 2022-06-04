@@ -22,9 +22,9 @@ export const SearchBar = ({onSearch}) => {
   }
  return (
 <>
-     <form className='searchform' onSubmit={handleSubmit} style={{display:'block',marginTop:'1.6em', width:'180px'}}>
+     <form className='searchform' onSubmit={handleSubmit} style={{display:'block',marginTop:'1.6em', width:'190px'}}>
                 <input
-                style={{width:'180px'}}
+                style={{width:'190px'}}
                 onChange={handleSearchValue}
                 value={value}
                 type='search'

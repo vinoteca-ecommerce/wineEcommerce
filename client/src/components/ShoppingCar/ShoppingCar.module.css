@@ -2,12 +2,13 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 4em 0 14.4em 0;
+    margin: 4em 0 15.9em 0;
     padding: 0;
 }
 .carrito{
     padding-top: 7.01%;
-    font-size: xx-large;
+    font-size: 2em;
+    font-weight: 500;
 }
 
 .table{

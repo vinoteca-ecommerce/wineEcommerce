@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import authService from "../services/auth-service";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Button from '@mui/material/Button';
+
+import Style from "./Login.module.css"
 
 
 const Register = ()=>{
@@ -40,6 +43,7 @@ const Register = ()=>{
         document.getElementById('singInDiv'),
         {theme:"outline", size:"large"})
     },[])
+
     const handleRegister = async(e)=>{
         e.preventDefault();
         console.log(1)
@@ -56,35 +60,44 @@ const Register = ()=>{
         }
     }
     return (
-      <div>
-
-        <h1>Register</h1>
-        <form onSubmit={handleRegister}>
+      <div className={Style.backg} style={{margin: '5.8em auto',padding: '.9em 1em .9em 1em'}}>
+        <h1 className={Style.h1}>Register</h1>
+        <form className={Style.form} onSubmit={handleRegister}>
+        <div className={Style.login}>
           <input
+            className={Style.input}
             type="text"
             value={name}
             name="name"
-            placeholder="name"
+            placeholder="Name"
             onChange={(e) => setName(e.target.value)}
             
           />
+        </div>
+        <div className={Style.login}>
         <input
+            className={Style.input}
             type="text"
             value={password}
             name="password"
-            placeholder="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+           </div>
+           <div className={Style.login}>
           <input
+            className={Style.input}
             type="text"
             value={email}
             name="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button>Register</button>
+          </div>
+          <Button sx={{mt:'14px'}} type="submit" variant="contained" className={Style.buttom}>Register</Button>
         </form>
-        <div id="singInDiv"></div>
+        <div className={Style.or}>──────────OR──────────</div>
+        {<div className={Style.googleLogin} id="singInDiv"></div>}
       </div>
       );
 
