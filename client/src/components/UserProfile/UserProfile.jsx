@@ -7,7 +7,7 @@ export const UserProfile = () => {
     <>
       <div className={styles.container}>
         <div className={styles.profileTitle}>
-          <span> Mi Perfil</span>
+          <h1>Mi Perfil</h1>
         </div>
 
         <div className={styles.cardContainer}>

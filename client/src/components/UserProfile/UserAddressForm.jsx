@@ -1,42 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styles from '../UserProfile/UserAddressForm.module.css'
-
+import { useForm } from 'react-hook-form'
 
 
 export const UserAddressForm = () => {
-const [form, setForm] = useState({
-  name: "",
-  phone: "",
-  address: "",
-  city: "",
-  state: "",
-  code: '',
-});
-
-
-const onChangeHandler = (e) => {
-  const {value, name} = e.target;
-
-  setForm((state) => ({
-    ...state,
-    [name]: value
-  }));
-}
-
-const showData = () => {
-  console.log('Form: ', form);
-  
-}
-
-const onSubmit = (e) => {
-  e.preventDefault()
-}
-
+  const {register, formState:{errors}, handleSubmit} = useForm()
+  const onSubmit = (data) => console.log(data)
   return (
     <div className={styles.body}>
       <div className={styles.container}>
         <h1 className={styles.h1}>&bull; Completa tus datos de envio &bull;</h1>
-        <form onSubmit={onSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.name}>
             <label>NOMBRE</label>
             <input
@@ -44,22 +18,32 @@ const onSubmit = (e) => {
               plasceholder="Nombre"
               type="text"
               name="name"
-              value={form.name}
-              onChange={onChangeHandler}
-              required
+              {...register("name", { required: true })}
             />
+            <error>
+              {errors.name?.type === "required" && <p>*Nombre requerido*</p>}
+            </error>
           </div>
-          <div className={styles.name}>
+          <div className={styles.phone}>
             <label>TELEFONO</label>
             <input
               className={styles.input}
               plasceholder="Telefono"
-              type="text"
               name="phone"
-              value={form.phone}
-              onChange={onChangeHandler}
-              required
+              type="number"
+              {...register("number", {
+                minLength: 6,
+                maxLength: 12,
+              })}
             />
+            <error>
+              {errors.number?.type === "minLength" && (
+                <p>*El numero es menor a 6 digitos*</p>
+              )}
+              {errors.number?.type === "maxLength" && (
+                <p>*El maximo es de 12 digitos *</p>
+              )}
+            </error>
           </div>
           <div className={styles.name}>
             <label>DIRECCION</label>
@@ -67,11 +51,14 @@ const onSubmit = (e) => {
               className={styles.input}
               plasceholder="Direccion"
               type="text"
-              name="direccion"
-              value={form.address}
-              onChange={onChangeHandler}
-              required
+              name="address"
+              {...register("address", { required: true })}
             />
+            <error>
+              {errors.address?.type === "required" && (
+                <p>*Direccion requerida*</p>
+              )}
+            </error>
           </div>
           <div className={styles.name}>
             <label>CIUDAD</label>
@@ -79,34 +66,44 @@ const onSubmit = (e) => {
               className={styles.input}
               plasceholder="Ciudad"
               type="text"
-              name="ciudad"
-              value={form.city}
-              onChange={onChangeHandler}
+              name="city"
+              {...register("city", { required: true })}
             />
+            <error>
+              {errors.city?.type === "required" && <p>*Ciudad requerida*</p>}
+            </error>
           </div>
-          <div className={styles.textRight}>
+          <div className={styles.name}>
             <label>PROVINCIA</label>
             <input
               className={styles.input}
               plasceholder="Provincia"
               type="text"
-              name="provincia"
-              value={form.state}
-              onChange={onChangeHandler}
+              name="state"
+              {...register("state", { required: true })}
             />
+            <error>
+              {errors.state?.type === "required" && (
+                <p>*Provincia requerida*</p>
+              )}
+            </error>
           </div>
-          <div className={styles.textRight}>
-            <label>CP</label>
+          <div className={styles.name}>
+            <label>CODIGO POSTAL</label>
             <input
               className={styles.input}
               plasceholder="Codigo Postal"
               type="text"
-              name="codigopostal"
-              value={form.code}
-              onChange={onChangeHandler}
+              name="zipcode"
+              {...register("zipcode", { required: true })}
             />
+            <error>
+              {errors.zipcode?.type === "required" && (
+                <p>*Codigo Postal requerido*</p>
+              )}
+            </error>
           </div>
-          <span>ARGENTINA</span>
+
           <div className={styles.message}>
             <label for="message"></label>
             <textarea
@@ -118,10 +115,10 @@ const onSubmit = (e) => {
               rows="5"
             ></textarea>
           </div>
-          <div class="submit">
+
+          <div className='submit'>
             <input
-              className={styles.form_button}
-              onClick={showData}
+              className={styles.formButton}
               type="submit"
               value="Agregar"
               id="form_button"

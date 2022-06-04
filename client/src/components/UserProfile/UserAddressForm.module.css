@@ -45,14 +45,15 @@
   line-height: normal;
 }
 .name {
-	float: left;
+	float: center;
 	width: 45%;
 }
 
-.textRight {
-	float: left;
+.phone {
+	float: right;
 	width: 45%;
 }
+
 .textarea {
 	line-height: 150%;
 	height: 150px;
@@ -90,7 +91,7 @@
 .message {
 	float: none;
 }
-.form_button {
+.formButton {
   background: none;
   border: solid 2px #474544;
   color: #474544;
@@ -109,7 +110,7 @@
 	transition: all 0.3s;
 }
 
-.form_button:hover {
+.formButton:hover {
   background: #474544;
   color: #F2F3EB;
 }
