@@ -7,7 +7,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage, setShoppingCar, getShoppingCar } from '../../redux/actions/actions';
 import style from './ShoppingCar.module.css';
 import { ShoppingCarTotal } from '../ShoppingCarTotal/ShoppingCarTotal';
-import authService from '../services/auth-service'
+import authService from '../services/auth-service';
+import { Link } from "react-router-dom";
 
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
@@ -41,7 +42,11 @@ export const ShoppingCar = () => {
 
   return (
     <div className={style.container}>
-        {shoppingcar?.length === 0 || shoppingcar === null ? <h2 className={style.carrito}>Carrito vacio, ve a agregar productos!</h2>
+        {shoppingcar?.length === 0 || shoppingcar === null 
+        ?<div style={{display:'flex', justifyContent:'center',alignItems:'center', flexDirection:'column', padding:'4.4em'}}>
+            <h3 className={style.carrito}>Carrito vacio, ve a agregar productos!</h3>
+            <Link to='/products' style={{textDecoration:'none'}}><Button variant='contained' sx={{mt:'2.1em'}}>Ir a Productos</Button></Link>
+        </div>
         :<><table className={style.table}>
             <thead className={style.tableHead}>
                 <tr>

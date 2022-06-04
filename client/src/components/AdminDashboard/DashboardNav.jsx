@@ -66,7 +66,7 @@ const  DashboardNav = () => {
             fontWeight: 700,
             letterSpacing: '.3rem',
             color: 'rgba(245, 245, 220, 0.76)',
-            boxShadow:'16px 15px #7f0000',
+            boxShadow:'14px 12px #7f0000',
             textDecoration: 'none',
           }}
         >

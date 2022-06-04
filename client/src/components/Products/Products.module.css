@@ -97,13 +97,14 @@ grid-template-columns: 1fr 2.8fr;
 .filtersCard div, .filtersCard div select{
   margin: 1.6em 0;
   padding: 0;
-  width: 180px;
+  width: 190px;
 }
 
 .filtersCard h4{
   display: flex;
   justify-content: center;
   font-size: 20px;
+  margin-left: -1em;
 }
 
 .containerCards{
@@ -133,12 +134,50 @@ grid-template-columns: 1fr 2.8fr;
 }
 
 
-
-
-
-
-
-
+/*LOADER*/
+.svg {
+  width:150px;
+  height:150px;
+  position: fixed;
+  top: 50%;
+  left: 52%;
+  margin-top: -100px;
+  margin-left: -100px;
+  animation: rotate4 2s linear infinite;
+ }
+ 
+ .circle {
+  fill: none;
+  stroke: hsl(214, 97%, 59%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+ }
+ 
+ @keyframes rotate4 {
+  100% {
+   transform: rotate(360deg);
+  }
+ }
+ 
+ @keyframes dash4 {
+  0% {
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+  }
+ 
+  50% {
+   stroke-dasharray: 90, 200;
+   stroke-dashoffset: -35px;
+  }
+ 
+  100% {
+   stroke-dashoffset: -125px;
+  }
+ }
+ 
 
 
 /* MEDIA-RESPONSIVE */
@@ -185,12 +224,13 @@ gap: 1em;
     height: 80px;*/
     display: flex;
     flex-direction: column;
+    margin: 0 0 0 4.5em;
 }
 
 .filtersCard div, .filtersCard div select{
-  margin: 1.2em 0;
+  margin: 1em 0;
   padding: 0;
-  width: 160px;
+  width: 180px;
 }
 
 
@@ -218,4 +258,5 @@ gap: 1em;
 }
 
 }
+
 

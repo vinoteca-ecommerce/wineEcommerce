@@ -3,13 +3,13 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin: 5em;
+    margin: 5em 3em;
     padding: 4em 0;
     
 }
 
 .img{
-    margin-right: 2em;
+    margin-right: 3em;
     /*border: 1px solid red;*/
 }
 
@@ -27,8 +27,11 @@ h3{
     margin-left: .7em;
 }
 
+
 .p{
-    margin: 1.2em;
+    margin: 1em;
+    font-size: 1em;
+    font-weight: 500;
 }
 .price p{
     margin: 0;
@@ -72,3 +75,73 @@ h3{
     background-color: transparent;
     color: #ff0000;
 }
+
+
+/*LOADER*/
+.svg {
+    width:150px;
+    height:150px;
+    position: fixed;
+    top: 50%;
+    left: 52%;
+    margin-top: -100px;
+    margin-left: -100px;
+    animation: rotate4 2s linear infinite;
+   }
+   
+   .circle {
+    fill: none;
+    stroke: hsl(214, 97%, 59%);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+   }
+   
+   @keyframes rotate4 {
+    100% {
+     transform: rotate(360deg);
+    }
+   }
+   
+   @keyframes dash4 {
+    0% {
+     stroke-dasharray: 1, 200;
+     stroke-dashoffset: 0;
+    }
+   
+    50% {
+     stroke-dasharray: 90, 200;
+     stroke-dashoffset: -35px;
+    }
+   
+    100% {
+     stroke-dashoffset: -125px;
+    }
+   }
+
+@media(max-width:1550px){
+    .container{
+        margin: 5em auto;
+    }
+    .datail{
+        width: 40%;
+    }
+    .img{
+        margin-right: 1em;
+    }
+}
+@media(max-width:800px){
+    .container{
+        margin: 1em auto;
+    }
+    .datail{
+        margin-top: 1em;
+        width: 80%;
+    }
+    .img{
+        margin-right: 0;
+    }
+}
+
