@@ -20,6 +20,12 @@ const loginController = async (req, res = response) => {
         msg: "User is invalid",
       });
     }
+    if(!user.verified){
+      return res.status(400).json({
+        msg:'Please verify your account',
+        verifyError:true
+      })
+    }
 
     const validatePassword = bcryptjs.compareSync(password, user.password);
 

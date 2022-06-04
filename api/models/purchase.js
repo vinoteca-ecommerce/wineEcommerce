@@ -4,6 +4,7 @@ const PurchaseSchema = Schema({
   status: {
     type: String,
     enum: ["approved", "pending", "rejected"],
+    default:"pending"
   },
   cart: {
     type: Array,
@@ -16,7 +17,8 @@ const PurchaseSchema = Schema({
   },
   payment_id:{
     type: String,
-    require: true
+    require: true,
+    default:"pending"
   }
 });
 
