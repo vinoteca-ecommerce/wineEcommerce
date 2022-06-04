@@ -102,15 +102,17 @@ const  DashboardNav = () => {
             }}
           >
               <MenuItem >
-                <Button href='/products' textalign="center">Productos</Button>
+                <Button href='/admin' textalign="center">Productos</Button>
               </MenuItem>
               <MenuItem >
-                <Button href='/about' textalign="center">Compras</Button>
+                <Button href='/admin/purchase' textalign="center">Compras</Button>
               </MenuItem>
               <MenuItem >
                 <Button href='/admin/users' textalign="center">Usuarios</Button>
               </MenuItem>
-            
+              <MenuItem >
+                <Button href='/admin/post' textalign="center">Agregar Vinos</Button>
+              </MenuItem>
           </Menu>
         </Box>
         <Typography
@@ -140,7 +142,7 @@ const  DashboardNav = () => {
              Productos
             </Button>
             <Button
-              href='/admin/'
+              href='/admin/purchase'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
@@ -153,11 +155,13 @@ const  DashboardNav = () => {
             >
              Usuarios
             </Button>
-        </Box>
-          <Box>
-        <IconButton sx={{mr:'20px'}}>
-        <Link to='/shoppingCar' style={{color:'grey'}}><AddShoppingCartIcon fontSize='large'/></Link>
-        </IconButton>
+            <Button
+              href='/admin/post'
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
+            >
+             Agregar vinos
+            </Button>
         </Box>
           {currentUser?(
         <Box sx={{ flexGrow: 0 }}>
@@ -183,7 +187,7 @@ const  DashboardNav = () => {
             onClose={handleCloseUserMenu}
           >
               <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center"  component="a" href='/'>Perfil</Typography>
+                <Typography textalign="center"  component="a" href='/userProfile'>Perfil</Typography>
               </MenuItem>
               <MenuItem  onClick={handleCloseUserMenu}>
                 <Typography textalign="center" textDecoration='none' component="a" href='/admin/'>DashBoard</Typography>

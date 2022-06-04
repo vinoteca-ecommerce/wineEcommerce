@@ -46,8 +46,6 @@ export const DashboardTable= () => {
    
   return (
     <div >
-        <Link  to='/admin/post' style={{textDecoration:'none'}}> <Button variant="outlined">Agregar Vino</Button>  </Link>
-        <Link to='/admin/users' style={{textDecoration:'none'}}> <Button variant="outlined">Usuarios</Button></Link>
         <div className={style.container}>
           <h2>Productos</h2>
           <table className={style.table}>

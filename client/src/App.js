@@ -33,7 +33,7 @@ import { Dashboard } from './components/AdminDashboard/Dashboard';
 import { UserDetail } from './components/AdminDashboard/UserDetail';
 import UserFavorites from './components/Favorites/Favorites';
 import { Succes } from './components/ResponePurchase/Succes';
-
+import { Purchase } from './components/AdminDashboard/Purchase';
 
 
 
@@ -53,6 +53,15 @@ function App() {
         <Route path='/success' element={<Succes/>}/>
         <Route path='/confirm' element={<Confirm/>}/>
 
+        <Route
+          path='/admin/purchase'
+          element={
+          <PrivateDash>
+            <Purchase/>  
+            </PrivateDash>
+          }
+          />
+          
         <Route
           path="/admin/"
           element={
