@@ -74,6 +74,36 @@ const postUser = async (req, res = response) => {
   });
 };
 
+const userUpdateRole = async (req, res = response) => {
+  const { id } = req.params;
+  const { role } = req.body;
+
+  if (!role) {
+    return res.status(400).json({ msg: " Debes especificar Rol " });
+  }
+
+  if (role === "ADMIN_ROLE") {
+    const user = await User.findByIdAndUpdate(id, { role: "ADMIN_ROLE" });
+    user.save();
+    return res.status(201).json(user);
+  }
+
+  if (role === "SALES_ROLE") {
+    const user = await User.findByIdAndUpdate(id, { role: "SALES_ROLE" });
+    user.save();
+    return res.status(201).json(user);
+  }
+  if(role === 'USER_ROLE'){
+    const user = await User.findByIdAndUpdate(id, { role: "USER_ROLE" });
+    user.save();
+    return res.status(201).json(user);
+
+  }
+
+  return res.status(400).json({msg: 'Datos invalidos'})
+
+};
+
 module.exports = {
   postUser,
   getUserById,
@@ -81,4 +111,5 @@ module.exports = {
   updateUser,
   deleteUser,
   undeleteUser,
+  userUpdateRole,
 };

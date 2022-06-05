@@ -97,6 +97,9 @@ export const UserAdmin= () => {
                 <td style={{width:'50px'}}>
                   <Button style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}} onClick={()=>handleDelete(e.uid)}> <DeleteIcon/>  </Button>
                   </td>
+                <td> 
+
+               
                 <select onChange={(e)=> handleSelect(e)}>
                   <option hidden> Privilegios </option>
                   <option value='ADMIN_ROLE'>Admin</option>
@@ -105,7 +108,9 @@ export const UserAdmin= () => {
                          
                 </select>
                 <Button onClick={()=>handleSubmit(e.uid)} style={{maxWidth: '100px', maxHeight: '20px', minWidth: '35px', minHeight: '20px'}} variant="contained" className={style.button} type="submit" > Actualizar </Button>
+                </td>
                 </tr>
+
               </tbody>
               ))
             } 
