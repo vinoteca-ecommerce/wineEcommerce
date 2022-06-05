@@ -28,7 +28,6 @@ export const NavBar = () => {
     const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
-      console.log(user.user.img)
     }
   },[])
 

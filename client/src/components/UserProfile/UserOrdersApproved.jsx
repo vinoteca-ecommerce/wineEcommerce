@@ -48,10 +48,10 @@ export const UserOrdersApproved= () => {
         <div className={styles.card}>
 
         {userHistory.filter(e=> e.status === 'approved').map(e=>
-             e.cart.map((e)=>
+             e.cart.map((e, i)=>
              {return (
               <CardPedidos
-                key={e._id}
+                key={i + 1}
                 title={e.title}
                 picture_url={e.picture_url} className={styles.img}
                 quantity={e.quantity}
