@@ -13,7 +13,7 @@ const CardPedidos = ({title, picture_url, quantity, unit_price}) => {
       </div>
       <div className={styles.cardinfo}>
         <p className={styles.texttitle}>{title}</p>
-        <p className={styles.textbody}>{quantity}</p>
+        <p className={styles.textbody}> Cantidad: {quantity}</p>
        
       </div>
       <div className={styles.cardfooter}>
