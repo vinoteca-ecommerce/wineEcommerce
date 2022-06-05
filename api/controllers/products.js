@@ -334,8 +334,6 @@ const pushToCart=async(req,res=response)=>{
   const user = await User.findOneAndUpdate({email}, {cart: req.body},(error,data) =>{
     if (error){
       console.log(error)
-    }else{
-      console.log(data)
     }
   } ).clone()
   

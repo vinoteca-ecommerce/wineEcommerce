@@ -41,7 +41,8 @@ import { Purchase } from './components/AdminDashboard/Purchase';
 import { UserOrdersPending } from './components/UserProfile/UserOrdersPending';
 import { UserOrdersApproved } from './components/UserProfile/UserOrdersApproved';
 import { UserOrdersRejected } from './components/UserProfile/UserOrdersRejected';
-
+import { PurchaseDetail } from './components/AdminDashboard/PurchaseDetail'
+ 
 
 
 
@@ -72,7 +73,14 @@ function App() {
             </PrivateDash>
           }
           />
-          
+          <Route
+          path='/admin/purchase/detail/:id'
+          element={
+          <PrivateDash>
+            <PurchaseDetail/>  
+            </PrivateDash>
+          }
+          />
         <Route
           path="/admin/"
           element={
@@ -115,10 +123,10 @@ function App() {
         />
         <Route path='/shoppingCar' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
-        <Route path='/userOrders' element={<UserOrders/>}/>
-        <Route path='/userOrders/pending' element={<UserOrdersPending/>}/>
-        <Route path='/userOrders/approved' element={<UserOrdersApproved/>}/>
-        <Route path='/userOrders/rejected' element={<UserOrdersRejected/>}/>
+        <Route path='/userorders' element={<UserOrders/>}/>
+        <Route path='/userorders/pending' element={<UserOrdersPending/>}/>
+        <Route path='/userorders/approved' element={<UserOrdersApproved/>}/>
+        <Route path='/userorders/rejected' element={<UserOrdersRejected/>}/>
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>

@@ -1,29 +1,44 @@
-const {Router} = require('express');
-const { purchaseStatus , getPurchase, getPurchases , updateState } = require('../controllers/purchase');
-const { jwtValidator, adminRole } = require('../middlewares')
-const { validation } = require('../middlewares/validator')
-
+const { Router } = require("express");
+const {
+  purchaseStatus,
+  getPurchase,
+  getPurchases,
+  updateState,
+  getPurchaseId,
+} = require("../controllers/purchase");
+const { purchaseValidator } = require("../helpers/db-validators");
+const { jwtValidator, adminRole } = require("../middlewares");
+const { validation } = require("../middlewares/validator");
+const { check } = require("express-validator");
 
 const router = Router();
 
-router.get('/', [
+router.get("/", [jwtValidator, validation], getPurchase);
+
+router.get("/all", [jwtValidator, adminRole, validation], getPurchases);
+
+router.get(
+  "/:id",
+  [
     jwtValidator,
-], getPurchase);
+    check("id", "The Id Doesnt exist").isMongoId(),
+    check("id").custom(purchaseValidator),
+    validation,
+  ],
+  getPurchaseId
+);
 
-router.get('/all', [
+router.put(
+  "/:id",
+  [
     jwtValidator,
-    adminRole,
-    validation
-], getPurchases);
+    check("id", "The Id Doesnt exist").isMongoId(),
+    check("id").custom(purchaseValidator),
+    validation,
+  ],
+  updateState
+);
 
-router.put('/:id', [
-    jwtValidator,
-    
-],updateState)
-
-
-router.post('/', jwtValidator , purchaseStatus);
-
-
+router.post("/", [jwtValidator, validation], purchaseStatus);
 
 module.exports = router;
