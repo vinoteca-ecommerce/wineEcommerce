@@ -4,7 +4,8 @@ import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
 import CardPedidos from './CardPedidos';
 
-
+// styles
+import Style from "./UserOrderRejected.module.css"
 
 
 export const UserOrdersApproved= () => {
@@ -46,10 +47,10 @@ export const UserOrdersApproved= () => {
           </ul>
         </nav>
         <div className={styles.card}>
-
+        <div className={Style.backg}>
         {userHistory.filter(e=> e.status === 'approved').map(e=>
              e.cart.map((e, i)=>
-             {return (
+             {return (<div className={Style.spacing}>
               <CardPedidos
                 key={i + 1}
                 title={e.title}
@@ -57,11 +58,12 @@ export const UserOrdersApproved= () => {
                 quantity={e.quantity}
                 unit_price={e.unit_price}
               />
-            )})
+              </div>
+           )})
          )
         }      
         </div>
-        
+         </div>
       </div>
     </div>
   );
