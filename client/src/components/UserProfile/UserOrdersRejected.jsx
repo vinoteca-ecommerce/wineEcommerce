@@ -4,7 +4,8 @@ import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
 import CardPedidos from './CardPedidos';
 
-
+// styles
+import Style from "./UserOrderRejected.module.css"
 
 
 export const UserOrdersRejected= () => {
@@ -45,9 +46,10 @@ export const UserOrdersRejected= () => {
             </li>
           </ul>
         </nav>
+        <div className={Style.backg}>
         {userHistory.filter(e=> e.status === 'rejected').map(e=>
              e.cart.map((e, i)=>
-             {return (
+             {return (<div className={Style.spacing}>
               <CardPedidos
                 key={i + 1}
                 title={e.title}
@@ -55,10 +57,10 @@ export const UserOrdersRejected= () => {
                 quantity={e.quantity}
                 unit_price={e.unit_price}
               />
-            )})
+              </div>)})
          )
         }     
-        
+        </div>
       </div>
     </div>
   );
