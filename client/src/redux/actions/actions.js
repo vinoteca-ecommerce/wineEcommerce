@@ -8,13 +8,13 @@ export const POST_WINE = 'POST_WINE';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_STRAIN = 'GET_STRAIN';
 
-export const GET_PRODUCT = 'GET_PRODUCT'
+export const GET_PRODUCT = 'GET_PRODUCT';
 export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';
 export const ADD_LOCAL_STORAGE = 'ADD_LOCAL_STORAGE';
 export const SUB_LOCAL_STORAGE = 'SUB_LOCAL_STORAGE';
 export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
 
-export const MERCADO_PAGO = 'MERCADO_PAGO'
+export const MERCADO_PAGO = 'MERCADO_PAGO';
 
 //export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
 export const GET_SHOPPINGCAR = 'GET_SHOPPINGCAR';
@@ -31,10 +31,10 @@ export const POST_PURCHASE = 'POST_PURCHASE';
 export const ALL_FAVORITES = 'ALL_FAVORITES';
 export const ADD_FAVS = 'ADD_FAVS';
 export const DELETE_FAV = 'DELETE_FAV';
-export const PUT_PURCHASE ='PUT_PURCHASE'
-export const DELETE_CART = 'DELETE_CART'
-
-export const GET_PURCHASE_ID = 'GET_PURCHASE_ID'
+export const PUT_PURCHASE ='PUT_PURCHASE';
+export const DELETE_CART = 'DELETE_CART';
+export const UPDATE_USER = 'UPDATE_USER';
+export const GET_PURCHASE_ID = 'GET_PURCHASE_ID';
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -307,6 +307,13 @@ export const getPurchaseId = (id)=>{
         dispatch({type: GET_PURCHASE_ID, payload: response.data})
       }).catch(err => console.log(err))
   }
+}
 
-
+export const userUpdateRole = (id, data)=>{
+  return async function(dispatch){
+    return axios.put(`http://localhost:8000/users/update/${id}`, data, {headers: authHeader()})
+    .then(response =>{
+      dispatch({type: UPDATE_USER, payload: response.data})
+    }).catch(err => console.log(err))
+  }
 }
