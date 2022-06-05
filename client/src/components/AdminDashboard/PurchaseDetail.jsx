@@ -20,7 +20,6 @@ export const PurchaseDetail = () => {
           <tr> 
           <th> Nº </th>      
           <th> Nombre </th>
-          <th> Estado </th>
           <th> Precio</th>
           <th> Cantidad </th>
           <th> Sub-Total </ th>
