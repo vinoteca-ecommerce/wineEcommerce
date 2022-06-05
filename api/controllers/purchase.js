@@ -61,9 +61,26 @@ const updateState = async (req, res = response) => {
   res.status(201).json(filter);
 };
 
+const getPurchaseId = async (req, res=response) => {
+
+  const { id } = req.params
+
+  const filter = await Purchase.findById(id);
+
+  if(!filter){
+    return res.status(400).json({msg: 'Purchase doesnt exist on the DB'})
+  }
+
+  res.status(201).json(filter)
+
+
+}
+
+
 module.exports = {
   purchaseStatus,
   getPurchase,
   getPurchases,
   updateState,
+  getPurchaseId
 };

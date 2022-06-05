@@ -23,7 +23,7 @@ const ProductSchema = Schema({
   },
   img: {
     type: String,
-  
+    default: 'https://res.cloudinary.com/dwtkwakbc/image/upload/v1654202538/no-image_v5xknd.jpg'
   },
   category: {
     type: Schema.Types.ObjectId,

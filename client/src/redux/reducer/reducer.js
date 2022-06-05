@@ -27,6 +27,7 @@ import {
   GET_ORDERS,
   PUT_PURCHASE,
   DELETE_CART,
+  GET_PURCHASE_ID
 } from "../actions/actions";
 
 const initialState = {
@@ -241,6 +242,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         orders: action.payload
       }
+    case GET_PURCHASE_ID:
+      return{
+        ...state,
+        purchase: action.payload
+      }  
     default:
       return { ...state };
   }

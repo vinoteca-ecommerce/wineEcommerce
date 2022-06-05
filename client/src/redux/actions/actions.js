@@ -34,6 +34,7 @@ export const DELETE_FAV = 'DELETE_FAV';
 export const PUT_PURCHASE ='PUT_PURCHASE'
 export const DELETE_CART = 'DELETE_CART'
 
+export const GET_PURCHASE_ID = 'GET_PURCHASE_ID'
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -296,4 +297,16 @@ export const getOrders = () =>{
       dispatch({ type: GET_ORDERS, payload: response.data})
     }).catch(err => console.log(err))
   }
+}
+
+
+export const getPurchaseId = (id)=>{
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/purchase/${id}`, {headers: authHeader()})
+      .then(response=>{
+        dispatch({type: GET_PURCHASE_ID, payload: response.data})
+      }).catch(err => console.log(err))
+  }
+
+
 }

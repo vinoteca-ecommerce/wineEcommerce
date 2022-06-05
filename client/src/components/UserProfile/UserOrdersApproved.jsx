@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
@@ -35,21 +35,19 @@ export const UserOrdersApproved= () => {
         
             </li>
             <li>
-              <a href="/userOrders/approved">PEDIDOS REALIZADOS</a>
+              <a href="/userorders/approved">PEDIDOS REALIZADOS</a>
             </li>
             <li>
-              <a href="/userOrders/pending">PEDIDOS PENDIENTES</a>
+              <a href="/userorders/pending">PEDIDOS PENDIENTES</a>
             </li>
             <li>
-              <a href="/userOrders/rejected">PEDIDOS CANCELADOS</a>
+              <a href="/userorders/rejected">PEDIDOS CANCELADOS</a>
             </li>
           </ul>
         </nav>
         <div className={styles.card}>
 
-        {userHistory?.length === 0 ? <h2>Agregar</h2> : 
-         userHistory.map((e)=>
-          e.status === 'approved' ? 
+        {userHistory.filter(e=> e.status === 'approved').map(e=>
              e.cart.map((e)=>
              {return (
               <CardPedidos
@@ -59,12 +57,7 @@ export const UserOrdersApproved= () => {
                 quantity={e.quantity}
                 unit_price={e.unit_price}
               />
-            )}) : (
-            <p>'no hay compras'</p> 
-            )
-          
-         
-
+            )})
          )
         }      
         </div>

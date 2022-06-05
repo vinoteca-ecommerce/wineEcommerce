@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
@@ -35,33 +35,29 @@ export const UserOrdersRejected= () => {
         
             </li>
             <li>
-              <a href="/userOrders/approved">PEDIDOS REALIZADOS</a>
+              <a href="/userorders/approved">PEDIDOS REALIZADOS</a>
             </li>
             <li>
-              <a href="/userOrders/pending">PEDIDOS PENDIENTES</a>
+              <a href="/userorders/pending">PEDIDOS PENDIENTES</a>
             </li>
             <li>
-              <a href="/userOrders/rejected">PEDIDOS CANCELADOS</a>
+              <a href="/userorders/rejected">PEDIDOS CANCELADOS</a>
             </li>
           </ul>
         </nav>
-        {userHistory?.length === 0 ? <h2>Agregar</h2> : 
-         userHistory.map((e)=>
-         e.status === 'rejected' ? 
-         e.cart.map((e)=>
-         {return (
-           <CardPedidos
+        {userHistory.filter(e=> e.status === 'rejected').map(e=>
+             e.cart.map((e)=>
+             {return (
+              <CardPedidos
+                key={e._id}
                 title={e.title}
-                picture_url={e.picture_url}
+                picture_url={e.picture_url} className={styles.img}
                 quantity={e.quantity}
                 unit_price={e.unit_price}
               />
-            )}) : (
-            <p>'no hay compras'</p> 
-            )
-
+            )})
          )
-        }      
+        }     
         
       </div>
     </div>
