@@ -111,7 +111,7 @@ export const NavBar = () => {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/about" style={{ textDecoration: "none" }}>
+                <Link to="/contact" style={{ textDecoration: "none" }}>
                   <Button textalign="center">Nosotros</Button>
                 </Link>
               </MenuItem>
@@ -150,7 +150,7 @@ export const NavBar = () => {
                 Productos
               </Button>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/about">
+            <Link style={{ textDecoration: "none" }} to="/contact">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
@@ -158,7 +158,7 @@ export const NavBar = () => {
                 Nosotros
               </Button>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/contact">
+            <Link style={{ textDecoration: "none" }} to="/contactForm">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
