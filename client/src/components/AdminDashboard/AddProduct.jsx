@@ -34,14 +34,15 @@ export const AddProduct = () => {
  
   function handleSubmit(e){
     if(!input.category || input.year <= 0 || input.price <= 0){
+      e.preventDefault()
       swal({
         title: "Error",
         text: 'Falta completar correctamente el formulario',
         icon: "error",
         button: "Aceptar",
       });
-      e.preventDefault()
-    }else{
+    }
+    else{
       e.preventDefault();
       dispatch(postWine(input))
 
@@ -72,7 +73,6 @@ export const AddProduct = () => {
       category: e.target.value
     });
   }
-
 
   function handleOnChange(e) {
     setInput((state) => {
