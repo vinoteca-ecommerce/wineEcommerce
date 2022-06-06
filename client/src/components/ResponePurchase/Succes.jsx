@@ -20,20 +20,25 @@ export function Succes() {
   };
 
   useEffect(() => {
+    if(status === "pending" ||status === "approved"){
+      console.log(status)
     dispatch(putPurchase(idPurchase, data));
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
     localStorage.removeItem("ShoppingCar");
+  }
+
   }, []);
 
   return (
     <div className={Style.hache1}>
       {status === "pending" ? (
         <h1> Estamos esperando tu pago</h1>
-      ) : status === "rejected" ? (
-        <h1> Compra cancelada, intenta nuevamente </h1>
-      ) : (
+      ) : status === "approved" ? (
+        
         <h1>Muchas gracias por tu compra</h1>
+      ) : (
+        <h1> Compra cancelada, intenta nuevamente <Link to = "/shoppingCar"> <button>Volver al Carrito</button></Link> </h1>
       )}
       <Link to="/">
         {" "}
