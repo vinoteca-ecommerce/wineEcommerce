@@ -72,6 +72,14 @@
     color: #ffffff;
    }
 
+   .svgIconFav{
+    border: 1px solid #7f0000;
+    background-color: #7f0000;
+    color: #ffffff;
+   }
+
+
+
    .cardInfo:hover{
        cursor: pointer;
    }

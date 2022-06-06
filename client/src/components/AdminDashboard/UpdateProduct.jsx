@@ -13,17 +13,32 @@ export const UpdateProduct = () => {
   const category = useSelector((state) => state.categories);
   const [ error, setError ] = useState({})
   const [ input, setInput ] = useState({
-    name:'',
-    year:'',
-    description:'',
-    img:'',
-    category: '',
-    price: "",
-    country: "",
-    strain: '',
-    producer:'',
-    stock: ''
+    name:wine?.name,
+    year:wine?.year,
+    description:wine?.description,
+    img:wine?.img,
+    category: wine?.category,
+    price: wine?.price,
+    country: wine?.country,
+    strain: wine?.strain,
+    producer:wine?.producer,
+    stock: wine?.stock
   });
+
+  useEffect(()=>{
+    setInput({
+      name:wine?.name,
+      year:wine?.year,
+      description:wine?.description,
+      img:wine?.img,
+      category: wine?.category,
+      price: wine?.price,
+      country: wine?.country,
+      strain: wine?.strain,
+      producer:wine?.producer,
+      stock: wine?.stock
+    });
+  },[wine])
   
   useEffect(() => {
     dispatch(getCategories());
@@ -32,15 +47,16 @@ export const UpdateProduct = () => {
  
   function handleSubmit(e){
     if(!input.category || input.year <= 0 || input.price <= 0){
+      e.preventDefault()
       swal({
         title: "Error",
         text: 'Falta completar correctamente el formulario',
         icon: "error",
         button: "Aceptar",
       });
+    }
+    else{
       e.preventDefault()
-    }else{
-  
       dispatch(updateProduct(id, input))
       swal({
         title: "Vino Modificado",
@@ -235,8 +251,8 @@ export const UpdateProduct = () => {
           </div>
         <div>
               <label style={{marginTop:'2em'}}> Categoria: </label>
-              <select style={{marginTop:'2em'}} placeholder={wine.category} onChange={e=>handleSelect(e)} >
-                <option> Selecciona una categoria </option>
+              <select style={{marginTop:'2em'}}  defaultValue={input.category} onChange={e=>handleSelect(e)} >
+
 
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
