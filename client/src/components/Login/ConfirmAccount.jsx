@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import authService from '../services/auth-service';
 import { useLocation } from 'react-router';
 
+//Styles
+import Style from "./ConfirmAccount.module.css"
 
 function ConfirmAccount() {
 
@@ -21,10 +23,12 @@ function ConfirmAccount() {
       }
     }
   return (
-    <div>Tu cuenta a sido verificada correctamente!
+    <div className={Style.backg}>
+    <h2 className={Style.spacing}>Tu cuenta ha sido verificada correctamente!</h2>
+    <h3 className={Style.p}> Ahora puedes disfrutar todas las funcionalidades de nuestra pagina</h3>
 
 
-    <Link to='/'>Home</Link>
+    <Link to='/'><button className={Style.buttom}>Home</button></Link>
 
 
     </div>
