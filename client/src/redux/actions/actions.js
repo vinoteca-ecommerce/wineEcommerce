@@ -323,7 +323,6 @@ export const sendPurchaseEmail=()=>{
   return async function(dispatch){
     return axios.get('http://localhost:8000/purchase/email',{headers: authHeader()})
       .then(response=>{
-        console.log(response)
         dispatch({type:PURCHASE_EMAIL})
       })
   }

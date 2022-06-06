@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { deleteCart, putPurchase ,sendPurchaseEmail} from "../../redux/actions/actions";
+import { deleteCart, getWinesById, putPurchase ,sendPurchaseEmail} from "../../redux/actions/actions";
 
 //styles
 import Style from "./Success.module.css";
@@ -13,6 +13,7 @@ export function Succes() {
   const payment_id = new URLSearchParams(search).get("payment_id");
   const status = new URLSearchParams(search).get("status");
   let idPurchase = JSON.parse(localStorage.getItem("idPurchase"));
+  const wine = useSelector((state)=> state.wines)
 
   const data = {
     payment_id: payment_id,
@@ -25,9 +26,12 @@ export function Succes() {
   }
   useEffect(() => {
     if(status === "pending" ||status === "approved"){
-      console.log(status)
     
+      let store = JSON.parse(localStorage.getItem('ShoppingCar'));
+      console.log(store)
+
     dispatch(putPurchase(idPurchase, data));
+
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
     localStorage.removeItem("ShoppingCar");

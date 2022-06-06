@@ -18,6 +18,10 @@ export const ShoppingCar = () => {
     const wine = useSelector((state)=> state.wines)
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
 
+    if(shoppingcar.length===0){
+        dispatch(setShoppingCar([]))
+    }
+
     useEffect(()=>{
         const user= authService.getCurrentUser();
         if(user){
