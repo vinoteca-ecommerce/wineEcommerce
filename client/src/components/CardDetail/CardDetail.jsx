@@ -24,6 +24,14 @@ export const CardDetail = () => {
     if(operation === 'sub'){
       if(cont > 1) setCont(cont-1)
     }
+    if(cont >= wines.stock){
+      return  swal({
+       title: "Fuera de stock",
+       text: `No hay mas stock`,
+       icon: "error",
+       button: "Aceptar",
+     });
+     }
     else setCont(cont+1)
   }
 
@@ -35,7 +43,7 @@ export const CardDetail = () => {
     let state = JSON.parse(localStorage.getItem('ShoppingCar'));
     let sum = 0;
     let index = undefined;
-
+    console.log(wines.stock)
     if(state){
       for(let i=0 ; i<state?.length ; i++){
         if(state[i].id === id){
@@ -43,7 +51,7 @@ export const CardDetail = () => {
           index = i; 
         }
       }
-
+      
       if(sum > wines.stock){
         return  swal({
          title: "Fuera de stock",
