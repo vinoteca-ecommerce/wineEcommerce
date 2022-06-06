@@ -50,6 +50,7 @@ import { PurchaseDetail } from './components/AdminDashboard/PurchaseDetail'
 function App() {
   return (
     <div className="App">
+      <div className='BodyDemo'>
       <NavBar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -131,8 +132,9 @@ function App() {
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>
         <Route path='/userFavorites' element={<UserFavorites/>}/>
-      </Routes>
-      <Footer/>
+      </Routes></div>
+      <div className='FooterDemo'><Footer/></div>
+      
     </div>
   );
 }
