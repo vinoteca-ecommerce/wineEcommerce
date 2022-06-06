@@ -58,7 +58,7 @@ function App() {
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
         <Route path='/about' element={<Aboutus/>}/>
-        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/contact' element={<ContactForm/>}/>
         <Route path='/confirmmail' element={<AfterRegister/>}/>
 
         <Route path='/success' element={<Succes/>}/>
@@ -130,7 +130,6 @@ function App() {
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>
-        {/* <Route path='/userHelp' element={<UserHelp/>}/> */}
         <Route path='/userFavorites' element={<UserFavorites/>}/>
       </Routes>
       <Footer/>

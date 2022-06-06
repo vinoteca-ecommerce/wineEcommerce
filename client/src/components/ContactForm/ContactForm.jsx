@@ -1,10 +1,12 @@
 
 import React, {useRef, useState} from 'react'
 import styles from '../ContactForm/ContactForm.module.css'
+// import { useForm } from 'react-hook-form'
 import emailjs from 'emailjs-com'
 
 
 export const ContactForm = () => {
+  
 const form = useRef();
  const [done, setDone] = useState(false);
 
@@ -27,6 +29,12 @@ emailjs.sendForm(
   );
   e.target.reset()
 }
+//  const {
+//    register,
+//    formState: { errors },
+//    handleSubmit,
+//  } = useForm();
+//  const onSubmit = (data) => console.log(data);
 
   return (
     <div className={styles.body}>
@@ -111,15 +119,19 @@ emailjs.sendForm(
             ></textarea>
           </div>
           <div class="submit">
+            <div></div>
             <input
               className={styles.form_button}
               type="submit"
               value="Enviar"
               id="form_button"
-            /> 
-            {done && <h3 className={styles.h3}>Gracias, te responderemos a la brevedad!</h3>}
+            />
+            {done && (
+              <h3 className={styles.h3}>
+                Gracias, te responderemos a la brevedad!
+              </h3>
+            )}
           </div>
-         
         </form>
         {/* <!-- // End form --> */}
       </div>
