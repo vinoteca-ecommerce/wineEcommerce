@@ -1,0 +1,27 @@
+.backg{
+    display: flex;
+    flex-direction: column;    
+    text-align: center;
+}
+.buttom{
+    padding: 0.5rem;
+    background-color: rgba(45,21,21,255);
+    color: rgba(245, 245, 220, 0.76);
+    border: 2px solid rgba(245, 245, 220, 0.76);
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    margin-top: 5.15%;
+}
+.buttom:hover{
+    background-color: rgba(245, 245, 220, 0.76);
+    color:rgba(45,21,21,255);
+}
+.spacing{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: xx-large;
+}
+.p{
+    padding-bottom: 7.5%;
+    font-size: x-large;
+}
