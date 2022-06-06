@@ -110,7 +110,7 @@ const rootReducer = (state = initialState, action) => {
     case ADD_LOCAL_STORAGE:
       let sum = 1;
       let shoppingcarAdd = [...state.shoppingcar];
-
+      
       for (let i = 0; i < state.shoppingcar?.length; i++) {
         if (state.shoppingcar[i].id === action.payload) {
           if (state.shoppingcar[i].cont >= 1) {
