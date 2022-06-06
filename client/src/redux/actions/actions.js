@@ -317,3 +317,12 @@ export const userUpdateRole = (id, data)=>{
     }).catch(err => console.log(err))
   }
 }
+
+// export const postUserAddress = (data) => {
+//   return async function(dispatch){
+//     return axios.post(`http://localhost:8000/useraddress/${id}`,data,{ headers: authHeader()  } )
+//     .then(response => { 
+//       console.log(response.data)
+//       dispatch({type: POST_USER_ADDRESS, payload: response.data})
+      
+//     })

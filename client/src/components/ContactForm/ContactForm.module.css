@@ -16,7 +16,7 @@
 }
 
 .form button, .input, .select, .textarea {
-  color: #5A5A5A;
+  color:  #616161;
   font: inherit;
   margin: 0;
 }
@@ -31,7 +31,7 @@
 
 .container {
  background: #F2F3EB;
-  border: solid 3px #474544;
+  border: solid 3px #7f0000;
   max-width: 768px;
   margin: 60px auto;
   position: relative;
@@ -43,7 +43,7 @@
 }
 
 .h1 {
-  color: #474544;
+  color: #7f0000;
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 7px;
@@ -53,7 +53,7 @@
 
 .h3 {
   padding: 20px 35px;
-  color: #474544;
+  color: #7f0000;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 5px;
@@ -62,7 +62,7 @@
 }
 
 .underline {
-  border-bottom: solid 2px #474544;
+  border-bottom: solid 2px #7f0000;
   margin: -0.515em auto;
   width: 350px;
 }
@@ -74,7 +74,7 @@
 
 .icon {
   display: block;
-  fill: #474544;
+  
   height: 50px;
   margin: 0 auto;
   width: 50px;
@@ -88,8 +88,8 @@
 .input[type='text'], [type='email'], .select, .textarea {
 	background: none;
   border: none;
-	border-bottom: solid 2px #474544;
-	color: #474544;
+	border-bottom: solid 2px #7f0000;
+	color: #616161;
 	font-size: 1.000em;
   font-weight: 400;
   letter-spacing: 1px;
@@ -121,6 +121,7 @@
 .name {
 	float: left;
 	width: 45%;
+ 
 }
 
 .select {
@@ -150,27 +151,27 @@
 }
 
 ::-webkit-input-placeholder {
-	color: #474544;
+	color: #616161;
 }
 
-:-moz-placeholder { 
-	color: #474544;
+/* :-moz-placeholder { 
+	color: #616161;
 	opacity: 1;
 }
 
 ::-moz-placeholder {
-	color: #474544;
+	color:#616161;
 	opacity: 1;
 }
 
 :-ms-input-placeholder {
-	color: #474544;
-}
+	color: #616161;
+} */
 
 .form_button {
   background: none;
-  border: solid 2px #474544;
-  color: #474544;
+  border: solid 2px #7f0000;
+  color: #7f0000;
   cursor: pointer;
   display: inline-block;
   font-family: 'Helvetica', Arial, sans-serif;
@@ -187,7 +188,7 @@
 }
 
 .form_button:hover {
-  background: #474544;
+  background: #7f0000;
   color: #F2F3EB;
 }
 
