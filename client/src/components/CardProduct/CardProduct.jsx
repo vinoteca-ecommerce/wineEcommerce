@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFavorites, allFavs, deleteFav } from '../../redux/actions/actions';
 import swal from 'sweetalert';
 
-export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country}) => {
+export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country, stock}) => {
     const dispatch = useDispatch();
     let store = JSON.parse(localStorage.getItem('user'))
     // console.log(store.user.favorites)
@@ -88,7 +88,17 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
               index = i; 
             }
           }
-    
+          
+         
+        if(sum > stock){
+         return  swal({
+          title: "Fuera de stock",
+          text: `${name} No hay mas stock`,
+          icon: "error",
+          button: "Aceptar",
+        });
+        }
+       
           if(sum) state?.push({id,cont:sum,name,price,img,category});
           else state?.push({id,cont:1,name,price,img,category});
     
