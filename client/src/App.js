@@ -129,6 +129,7 @@ function App() {
         <Route path='/userorders/rejected' element={<UserOrdersRejected/>}/>
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
+        <Route path='/contact' element={<Contact/>}/>
         <Route path='/contactForm' element={<ContactForm/>}/>
         <Route path='/userFavorites' element={<UserFavorites/>}/>
       </Routes>
