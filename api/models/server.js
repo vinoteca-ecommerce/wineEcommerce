@@ -15,7 +15,7 @@ class Server{
             users: '/users',
             auth: '/auth',
             purchase: '/purchase',
-            adress: '/adress'
+            address: '/address'
         }
 
 
@@ -47,7 +47,7 @@ class Server{
         this.app.use(this.path.products, require('../routes/products'));
         this.app.use(this.path.users, require('../routes/users'));
         this.app.use(this.path.purchase, require('../routes/purchase'));
-        this.app.use(this.path.adress, require('../routes/adress'));
+        this.app.use(this.path.address, require('../routes/address'));
 
     }
     
