@@ -24,5 +24,28 @@ const sendConfirmationEmail= async(user,token)=>{
   }).then(()=>user)
 }
 
+const purchaseEmail=(user)=>{
+  const transport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "6f168f09064529",   
+      pass: "c3117350e386e4"
+    }
+  });
+  return transport.sendMail({
+    from:'vinotecahenry@gmail.com',
+    to:user.email,
+    subject:"Confirmacion de compra",
+    html:`<p>Muchas gracias por tu compra! tu pedido a sido recibido por nuestro equipo y sera enviado en la brevedad.</p>`
+}).then(()=>user)
 
-module.exports={sendConfirmationEmail}
+}
+
+
+
+
+
+module.exports={
+  sendConfirmationEmail,
+  purchaseEmail}

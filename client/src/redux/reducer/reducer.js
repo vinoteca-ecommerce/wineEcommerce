@@ -29,6 +29,7 @@ import {
   DELETE_CART,
   GET_PURCHASE_ID,
   UPDATE_USER,
+  PURCHASE_EMAIL
   // POST_USER_ADDRESS
 } from "../actions/actions";
 
@@ -252,7 +253,11 @@ const rootReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return{
         ...state
-      } 
+      }
+    case PURCHASE_EMAIL:
+      return{
+        ...state
+      }  
       
     default:
       return { ...state };

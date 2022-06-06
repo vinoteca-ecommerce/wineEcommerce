@@ -35,6 +35,7 @@ export const PUT_PURCHASE ='PUT_PURCHASE';
 export const DELETE_CART = 'DELETE_CART';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_PURCHASE_ID = 'GET_PURCHASE_ID';
+export const PURCHASE_EMAIL='PURCHASE_EMAIL';
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -315,6 +316,16 @@ export const userUpdateRole = (id, data)=>{
     .then(response =>{
       dispatch({type: UPDATE_USER, payload: response.data})
     }).catch(err => console.log(err))
+  }
+}
+
+export const sendPurchaseEmail=()=>{
+  return async function(dispatch){
+    return axios.get('http://localhost:8000/purchase/email',{headers: authHeader()})
+      .then(response=>{
+        console.log(response)
+        dispatch({type:PURCHASE_EMAIL})
+      })
   }
 }
 
