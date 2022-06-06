@@ -1,11 +1,11 @@
 const { Schema, model } = require("mongoose");
 
-const AdressSchema = Schema({
+const AddressSchema = Schema({
   name: {
     type: String,
     require: true
   },
-  adress: {
+  address: {
     type: String,
     require: true
   },
@@ -35,9 +35,9 @@ const AdressSchema = Schema({
   }
 });
 
-AdressSchema.methods.toJSON = function () {
+AddressSchema.methods.toJSON = function () {
   const { ...data } = this.toObject();
   return data;
 };
 
-module.exports = model("Adress", AdressSchema);
+module.exports = model("Address", AddressSchema);

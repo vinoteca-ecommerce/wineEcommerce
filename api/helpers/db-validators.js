@@ -1,5 +1,5 @@
 
-const { Category, User, Role, Product, Purchase } = require("../models");
+const { Category, User, Role, Product, Purchase, Address } = require("../models");
 
 
 
@@ -54,6 +54,14 @@ const purchaseValidator = async (id='') =>{
     }
 }
  
+const addressValidator = async (id='')=>{
+
+    const addressExist = await Address.findById(id);
+    
+    if(!addressExist){
+        throw new Error (`The Adress : ${id} doesnt exist`)
+    }
+}
 
 module.exports = {
     rolValidator, 
@@ -61,5 +69,6 @@ module.exports = {
     userExistById,
     emailExist,
     productIdValidator,
-    purchaseValidator
+    purchaseValidator,
+    addressValidator
 }

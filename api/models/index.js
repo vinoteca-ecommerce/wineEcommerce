@@ -4,7 +4,7 @@ const Role = require('./role');
 const Server = require('./server');
 const User = require('./user')
 const Purchase = require('./purchase')
-const Adress = require('./adress')
+const Address = require('./address')
 
 module.exports = {
     Category,
@@ -13,5 +13,5 @@ module.exports = {
     Server,
     User,
     Purchase,
-    Adress
+    Address
 }
