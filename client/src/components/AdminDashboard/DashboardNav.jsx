@@ -12,8 +12,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import authService from '../services/auth-service';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -54,11 +54,11 @@ const  DashboardNav = () => {
     <AppBar position="sticky" sx={{background:' rgba(45,21,21,255)'}}>
     <Container maxWidth="xl">
       <Toolbar disableGutters>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <Typography
           variant="h6"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 5,
             display: { xs: 'none', md: 'flex' },
@@ -72,6 +72,7 @@ const  DashboardNav = () => {
         >
          VINOTECA
         </Typography>
+        </Link>
 
         <Box sx={{flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
@@ -102,24 +103,32 @@ const  DashboardNav = () => {
             }}
           >
               <MenuItem >
-                <Button href='/admin' textalign="center">Productos</Button>
+                <Link to="/admin" style={{ textDecoration: "none" }}>
+                  <Button textalign="center">Productos</Button>
+                </Link>
               </MenuItem>
               <MenuItem >
-                <Button href='/admin/purchase' textalign="center">Compras</Button>
+                <Link to="/admin/purchase" style={{ textDecoration: "none" }}>
+                  <Button textalign="center">Compras</Button>
+                </Link>
               </MenuItem>
               <MenuItem >
-                <Button href='/admin/users' textalign="center">Usuarios</Button>
+                <Link to="/admin/users" style={{ textDecoration: "none" }}>
+                  <Button textalign="center">Usuarios</Button>
+                </Link>
               </MenuItem>
               <MenuItem >
-                <Button href='/admin/post' textalign="center">Agregar Vinos</Button>
+                <Link to="/admin/post" style={{ textDecoration: "none" }}>
+                  <Button textalign="center">Agregar Vinos</Button>
+                </Link>
               </MenuItem>
           </Menu>
         </Box>
+        <Link to="/" style={{ textDecoration: "none" }}>
         <Typography
           variant="h5"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 2,
             display: { xs: 'flex', md: 'none' },
@@ -133,41 +142,47 @@ const  DashboardNav = () => {
         >
           VINOTECA
         </Typography>
+        </Link>
+
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Link to="/admin" style={{ textDecoration: "none" }}>
             <Button
-              href='/admin'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
              Productos
             </Button>
+          </Link>
+          <Link to="/admin/purchase" style={{ textDecoration: "none" }}>
             <Button
-              href='/admin/purchase'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
              Compras
             </Button>
+            </Link>
+            <Link to="/admin/users" style={{ textDecoration: "none" }}>
             <Button
-              href='/admin/users'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
              Usuarios
             </Button>
+            </Link>
+            <Link to="/admin/post" style={{ textDecoration: "none" }}>
             <Button
-              href='/admin/post'
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'rgba(245, 245, 220, 0.76)', display: 'block'}}
             >
              Agregar vinos
             </Button>
+            </Link>
         </Box>
           {currentUser?(
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar src={currentUser?.user?.img || "/broken-image.jpg"} />
             </IconButton>
           </Tooltip>
           <Menu
@@ -186,14 +201,12 @@ const  DashboardNav = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-              <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center"  component="a" href='/userProfile'>Perfil</Typography>
-              </MenuItem>
-              <MenuItem  onClick={handleCloseUserMenu}>
-                <Typography textalign="center" textDecoration='none' component="a" href='/admin/'>DashBoard</Typography>
-              </MenuItem>
               <MenuItem >
-              <Typography textaling='center' onClick={logOut}> Logout</Typography>
+              <Typography sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }} onClick={logOut}> Logout <LogoutIcon sx={{ ml: "5px" }} /></Typography>
               </MenuItem>
           </Menu>
         </Box>
