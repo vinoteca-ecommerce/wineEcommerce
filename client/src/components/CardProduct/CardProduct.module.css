@@ -56,6 +56,8 @@
     cursor: pointer;
     border-radius: 50px;
     transition: .3s ease-in-out;
+    background-color: white;
+    color: black;
    }
    
    /*Hover*/
@@ -67,10 +69,24 @@
    .cardButton:hover {
     /*border: 1px solid #ffcaa6;
     background-color: #ffcaa6;*/
+
     border: 1px solid #7f0000;
     background-color: #7f0000;
     color: #ffffff;
    }
+
+   
+   .cardButtonFav{
+    border: 1px solid #252525;
+    display: flex;
+    padding: .3em;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 1px solid #7f0000;
+    background-color: #7f0000;
+    color: #ffffff;
+   }
+
 
    .svgIconFav{
     border: 1px solid #7f0000;
