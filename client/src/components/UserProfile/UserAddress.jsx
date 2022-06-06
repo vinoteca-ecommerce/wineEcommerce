@@ -11,11 +11,12 @@ export const UserAddress = () => {
 
       <div className={styles.card}>
         <div className={styles.cardDetails}>
-          <p className={styles.textTitle}>Card title</p>
+          <p className={styles.textTitle}>Direccion envio</p>
+          <p className={styles.textBody}>Av. Siempre viva 787</p>
           <p className={styles.textBody}>Here are the details of the card</p>
         </div>
         <NavLink to="/userAddressForm">
-        <button className={styles.cardButton}>Editar direccion</button> 
+          <button className={styles.cardButton}>Editar direccion</button>
         </NavLink>
       </div>
     </div>
