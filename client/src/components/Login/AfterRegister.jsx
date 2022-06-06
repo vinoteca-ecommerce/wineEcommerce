@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import style from './AfterRegister.module.css';
 
 function AfterRegister() {
   return (
-    <div>
-
-    <span>Chequea tu correo para verificar tu cuenta</span>
+    <div className={style.container1}>
+      <div className={style.textcontainer}>
+      <h1>Gracias por registrarte!</h1>
+      <p>Por favor chequea tu correo para verificar tu cuenta</p>
+      </div>
 
     </div>
   )
