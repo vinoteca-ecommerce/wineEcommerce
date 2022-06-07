@@ -330,32 +330,24 @@ export const userUpdateRole = (id, data)=>{
 
 //--User Address GET,POST, PUT--//
 
-export const getUserAddress = (id)=>{
+export const getUserAddress = ()=>{
   return async function(dispatch){
-    return axios.get(`http://localhost:8000/address/${id}`, {headers: authHeader()})
+    return axios.get(`http://localhost:8000/address`, {headers: authHeader()})
       .then(response=>{
         dispatch({type: GET_USER_ADDRESS, payload: response.data})
       }).catch(err => console.log(err))
   }
 }
+
 export const postUserAddress = (data) => {
   return async function(dispatch){
-    return axios.post('http://localhost:8000/address', data, { headers: authHeader()  })
+    return axios.post('http://localhost:8000/address', data, { headers: authHeader() })
     .then(response => { 
       console.log(response.data)
       dispatch({type: POST_USER_ADDRESS, payload: response.data})  
     }).catch(err => console.log(err))
   }
 }
-// export const postUserAddress = (data) => {
-//   return async function(dispatch){
-//     return axios.post(`http://localhost:8000/useraddress/${id}`,data,{ headers: authHeader()  } )
-//     .then(response => { 
-//       console.log(response.data)
-//       dispatch({type: POST_USER_ADDRESS, payload: response.data})
-      
-//     })
-
 
 export const updateUserAddress = (id, data)=>{
   return async function(dispatch){
