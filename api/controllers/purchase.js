@@ -78,7 +78,7 @@ const getPurchaseId = async (req, res=response) => {
 
 const confirmationEmail=(req,res)=>{
    purchaseEmail(req.user)
-  console.log('ejecutando')
+ 
    res.json({msg:'Mail enviado correctamente.'})
 }
 

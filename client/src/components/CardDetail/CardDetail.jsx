@@ -8,6 +8,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import swal from 'sweetalert';
+import { FeedbackCard } from '../Feedback Card/FeedbackCard';
 
 export const CardDetail = () => {
 
@@ -110,7 +111,13 @@ export const CardDetail = () => {
           <div className={style.btn}>
           <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category,wines.stock)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
           </div>
-          
+          {wines?.comment.map(e=>(
+            <FeedbackCard
+            comment={e.comment}
+            mail={e.email}
+            name={e.name}
+            />
+          ))}    
         </div>
       </div>
       }
