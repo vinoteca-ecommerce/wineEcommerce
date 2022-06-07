@@ -20,7 +20,6 @@ export default function UserFavorites(){
     const dispatch = useDispatch()
     
     useEffect(()=>{
-        
         store && store.user && dispatch(allFavs(store.user.uid))
     },[dispatch])
 
