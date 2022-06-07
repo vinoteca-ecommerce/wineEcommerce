@@ -30,12 +30,11 @@ import {
   GET_PURCHASE_ID,
   UPDATE_USER,
 
-  POST_USER_ADDRESS,
-  GET_USER_ADDRESS,
-  UPDATE_USER_ADDRESS,
-
-  PURCHASE_EMAIL,
-  PUT_COMMENT
+ POST_USER_ADDRESS,
+ GET_USER_ADDRESS,
+ UPDATE_USER_ADDRESS,
+ PUT_COMMENT,
+ PURCHASE_EMAIL
  
 
 } from "../actions/actions";
@@ -56,7 +55,6 @@ const initialState = {
   orders: [],
   linkmp: "",
   idPurchase: "",
-  userAddress: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -225,7 +223,8 @@ const rootReducer = (state = initialState, action) => {
       for(let i=0; i<state.favorites.length; i++){
         arr.push(state.favorites[i]._id) 
       }
-      localStorage.setItem('favorites', JSON.stringify(arr));
+      if(arr.length !== 0) localStorage.setItem('favorites', JSON.stringify(arr));
+
       return {
         ...state,
         favorites: action.payload,
@@ -276,6 +275,7 @@ const rootReducer = (state = initialState, action) => {
         ...state
       }  
       
+
     case GET_USER_ADDRESS:
       return {
         ...state,
@@ -296,7 +296,7 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
-      
+
     default:
       return { ...state };
   }
