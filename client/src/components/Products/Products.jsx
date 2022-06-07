@@ -71,12 +71,11 @@ export const Products = () => {
 
   return (
     <div>
-        {(Object.keys(wines).length === 0 || store?.user) && localStorage.getItem('favorites')?.length===0 ? <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
+        {Object.keys(wines).length === 0 ? <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
+        :store?.user && localStorage.getItem('favorites')?.length===0 ? <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
         : <div className={style.mainContainer}>
             <div className={style.title}>
-            
                 <span></span>
-                
             </div>
 
             <div className={style.filtersCard}>
