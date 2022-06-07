@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 
-import { deleteCart, getOrders,getPurchase, getWinesById, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
+import { deleteCart, getOrders, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
 
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -31,6 +31,7 @@ export function Succes() {
   let store = JSON.parse(localStorage.getItem('user'))
   // console.log(store.user.name.split(" ").slice(0,1))
   // console.log(store.user.uid)
+  const navigate = useNavigate()
  let totalCost=0;
   const data = {
     payment_id: payment_id,
@@ -40,12 +41,12 @@ export function Succes() {
   useEffect(()=>{
     dispatch(getOrders())
   },[dispatch])
-  console.log(STATEorders)
+  
   const email=()=>{
     dispatch(sendPurchaseEmail());
-
+    navigate('/userOrders/approved');
   }
-  console.log(STATEorders[STATEorders.length-1])
+  
   useEffect(() => {
     if(status === "pending" ||status === "approved"){
     
@@ -59,7 +60,7 @@ export function Succes() {
       })
 
 
-      console.log(stockUpdated)
+      
     dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
     // console.log(data)
@@ -94,7 +95,7 @@ export function Succes() {
           <Link to="/">
           <button className={Style.buttom}>Inicio</button>
           </Link>
-          <button className={Style.buttom} onClick={email()}>Enviar Email de confirmacion</button>
+          <button className={Style.buttom} onClick={email}>Enviar Email de confirmacion</button>
           </h2>
         
       </div>

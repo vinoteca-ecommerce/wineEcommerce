@@ -56,7 +56,7 @@ const ProductSchema = Schema({
   },
   comment: {
     type: Array,
-    default:'Este vino aun no tiene comentarios'
+    default:[{comment: 'Este vino aun no tiene comentarios'}]
   }
 });
 

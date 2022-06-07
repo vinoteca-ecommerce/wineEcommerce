@@ -9,21 +9,24 @@ import swal from 'sweetalert';
 export function UserOrdersApprovedId() {
 const { id } = useParams();
 const [comment, setComment] = useState({email:"",
+                                        name: '',            
                                         comment:"" });
 const dispatch = useDispatch();
 const wine = useSelector(state => state.wines);
-
 const user = JSON.parse(localStorage.getItem('user'))
-
 const email = user.user.email
-
+const name = user.user.name
 useEffect(() => {
     dispatch(getWinesById(id))
 }, []);
 
+
+   
+
 function handleChange(e){
 setComment({email: email,
-          comment: e.target.value})
+            name: name,
+            comment: e.target.value})
  
 }
 
