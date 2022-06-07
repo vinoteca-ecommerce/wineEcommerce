@@ -1,11 +1,27 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from '../UserProfile/UserAddressForm.module.css'
 import { useForm } from 'react-hook-form'
-
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  getUserAddress,
+  postUserAddress,
+  updateUserAddress,
+} from '../../redux/actions/actions'
 
 export const UserAddressForm = () => {
   const {register, formState:{errors}, handleSubmit} = useForm()
   const onSubmit = (data) => console.log(data)
+ const dispatch = useDispatch()
+ const [validator, setValidator] = useState('')
+ const {_id} = useParams()
+ const userAddress = useSelector((state) => state.userAddress)
+ const [updated, setUpdated] = useState(false)
+
+ useEffect (() =>{
+   dispatch(getUserAddress());
+ },[dispatch])
+
   return (
     <div className={styles.body}>
       <div className={styles.container}>

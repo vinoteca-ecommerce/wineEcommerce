@@ -1,8 +1,15 @@
 import React from 'react'
 import styles from '../UserProfile/UserAddress.module.css'
 import { NavLink } from "react-router-dom";
-export const UserAddress = () => {
-  
+export const UserAddress = ({
+  user,
+  name,
+  address,
+  city,
+  province,
+  phone_number,
+  notes,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.dirTitle}>
@@ -11,14 +18,18 @@ export const UserAddress = () => {
 
       <div className={styles.card}>
         <div className={styles.cardDetails}>
-          <p className={styles.textTitle}>Direccion envio</p>
-          <p className={styles.textBody}>Av. Siempre viva 787</p>
-          <p className={styles.textBody}>Here are the details of the card</p>
+          <p className={styles.textTitle}>Nombre: {name}</p>
+          <p className={styles.textBody}>Direccion: {address}</p>
+          <p className={styles.textBody}>Ciudad: {city}</p>
+          <p className={styles.textBody}>Provincia: {province}</p>
+          <p className={styles.textBody}>Telefono: {phone_number}</p>
+          <p className={styles.textBody}>Notas: {notes}</p>
         </div>
-        <NavLink to="/userAddressForm">
+        {/* <NavLink to={`/userAddressForm/${user}`}> */}
+        <NavLink to={`/userAddressForm/`}>
           <button className={styles.cardButton}>Editar direccion</button>
         </NavLink>
       </div>
     </div>
-  );  
-}
+  );
+};
