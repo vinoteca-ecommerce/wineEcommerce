@@ -3,12 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
-import { deleteCart, getPurchase, getWinesById, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
+
+import { deleteCart, getOrders,getPurchase, getWinesById, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
+
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TableFooter from '@mui/material/TableFooter'
 
 //styles
 import Style from "./Success.module.css";
@@ -22,19 +30,22 @@ export function Succes() {
   // const wine = useSelector((state)=> state.wines)
   let store = JSON.parse(localStorage.getItem('user'))
   // console.log(store.user.name.split(" ").slice(0,1))
+  // console.log(store.user.uid)
+ let totalCost=0;
   const data = {
     payment_id: payment_id,
     status: status,
   };
-  // useEffect(()=>{
-  //   dispatch(getPurchase())
-  // },[dispatch])
-  // let STATEpurchase= useSelector(state=>state.purchase)
-  // console.log(STATEpurchase)
+  let STATEorders= useSelector(state=>state.orders)
+  useEffect(()=>{
+    dispatch(getOrders())
+  },[dispatch])
+  console.log(STATEorders)
   const email=()=>{
     dispatch(sendPurchaseEmail());
 
   }
+  console.log(STATEorders[STATEorders.length-1])
   useEffect(() => {
     if(status === "pending" ||status === "approved"){
     
@@ -47,16 +58,17 @@ export function Succes() {
         }
       })
 
+
       console.log(stockUpdated)
     dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
-    console.log(data)
+    // console.log(data)
 
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
     // localStorage.removeItem("ShoppingCar");
   }
-
+  // 
   }, []);
 
   return (
@@ -103,6 +115,36 @@ export function Succes() {
         </h2>
       </div>)}
 
+
+      <TableContainer component={Paper}>
+        <h2 className={Style.details}>Detalle de la compra</h2>
+      <Table >
+        <TableHead>
+        <TableRow>
+          <TableCell>Nombre</TableCell>
+          <TableCell>Producto</TableCell>
+          <TableCell>Cantidad</TableCell>
+          <TableCell>Precio</TableCell>
+        </TableRow>
+        </TableHead>
+        <TableBody>
+        {STATEorders[STATEorders.length-1]?.cart?.map(ord=>{
+        totalCost=totalCost+ (ord.quantity* ord.unit_price);
+        return(<TableRow key={ord.picture_url}>
+          <TableCell>{ord.title}</TableCell>
+          <TableCell><img className={Style.cardImg} src={ord.picture_url} alt=""/></TableCell>
+          <TableCell>{ord.quantity}</TableCell>
+          <TableCell><div>${ord.unit_price}</div><div>subtotal: ${ord.quantity* ord.unit_price}</div></TableCell>
+            </TableRow>)
+        })}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell>Total: ${totalCost}</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
+      </TableContainer>
     </div>
   );
 }
