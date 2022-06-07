@@ -5,9 +5,11 @@ import Button from '@mui/material/Button';
 import { postMP, postPurchase } from '../../redux/actions/actions';
 import { Link } from "react-router-dom";
 import authService from '../services/auth-service'
+import { useNavigate } from "react-router-dom"
 
 export const ShoppingCarTotal = () => {
 
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const shoppingcar = useSelector((state) => state.shoppingcar);
   //const linkmp = useSelector((state) => state.linkmp);
@@ -61,6 +63,8 @@ export const ShoppingCarTotal = () => {
         success:"/success"
       }
     });
+    navigate("../confirm", { replace: true });
+  
   }
 
   return (
@@ -69,7 +73,7 @@ export const ShoppingCarTotal = () => {
         <p><h5>SubTotal: </h5><h6>${subtotal}.00</h6></p>
         <p><h5>Total: </h5><h6>${total}.00</h6></p>
         {currentUser !== undefined && total > 0 && subtotal > 0?
-        <Link to ='/confirm' style={{textDecoration:'none', color:'black'}}><Button onClick={handleClick} fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button></Link>
+       <Button onClick={handleClick} fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button>
         :<Button disabled fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button>}
     </div>
   )
