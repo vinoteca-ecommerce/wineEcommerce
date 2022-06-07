@@ -3,6 +3,14 @@
     padding-bottom: 5%;
     text-align: center;
 }
+.cardImg{
+    height: 10rem;
+    width: auto;
+    border-radius: .5rem;
+}
+.details{
+    text-align: center;
+}
 .buttom{
     margin-top: 5%;
     padding: 0.75rem;
