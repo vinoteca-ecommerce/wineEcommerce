@@ -4,21 +4,26 @@ import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage, setShoppingCar, getShoppingCar } from '../../redux/actions/actions';
+import { setLocalStorage, addLocalStorage, subLocalStorage, deleteLocalStorage, setShoppingCar, getShoppingCar, getWinesById } from '../../redux/actions/actions';
 import style from './ShoppingCar.module.css';
 import { ShoppingCarTotal } from '../ShoppingCarTotal/ShoppingCarTotal';
 import authService from '../services/auth-service';
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
     const shoppingcar = useSelector((state) => state.shoppingcar);
-
+    const wine = useSelector((state)=> state.wines)
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
+
+    if(shoppingcar.length===0){
+        dispatch(setShoppingCar([]))
+    }
 
     useEffect(()=>{
         const user= authService.getCurrentUser();
-
         if(user){
             if(store !== null && store?.length !== 0) dispatch(setShoppingCar(store))
             dispatch(getShoppingCar());
@@ -31,14 +36,27 @@ export const ShoppingCar = () => {
 
     },[dispatch])
 
+   
 
     const handleClick = (operation,id)=>{
+        dispatch(getWinesById(id))
+        let stock = shoppingcar.map(e=>e.cont)
+
         if(operation === 'sub'){
             dispatch(subLocalStorage(id))
-        }
-        else if(operation === 'add') dispatch(addLocalStorage(id))
-        else dispatch(deleteLocalStorage(id));
-      }
+           
+        }   
+        else if(operation === 'add'){
+        if( wine.stock <= (Number(stock))){
+            return swal({
+               title: "Fuera de stock",
+               text: `No hay mas stock`,
+               icon: "error",
+               button: "Aceptar",
+             });
+       }else dispatch(addLocalStorage(id)) }
+        else dispatch(deleteLocalStorage(id));         
+}
 
   return (
     <div className={style.container}>

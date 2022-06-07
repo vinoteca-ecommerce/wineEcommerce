@@ -29,9 +29,14 @@ import {
   DELETE_CART,
   GET_PURCHASE_ID,
   UPDATE_USER,
+
   POST_USER_ADDRESS,
   GET_USER_ADDRESS,
   UPDATE_USER_ADDRESS,
+
+  PURCHASE_EMAIL
+ 
+
 } from "../actions/actions";
 
 const initialState = {
@@ -45,6 +50,7 @@ const initialState = {
   users: [],
   user: [],
   favorites: [],
+  favoritesId: [],
   purchase: [],
   orders: [],
   linkmp: "",
@@ -112,7 +118,7 @@ const rootReducer = (state = initialState, action) => {
     case ADD_LOCAL_STORAGE:
       let sum = 1;
       let shoppingcarAdd = [...state.shoppingcar];
-
+      
       for (let i = 0; i < state.shoppingcar?.length; i++) {
         if (state.shoppingcar[i].id === action.payload) {
           if (state.shoppingcar[i].cont >= 1) {
@@ -214,10 +220,18 @@ const rootReducer = (state = initialState, action) => {
       };
     //ALL FAVS///////////////////////
     case ALL_FAVORITES:
+      let arr = []
+      for(let i=0; i<state.favorites.length; i++){
+        arr.push(state.favorites[i]._id) 
+      }
+      localStorage.setItem('favorites', JSON.stringify(arr));
       return {
         ...state,
         favorites: action.payload,
+        favoritesId: arr
       };
+
+
     case MERCADO_PAGO:
       return {
         ...state,
@@ -255,7 +269,11 @@ const rootReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return{
         ...state
-      } 
+      }
+    case PURCHASE_EMAIL:
+      return{
+        ...state
+      }  
       
     case GET_USER_ADDRESS:
       return {

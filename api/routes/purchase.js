@@ -5,6 +5,7 @@ const {
   getPurchases,
   updateState,
   getPurchaseId,
+  confirmationEmail,
 } = require("../controllers/purchase");
 const { purchaseValidator } = require("../helpers/db-validators");
 const { jwtValidator, adminRole } = require("../middlewares");
@@ -12,6 +13,10 @@ const { validation } = require("../middlewares/validator");
 const { check } = require("express-validator");
 
 const router = Router();
+
+
+
+router.get('/email',[jwtValidator, validation],confirmationEmail)
 
 router.get("/", [jwtValidator, validation], getPurchase);
 
@@ -40,5 +45,7 @@ router.put(
 );
 
 router.post("/", [jwtValidator, validation], purchaseStatus);
+
+
 
 module.exports = router;

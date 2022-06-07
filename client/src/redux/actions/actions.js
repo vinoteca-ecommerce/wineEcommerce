@@ -35,6 +35,7 @@ export const PUT_PURCHASE ='PUT_PURCHASE';
 export const DELETE_CART = 'DELETE_CART';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_PURCHASE_ID = 'GET_PURCHASE_ID';
+export const PURCHASE_EMAIL='PURCHASE_EMAIL';
 
 export const POST_USER_ADDRESS = 'POST_USER_ADDRESS';
 export const GET_USER_ADDRESS = 'GET_USER_ADDRESS';
@@ -162,6 +163,8 @@ export const addFavorites = (payload)=>{
     .catch(err=>console.log(err)) 
   }
 }
+
+
 //DELETE FAVORITES
 export const deleteFav =(id)=>{
   return async function(dispatch){
@@ -322,6 +325,7 @@ export const userUpdateRole = (id, data)=>{
 }
 
 
+
 //--User Address GET,POST, PUT--//
 
 export const getUserAddress = (id)=>{
@@ -341,6 +345,15 @@ export const postUserAddress = (data) => {
     }).catch(err => console.log(err))
   }
 }
+// export const postUserAddress = (data) => {
+//   return async function(dispatch){
+//     return axios.post(`http://localhost:8000/useraddress/${id}`,data,{ headers: authHeader()  } )
+//     .then(response => { 
+//       console.log(response.data)
+//       dispatch({type: POST_USER_ADDRESS, payload: response.data})
+      
+//     })
+
 
 export const updateUserAddress = (id, data)=>{
   return async function(dispatch){
@@ -350,3 +363,14 @@ export const updateUserAddress = (id, data)=>{
       }).catch(err=> console.log(err))
   }
 }
+
+export const sendPurchaseEmail=()=>{
+  return async function(dispatch){
+    return axios.get('http://localhost:8000/purchase/email',{headers: authHeader()})
+      .then(response=>{
+        dispatch({type:PURCHASE_EMAIL})
+      })
+  }
+}
+
+
