@@ -18,7 +18,7 @@ export const Products = () => {
     let ordenR = useSelector((state) => state.orden);
     let producerR = useSelector((state) => state.producer);
 
-    const favoritesId = useSelector(state=>state.favoritesId)
+    //const favoritesId = useSelector(state=>state.favoritesId)
 
     const [page,setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
@@ -71,9 +71,15 @@ export const Products = () => {
         }
     }
 
+    /*
+    
+
+
+    */ 
+   if(localStorage.getItem('favorites')===null)console.log('asasd');
   return (
     <div>
-        {Object.keys(wines).length === 0 || store?.user && favoritesId?.length===0 ? <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
+        {Object.keys(wines).length === 0 ? <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
         :<div className={style.mainContainer}>
             <div className={style.title}>
             

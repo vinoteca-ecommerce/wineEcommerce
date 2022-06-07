@@ -13,11 +13,10 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
 
     const favoritesId = useSelector(state=>state.favoritesId)
     const [arr,setArr] = useState(favoritesId);
-
-    // useEffect(()=>{
-    //   if(store?.user?.uid) dispatch(allFavs(store.user.uid))
-     
-    // },[])
+  
+    /*useEffect(()=>{
+      if(store?.user?.uid) dispatch(allFavs(store.user.uid))
+    },[dispatch])*/
 
     const handleFavs = (name, year, description, img, strain, producer, id, price, country)=>{
       const input={
@@ -132,7 +131,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
             </Link>
             <div className={style.cardFooter}>
                 <span className={style.textTitle}>${price}.00</span>
-                {store && store.user && store.user.role  && <div className={ /*localStorage.getItem('favorites')?.includes(id)*/arr.includes(id) ? style.cardButtonFav : style.cardButton}>
+                {store && store.user && store.user.role  && <div className={ /*localStorage.getItem('favorites')?.includes(id)*/arr?.includes(id) ? style.cardButtonFav : style.cardButton}>
                     <FavoriteBorderIcon className={ style.svgIcon} onClick={()=>handleFavs(name, year, description, img, strain, producer, id, price, country)}/>
                 </div>}
                 
