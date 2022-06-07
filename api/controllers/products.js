@@ -46,8 +46,11 @@ const getAll = async (req, res = response) => {
     let pricemaxmin = [];
 
     if (name) {
+      const removeAccents = (str) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      } 
       let x = products.filter((e) =>
-        e.name.toLowerCase().includes(name.toLowerCase())
+      removeAccents(e.name.toLowerCase()).includes(removeAccents(name.toLowerCase()))
       );
       x.length > 0 ? (namefiltred = x) : res.json("msg: Name not found");
     } else {
@@ -56,28 +59,39 @@ const getAll = async (req, res = response) => {
     if (strain) {
       strainFiltred = namefiltred.filter(
         (e) => e.strain.toLowerCase() === strain.toLowerCase()
-      );
-    } else {
+      )
+      if(strainFiltred.length===0){
+       return res.json({msg: "Cepa no encontrada"})
+      }
+    } else { 
       strainFiltred = namefiltred;
-    }
-
-    if (category) {
+    }  
+ 
+    if (category) { 
       categoryFiltred = strainFiltred.filter(
         (e) => e.category.name === category
-      );
+      ) 
+      if(categoryFiltred.length===0){
+        return res.json({msg: "Categoria no encontrada"})
+      }
     } else {
-      categoryFiltred = strainFiltred;
+      categoryFiltred = strainFiltred; 
     }
 
     if (country) {
       countryFiltred = categoryFiltred.filter(
         (e) => e.country.toLowerCase() === country.toLowerCase()
-      );
+      )
+      if(countryFiltred.length===0){
+        return res.json({msg: "Country no encontrado"})}
     } else {
       countryFiltred = categoryFiltred;
     }
     if (producer) {
-      producerFilter = countryFiltred.filter((e) => e.producer === producer);
+      producerFilter = countryFiltred.filter((e) => e.producer === producer)
+
+      if(producerFilter.length===0){
+        return res.json({msg: "Bodega no encontrada"})}
     } else {
       producerFilter = countryFiltred;
     }
@@ -184,6 +198,18 @@ const productUpdate = async (req, res = response) => {
 
   res.json(product);
 };
+
+const productUpdateStock = async (req, res = response) => {
+  const { id } = req.params;
+  const { state, user, category, ...data } = req.body;
+
+  const product = await Product.findByIdAndUpdate(id, data, { new: true });
+
+  res.json(product);
+};
+
+
+
 
 const postProduct = async (req, res = response) => {
   const { state, name, ...body } = req.body;
