@@ -36,6 +36,10 @@ export const DELETE_CART = 'DELETE_CART';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_PURCHASE_ID = 'GET_PURCHASE_ID';
 
+export const POST_USER_ADDRESS = 'POST_USER_ADDRESS';
+export const GET_USER_ADDRESS = 'GET_USER_ADDRESS';
+export const UPDATE_USER_ADDRESS = 'UPDATE_USER_ADDRESS'
+
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
       return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${producer}`)
@@ -118,7 +122,6 @@ export const deleteProduct = (id)=>{
 }
 
 export const updateProduct = (id, data)=>{
-
   return async function(dispatch){
     return axios.put(`http://localhost:8000/products/${id}`, data ,  { headers: authHeader() })
       .then(response =>{
@@ -318,11 +321,32 @@ export const userUpdateRole = (id, data)=>{
   }
 }
 
-// export const postUserAddress = (data) => {
-//   return async function(dispatch){
-//     return axios.post(`http://localhost:8000/useraddress/${id}`,data,{ headers: authHeader()  } )
-//     .then(response => { 
-//       console.log(response.data)
-//       dispatch({type: POST_USER_ADDRESS, payload: response.data})
-      
-//     })
+
+//--User Address GET,POST, PUT--//
+
+export const getUserAddress = (id)=>{
+  return async function(dispatch){
+    return axios.get(`http://localhost:8000/address/${id}`, {headers: authHeader()})
+      .then(response=>{
+        dispatch({type: GET_USER_ADDRESS, payload: response.data})
+      }).catch(err => console.log(err))
+  }
+}
+export const postUserAddress = (data) => {
+  return async function(dispatch){
+    return axios.post('http://localhost:8000/address', data, { headers: authHeader()  })
+    .then(response => { 
+      console.log(response.data)
+      dispatch({type: POST_USER_ADDRESS, payload: response.data})  
+    }).catch(err => console.log(err))
+  }
+}
+
+export const updateUserAddress = (id, data)=>{
+  return async function(dispatch){
+    return axios.put(`http://localhost:8000/address/${id}`, data ,  { headers: authHeader() })
+    .then(response =>{
+      dispatch({type: UPDATE_USER_ADDRESS, payload: response.data})
+      }).catch(err=> console.log(err))
+  }
+}
