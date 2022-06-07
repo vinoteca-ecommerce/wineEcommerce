@@ -1,33 +1,32 @@
 const { response } = require("express");
 const Product = require("../models/product");
-const User = require('../models/user')
+const User = require("../models/user");
 const axios = require("axios");
 
-
-
 const getAllProducers = async (req, res = response) => {
- 
   const query = { state: true };
-  
 
-  const  products= await Product.find(query).populate("user", "name").populate("category", "name");
-  const array = []
-products.map(e => array.push(e.producer))
+  const products = await Product.find(query)
+    .populate("user", "name")
+    .populate("category", "name");
+  const array = [];
+  products.map((e) => array.push(e.producer));
 
-const dataArr = new Set(array)
+  const dataArr = new Set(array);
 
-const producer = Array.from(dataArr)
-res.json({producer});
-
-}
+  const producer = Array.from(dataArr);
+  res.json({ producer });
+};
 
 const getAll = async (req, res = response) => {
-  const { limit, start = 0 } = req.query; 
+  const { limit, start = 0 } = req.query;
   const query = { state: true };
-  const { name, strain, category, country, producer, orden, pmax, pmin } = req.query;
+  const { name, strain, category, country, producer, orden, pmax, pmin } =
+    req.query;
 
-  const  products= await Product.find(query).populate("user", "name").populate("category", "name");
-  
+  const products = await Product.find(query)
+    .populate("user", "name")
+    .populate("category", "name");
 
   if (
     name ||
@@ -48,9 +47,11 @@ const getAll = async (req, res = response) => {
     if (name) {
       const removeAccents = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      } 
+      };
       let x = products.filter((e) =>
-      removeAccents(e.name.toLowerCase()).includes(removeAccents(name.toLowerCase()))
+        removeAccents(e.name.toLowerCase()).includes(
+          removeAccents(name.toLowerCase())
+        )
       );
       x.length > 0 ? (namefiltred = x) : res.json("msg: Name not found");
     } else {
@@ -59,39 +60,41 @@ const getAll = async (req, res = response) => {
     if (strain) {
       strainFiltred = namefiltred.filter(
         (e) => e.strain.toLowerCase() === strain.toLowerCase()
-      )
-      if(strainFiltred.length===0){
-       return res.json({msg: "Cepa no encontrada"})
-      }
-    } else { 
-      strainFiltred = namefiltred;
-    }  
- 
-    if (category) { 
-      categoryFiltred = strainFiltred.filter(
-        (e) => e.category.name === category
-      ) 
-      if(categoryFiltred.length===0){
-        return res.json({msg: "Categoria no encontrada"})
+      );
+      if (strainFiltred.length === 0) {
+        return res.json({ msg: "Cepa no encontrada" });
       }
     } else {
-      categoryFiltred = strainFiltred; 
+      strainFiltred = namefiltred;
+    }
+
+    if (category) {
+      categoryFiltred = strainFiltred.filter(
+        (e) => e.category.name === category
+      );
+      if (categoryFiltred.length === 0) {
+        return res.json({ msg: "Categoria no encontrada" });
+      }
+    } else {
+      categoryFiltred = strainFiltred;
     }
 
     if (country) {
       countryFiltred = categoryFiltred.filter(
         (e) => e.country.toLowerCase() === country.toLowerCase()
-      )
-      if(countryFiltred.length===0){
-        return res.json({msg: "Country no encontrado"})}
+      );
+      if (countryFiltred.length === 0) {
+        return res.json({ msg: "Country no encontrado" });
+      }
     } else {
       countryFiltred = categoryFiltred;
     }
     if (producer) {
-      producerFilter = countryFiltred.filter((e) => e.producer === producer)
+      producerFilter = countryFiltred.filter((e) => e.producer === producer);
 
-      if(producerFilter.length===0){
-        return res.json({msg: "Bodega no encontrada"})}
+      if (producerFilter.length === 0) {
+        return res.json({ msg: "Bodega no encontrada" });
+      }
     } else {
       producerFilter = countryFiltred;
     }
@@ -114,7 +117,7 @@ const getAll = async (req, res = response) => {
           }
           return 0;
         });
-        const result = sortAbc
+        const result = sortAbc;
         res.json({
           total: sortAbc.length,
           result,
@@ -130,7 +133,7 @@ const getAll = async (req, res = response) => {
           }
           return 0;
         });
-        const result = sortAbc
+        const result = sortAbc;
         res.json({
           total: sortAbc.length,
           result,
@@ -147,7 +150,7 @@ const getAll = async (req, res = response) => {
           return 0;
         });
 
-        const result = sortAbc
+        const result = sortAbc;
         res.json({
           total: sortAbc.length,
           result,
@@ -164,7 +167,7 @@ const getAll = async (req, res = response) => {
           return 0;
         });
 
-        const result = sortAbc
+        const result = sortAbc;
         res.json({
           total: sortAbc.length,
           result,
@@ -172,7 +175,7 @@ const getAll = async (req, res = response) => {
       }
     }
   } else {
-    const result = products
+    const result = products;
     res.json({
       total: products.length,
       result,
@@ -193,7 +196,6 @@ const getProduct = async (req, res = response) => {
 const productUpdate = async (req, res = response) => {
   const { id } = req.params;
   const { state, user, category, ...data } = req.body;
-  
 
   const product = await Product.findByIdAndUpdate(id, data, { new: true });
 
@@ -212,25 +214,21 @@ const productUpdateStock = async (req, res = response) => {
 
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
-  const  {data}  = req.body;
-console.log(data)
+
+  const { data } = req.body;
+
   const product = await Product.findById(id)
 product.comment.push(data)
 product.save()
   res.json({msg: "Comentario aceptado"});
 
 };
-// const productUpdateComment = async (req, res = response) => {
-//   const { id } = req.params;
-//   const { comment } = req.body;
 
-//   const product = await Product.findById(id)
-//   console.log(req.user.comment)
-  
-//   res.json(product);
-// };
-
-
+  const product = await Product.findById(id);
+  product.comment.push(data);
+  product.save();
+  res.json({ msg: "Comentario aceptado" });
+};
 
 const postProduct = async (req, res = response) => {
   const { state, name, ...body } = req.body;
@@ -304,109 +302,98 @@ const deleteFavs = async (req, res = response) => {
   res.json({ msg: "Wine deleted from your favorites succesfully." });
 };
 
-const addToCart=async(req,res=response)=>{
-  const {id}=req.params
-  const {quantity}=req.body
+const addToCart = async (req, res = response) => {
+  const { id } = req.params;
+  const { quantity } = req.body;
 
-  const wine= await Product.findById(id)
-  const find= req.user.cart.find(e=>e.name==wine.name)
-  let index= req.user.cart.indexOf(find)
-  if(!find){
-   if(wine.stock>=quantity){
+  const wine = await Product.findById(id);
+  const find = req.user.cart.find((e) => e.name == wine.name);
+  let index = req.user.cart.indexOf(find);
+  if (!find) {
+    if (wine.stock >= quantity) {
+      req.user.cart.push(wine);
+      index = req.user.cart.indexOf(wine);
 
-     req.user.cart.push(wine)
-     index=req.user.cart.indexOf(wine)
-
-     req.user.cart[index].quantity=quantity;
-
-     await req.user.save();
-
-
-     }
-   else{
-     return res.json({msg:'No stock available'})
-   }  
-  }else{
-    if(wine.stock>=quantity){
-
-      req.user.cart=req.user.cart.filter(v=>v.name!==find.name)
-
-      req.user.cart.push(wine)
-      index=req.user.cart.indexOf(wine)
-
-      req.user.cart[index].quantity=quantity;
+      req.user.cart[index].quantity = quantity;
 
       await req.user.save();
+    } else {
+      return res.json({ msg: "No stock available" });
+    }
+  } else {
+    if (wine.stock >= quantity) {
+      req.user.cart = req.user.cart.filter((v) => v.name !== find.name);
 
-  }else{
-     return res.json({msg:'No stock available'})
+      req.user.cart.push(wine);
+      index = req.user.cart.indexOf(wine);
+
+      req.user.cart[index].quantity = quantity;
+
+      await req.user.save();
+    } else {
+      return res.json({ msg: "No stock available" });
     }
   }
 
   res.status(200).json({
-    msg:'Product added to the cart succesfully!',
-    cart:req.user.cart
-  })
-}
+    msg: "Product added to the cart succesfully!",
+    cart: req.user.cart,
+  });
+};
 
-const getCart=async(req,res=response)=>{
-
-  const cart= req.user.cart
-
+const getCart = async (req, res = response) => {
+  const cart = req.user.cart;
 
   return res.json({
-    cart
-  })
-}
+    cart,
+  });
+};
 
-const deleteCart=async(req,res=response)=>{
-  const { email } = req.user
-  const user = await User.findOneAndUpdate({email}, {cart: []},(error,data) =>{
-    if (error){
-      console.log(error)
-    }else{
-      console.log(data)
+const deleteCart = async (req, res = response) => {
+  const { email } = req.user;
+  const user = await User.findOneAndUpdate(
+    { email },
+    { cart: [] },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+      }
     }
-  } ).clone()
-  
-  res.status(201).json(user.cart)
+  ).clone();
 
-  
-}
+  res.status(201).json(user.cart);
+};
 
-
-const pushToCart=async(req,res=response)=>{
-
-  const { email } = req.user
-  const user = await User.findOneAndUpdate({email}, {cart: req.body},(error,data) =>{
-    if (error){
-      console.log(error)
+const pushToCart = async (req, res = response) => {
+  const { email } = req.user;
+  const user = await User.findOneAndUpdate(
+    { email },
+    { cart: req.body },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+      }
     }
-  } ).clone()
-  
-  res.status(201).json({msg: 'Done'})
-}
+  ).clone();
 
+  res.status(201).json({ msg: "Done" });
+};
 
-const paymentMP = async(req,res)=>{
-  const url = "https://api.mercadopago.com/checkout/preferences"
-  const body = req.body
+const paymentMP = async (req, res) => {
+  const url = "https://api.mercadopago.com/checkout/preferences";
+  const body = req.body;
 
-  const payment = await axios.post(url,body,{
- 
-  headers:{
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-  }
-})
+  const payment = await axios.post(url, body, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+    },
+  });
 
-
-res.send({url: payment.data.init_point})
-
-}
-
-
-
+  res.send({ url: payment.data.init_point });
+};
 
 module.exports = {
   postProduct,
@@ -423,6 +410,9 @@ module.exports = {
   getCart,
   getAllProducers,
   paymentMP,
+
+
   productUpdateStock,
   productUpdateComment
 }
+
