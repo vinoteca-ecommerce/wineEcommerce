@@ -1,5 +1,6 @@
 import React, {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
 import CardPedidos from './CardPedidos';
@@ -29,21 +30,22 @@ export const UserOrdersRejected= () => {
         <nav className="navBar">
           <ul className={styles.ulBreadcrumbs}>
           <li>
-              <a href="/userprofile">HOME</a>
-            </li>
-            <li>
-              <a href="/userorders">PEDIDOS</a>
-        
-            </li>
-            <li>
-              <a href="/userorders/approved">PEDIDOS REALIZADOS</a>
-            </li>
-            <li>
-              <a href="/userorders/pending">PEDIDOS PENDIENTES</a>
-            </li>
-            <li>
-              <a href="/userorders/rejected">PEDIDOS CANCELADOS</a>
-            </li>
+             
+             <Link to ='/userprofile'>HOME</Link>
+           </li>
+         
+           <li>
+             
+             <Link to ='/userorders/approved'>PEDIDOS REALIZADOS</Link>
+           </li>
+           <li>
+             
+             <Link to ='/userorders/pending'>PEDIDOS PENDIENTES</Link>
+           </li>
+           <li>
+            
+             <Link to ='/userorders/rejected'>PEDIDOS CANCELADOS</Link>
+           </li>
           </ul>
         </nav>
         <div className={Style.backg}>
