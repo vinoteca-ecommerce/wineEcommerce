@@ -217,7 +217,8 @@ const rootReducer = (state = initialState, action) => {
       for(let i=0; i<state.favorites.length; i++){
         arr.push(state.favorites[i]._id) 
       }
-      localStorage.setItem('favorites', JSON.stringify(arr));
+      if(arr.length !== 0) localStorage.setItem('favorites', JSON.stringify(arr));
+
       return {
         ...state,
         favorites: action.payload,
