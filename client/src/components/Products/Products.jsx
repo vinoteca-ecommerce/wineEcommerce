@@ -32,7 +32,7 @@ export const Products = () => {
     let store = JSON.parse(localStorage.getItem('user'))
     useEffect(()=>{
         if(store?.user?.uid) dispatch(allFavs(store.user.uid))
-    },[favoritesId])
+    },[])
 
     //SEARCH BAR
     const handleSearch = (value) =>{

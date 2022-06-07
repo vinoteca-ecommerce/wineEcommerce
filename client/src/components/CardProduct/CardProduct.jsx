@@ -14,10 +14,10 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
     const favoritesId = useSelector(state=>state.favoritesId)
     const [arr,setArr] = useState(favoritesId);
 
-    useEffect(()=>{
-      if(store?.user?.uid) dispatch(allFavs(store.user.uid))
+    // useEffect(()=>{
+    //   if(store?.user?.uid) dispatch(allFavs(store.user.uid))
      
-    },[dispatch])
+    // },[])
 
     const handleFavs = (name, year, description, img, strain, producer, id, price, country)=>{
       const input={
