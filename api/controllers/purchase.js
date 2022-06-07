@@ -28,11 +28,12 @@ const getPurchases = async (req, res = response) => {
 
 const purchaseStatus = async (req, res = response) => {
   const { payment_id, status, cart } = req.body;
-
+console.log(cart)
   const data = {
     payment_id,
     status,
     cart,
+    
     user: req.user._id,
   };
 

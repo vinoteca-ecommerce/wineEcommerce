@@ -29,8 +29,14 @@ import {
   DELETE_CART,
   GET_PURCHASE_ID,
   UPDATE_USER,
-  PURCHASE_EMAIL
-  // POST_USER_ADDRESS
+
+ POST_USER_ADDRESS,
+ GET_USER_ADDRESS,
+ UPDATE_USER_ADDRESS,
+ PUT_COMMENT,
+ PURCHASE_EMAIL
+ 
+
 } from "../actions/actions";
 
 const initialState = {
@@ -269,6 +275,28 @@ const rootReducer = (state = initialState, action) => {
         ...state
       }  
       
+
+    case GET_USER_ADDRESS:
+      return {
+        ...state,
+        userAddress: action.payload
+      }  
+
+    case POST_USER_ADDRESS:
+      return {
+        ...state
+      } 
+
+    case UPDATE_USER_ADDRESS:
+      return {
+        ...state,
+      }
+      case PUT_COMMENT:
+        
+        return {
+          ...state,
+        };
+
     default:
       return { ...state };
   }

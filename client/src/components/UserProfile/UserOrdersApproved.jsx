@@ -53,18 +53,25 @@ export const UserOrdersApproved= () => {
         {userHistory.filter(e=> e.status === 'approved').map(e=>
              e.cart.map((e, i)=>
              {return (<div className={Style.spacing}>
-              <CardPedidos
-                key={i + 1}
+             <Link  to= {e.id?e.id:e.title} > <CardPedidos
+                id = {e.id}
+                key={e.id}
                 title={e.title}
                 picture_url={e.picture_url} className={styles.img}
                 quantity={e.quantity}
                 unit_price={e.unit_price}
                 
               />
+
+              </Link>
+              
               </div>
+              
            )})
          )
+         
         }      
+        
         </div>
          </div>
       </div>
