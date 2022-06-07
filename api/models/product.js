@@ -53,6 +53,10 @@ const ProductSchema = Schema({
   quantity:{
     type:Number,
     default:0
+  },
+  comment: {
+    type: Array,
+    default:'Este vino aun no tiene comentarios'
   }
 });
 

@@ -36,10 +36,12 @@ export const DELETE_CART = 'DELETE_CART';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_PURCHASE_ID = 'GET_PURCHASE_ID';
 export const PURCHASE_EMAIL='PURCHASE_EMAIL';
+export const UPDATE_STOCK='UPDATE_STOCK';
 
 export const POST_USER_ADDRESS = 'POST_USER_ADDRESS';
 export const GET_USER_ADDRESS = 'GET_USER_ADDRESS';
-export const UPDATE_USER_ADDRESS = 'UPDATE_USER_ADDRESS'
+export const UPDATE_USER_ADDRESS = 'UPDATE_USER_ADDRESS';
+export const PUT_COMMENT ='PUT_COMMENT'
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -373,4 +375,26 @@ export const sendPurchaseEmail=()=>{
   }
 }
 
+
+export const updateStock=(data)=>{
+  return async function(dispatch){
+    return axios.put('http://localhost:8000/products/stock',data,{headers: authHeader()})
+      .then(response=>{
+        console.log(response)
+        dispatch({type:UPDATE_STOCK})
+      })
+  }
+}
+
+
+
+export const putComment = (id, data)=>{
+console.log(data)
+  return async function(dispatch){
+    return axios.put(`http://localhost:8000/products/comment/${id}`, {data} ,  { headers: authHeader() })
+    .then(response =>{
+      dispatch({type: PUT_COMMENT, payload: response.data})
+      }).catch(err=> console.log(err))
+  }
+}
 

@@ -6,6 +6,7 @@ import CardPedidos from './CardPedidos';
 import {Link} from 'react-router-dom'
 // styles
 import Style from "./UserOrderRejected.module.css"
+import { Button } from "@mui/material";
 
 
 export const UserOrdersApproved= () => {
@@ -15,8 +16,6 @@ export const UserOrdersApproved= () => {
   useEffect(()=>{
     dispatch(getOrders())
   },[dispatch])
-
-  console.log(userHistory)
 
 
   return (
@@ -53,18 +52,20 @@ export const UserOrdersApproved= () => {
         {userHistory.filter(e=> e.status === 'approved').map(e=>
              e.cart.map((e, i)=>
              {return (<div className={Style.spacing}>
-              <CardPedidos
-                key={i + 1}
+            <Link to= {e.id?e.id:e.title} ><Button> Dejar un feedback</Button></Link>
+            <CardPedidos
+                id = {e.id}
+                key={e.id}
                 title={e.title}
                 picture_url={e.picture_url} className={styles.img}
                 quantity={e.quantity}
-                unit_price={e.unit_price}
-                
-              />
-              </div>
+                unit_price={e.unit_price}  
+              />              
+              </div>              
            )})
-         )
+         )        
         }      
+        
         </div>
          </div>
       </div>

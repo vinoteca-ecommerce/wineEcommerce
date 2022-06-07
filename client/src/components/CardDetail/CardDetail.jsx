@@ -38,7 +38,7 @@ export const CardDetail = () => {
 
 
 
-  const handleClickShopping = (id,name,price,img,category)=>{
+  const handleClickShopping = (id,name,price,img,category,stock)=>{
 
     let state = JSON.parse(localStorage.getItem('ShoppingCar'));
     let sum = 0;
@@ -61,8 +61,8 @@ export const CardDetail = () => {
        });
        }
 
-      if(sum) state?.push({id,cont:sum,name,price,img,category});
-      else state?.push({id,cont,name,price,img,category});
+      if(sum) state?.push({id,cont:sum,name,price,img,category,stock});
+      else state?.push({id,cont,name,price,img,category,stock});
 
       if(index !== undefined) state.splice(index,1);
 
@@ -75,7 +75,7 @@ export const CardDetail = () => {
       });
     }
     else {
-      localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category}]));
+      localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category,stock}]));
       swal({
         title: "Vino Añadido",
         text: `${cont} ${name} agregado al carrito de compras`,
@@ -108,7 +108,7 @@ export const CardDetail = () => {
             </div>
           </div>
           <div className={style.btn}>
-          <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
+          <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category,wines.stock)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
           </div>
           
         </div>

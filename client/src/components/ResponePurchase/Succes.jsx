@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { deleteCart, getOrders, getWinesById, putPurchase ,sendPurchaseEmail} from "../../redux/actions/actions";
+
+
+import { deleteCart, getOrders,getPurchase, getWinesById, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
+
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -14,6 +17,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableFooter from '@mui/material/TableFooter'
+
 //styles
 import Style from "./Success.module.css";
 
@@ -46,14 +50,23 @@ export function Succes() {
     if(status === "pending" ||status === "approved"){
     
       let store = JSON.parse(localStorage.getItem('ShoppingCar'));
-      // console.log(store)
+      const stockUpdated=store?.map(e=>{
+        let stockLeft=  e.stock-e.cont
+        return{
+          stockk:stockLeft,
+          id:e.id
+        }
+      })
 
+
+      console.log(stockUpdated)
+    dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
     // console.log(data)
 
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
-    localStorage.removeItem("ShoppingCar");
+    // localStorage.removeItem("ShoppingCar");
   }
   // 
   }, []);

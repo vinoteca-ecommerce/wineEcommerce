@@ -1,6 +1,8 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart,getAllProducers,paymentMP, pushToCart } = require('../controllers/products');
+
+const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart,getAllProducers,paymentMP, pushToCart, productUpdateComment, productUpdateStock } = require('../controllers/products');
+
 const {jwtValidator, adminRole} = require('../middlewares')
 const { validation } = require('../middlewares/validator')
 const { categoryValidator , productIdValidator} =require('../helpers/db-validators')
@@ -21,7 +23,7 @@ router.post('/', [
     validation,
 ], postProduct );
 
-
+router.put('/stock',[],productUpdateStock)
 router.put('/:id',[
     jwtValidator,
     check('id').isMongoId(),
@@ -80,6 +82,11 @@ router.delete('/:id',[
 ], deleteProduct)
 
 router.post('/payment', paymentMP)
+
+
+router.put('/comment/:id',[
+    jwtValidator]
+     ,productUpdateComment)
 
 
 module.exports = router;

@@ -30,11 +30,14 @@ import {
   GET_PURCHASE_ID,
   UPDATE_USER,
 
-  POST_USER_ADDRESS,
-  GET_USER_ADDRESS,
-  UPDATE_USER_ADDRESS,
 
-  PURCHASE_EMAIL
+ POST_USER_ADDRESS,
+ GET_USER_ADDRESS,
+ UPDATE_USER_ADDRESS,
+ PUT_COMMENT,
+ PURCHASE_EMAIL,
+  UPDATE_STOCK
+
  
 
 } from "../actions/actions";
@@ -55,7 +58,6 @@ const initialState = {
   orders: [],
   linkmp: "",
   idPurchase: "",
-  userAddress: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -275,7 +277,12 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state
       }  
-      
+
+    case UPDATE_STOCK:
+      return{
+        ...state
+      } 
+
     case GET_USER_ADDRESS:
       return {
         ...state,
@@ -291,7 +298,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       }
-      
+      case PUT_COMMENT:
+        
+        return {
+          ...state,
+        };
+
     default:
       return { ...state };
   }
