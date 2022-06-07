@@ -45,7 +45,7 @@ export const ShoppingCarTotal = () => {
       quantity:e.cont,
       picture_url:e.img,
 
-      stock:e.stock
+      stock:e.stock,
 
       id:e.id
 

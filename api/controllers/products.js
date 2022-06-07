@@ -208,7 +208,7 @@ const productUpdateStock = async (req, res = response) => {
   })
 
 
-  res.json({msg:'Stock de los vinos recibido actualizado correctamente!'});
+  res.json({msg:'Stock de los vinos recibido actualizado correctamente!'});}
 
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
@@ -423,10 +423,6 @@ module.exports = {
   getCart,
   getAllProducers,
   paymentMP,
-
-  productUpdateStock
+  productUpdateStock,
   productUpdateComment
-
-
-
 }
