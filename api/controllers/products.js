@@ -224,11 +224,6 @@ product.save()
 
 };
 
-  const product = await Product.findById(id);
-  product.comment.push(data);
-  product.save();
-  res.json({ msg: "Comentario aceptado" });
-};
 
 const postProduct = async (req, res = response) => {
   const { state, name, ...body } = req.body;
