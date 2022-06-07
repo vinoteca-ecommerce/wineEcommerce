@@ -160,6 +160,8 @@ export const addFavorites = (payload)=>{
     .catch(err=>console.log(err)) 
   }
 }
+
+
 //DELETE FAVORITES
 export const deleteFav =(id)=>{
   return async function(dispatch){

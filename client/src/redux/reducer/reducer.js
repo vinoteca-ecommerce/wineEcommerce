@@ -44,6 +44,7 @@ const initialState = {
   users: [],
   user: [],
   favorites: [],
+  favoritesId: [],
   purchase: [],
   orders: [],
   linkmp: "",
@@ -212,10 +213,18 @@ const rootReducer = (state = initialState, action) => {
       };
     //ALL FAVS///////////////////////
     case ALL_FAVORITES:
+      let arr = []
+      for(let i=0; i<state.favorites.length; i++){
+        arr.push(state.favorites[i]._id) 
+      }
+      localStorage.setItem('favorites', JSON.stringify(arr));
       return {
         ...state,
         favorites: action.payload,
+        favoritesId: arr
       };
+
+
     case MERCADO_PAGO:
       return {
         ...state,

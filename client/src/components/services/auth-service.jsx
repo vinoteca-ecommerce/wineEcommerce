@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-
-
 const signup = (email, password)=>{
+
     return axios
         .post("http://localhost:8000/auth/login",{
             email, password
@@ -53,6 +52,7 @@ const verifyAccount=(token)=>{
 const logout = ()=>{
     localStorage.removeItem('user')
     localStorage.removeItem('ShoppingCar')
+    localStorage.removeItem('favorites');
 }
 
 const getCurrentUser = ()=>{
