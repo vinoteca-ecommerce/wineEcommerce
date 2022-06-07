@@ -57,6 +57,11 @@ export function Succes() {
         <p>Nuestro equipo de seguridad está revisando tu pago.</p>
         <p>En menos de dos días hábiles, te confirmaremos por</p>
         <p className={Style.subtitle}>e-mail si se acreditó correctamente.</p>
+        <h2>
+          <Link to="/">
+          <button className={Style.buttom}>Inicio</button>
+          </Link>
+        </h2>
       </div>) : status === "approved" ? (<div className={Style.CompraAprobada}>
         <h1><CheckIcon fontSize="large"/></h1>
         <h1 className={Style.subtitle}>Transaccion exitosa</h1>
