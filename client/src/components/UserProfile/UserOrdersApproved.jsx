@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
 import CardPedidos from './CardPedidos';
-
+import {Link} from 'react-router-dom'
 // styles
 import Style from "./UserOrderRejected.module.css"
 
@@ -16,7 +16,7 @@ export const UserOrdersApproved= () => {
     dispatch(getOrders())
   },[dispatch])
 
-
+  console.log(userHistory)
 
 
   return (
@@ -29,25 +29,27 @@ export const UserOrdersApproved= () => {
         <nav className="navBar">
           <ul className={styles.ulBreadcrumbs}>
           <li>
-              <a href="/userprofile">HOME</a>
+             
+              <Link to ='/userprofile'>HOME</Link>
+            </li>
+          
+            <li>
+              
+              <Link to ='/userorders/approved'>PEDIDOS REALIZADOS</Link>
             </li>
             <li>
-              <a href="/userorders">PEDIDOS</a>
-        
+              
+              <Link to ='/userorders/pending'>PEDIDOS PENDIENTES</Link>
             </li>
             <li>
-              <a href="/userorders/approved">PEDIDOS REALIZADOS</a>
-            </li>
-            <li>
-              <a href="/userorders/pending">PEDIDOS PENDIENTES</a>
-            </li>
-            <li>
-              <a href="/userorders/rejected">PEDIDOS CANCELADOS</a>
+             
+              <Link to ='/userorders/rejected'>PEDIDOS CANCELADOS</Link>
             </li>
           </ul>
         </nav>
         <div className={styles.card}>
         <div className={Style.backg}>
+          
         {userHistory.filter(e=> e.status === 'approved').map(e=>
              e.cart.map((e, i)=>
              {return (<div className={Style.spacing}>
@@ -57,6 +59,7 @@ export const UserOrdersApproved= () => {
                 picture_url={e.picture_url} className={styles.img}
                 quantity={e.quantity}
                 unit_price={e.unit_price}
+                
               />
               </div>
            )})

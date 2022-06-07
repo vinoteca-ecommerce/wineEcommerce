@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getOrders } from "../../redux/actions/actions";
 import styles  from '../UserProfile/UserOrders.module.css'
 import CardPedidos from './CardPedidos';
@@ -27,22 +28,23 @@ export const UserOrders= () => {
 
         <nav className="navBar">
           <ul className={styles.ulBreadcrumbs}>
-            <li>
-              <a href="/userProfile">HOME</a>
-            </li>
-            <li>
-              <a href="/useroders">PEDIDOS</a>
-        
-            </li> 
-            <li>
-              <a href="/userOrders/approved">PEDIDOS REALIZADOS</a>
-            </li>
-            <li>
-              <a href="/userOrders/pending">PEDIDOS PENDIENTES</a>
-            </li>
-            <li>
-              <a href="/userOrders/rejected">PEDIDOS CANCELADOS</a>
-            </li>
+          <li>
+             
+             <Link to ='/userprofile'>HOME</Link>
+           </li>
+         
+           <li>
+             
+             <Link to ='/userorders/approved'>PEDIDOS REALIZADOS</Link>
+           </li>
+           <li>
+             
+             <Link to ='/userorders/pending'>PEDIDOS PENDIENTES</Link>
+           </li>
+           <li>
+            
+             <Link to ='/userorders/rejected'>PEDIDOS CANCELADOS</Link>
+           </li>
           </ul>
         </nav>
       </div>
