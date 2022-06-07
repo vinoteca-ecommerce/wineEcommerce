@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getWinesById, putComment } from "../../redux/actions/actions";
+import swal from 'sweetalert';
+
 
 export function UserOrdersApprovedId() {
 const { id } = useParams();
@@ -26,22 +28,22 @@ setComment({email: email,
 }
 
 
-
-// setComment((previo)=> {
-//     const newState = (e.target.value)
-//      return newState
-//  })
-
 function handleSubmit(e){
     e.preventDefault()
     
    const filtro = wine.comment.find(e => e.email === email)
 
    if(filtro){
-   alert('No podes volver a comentar sobre el vino')}else{
+    return swal({
+        title: "Solo un feedback por usuario",
+        text: `Solo se permite un feedback por usuario`,
+        icon: "error",
+        button: "Aceptar",
+      })}else{
     dispatch(putComment(id,comment))
     window.location.reload()
-    alert('comentario agregado correctamente')
+   
+   
    }
     
     

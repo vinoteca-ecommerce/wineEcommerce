@@ -1,5 +1,5 @@
 const { response } = require("express");
-const { sendConfirmationEmail, purchaseEmail } = require("../helpers/mailler");
+const {  purchaseEmail } = require("../helpers/mailler");
 const Purchase = require("../models/purchase");
 
 const getPurchase = async (req, res = response) => {
@@ -54,8 +54,6 @@ const updateState = async (req, res = response) => {
     (error, data) => {
       if (error) {
         console.log(error);
-      } else {
-        console.log(data);
       }
     }
   ).clone();
