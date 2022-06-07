@@ -202,9 +202,27 @@ const productUpdate = async (req, res = response) => {
   res.json(product);
 };
 
+
+const productUpdateStock = async (req, res = response) => {
+//llega toda la info por body: [{id, stockk},{id, stockk}]
+  req.body.map(async(e)=>{
+    let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stockk}, { new: true });
+  })
+
+
+  res.json({msg:'Stock de los vinos recibido actualizado correctamente!'});}
+
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
+
   const { data } = req.body;
+
+  const product = await Product.findById(id)
+product.comment.push(data)
+product.save()
+  res.json({msg: "Comentario aceptado"});
+
+};
 
   const product = await Product.findById(id);
   product.comment.push(data);
@@ -392,5 +410,9 @@ module.exports = {
   getCart,
   getAllProducers,
   paymentMP,
-  productUpdateComment,
-};
+
+
+  productUpdateStock,
+  productUpdateComment
+}
+

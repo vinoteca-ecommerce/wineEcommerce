@@ -15,9 +15,9 @@ import swal from 'sweetalert';
 export const ShoppingCar = () => {
     const dispatch = useDispatch();
     const shoppingcar = useSelector((state) => state.shoppingcar);
-    const wine = useSelector((state)=> state.wines)
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
-
+    const wine = useSelector((state)=> state.wines)
+    
     if(shoppingcar.length===0){
         dispatch(setShoppingCar([]))
     }
@@ -35,19 +35,23 @@ export const ShoppingCar = () => {
         }
 
     },[dispatch])
-
+    
    
 
     const handleClick = (operation,id)=>{
-        dispatch(getWinesById(id))
-        let stock = shoppingcar.map(e=>e.cont)
-
+         dispatch(getWinesById(id))
+        
         if(operation === 'sub'){
             dispatch(subLocalStorage(id))
-           
+            
         }   
+        
         else if(operation === 'add'){
-        if( wine.stock <= (Number(stock))){
+            const vino= shoppingcar.find(e=>wine.name=== e.name)
+            console.log('wine.stock',wine)
+            console.log('vino',vino)
+
+        if( wine.stock <= (Number(vino.cont))){
             return swal({
                title: "Fuera de stock",
                text: `No hay mas stock`,
