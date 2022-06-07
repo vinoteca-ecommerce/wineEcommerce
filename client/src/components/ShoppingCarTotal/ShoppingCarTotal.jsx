@@ -44,6 +44,7 @@ export const ShoppingCarTotal = () => {
       unit_price:e.price,
       quantity:e.cont,
       picture_url:e.img,
+      stock:e.stock
 
     })))
     dispatch(postMP(body))

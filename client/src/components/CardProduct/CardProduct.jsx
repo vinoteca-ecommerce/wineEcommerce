@@ -68,7 +68,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
       }
     }
 
-    const handleClickShopping = (id)=>{
+    const   handleClickShopping = (id)=>{
         let state = JSON.parse(localStorage.getItem('ShoppingCar'));
         let sum = 0;
         let index = undefined;
@@ -94,13 +94,13 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
         });
         }
        
-          if(sum) state?.push({id,cont:sum,name,price,img,category});
-          else state?.push({id,cont:1,name,price,img,category});
+          if(sum) state?.push({id,cont:sum,name,price,img,category,stock});
+          else state?.push({id,cont:1,name,price,img,category,stock});
     
           if(index !== undefined) state.splice(index,1);
     
           localStorage.setItem('ShoppingCar', JSON.stringify(state));
-          window.location.reload();
+          
           swal({
             title: "Vino Añadido",
             text: `${name} agregado al carrito de compras`,
@@ -109,7 +109,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
           });
         }
         else{
-          localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category}]));
+          localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category,stock}]));
           swal({
             title: "Vino Añadido",
             text: `${name} agregado al carrito de compras`,

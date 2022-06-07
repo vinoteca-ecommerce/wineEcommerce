@@ -200,12 +200,13 @@ const productUpdate = async (req, res = response) => {
 };
 
 const productUpdateStock = async (req, res = response) => {
-  const { id } = req.params;
-  const { state, user, category, ...data } = req.body;
+//llega toda la info por body: [{id, stockk},{id, stockk}]
+  req.body.map(async(e)=>{
+    let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stockk}, { new: true });
+  })
 
-  const product = await Product.findByIdAndUpdate(id, data, { new: true });
 
-  res.json(product);
+  res.json({msg:'Stock de los vinos recibido actualizado correctamente!'});
 };
 
 
@@ -401,6 +402,6 @@ module.exports = {
   deleteCart,
   getCart,
   getAllProducers,
-  paymentMP
-
+  paymentMP,
+  productUpdateStock
 }

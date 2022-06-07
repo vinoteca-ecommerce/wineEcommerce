@@ -34,7 +34,8 @@ import {
   GET_USER_ADDRESS,
   UPDATE_USER_ADDRESS,
 
-  PURCHASE_EMAIL
+  PURCHASE_EMAIL,
+  UPDATE_STOCK
  
 
 } from "../actions/actions";
@@ -275,7 +276,10 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state
       }  
-      
+    case UPDATE_STOCK:
+      return{
+        ...state
+      } 
     case GET_USER_ADDRESS:
       return {
         ...state,
