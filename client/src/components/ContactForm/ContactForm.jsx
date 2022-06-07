@@ -57,7 +57,7 @@ emailjs.sendForm(
           id="contact_form"
         >
           <div className={styles.name}>
-            <label for="name"></label>
+            <label htmlFor="name"></label>
             <input
               className={styles.input}
               type="text"
@@ -68,7 +68,7 @@ emailjs.sendForm(
             />
           </div>
           <div className={styles.email}>
-            <label for="email"></label>
+            <label htmlFor="email"></label>
             <input
               className={styles.input}
               type="email"
@@ -79,7 +79,7 @@ emailjs.sendForm(
             />
           </div>
           <div className={styles.telephone}>
-            <label for="name"></label>
+            <label htmlFor="name"></label>
             <input
               className={styles.input}
               type="text"
@@ -90,7 +90,7 @@ emailjs.sendForm(
             />
           </div>
           <div className={styles.subject}>
-            <label for="subject"></label>
+            <label htmlFor="subject"></label>
             <select
               className={styles.select}
               placeholder="Tipo de consulta"
@@ -107,7 +107,7 @@ emailjs.sendForm(
             </select>
           </div>
           <div className={styles.message}>
-            <label for="message"></label>
+            <label htmlFor="message"></label>
             <textarea
               className={styles.textarea}
               name="message"
