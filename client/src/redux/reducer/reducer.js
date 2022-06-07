@@ -34,7 +34,8 @@ import {
   GET_USER_ADDRESS,
   UPDATE_USER_ADDRESS,
 
-  PURCHASE_EMAIL
+  PURCHASE_EMAIL,
+  PUT_COMMENT
  
 
 } from "../actions/actions";
@@ -290,6 +291,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       }
+      case PUT_COMMENT:
+        
+        return {
+          ...state,
+        };
       
     default:
       return { ...state };

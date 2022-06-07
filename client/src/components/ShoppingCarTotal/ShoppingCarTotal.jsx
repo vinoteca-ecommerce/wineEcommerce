@@ -44,8 +44,10 @@ export const ShoppingCarTotal = () => {
       unit_price:e.price,
       quantity:e.cont,
       picture_url:e.img,
+      id:e.id
 
     })))
+    
     dispatch(postMP(body))
     dispatch(postPurchase({cart:body.items}))
     setBody({
