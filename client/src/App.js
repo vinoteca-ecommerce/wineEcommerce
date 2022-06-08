@@ -43,6 +43,7 @@ import { UserOrdersApproved } from './components/UserProfile/UserOrdersApproved'
 import { UserOrdersRejected } from './components/UserProfile/UserOrdersRejected';
 import { PurchaseDetail } from './components/AdminDashboard/PurchaseDetail'
 import { UserOrdersApprovedId } from './components/UserProfile/UserOrdersApprovedId';
+import { UserOrdersDetail } from './components/UserProfile/UserOrdersDetails';
  
 
 
@@ -135,7 +136,8 @@ function App() {
         <Route path='/contactForm' element={<ContactForm/>}/>
         <Route path='/userFavorites' element={<UserFavorites/>}/>
         <Route path='/userorders/approved/:id' element={<UserOrdersApprovedId/>}/>
-        
+        <Route path='/user/purchase/detail/:id' element={<UserOrdersDetail/>}/>
+
       </Routes></div>
       <div className='FooterDemo'><Footer/></div>
       
