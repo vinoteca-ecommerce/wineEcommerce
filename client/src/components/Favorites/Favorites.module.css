@@ -1,3 +1,13 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 0 0 6em 0;
+}
+
 .title{
     display: flex;
     justify-content: center;
@@ -26,7 +36,7 @@
         height: 5rem;
         width: auto;
     }
-    .TableContainer{
+    .container{
         width: 100%;
     }
 }

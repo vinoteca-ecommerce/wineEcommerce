@@ -48,10 +48,10 @@ export default function UserFavorites(){
     }
 
     return(
-    <div style={{display:'flex',justifyContent:'center', alignItems:'center',flexDirection:'column', padding:'0 0 6em 0'}}>
+    <div className={Style.container} >
         <h2 className={Style.title}>Tus Favoritos</h2>
         {store && store.user.role 
-        ?<TableContainer className={Style.TableContainer} >
+        ?<TableContainer >
             
              <Table component={Paper} sx={{width:'100%'}} >
                     <TableHead >

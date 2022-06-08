@@ -124,6 +124,8 @@ export const Products = () => {
                 </div>
             </div>
             
+            {wines?.msg ? <div className={style.containerMsg}><h2>{wines.msg}</h2></div>
+            :<>
             <div className={style.containerCards}>
                 {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
                     
@@ -136,6 +138,8 @@ export const Products = () => {
            <div className={style.pagination}>
             <ProductsPagination setPage={setPage} page={page} totalPage={totalPage}/>
            </div>
+           </>
+           }
            
         </div>
         }
