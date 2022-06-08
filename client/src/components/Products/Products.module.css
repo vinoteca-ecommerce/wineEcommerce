@@ -95,7 +95,7 @@ grid-template-columns: 1fr 2.8fr;
 }
 
 .filtersCard div, .filtersCard div select{
-  margin: 1.6em 0;
+  margin: 1.4em 0;
   padding: 0;
   width: 190px;
 }
@@ -178,7 +178,12 @@ grid-template-columns: 1fr 2.8fr;
   }
  }
  
-
+.containerMsg{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  align-self: center;
+  justify-self: center;
+}
 
 /* MEDIA-RESPONSIVE */
 
@@ -255,6 +260,11 @@ gap: 1em;
     grid-column: span 2;
      padding: 5px;
    
+}
+
+.containerMsg{
+  grid-column: span 2;
+  margin: 2em 2em
 }
 
 }
