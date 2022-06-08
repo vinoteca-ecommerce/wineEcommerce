@@ -30,7 +30,7 @@ import {
   DELETE_CART,
   GET_PURCHASE_ID,
   UPDATE_USER,
-
+  USER_UPDATE,
 
  POST_USER_ADDRESS,
  GET_USER_ADDRESS,
@@ -279,6 +279,10 @@ const rootReducer = (state = initialState, action) => {
         purchase: action.payload
       } 
     case UPDATE_USER:
+      return{
+        ...state
+      }
+    case USER_UPDATE:
       return{
         ...state
       }

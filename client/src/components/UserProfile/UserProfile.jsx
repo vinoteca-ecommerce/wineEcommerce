@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "../UserProfile/UserProfile.module.css";
 import { NavLink } from "react-router-dom";
+import { EditProfile } from "./EditProfile";
 
 export const UserProfile = () => {
   return (
     <>
+   
       <div className={styles.container}>
         <div className={styles.profileTitle}>
           <h1>Mi Perfil</h1>
         </div>
-
+        <EditProfile/>
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <NavLink to="/userOrders">
