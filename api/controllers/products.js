@@ -215,11 +215,12 @@ const productUpdateStock = async (req, res = response) => {
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
 
-  const { data } = req.body;
+  const  data = req.body;
 
+  
   const product = await Product.findById(id)
-product.comment.push(data)
-product.save()
+  product.comment.push(data)
+  product.save()
   res.json({msg: "Comentario aceptado"});
 
 };

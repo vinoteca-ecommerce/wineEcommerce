@@ -384,7 +384,7 @@ export const updateStock=(data)=>{
   return async function(dispatch){
     return axios.put('http://localhost:8000/products/stock',data,{headers: authHeader()})
       .then(response=>{
-        console.log(response)
+      
         dispatch({type:UPDATE_STOCK})
       })
   }
@@ -393,9 +393,9 @@ export const updateStock=(data)=>{
 
 
 export const putComment = (id, data)=>{
-console.log(data)
+
   return async function(dispatch){
-    return axios.put(`http://localhost:8000/products/comment/${id}`, {data} ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/products/comment/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
       dispatch({type: PUT_COMMENT, payload: response.data})
       }).catch(err=> console.log(err))
