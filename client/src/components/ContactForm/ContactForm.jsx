@@ -92,6 +92,7 @@ emailjs.sendForm(
           <div className={styles.subject}>
             <label htmlFor="subject"></label>
             <select
+              
               className={styles.select}
               placeholder="Tipo de consulta"
               name="subject"
@@ -101,7 +102,7 @@ emailjs.sendForm(
               <option disabled hidden selected>
                 Tipo de consulta
               </option>
-              <option>Asesoramiento</option>
+              <option >Asesoramiento</option>
               <option>Consulta general</option>
               <option>Reclamos</option>
             </select>
@@ -118,14 +119,16 @@ emailjs.sendForm(
               required
             ></textarea>
           </div>
-          <div class="submit">
-            <div></div>
-            <input
+          <div className="submit">
+            <button
               className={styles.form_button}
               type="submit"
-              value="Enviar"
+              key="submit"
+              value="submit"
               id="form_button"
-            />
+            >
+              Enviar
+            </button>
             {done && (
               <h3 className={styles.h3}>
                 Gracias, te responderemos a la brevedad!

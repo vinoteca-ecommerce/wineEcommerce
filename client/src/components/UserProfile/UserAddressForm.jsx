@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import {
   // getUserAddress,
   postUserAddress,
-  // updateUserAddress,
+  updateUserAddress,
 } from '../../redux/actions/actions'
 
 export const UserAddressForm = () => {
@@ -47,7 +47,7 @@ const handleSubmit =(e) => {
         dispatch(postUserAddress(dataState))
         alert('Tus datos se agregaron correctamente')
       } 
-      //else {
+      // else {
       //   dispatch(updateUserAddress(id, dataState))
       //   alert("Tus datos se actualizaron correctamente");
       // }
@@ -74,7 +74,7 @@ const handleSubmit =(e) => {
       phone_number: userAddress.phone_number,
       notes: userAddress.notes,
     })
-  // setDataState(!updated)
+  setDataState(!updated)
   };
 
   const handleChange = (e) => {
