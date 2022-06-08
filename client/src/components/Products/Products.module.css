@@ -183,6 +183,7 @@ grid-template-columns: 1fr 2.8fr;
   grid-template-columns: repeat(1, 1fr);
   align-self: center;
   justify-self: center;
+  margin-left: -6em;
 }
 
 /* MEDIA-RESPONSIVE */
@@ -264,7 +265,8 @@ gap: 1em;
 
 .containerMsg{
   grid-column: span 2;
-  margin: 2em 2em
+  margin: 2em auto;
+  font-size: 15px;
 }
 
 }

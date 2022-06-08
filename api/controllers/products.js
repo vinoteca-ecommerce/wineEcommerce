@@ -53,7 +53,7 @@ const getAll = async (req, res = response) => {
           removeAccents(name.toLowerCase())
         )
       );
-      x.length > 0 ? (namefiltred = x) : res.json("msg: Name not found");
+      x.length > 0 ? (namefiltred = x) : res.json({msg: "No se encontraron coincidencias"});
     } else {
       namefiltred = products;
     }
@@ -62,7 +62,7 @@ const getAll = async (req, res = response) => {
         (e) => e.strain.toLowerCase() === strain.toLowerCase()
       );
       if (strainFiltred.length === 0) {
-        return res.json({ msg: "Cepa no encontrada" });
+        return res.json({ msg: "No se encontraron coincidencias" });
       }
     } else {
       strainFiltred = namefiltred;
@@ -73,7 +73,7 @@ const getAll = async (req, res = response) => {
         (e) => e.category.name === category
       );
       if (categoryFiltred.length === 0) {
-        return res.json({ msg: "Categoria no encontrada" });
+        return res.json({ msg: "No se encontraron coincidencias" });
       }
     } else {
       categoryFiltred = strainFiltred;
@@ -84,7 +84,7 @@ const getAll = async (req, res = response) => {
         (e) => e.country.toLowerCase() === country.toLowerCase()
       );
       if (countryFiltred.length === 0) {
-        return res.json({ msg: "Country no encontrado" });
+        return res.json({ msg: "No se encontraron coincidencias" });
       }
     } else {
       countryFiltred = categoryFiltred;
@@ -93,7 +93,7 @@ const getAll = async (req, res = response) => {
       producerFilter = countryFiltred.filter((e) => e.producer === producer);
 
       if (producerFilter.length === 0) {
-        return res.json({ msg: "Bodega no encontrada" });
+        return res.json({ msg: "No se encontraron coincidencias" });
       }
     } else {
       producerFilter = countryFiltred;
