@@ -52,7 +52,11 @@ export const UserOrdersPending= () => {
         <div className={styles.card}>
         <div className={Style.backg}>
         
-              <table className={style.table}>
+        <table className={style.table}>
+              {userHistory.filter(e=> e.status === 'pending').length === 0 ? 
+
+                <h1> MARTIN SOS UN PETE </h1> : (
+
               <thead className={style.tableHead}>
                     <tr>
                       <th>Nº</th>
@@ -63,6 +67,9 @@ export const UserOrdersPending= () => {
                       <th></th>
                     </tr>
                   </thead>
+
+                )
+            }
         { userHistory.filter(e=> e.status === 'pending').length !== 0 ? 
         userHistory.filter(e=>e.status === 'pending')?.map((e,i)=>
              { 
@@ -82,7 +89,7 @@ export const UserOrdersPending= () => {
             )
           })
           : (
-            <h3> No hay pedidos asociados</h3>
+            <p></p>
             )}       
             </table>
         </div>

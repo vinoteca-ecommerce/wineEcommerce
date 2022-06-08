@@ -62,7 +62,7 @@ function handleSubmit(e){
             <label htmlFor="">Ingrese comentario sobre el vino</label>
             <br />
             <textarea onChange={handleChange} name="" id="" cols="30" rows="10"></textarea>
-            <Button  onClick={handleSubmit}> SEND</Button>
+            <Button  onClick={handleSubmit}> SEND </Button>
         </div>
     )
 }
