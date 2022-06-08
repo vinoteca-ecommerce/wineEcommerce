@@ -27,12 +27,7 @@ export const UserOrders= () => {
         </div>
 
         <nav className="navBar">
-          <ul className={styles.ulBreadcrumbs}>
-          <li>
-             
-             <Link to ='/userprofile'>HOME</Link>
-           </li>
-         
+          <ul className={styles.ulBreadcrumbs}>    
            <li>
              
              <Link to ='/userorders/approved'>PEDIDOS REALIZADOS</Link>

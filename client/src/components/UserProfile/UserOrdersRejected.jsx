@@ -55,7 +55,7 @@ export const UserOrdersRejected= () => {
               <table className={style.table}>
               {userHistory.filter(e=> e.status === 'rejected').length === 0 ? 
 
-                <h1> MARTIN SOS UN PETE </h1> : (
+              <thead><tr><td> <h1> No hay pedidos asociados </h1> </td></tr></thead>: (
 
               <thead className={style.tableHead}>
                     <tr>
@@ -89,7 +89,7 @@ export const UserOrdersRejected= () => {
             )
           })
           : (
-            <p></p>
+            <tfoot><tr><td><p></p></td></tr></tfoot>
             )}       
             </table>
         </div>
