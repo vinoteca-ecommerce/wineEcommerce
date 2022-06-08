@@ -195,7 +195,7 @@ const getProduct = async (req, res = response) => {
 
 const productUpdate = async (req, res = response) => {
   const { id } = req.params;
-  const { state, user, category, ...data } = req.body;
+  const { state, user,  ...data } = req.body;
 
   const product = await Product.findByIdAndUpdate(id, data, { new: true });
 
