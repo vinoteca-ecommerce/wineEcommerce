@@ -8,6 +8,12 @@
     top: 8em;
 
 }
+.spamm{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: red;
+}
 
 .containerTotal h4{
     text-align: center;
