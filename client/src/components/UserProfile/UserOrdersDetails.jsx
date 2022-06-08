@@ -26,7 +26,7 @@ export const UserOrdersDetail = () => {
           <th> Precio</th>
           <th> Cantidad </th>
           <th> Sub-Total </th>
-          <th></th>
+          <th> </th>
           <th></th>
           <th ></th >
           </tr> 
@@ -39,8 +39,9 @@ export const UserOrdersDetail = () => {
             <td>${e.unit_price}</td>
             <td>x{e.quantity}</td>
             <td>${e.unit_price * e.quantity}</td>
-            <td>{e.status}</td>
+            {/* <td>{e.status}</td> */}
             <td ><img style={{width:'50px'}} src={e.picture_url} alt='not found'/></td>
+            
             {purchase.status === 'approved' ?   <Link to= {'/userorders/approved/' + e.id} style={{ textDecoration: 'none' }} ><Button variant="contained"  style={{
                                   maxWidth: "60px",
                                   maxHeight: "60px",
@@ -50,7 +51,7 @@ export const UserOrdersDetail = () => {
                                   fontSize:'10px',
                                   marginTop:'25px',
                                 }}> Feedback </Button></Link> : <p></p>  }
-           
+           <td></td>
             </tr> 
           </tbody>
           ))
