@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 import { FeedbackCard } from '../Feedback Card/FeedbackCard';
 import { UserAddress } from '../UserProfile/UserAddress';
 import UserAddressCard from '../UserProfile/UserAddressCard';
+import Rating from '@mui/material/Rating';
 
 export const CardDetail = () => {
 
@@ -92,7 +93,7 @@ export const CardDetail = () => {
   return (
     <div>
       {id !== wines?._id ?  <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
-      :
+      :<>
       <div className={style.container}>
         <div className={style.img}>
           <img src={wines?.img} alt={wines?.name} />
@@ -112,17 +113,30 @@ export const CardDetail = () => {
           </div>
           <div className={style.btn}>
           <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category,wines.stock)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
-          </div>
-          {wines?.comment.map(e=>(
-            <FeedbackCard
-            comment={e.comment}
-            mail={e.email}
-            name={e.name}
-            />
-          ))}    
+          </div>   
         </div>
       </div>
-      }
+
+      <div className={style.containerReviews}>
+        <h2 style={{marginBottom:'1em',fontWeight:'600'}}>Reseñas de Clientes</h2>
+
+        {wines?.comment[0].comment !== 'Este vino aun no tiene comentarios' &&
+          <>
+            <Rating name="read-only" value={4} readOnly />
+            <p style={{marginBottom:'3em'}} >Basado en 10 reseñas</p>
+          </>
+        }
+
+        {wines?.comment.map(e=>(
+          <FeedbackCard
+          comment={e.comment}
+          email={e.email}
+          name={e.name}
+          />
+        ))} 
+      </div>
+      </>}
+
     </div>
   )
 }
