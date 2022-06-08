@@ -10,7 +10,7 @@ const jwtGenerator = (uid = "") => {
         payload,
         process.env.SECRETORPRIVATEKEY,
         {
-          expiresIn: "24h",
+          expiresIn: "1d",
         },
         (err, token) => {
           if (err) {
