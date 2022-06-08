@@ -44,6 +44,10 @@ export const AddProduct = () => {
     }
     else{
       e.preventDefault();
+      
+    if(!input.img){
+      input.img='https://res.cloudinary.com/dwtkwakbc/image/upload/v1654202538/no-image_v5xknd.jpg'
+    }
       dispatch(postWine(input))
 
       setInput({
