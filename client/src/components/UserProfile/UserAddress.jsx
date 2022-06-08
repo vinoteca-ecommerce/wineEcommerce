@@ -1,35 +1,39 @@
-import React from 'react'
-import styles from '../UserProfile/UserAddress.module.css'
-import { NavLink } from "react-router-dom";
-export const UserAddress = ({
-  user,
-  name,
-  address,
-  city,
-  province,
-  phone_number,
-  notes,
-}) => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.dirTitle}>
-        <h1>Mi direccion</h1>
-      </div>
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 
-      <div className={styles.card}>
-        <div className={styles.cardDetails}>
-          <p className={styles.textTitle}>Nombre: {name}</p>
-          <p className={styles.textBody}>Direccion: {address}</p>
-          <p className={styles.textBody}>Ciudad: {city}</p>
-          <p className={styles.textBody}>Provincia: {province}</p>
-          <p className={styles.textBody}>Telefono: {phone_number}</p>
-          <p className={styles.textBody}>Notas: {notes}</p>
-        </div>
-        {/* <NavLink to={`/userAddressForm/${user}`}> */}
-        <NavLink to={`/userAddressForm/`}>
-          <button className={styles.cardButton}>Editar direccion</button>
-        </NavLink>
-      </div>
-    </div>
+import { getUserAddress } from "../../redux/actions/actions";
+import UserAddressCard from '../UserProfile/UserAddressCard'
+
+
+
+export const UserAddress = () => {
+const dispatch = useDispatch()
+const userAddress = useSelector((state) => state.userAddress);
+
+ useEffect(() => {
+   dispatch(getUserAddress())
+ }, [dispatch])
+
+//  return (
+//    <div>
+//      <UserAddressCard/>
+//    </div>
+//  );
+
+{userAddress?.map((a) => {
+return (
+      <UserAddressCard
+        key={a.name}
+        name={a.name}
+        address={a.address}
+        city={a.city}
+        province={a.province}
+        phone_number={a.phone_number}
+        notes={a.notes}
+      />
   );
-};
+})}
+  
+}
+
+
