@@ -59,4 +59,4 @@ export const UserOrdersDetail = () => {
         </table>
     </div>
   )
-}
+} 
