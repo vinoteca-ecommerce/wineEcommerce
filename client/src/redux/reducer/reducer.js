@@ -59,6 +59,7 @@ const initialState = {
   orders: [],
   linkmp: "",
   idPurchase: "",
+  userAddress: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -305,6 +306,7 @@ const rootReducer = (state = initialState, action) => {
     case UPDATE_USER_ADDRESS:
       return {
         ...state,
+        userAddress: action.payload
       }
       case PUT_COMMENT:
         
