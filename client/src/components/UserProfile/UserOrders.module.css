@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.container{
+  height: 90vh;
+  width: 100vw;
+}
+
+.title{
+  margin-top: 5px;
+  margin-bottom: 5px;
+ color:#5A5A5A;
+  text-align: center;
+  font-size: 15px;
+    font-family: 'Montserrat', Arial, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Style the list */
+.ulBreadcrumbs{
+  text-align: center;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+/* Display list items side by side */
+.ulBreadcrumbs li {
+  display: inline;
+  font-size: 18px;
+}
+/* Add a slash symbol (/) before/behind each list item */
+.ulBreadcrumbs li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+.ulBreadcrumbs li a {
+  color: #670000;
+  text-decoration: none;
+}
+/* Add a color on mouse-over */
+.ulBreadcrumbs li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}

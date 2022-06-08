@@ -1,0 +1,111 @@
+/*.buttom{
+    padding: 0.5rem;
+    background-color: rgba(45,21,21,255);
+    color: rgba(245, 245, 220, 0.76);
+    border: 2px solid rgba(245, 245, 220, 0.76);
+    border-radius: 0.4rem;
+}
+.buttom:hover{
+    background-color: white;
+    color: rgba(45,21,21,255);
+    border: 2px solid black;
+}
+.backg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.nav{
+    margin-right: 90%;
+    padding: 0.5rem;
+    background-color: rgba(45,21,21,255);
+    color: rgba(245, 245, 220, 0.76);
+    border: 2px solid rgba(245, 245, 220, 0.76);
+    border-radius: 0.4rem;
+}
+.nav:hover{
+    background-color: white;
+    color: rgba(45,21,21,255);
+    border: 2px solid black;
+}
+table{
+    margin: auto;
+}
+th, td{
+    border: 1px solid black;
+}
+.tittle{
+    font-size: 150%;
+}
+.littleTitle{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+@media(max-width:390px){
+    .tittle{
+        font-size: 80%;
+    }
+}*/
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2em 0 0 0;
+    padding: 0;
+}
+
+.container h2{
+    display: flex;
+    justify-content: center;
+    margin: 0 0 .8em 0;
+}
+
+.table{
+    border: 1px solid #eaeaea;
+    text-align: center;
+    width: 50%;
+    border-collapse:collapse;
+    margin: 0 auto 2em auto;
+}
+
+.table .tableHead{
+    font-size: 17px;
+    background-color: #f5f5f5;
+}
+
+.table .tableHead td{
+    padding: 0.2em 2em;
+}
+
+.table .tableBody tr td{
+    padding: 1em 0 0 0;
+    border-bottom: 1px solid #eaeaea;
+    font-weight: 300;
+    width: 100px;
+    padding: .5em;
+}
+
+@media screen and (max-width: 800px){
+    .container{
+        flex-direction: column;  
+    }
+    .table{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 0 2em 0;
+    }
+
+    .table .tableHead td{
+        padding: 0.2em .47em;
+        font-size: 15px;
+    }
+
+    .table .tableBody tr td{
+        font-size: 14px;
+    }
+
+}

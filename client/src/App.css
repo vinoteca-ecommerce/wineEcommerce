@@ -1,4 +1,19 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+ /*font-family: 'Mont', sans-serif,'Great Vibes', cursive;*/
+  font-family: 'Mulish', sans-serif;
+  font-family: 'Roboto Flex', sans-serif;
+}
+.BodyDemo{
+  /* border: 10px solid red; */
+  min-height: calc(100vh - 300px);
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

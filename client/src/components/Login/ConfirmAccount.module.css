@@ -1,0 +1,52 @@
+.backg{
+    display: flex;
+    justify-content: center;   
+    text-align: center;
+    background: linear-gradient(180deg, rgba(45,21,21,255)   50%, rgba(245, 228, 220, 0.76)  10%);
+}
+.textContainer{
+    display: inline-block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    height: 500px;
+    width: 889px;
+    vertical-align:middle;
+    text-align: center;
+    border: 3px solid black;
+    font-size: 26px;
+    color: white;
+    background-image: url(https://images2.alphacoders.com/473/473240.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.background{
+    background-color: black;
+    opacity: 80%;
+}
+.textContainer h1{
+    line-height: 200px;
+   
+}
+.buttom{
+    padding: 0.5rem;
+    background-color: rgba(45,21,21,255);
+    color: rgba(245, 245, 220, 0.76);
+    border: 2px solid rgba(245, 245, 220, 0.76);
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    margin-top: 5.15%;
+}
+.buttom:hover{
+    background-color: rgba(245, 245, 220, 0.76);
+    color:rgba(45,21,21,255);
+}
+.spacing{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: xx-large;
+}
+.p{
+    padding-bottom: 7.5%;
+    font-size: x-large;
+}

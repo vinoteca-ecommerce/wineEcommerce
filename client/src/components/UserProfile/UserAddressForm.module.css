@@ -1,0 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+ background: #F2F3EB;
+  border: solid 3px #474544;
+  max-width: 768px;
+  margin: 60px auto;
+  position: relative;
+}
+
+.h1 {
+  color: #474544;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form {
+  padding: 37.5px;
+  margin: 50px 0;
+}
+
+.form button {
+  overflow: visible;
+}
+
+.form button {
+  text-transform: none;
+}
+.form button, .input{
+  color: #5A5A5A;
+  font: inherit;
+  margin: 0;
+}
+
+.input {
+  line-height: normal;
+}
+.name {
+	float: center;
+	width: 45%;
+}
+
+.phone {
+	float: right;
+	width: 45%;
+}
+
+.textarea {
+	line-height: 150%;
+	height: 150px;
+	resize: none;
+  width: 100%;
+}
+
+.input[type='text'], .textarea {
+	background: none;
+  border: none;
+	border-bottom: solid 2px #474544;
+	color: #474544;
+	font-size: 1.000em;
+  font-weight: 400;
+  letter-spacing: 1px;
+	margin: 0em 0 1.875em 0;
+	padding: 0 0 0.875em 0;
+  text-transform: uppercase;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.input[type='text']:focus, .textarea:focus {
+	outline: none;
+	padding: 0 0 0.875em 0;
+}
+.message {
+	float: none;
+}
+.formButton {
+  background: none;
+  border: solid 2px #474544;
+  color: #474544;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 0.800em;
+  font-weight: bold;
+  outline: none;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.formButton:hover {
+  background: #474544;
+  color: #F2F3EB;
+}

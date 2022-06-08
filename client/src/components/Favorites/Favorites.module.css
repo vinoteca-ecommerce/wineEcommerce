@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 0 0 6em 0;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.cardImg{
+    height: 10rem;
+    width: auto;
+
+}
+
+.SecondOption{
+    padding-top: 7em;
+    padding-bottom: 7em;
+    text-align: center;
+}
+
+.TableContainer{
+    width: 60%;
+}
+
+@media(max-width:390px){
+    .cardImg{
+        height: 5rem;
+        width: auto;
+    }
+    .container{
+        width: 100%;
+    }
+}
