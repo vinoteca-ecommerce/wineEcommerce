@@ -9,6 +9,8 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import swal from 'sweetalert';
 import { FeedbackCard } from '../Feedback Card/FeedbackCard';
+import { UserAddress } from '../UserProfile/UserAddress';
+import UserAddressCard from '../UserProfile/UserAddressCard';
 
 export const CardDetail = () => {
 
@@ -124,3 +126,6 @@ export const CardDetail = () => {
     </div>
   )
 }
+
+
+

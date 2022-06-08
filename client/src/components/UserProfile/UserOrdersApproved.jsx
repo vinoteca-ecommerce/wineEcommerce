@@ -76,6 +76,7 @@ export const UserOrdersApproved= () => {
                     {e.cart.map(e=>
                     e.unit_price * e.quantity).reduce((acc, e) => acc + e ,0)}
                     </td>
+                    
                     <td style={{width:'50px'}}><Link to={'/user/purchase/detail/' + e._id}><Button style={{maxWidth: '30px', maxHeight: '30px', minWidth: '25px', minHeight: '25px',borderRadius:'80px', backgroundColor:'rgba(45,21,21,255)'}}> <WineBarIcon style={{color:'white'}}/> </Button></Link></td>
                   </tr>
                 </tbody>                

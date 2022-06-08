@@ -21,7 +21,7 @@ useEffect(() => {
 }, []);
 
 
-   
+   console.log(id)
 
 function handleChange(e){
 setComment({email: email,

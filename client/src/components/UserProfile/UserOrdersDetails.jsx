@@ -2,14 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getPurchaseId } from '../../redux/actions/actions'
+import { Link } from 'react-router-dom'
 import style from '../AdminDashboard/PurchaseDetail.module.css'
+import { Button } from '@mui/material'
 
 export const UserOrdersDetail = () => {
   const dispatch = useDispatch()
   const purchase = useSelector((state)=> state.purchase)
   const { id } = useParams()
 
-  console.log(purchase)
+
   useEffect(()=>{
     dispatch(getPurchaseId(id))
   },[dispatch])
@@ -25,8 +27,9 @@ export const UserOrdersDetail = () => {
           <th> Precio</th>
           <th> Cantidad </th>
           <th> Sub-Total </th>
-        
           <th></th>
+          <th></th>
+          <th>Deja tu comentario</th>
           <th></th>
           </tr> 
         </thead>
@@ -40,6 +43,7 @@ export const UserOrdersDetail = () => {
             <td>${e.unit_price * e.quantity}</td>
             <td>{e.status}</td>
             <td ><img style={{width:'50px'}} src={e.picture_url} alt='not found'/></td>
+            <Link to= {'/userorders/approved/' + e.id} ><Button> Dejar un feedback</Button></Link>
             </tr> 
           </tbody>
           ))
