@@ -29,6 +29,7 @@ export const GET_ORDERS = 'GET_ORDERS';
 export const GET_PURCHASE = 'GET_PURCHASE';
 export const POST_PURCHASE = 'POST_PURCHASE';
 export const ALL_FAVORITES = 'ALL_FAVORITES';
+export const ALL_FAVORITES2 = 'ALL_FAVORITES2';
 export const ADD_FAVS = 'ADD_FAVS';
 export const DELETE_FAV = 'DELETE_FAV';
 export const PUT_PURCHASE ='PUT_PURCHASE';
@@ -191,7 +192,18 @@ export const allFavs = (id)=>{
     })
     .catch(err => console.error(err))
   }
+}
 
+export const allFavs2 = (id)=>{
+  return async function(dispatch){
+    // return axios.get('http://localhost:8000/products/favs', { headers: authHeader()  })
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  })
+    .then(response => {
+      // console.log(response.data.favorites)
+      dispatch({ type: ALL_FAVORITES2, payload: response.data.favorites });
+    })
+    .catch(err => console.error(err))
+  }
 }
 
 //CARRITO DE COMPRAS BASE DE DATOS

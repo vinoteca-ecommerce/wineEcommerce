@@ -20,6 +20,7 @@ import {
   GET_USER,
   ADD_FAVS,
   ALL_FAVORITES,
+  ALL_FAVORITES2,
   DELETE_FAV,
   MERCADO_PAGO,
   POST_PURCHASE,
@@ -233,6 +234,13 @@ const rootReducer = (state = initialState, action) => {
         favorites: action.payload,
         favoritesId: arr
       };
+
+      case ALL_FAVORITES2:
+  
+        return {
+          ...state,
+          favorites: action.payload,
+        };
 
 
     case MERCADO_PAGO:
