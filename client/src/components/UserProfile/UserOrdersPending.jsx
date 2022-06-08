@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import style from '../AdminDashboard/PurchaseDetail.module.css'
 
 
-export const UserOrdersApproved= () => {
+export const UserOrdersPending= () => {
   const dispatch = useDispatch()
   const userHistory = useSelector((state)=> state.orders) 
   
