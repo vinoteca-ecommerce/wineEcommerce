@@ -11,7 +11,6 @@ export const UserOrdersDetail = () => {
   const purchase = useSelector((state)=> state.purchase)
   const { id } = useParams()
 
-
   useEffect(()=>{
     dispatch(getPurchaseId(id))
   },[dispatch])
@@ -29,8 +28,7 @@ export const UserOrdersDetail = () => {
           <th> Sub-Total </th>
           <th></th>
           <th></th>
-          <th>Deja tu comentario</th>
-          <th></th>
+          <th ></th >
           </tr> 
         </thead>
            {purchase.cart?.map(((e,index)=>
@@ -43,7 +41,16 @@ export const UserOrdersDetail = () => {
             <td>${e.unit_price * e.quantity}</td>
             <td>{e.status}</td>
             <td ><img style={{width:'50px'}} src={e.picture_url} alt='not found'/></td>
-            <Link to= {'/userorders/approved/' + e.id} ><Button> Dejar un feedback</Button></Link>
+            {purchase.status === 'approved' ?   <Link to= {'/userorders/approved/' + e.id} style={{ textDecoration: 'none' }} ><Button variant="contained"  style={{
+                                  maxWidth: "60px",
+                                  maxHeight: "60px",
+                                  minWidth: "25px",
+                                  minHeight: "25px",
+                                  backgroundColor: "rgba(45,21,21,255)",
+                                  fontSize:'10px',
+                                  marginTop:'25px',
+                                }}> Feedback </Button></Link> : <p></p>  }
+           
             </tr> 
           </tbody>
           ))
@@ -52,4 +59,4 @@ export const UserOrdersDetail = () => {
         </table>
     </div>
   )
-}
+} 

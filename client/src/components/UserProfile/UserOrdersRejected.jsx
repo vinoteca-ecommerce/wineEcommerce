@@ -50,9 +50,13 @@ export const UserOrdersRejected= () => {
           </ul>
         </nav>
         <div className={styles.card}>
+
         <div className={Style.backg}>
-        
               <table className={style.table}>
+              {userHistory.filter(e=> e.status === 'rejected').length === 0 ? 
+
+                <h1> No hay pedidos asociados </h1> : (
+
               <thead className={style.tableHead}>
                     <tr>
                       <th>Nº</th>
@@ -63,6 +67,9 @@ export const UserOrdersRejected= () => {
                       <th></th>
                     </tr>
                   </thead>
+
+                )
+            }
         { userHistory.filter(e=> e.status === 'rejected').length !== 0 ? 
         userHistory.filter(e=>e.status === 'rejected')?.map((e,i)=>
              { 
@@ -82,7 +89,7 @@ export const UserOrdersRejected= () => {
             )
           })
           : (
-            <h3> No hay pedidos asociados</h3>
+            <p></p>
             )}       
             </table>
         </div>
