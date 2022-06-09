@@ -90,37 +90,33 @@ export const UpdateProduct = () => {
     });
   }
 
-  function handleSelect(e){
-    setInput({
-      ...input,
-      category: e.target.value
-    });
-  }
-
 
   function validate(input){
     let error = {};
-    if(input.name.length < 4){
-      error.name = 'Nombre debe ser valido'
-    }
-    if(input.producer.length < 4){
+    if(!input.name) error.name = 'Nombre debe ser valido'
+    if(!/^[A-Z\s]+$/i.test(input.name)) error.name = 'Nombre debe ser valido'
+    if(input.name.length < 3) error.name = 'Nombre debe ser valido'
+
+    if(!/^\d*$/.test(input.stock)) error.stock = 'Stock debe ser valido'
+    if(input.stock <= 0) error.stock = 'Stock debe ser valido'
+
+    if(input.producer.length < 3){
       error.producer = 'Nombre del productor es obligatorio'
     }
-    if(!input.price){
-      error.price = 'Precio es obligatorio'
-    }
-    if(input.price < 0){
-      error.price = 'Debe tener precio valido'
-    }
-    if(input.country.length < 4){
+
+    if( !/^[0-9]*(\.?)[0-9]+$/.test(input.price)) error.price = 'Precio es obligatorio'
+    if(input.price <= 0) error.price = 'Debe tener precio valido'
+
+    if(input.country.length < 3){
       error.country = 'Pais del vino es obligatorio' 
     }
-    if(input.year <= 0){
-      error.year = 'Debe ser un año valido'
-    }
-    if(!input.strain){
+    if(!/^\d*$/.test(input.year)) error.year = 'Debe ser un año valido'
+    if(input.year <= 1900 || input.year > 2022) error.year = 'Debe ser un año valido'
+
+    if(input.strain.length < 3){
       error.strain = 'Cepa es obligatorio'
     }
+
     return error
   }
 
@@ -241,23 +237,24 @@ export const UpdateProduct = () => {
               type="number" 
               placeholder={wine.stock}
               value={input.stock}
-          
               name='stock' 
               autoComplete="off"
               onChange={handleOnChange}
               min='0'
+              className={error.stock && style.stock}
               />
+              {error.stock && <p>{error.stock}</p>}  
           </div>
           </div>
         <div>
               <label style={{marginTop:'2em'}}> Categoria: </label>
-              <select style={{marginTop:'2em'}}  defaultValue={input.category} onChange={e=>handleSelect(e)} >
-
+              <select style={{marginTop:'2em'}}  name="category" onChange={e=>handleOnChange(e)} className={error.category && style.danger}>
 
                 {category.result?.map((e) => (
                   <option value={e._id} key={e._id}> {e.name} </option>
                 ))}
               </select>   
+              {error.category && <p>{error.category}</p>} 
         </div>
         <div>
             <label style={{marginTop:'2em'}}>Descripcion:  </label>

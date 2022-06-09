@@ -23,7 +23,13 @@ router.post('/', [
     validation,
 ], postProduct );
 
-router.put('/stock',[],productUpdateStock)
+
+router.put('/stock',[
+    jwtValidator
+],productUpdateStock)
+
+
+
 router.put('/:id',[
     jwtValidator,
     check('id').isMongoId(),

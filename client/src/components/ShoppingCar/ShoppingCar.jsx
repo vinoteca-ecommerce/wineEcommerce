@@ -18,7 +18,7 @@ export const ShoppingCar = () => {
     let store = JSON.parse(localStorage.getItem('ShoppingCar'));
     const wine = useSelector((state)=> state.wines)
     
-    if(shoppingcar.length===0){
+    if(shoppingcar?.length===0){
         dispatch(setShoppingCar([]))
     }
 
