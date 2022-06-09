@@ -20,12 +20,10 @@ export const ShoppingCarTotal = () => {
 
   useEffect(()=>{
     dispatch(getUserAddress())
-  })
-  console.log(userAddress)
-  useEffect(()=>{
     const user= authService.getCurrentUser();
     if(user) setCurrentUser(user);
   },[])
+
   
 
   for(let i=0; i<shoppingcar?.length ; i++){
