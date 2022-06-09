@@ -18,7 +18,8 @@ export const CardDetail = () => {
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
-  const [cont,setCont] = useState(1)
+  const [cont,setCont] = useState(1);
+  const [sum,setSum] = useState(0);
 
   useEffect(()=>{
     dispatch(getWinesById(id))
@@ -122,13 +123,10 @@ export const CardDetail = () => {
 
         {wines?.comment[0].comment !== 'Este vino aun no tiene comentarios' &&
           <>
-            <Rating name="read-only" value={4} readOnly />
-            <p style={{marginBottom:'3em'}} >Basado en 10 reseñas</p>
+            <Rating name="read-only" value={sum !== 0 && sum/wines?.comment.length} readOnly />
+            <p style={{marginBottom:'3em'}} >Basado en {wines?.comment.length} reseñas</p>
           </>
         }
-
-
-
 
         {wines?.comment.map(e=>(
           <FeedbackCard
@@ -136,8 +134,9 @@ export const CardDetail = () => {
           email={e.email}
           name={e.name}
           title={e.title}
-          ranking={e.ranking}
-          
+          ranking={e.ranking} 
+          sum={sum}
+          setSum={setSum}
           />
         
         )) } 
