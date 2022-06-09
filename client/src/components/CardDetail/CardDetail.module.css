@@ -129,6 +129,14 @@ h3{
     flex-direction: column;
 }
 
+.noRev{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 4em;
+}
+
 @media(max-width:1550px){
     .container{
         margin: 5em auto;

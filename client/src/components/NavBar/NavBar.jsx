@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,6 +24,9 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
 
+  const navigate = useNavigate()
+
+
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
@@ -34,6 +37,7 @@ export const NavBar = () => {
 
   const logOut = ()=>{
     authService.logout();
+    navigate('/')
     window.location.reload();
   }
 
@@ -52,7 +56,7 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  return currentUser?.user.role === "ADMIN_ROLE" ? (
+  return currentUser?.user?.role === "ADMIN_ROLE" ? (
     <DashboardNav />
   ) : (
     <AppBar position="sticky" sx={{ background: "white" }}>
@@ -65,15 +69,15 @@ export const NavBar = () => {
               sx={{
                 mr: 5,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
+                fontFamily: "Open Sans",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "gray",
-                boxShadow: "14px 12px #7f0000",
+                boxShadow: "10px 10px #7f0000",
                 textDecoration: "none",
               }}
             >
-              VINOTECA
+              VINO<span style={{ color: "#c79557" }}>TECA</span>
             </Typography>
           </Link>
 
@@ -105,13 +109,13 @@ export const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem>
-                <Link to="/products" style={{ textDecoration: "none" }}>
+              <MenuItem >
+                <Link to="/products" style={{ textDecoration: "none"}}>
                   <Button textalign="center">Productos</Button>
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/contact" style={{ textDecoration: "none" }}>
+                <Link to="/aboutvinoteca" style={{ textDecoration: "none" }}>
                   <Button textalign="center">Nosotros</Button>
                 </Link>
               </MenuItem>
@@ -130,7 +134,7 @@ export const NavBar = () => {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "Open Sans",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 fontSize: "20px",
@@ -138,7 +142,7 @@ export const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              VINOTECA
+              VINO<span style={{ color: "#c79557" }}>TECA</span>
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -150,7 +154,7 @@ export const NavBar = () => {
                 Productos
               </Button>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/contact">
+            <Link style={{ textDecoration: "none" }} to="/aboutvinoteca">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
@@ -169,7 +173,7 @@ export const NavBar = () => {
           </Box>
           <Box>
             <IconButton sx={{ mr: "4px", mt: "1px", p: "6px 6px 1px 6px" }}>
-              <Link to="/shoppingCar" style={{ color: "grey" }}>
+              <Link to="/shoppingcart" style={{ color: "grey" }}>
                 <AddShoppingCartIcon fontSize="large" />
               </Link>
             </IconButton>

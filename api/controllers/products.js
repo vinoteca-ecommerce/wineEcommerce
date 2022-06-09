@@ -205,6 +205,7 @@ const productUpdate = async (req, res = response) => {
 
 const productUpdateStock = async (req, res = response) => {
 //llega toda la info por body: [{id, stockk},{id, stockk}]
+
   req.body.map(async(e)=>{
     let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stockk}, { new: true });
   })

@@ -18,25 +18,29 @@ export const CardDetail = () => {
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
-  const [cont,setCont] = useState(1)
+  const [cont,setCont] = useState(1);
+  let sum = 0;
 
   useEffect(()=>{
     dispatch(getWinesById(id))
+
   },[dispatch,id])
 
   const handleClick = (operation)=>{
+
     if(operation === 'sub'){
-      if(cont > 1) setCont(cont-1)
+      if(cont > 1) setCont(cont-1);
+    }else{
+      if(cont >= wines.stock){
+        return  swal({
+         title: "Fuera de stock",
+         text: `No hay mas stock`,
+         icon: "error",
+         button: "Aceptar",
+       });
+       }
+      else setCont(cont+1);
     }
-    if(cont >= wines.stock){
-      return  swal({
-       title: "Fuera de stock",
-       text: `No hay mas stock`,
-       icon: "error",
-       button: "Aceptar",
-     });
-     }
-    else setCont(cont+1)
   }
 
 
@@ -47,7 +51,7 @@ export const CardDetail = () => {
     let state = JSON.parse(localStorage.getItem('ShoppingCar'));
     let sum = 0;
     let index = undefined;
-    console.log(wines.stock)
+   
     if(state){
       for(let i=0 ; i<state?.length ; i++){
         if(state[i].id === id){
@@ -87,8 +91,13 @@ export const CardDetail = () => {
         button: "Aceptar",
       });
     }
-    //localStorage.clear()
   }
+
+  wines?.comment?.map(wine=>{
+    sum = Number(wine.ranking) + sum
+  })  
+
+  console.log(wines.comment)
 
   return (
     <div>
@@ -120,20 +129,26 @@ export const CardDetail = () => {
       <div className={style.containerReviews}>
         <h2 style={{marginBottom:'1em',fontWeight:'600'}}>Reseñas de Clientes</h2>
 
-        {wines?.comment[0].comment !== 'Este vino aun no tiene comentarios' &&
+        {wines?.comment.length !== 0 ?
           <>
-            <Rating name="read-only" value={4} readOnly />
-            <p style={{marginBottom:'3em'}} >Basado en 10 reseñas</p>
-          </>
-        }
+            <Rating name="read-only" value={sum/wines?.comment.length} readOnly />
+            <p style={{marginBottom:'3em'}} >Basado en {wines?.comment.length} reseñas</p>
+          
 
-        {wines?.comment.map(e=>(
+        {wines?.comment.map((e, i)=>(
           <FeedbackCard
+          key={i + 1}
           comment={e.comment}
           email={e.email}
           name={e.name}
+          title={e.title}
+          ranking={e.ranking} 
           />
-        ))} 
+        
+        )) } 
+        </>
+        :<p className={style.noRev}>Este vino aun no tiene comentarios</p>
+       }
       </div>
       </>}
 

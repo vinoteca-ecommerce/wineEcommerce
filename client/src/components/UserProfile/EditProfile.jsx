@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import swal from 'sweetalert'
 import { getUserById, userProfileUpd } from '../../redux/actions/actions'
 import style from './EditProfile.module.css';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 export const EditProfile = () => {
@@ -98,44 +100,55 @@ export const EditProfile = () => {
     }
 
   return (
-    <div>
-        <div>
+    <div className={style.containerAllPerfil}>
+        
             <form onSubmit={handleSubmit}>
-                    <img style={{width:'200px', height:'200px', borderRadius:'200px'}} src={store?.user.img} alt='Not Found'/>
-                    <button  onClick={e=>handleEditimg(e)} > editarimg</button>
+              <div className={style.ContainerPerfil}>
+                <div className={style.imgdiv}>
+            
+                    <img className={style.img} style={{width:'200px', height:'200px', borderRadius:'200px', border:'solid', borderColor:'black'}} src={store?.user.img} alt='Not Found'/>
+                    <Button  onClick={e=>handleEditimg(e)} > <EditIcon style={{color:'#6c0000'}}/></Button>
                {img === false ? <div>
 
                 </div>:(
                     <input
+                    
                     type='url'
                     name='img'
                     onChange={handleOnChange}
+                    className={style.imgurl}
                     placeholder='Url de la imagen'/>
 
-                )}
-                <div>
-                    <label> Nombre: {input.name} <button onClick={e=>handleEdit(e)}>Editar</button></label>
-                    {nombre === false ? <div>
-                    </div>: (
-                        <div>
-                            <input
-                            type='text'
-                            placeholder={user.name}
-                            name='name'
-                            value={input.name}
-                            onChange={handleOnChange}
-                            />
-
-                        </div>
-                    )}
+                )}   
                 </div>
-                <div>
-                    <label> Email:</label>
-                    <div>{user.email}</div>
+             <div className={style.namediv}>
+                        <label className={style.labelname}> Nombre: {input.name} <Button onClick={e=>handleEdit(e)}><EditIcon  style={{color:'#6c0000'}}/></Button></label>
+                        {nombre === false ? <div>
+                        </div>: (
+                          <div className={style.nameinputdiv}>
+                                <input
+                                type='text'
+                                placeholder={user.name}
+                                name='name'
+                                className={style.name}
+                                value={input.name}
+                                onChange={handleOnChange}
+                                />
+    
+                            </div>
+                        )}
+                    </div>
+                    <div className={style.emaildiv}>
+                    <label className={style.email}> Email: {user.email}</label>
                 </div>
-                <Button variant="contained" type="submit" onSubmit={handleSubmit}  > Actualizar </Button>
+                <div className={style.btn}>
+                <Button variant="contained" type="submit" onSubmit={handleSubmit}   style={{backgroundColor:'#6c0000'}}> Actualizar </Button>
+                </div>
+                      
+                
+         
+            </div>
             </form>
-        </div>
     </div>
   )
 }

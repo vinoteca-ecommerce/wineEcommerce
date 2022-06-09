@@ -188,13 +188,12 @@ grid-template-columns: 1fr 2.8fr;
 
 /* MEDIA-RESPONSIVE */
 
-@media screen and (max-width: 850px){
+@media (max-width: 880px){
     .mainContainer{
 
 width: 95%;
 margin: 1em auto;
 gap: 1em;
-
 
 }
  
@@ -221,13 +220,14 @@ gap: 1em;
     align-items:center;
     justify-items: center; */
    
-    /*grid-column: span 1;
+    /* grid-column: span 1;
     padding: 10px;
-    align-items: center;*/
+    align-items: center; */
+   
     /* card filters   */
    
-   /*width: 300px;
-    height: 80px;*/
+   /* width: 300px;
+    height: 80px; */
     display: flex;
     flex-direction: column;
     margin: 0 0 0 4.5em;
@@ -270,5 +270,3 @@ gap: 1em;
 }
 
 }
-
-
