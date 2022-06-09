@@ -19,10 +19,11 @@ export const CardDetail = () => {
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
   const [cont,setCont] = useState(1);
-  const [sum,setSum] = useState(0);
+  let sum = 0;
 
   useEffect(()=>{
     dispatch(getWinesById(id))
+
   },[dispatch,id])
 
   const handleClick = (operation)=>{
@@ -92,8 +93,11 @@ export const CardDetail = () => {
     }
   }
 
+  wines?.comment?.map(wine=>{
+    sum = Number(wine.ranking) + sum
+  })  
 
-
+  console.log(wines.comment)
 
   return (
     <div>
@@ -125,12 +129,11 @@ export const CardDetail = () => {
       <div className={style.containerReviews}>
         <h2 style={{marginBottom:'1em',fontWeight:'600'}}>Reseñas de Clientes</h2>
 
-        {wines?.comment[0].comment !== 'Este vino aun no tiene comentarios' &&
+        {wines?.comment.length !== 0 ?
           <>
-            <Rating name="read-only" value={sum !== 0 && sum/wines?.comment.length} readOnly />
+            <Rating name="read-only" value={sum/wines?.comment.length} readOnly />
             <p style={{marginBottom:'3em'}} >Basado en {wines?.comment.length} reseñas</p>
-          </>
-        }
+          
 
         {wines?.comment.map((e, i)=>(
           <FeedbackCard
@@ -140,11 +143,12 @@ export const CardDetail = () => {
           name={e.name}
           title={e.title}
           ranking={e.ranking} 
-          sum={sum}
-          setSum={setSum}
           />
         
         )) } 
+        </>
+        :<p className={style.noRev}>Este vino aun no tiene comentarios</p>
+       }
       </div>
       </>}
 
