@@ -122,7 +122,8 @@ export const EditProfile = () => {
                 )}   
                 </div>
              <div className={style.namediv}>
-                        <label className={style.labelname}> Nombre: {input.name} <Button onClick={e=>handleEdit(e)}><EditIcon  style={{color:'#6c0000'}}/></Button></label>
+                      
+                        <label className={style.labelname}> Nombre: {input.name}<Button onClick={e=>handleEdit(e)}><EditIcon  style={{color:'#6c0000'}}/></Button></label>
                         {nombre === false ? <div>
                         </div>: (
                           <div className={style.nameinputdiv}>
