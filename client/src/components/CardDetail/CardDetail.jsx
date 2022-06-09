@@ -47,7 +47,7 @@ export const CardDetail = () => {
     let state = JSON.parse(localStorage.getItem('ShoppingCar'));
     let sum = 0;
     let index = undefined;
-    console.log(wines.stock)
+   
     if(state){
       for(let i=0 ; i<state?.length ; i++){
         if(state[i].id === id){
@@ -87,8 +87,10 @@ export const CardDetail = () => {
         button: "Aceptar",
       });
     }
-    //localStorage.clear()
   }
+
+
+
 
   return (
     <div>
@@ -130,8 +132,9 @@ export const CardDetail = () => {
 
 
 
-        {wines?.comment.map(e=>(
+        {wines?.comment.map((e, i)=>(
           <FeedbackCard
+          key={i + 1}
           comment={e.comment}
           email={e.email}
           name={e.name}
