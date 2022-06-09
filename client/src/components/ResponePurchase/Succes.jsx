@@ -35,7 +35,7 @@ export function Succes() {
  let totalCost=0;
   const data = {
     payment_id: payment_id,
-    status: status,
+    status : status === 'null' ? 'rejected': status,
   };
   let STATEorders= useSelector(state=>state.orders)
   useEffect(()=>{
@@ -50,7 +50,8 @@ export function Succes() {
   useEffect(() => {
 
 
-    if(status === 'rejected'){
+    if(status === 'rejected' || status === 'null'){
+      console.log(status)
       dispatch(putPurchase(idPurchase, data));
     }else if(status === "pending" ||status === "approved"){
     
