@@ -1,23 +1,18 @@
-import React from 'react'
-import styles from '../UserProfile/UserAddressCard.module.css'
+import React from "react";
+import styles from "../UserProfile/UserAddressCard.module.css";
 import { NavLink } from "react-router-dom";
 
-
 const UserAddressCard = ({
-  name, 
-  address, 
+  name,
+  address,
   city,
   province,
-  phone_number, 
-  notes
-})=>{
-
-return (
+  phone_number,
+  notes,
+}) => {
+  return (
     <div className={styles.container}>
-      <div className={styles.dirTitle}>
-        <h1>Mi direccion</h1>
-      </div>
-
+      <div className={styles.dirTitle}></div>
       <div className={styles.card}>
         <div className={styles.cardDetails}>
           <p className={styles.textTitle}>Nombre: {name}</p>
@@ -33,9 +28,6 @@ return (
       </div>
     </div>
   );
-}
+};
 
 export default UserAddressCard;
-
-
-  

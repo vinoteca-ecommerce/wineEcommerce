@@ -11,6 +11,7 @@ const jwtGenerator = (uid = "") => {
         process.env.SECRETORPRIVATEKEY,
         {
           expiresIn: "24h",
+
         },
         (err, token) => {
           if (err) {

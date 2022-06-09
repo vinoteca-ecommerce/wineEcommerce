@@ -23,9 +23,11 @@ router.post('/', [
     validation,
 ], postProduct );
 
+
 router.put('/stock',[
     jwtValidator
 ],productUpdateStock)
+
 
 
 router.put('/:id',[
