@@ -146,6 +146,8 @@ function App() {
         <Route path='/userorders/approved/:id' element={<UserOrdersApprovedId/>}/>
         <Route path='/user/purchase/detail/:id' element={<UserOrdersDetail/>}/>
         <Route path='/editProfile' element={<EditProfile/>}/>
+      
+        
 
       </Routes></div>
       <div className='FooterDemo'><Footer/></div>

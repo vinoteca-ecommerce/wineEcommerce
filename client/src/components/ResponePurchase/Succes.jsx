@@ -35,7 +35,9 @@ export function Succes() {
  let totalCost=0;
   const data = {
     payment_id: payment_id,
+
     status : status === 'null' ? 'rejected': status,
+
   };
   let STATEorders= useSelector(state=>state.orders)
   useEffect(()=>{
@@ -69,6 +71,7 @@ export function Succes() {
   
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
+
     
   }
   return()=>{
@@ -78,6 +81,7 @@ export function Succes() {
   }
 }, []);
  
+
 
   return (
     <div className={Style.hache1}>

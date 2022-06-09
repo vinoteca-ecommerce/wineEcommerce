@@ -11,6 +11,7 @@ const Register = ()=>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const navigate = useNavigate()
 
@@ -44,9 +45,45 @@ const Register = ()=>{
         {theme:"outline", size:"large"})
     },[])
 
+
+    function ValidateEmail(mail) 
+    {
+     if (/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(mail))
+      {
+        return (true)
+      }
+      return (false)
+    }
+
+    function ValidarName(name){
+      if (!/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/.test(name)){
+        return false
+    } else {
+      return true
+    }
+    }
+
+
     const handleRegister = async(e)=>{
         e.preventDefault();
-        console.log(1)
+
+        if(ValidarName(name) === false){
+          return alert("Prohibido ingresar numero o caracteres en el nombre")
+           }
+
+        if(passwordConfirm !== password){
+return alert("Por favor ingrese correctamente la confirmacion de la contraseña")
+
+        }
+
+        if(ValidateEmail(email) === false){
+  return alert("Por favor ingrese un email correcto")
+   }
+
+     console.log(ValidarName(name))
+     console.log(name)
+
+
         try {
             console.log(2)
             await authService.register(name, password,email).then(
@@ -67,6 +104,7 @@ const Register = ()=>{
           <input
             className={Style.input}
             type="text"
+            maxLength="35"
             value={name}
             name="name"
             placeholder="Name"
@@ -77,11 +115,23 @@ const Register = ()=>{
         <div className={Style.login}>
         <input
             className={Style.input}
-            type="text"
+            type="password"
+            maxLength="18"
             value={password}
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+          />
+           </div>
+           <div className={Style.login}>
+        <input
+            className={Style.input}
+            type="password"
+            maxLength="18"
+            value={passwordConfirm}
+            name="PasswordConfirm"
+            placeholder=" Confirme Password"
+            onChange={(e) => setPasswordConfirm(e.target.value)}
           />
            </div>
            <div className={Style.login}>
@@ -90,9 +140,12 @@ const Register = ()=>{
             type="text"
             value={email}
             name="email"
+            maxLength="40"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
+
+          
           </div>
           <Button sx={{mt:'14px'}} type="submit" variant="contained" className={Style.buttom}>Register</Button>
         </form>
