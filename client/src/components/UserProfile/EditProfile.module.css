@@ -29,6 +29,7 @@
     border-radius: 5px;
     margin-top: 90px;
     height: fit-content;
+    margin-right: 5px;
 }
 .namediv{
     display: flex;
@@ -36,9 +37,11 @@
     border-color: black;
     justify-content: center;
     margin: 10px 0px 0px;
+    font-size: 15px;
 }
 .name{
  background-color: white;
+ margin-right: 5px;
  border-radius: 5px;
 }
 
@@ -46,6 +49,7 @@
     display: flex;
     justify-content: center;
     margin: 10px 0px 20px;
+    font-size: 15px;
 }
 
 .btn{
