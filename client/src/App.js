@@ -132,7 +132,7 @@ function App() {
             </PrivateDash>
           }
         />
-        <Route path='/shoppingCar' element={<ShoppingCar/>}/>
+        <Route path='/shoppingcart' element={<ShoppingCar/>}/>
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/userorders' element={<UserOrders/>}/>
         <Route path='/userorders/pending' element={<UserOrdersPending/>}/>

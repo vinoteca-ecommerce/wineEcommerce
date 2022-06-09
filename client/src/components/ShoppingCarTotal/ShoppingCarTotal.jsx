@@ -29,7 +29,7 @@ export const ShoppingCarTotal = () => {
     if(user) setCurrentUser(user);
   },[])
 
-  
+
 
   for(let i=0; i<shoppingcar?.length ; i++){
     subtotal += shoppingcar[i]?.cont*shoppingcar[i]?.price;

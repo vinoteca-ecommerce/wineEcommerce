@@ -51,10 +51,12 @@ export const ShoppingCar = () => {
 //          dispatch(getWinesById(id))
 //          console.log(wine)
         
+
 //     if(operation === 'sub'){
 //             dispatch(subLocalStorage(id))
             
 //         }   
+
         
 //     else if(operation === 'add'){
 //             const vino= shoppingcar.find(e=>wine.name=== e.name)

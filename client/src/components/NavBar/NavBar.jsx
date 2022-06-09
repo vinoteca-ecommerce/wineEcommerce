@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,6 +24,9 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
 
+  const navigate = useNavigate()
+
+
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
@@ -34,6 +37,7 @@ export const NavBar = () => {
 
   const logOut = ()=>{
     authService.logout();
+    navigate('/')
     window.location.reload();
   }
 
@@ -52,7 +56,7 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  return currentUser?.user.role === "ADMIN_ROLE" ? (
+  return currentUser?.user?.role === "ADMIN_ROLE" ? (
     <DashboardNav />
   ) : (
     <AppBar position="sticky" sx={{ background: "white" }}>
@@ -69,7 +73,7 @@ export const NavBar = () => {
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "gray",
-                boxShadow: "14px 12px #7f0000",
+                boxShadow: "10px 10px #7f0000",
                 textDecoration: "none",
               }}
             >
@@ -105,8 +109,8 @@ export const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem>
-                <Link to="/products" style={{ textDecoration: "none" }}>
+              <MenuItem >
+                <Link to="/products" style={{ textDecoration: "none"}}>
                   <Button textalign="center">Productos</Button>
                 </Link>
               </MenuItem>
@@ -169,7 +173,7 @@ export const NavBar = () => {
           </Box>
           <Box>
             <IconButton sx={{ mr: "4px", mt: "1px", p: "6px 6px 1px 6px" }}>
-              <Link to="/shoppingCar" style={{ color: "grey" }}>
+              <Link to="/shoppingcart" style={{ color: "grey" }}>
                 <AddShoppingCartIcon fontSize="large" />
               </Link>
             </IconButton>
