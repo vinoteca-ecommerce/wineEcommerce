@@ -127,13 +127,20 @@ export const CardDetail = () => {
           </>
         }
 
+
+
+
         {wines?.comment.map(e=>(
           <FeedbackCard
           comment={e.comment}
           email={e.email}
           name={e.name}
+          title={e.title}
+          ranking={e.ranking}
+          
           />
-        ))} 
+        
+        )) } 
       </div>
       </>}
 
