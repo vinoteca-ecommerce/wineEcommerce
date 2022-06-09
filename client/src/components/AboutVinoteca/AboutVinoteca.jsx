@@ -3,40 +3,65 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Container } from '@mui/system';
+import { Container, textAlign } from '@mui/system';
 import img from '../../images/wineAbout.webp'
+import img2 from "../../images/wineAbout2.jpeg";
+import { Grid } from '@mui/material';
 
 
 export const AboutVinoteca = () => {
   return (
-    <Container sx={{maxWidth: "100vw", padding: "20px"}}>
-      <Card sx={{maxWidth: 800, maxHeight: 900}}>
-        <CardMedia component="img" height="140" image={img} alt="wineAbout" />
+    <Container fixed>
+      <Container padding='20px'>
+      <Card>
+        <CardMedia component="img" height="300" image={img} alt="wineAbout" />
         <CardContent>
           <Typography
             gutterBottom
             variant="h5"
             component="div"
             textAlign="center"
+            fontFamily="Open Sans"
           >
-            ¿Quiénes Somos?
+            ¿QUIENES SOMOS?
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            fontFamily="Open Sans"
+            justifyContent="center"
+            textAlign="center"
+            fontWeight="700"
+          >
             Creado en 2022, el concepto VINOTECA ha revolucionado el enfoque
             tradicional del comercio del vinos y el mundo de la distribución,
             destacando en particular la fuerte dimensión cultural del producto.
             VINOTECA ofrece una gran variedad de vinos de diferentes regiones
             con envios a todo el pais.
           </Typography>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardMedia component="img" height="300" image={img2} alt="wineAbout2" />
+        <CardContent>
           <Typography
             gutterBottom
             variant="h5"
             component="div"
             textAlign="center"
+            fontFamily="Open Sans"
           >
-            ¿Como cuidamos el vino?
+            ¿COMO CUIDAMOS EL VINO?
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            fontFamily="Open Sans"
+            justifyContent="center"
+            textAlign="center"
+            fontWeight="700"
+          >
             Todos nuestros vinos se conservan en posición horizontal. La
             temperatura de la tienda y la luz está pensada para proteger las
             botellas con el paso del tiempo. Algunos vinos, por su carácter
@@ -49,6 +74,7 @@ export const AboutVinoteca = () => {
           </Typography>
         </CardContent>
       </Card>
+      </Container>
     </Container>
   );
 }

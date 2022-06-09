@@ -69,7 +69,7 @@ export const NavBar = () => {
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "gray",
-                boxShadow: "14px 12px #7f0000",
+                boxShadow: "10px 10px #7f0000",
                 textDecoration: "none",
               }}
             >
@@ -105,8 +105,8 @@ export const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem>
-                <Link to="/products" style={{ textDecoration: "none" }}>
+              <MenuItem >
+                <Link to="/products" style={{ textDecoration: "none"}}>
                   <Button textalign="center">Productos</Button>
                 </Link>
               </MenuItem>
