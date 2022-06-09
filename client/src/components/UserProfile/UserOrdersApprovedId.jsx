@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getWinesById, putComment } from "../../redux/actions/actions";
 import swal from 'sweetalert';
-
+import style from './UserOrdersApprovedId.module.css'
 
 export function UserOrdersApprovedId() {
 const { id } = useParams();
@@ -34,7 +34,7 @@ setComment({
             [e.target.name]: e.target.value})
  
 }
-console.log(wine.comment)
+
 
 
 function handleSelect(e){
@@ -45,6 +45,10 @@ function handleSelect(e){
 }
 function handleSubmit(e){
     e.preventDefault()
+
+    if(!comment.title || !comment.comment || !comment.ranking){
+      return  alert('Por Favor Complete Todos los campos correctamente')
+    }
 
    const filtro = wine.comment.find(e => e.email === email)
  
@@ -61,19 +65,31 @@ function handleSubmit(e){
 }
 
     return (
-        <div>
+        <div className={style.contain}>
+            <div className={style.image} >
             <h1>{wine.name}</h1>
             <img src={wine.img} alt="" />
+            </div>
+            <div className={style.comment}>
+                <h2 htmlFor="">Titulo</h2>
+                <br />
+            <input className={style.title} placeholder='Ingrese titulo de su reseña' name='title'onChange={handleChange}/>
+            <br />
+
+            <h2 className={style.punt}>Puntuacion:</h2>
             <Rating
+             size="large"
                 name="simple-controlled"
                  value={comment.ranking}
                 onChange={handleSelect}/>
-            <label htmlFor="">Ingrese comentario sobre el vino</label>
+                <br />
+
+
+            <label className={style.label} htmlFor="">Ingrese comentario sobre el vino</label>
             <br />
-           
-            <input placeholder='titulo' name='title'onChange={handleChange}/>
-            <textarea onChange={handleChange} name='comment' id="" cols="30" rows="10"></textarea>
+            <textarea className={style.textarea} onChange={handleChange} name='comment' id="" cols="50" rows="5"></textarea>
             <Button  onClick={handleSubmit}> SEND </Button>
+            </div>
         </div>
     )
 }
