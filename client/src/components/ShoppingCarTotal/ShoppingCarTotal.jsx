@@ -12,6 +12,11 @@ export const ShoppingCarTotal = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const shoppingcar = useSelector((state) => state.shoppingcar);
+  const wine = useSelector((state)=> state.wines)
+  let arregloTest=shoppingcar.map(wine=>wine.cont>wine.stock)
+  console.log(arregloTest)
+  let booleanArray=arregloTest.filter(wine=>wine===true)
+  console.log(booleanArray.length)
   //const linkmp = useSelector((state) => state.linkmp);
   const [currentUser,setCurrentUser] = useState(undefined)
   const userAddress = useSelector(state=>state.userAddress)
@@ -42,7 +47,8 @@ export const ShoppingCarTotal = () => {
   });
 
   function handleClick(){
-
+    let autoFilter= shoppingcar.filter()
+    if(autoFilter){console.log("hola")}
     setBody( shoppingcar.map(e=>body.items.push({
       title:e.name,
       unit_price:e.price,
@@ -74,7 +80,7 @@ export const ShoppingCarTotal = () => {
         <h4>Resumen</h4>
         <p><h5>SubTotal: </h5><h6>${subtotal}.00</h6></p>
         <p><h5>Total: </h5><h6>${total}.00</h6></p>
-        {currentUser !== undefined && userAddress.length !==0 && total > 0 && subtotal > 0?
+        {booleanArray.length ===0 && currentUser !== undefined && userAddress.length !==0 && total > 0 && subtotal > 0?
        <Button onClick={handleClick} fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button>
         :<div><Button disabled fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button><span className={style.spamm}>Se requiere una dirección válida</span></div>}
     </div>
