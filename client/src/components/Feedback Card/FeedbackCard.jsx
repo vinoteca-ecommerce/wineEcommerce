@@ -2,8 +2,8 @@ import React,{useState} from 'react';
 import style from './FeedbackCard.module.css';
 import Rating from '@mui/material/Rating';
 
-export const FeedbackCard = ({name,email, comment,title,ranking}) => {
-  const [value, setValue] = useState(4);  
+export const FeedbackCard = ({name,email, comment,title,ranking,sum,setSum}) => {
+  setSum(ranking+sum)
 return (
     <div className={style.review}>
         {comment !== 'Este vino aun no tiene comentarios'
