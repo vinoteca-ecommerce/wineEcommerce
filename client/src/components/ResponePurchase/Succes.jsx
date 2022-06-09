@@ -48,7 +48,11 @@ export function Succes() {
   }
   
   useEffect(() => {
-    if(status === "pending" ||status === "approved"){
+
+
+    if(status === 'rejected'){
+      dispatch(putPurchase(idPurchase, data));
+    }else if(status === "pending" ||status === "approved"){
     
       let store = JSON.parse(localStorage.getItem('ShoppingCar'));
       const stockUpdated=store?.map(e=>{
@@ -57,20 +61,17 @@ export function Succes() {
           stockk:stockLeft,
           id:e.id
         }
-      })
-
-
+      });
       
     dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
-    // console.log(data)
-
+  
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
-    // localStorage.removeItem("ShoppingCar");
+    localStorage.removeItem("ShoppingCar");
   }
   // 
-  }, []);
+}, []);
 
   return (
     <div className={Style.hache1}>
