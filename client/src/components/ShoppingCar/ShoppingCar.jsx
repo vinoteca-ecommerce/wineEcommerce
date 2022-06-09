@@ -41,9 +41,8 @@ export const ShoppingCar = () => {
     const handleClick = (operation,id)=>{
          dispatch(getWinesById(id))
         
-        if(operation === 'sub'){
-            dispatch(subLocalStorage(id))
-            
+        if(operation === 'sub'){   
+            dispatch(subLocalStorage(id))    
         }   
         
         else if(operation === 'add'){

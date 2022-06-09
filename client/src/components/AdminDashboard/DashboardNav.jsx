@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,7 +21,7 @@ const  DashboardNav = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [currentUser, setCurrentUser] = useState(undefined)
-
+    const navigate = useNavigate()
     useEffect(()=>{
       const user= authService.getCurrentUser();
       if(user){
@@ -32,6 +32,7 @@ const  DashboardNav = () => {
   
     const logOut = ()=>{
       authService.logout();
+      navigate('/');
       window.location.reload();
     }
     
@@ -186,6 +187,7 @@ const  DashboardNav = () => {
             </IconButton>
           </Tooltip>
           <Menu
+
             sx={{ mt: '45px' }}
             id="menu-appbar"
             anchorEl={anchorElUser}
@@ -201,6 +203,14 @@ const  DashboardNav = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
+            <MenuItem>
+           <Link to={'/userprofile'}><Typography 
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}> Perfil </Typography> </Link> 
+            </MenuItem>
               <MenuItem >
               <Typography sx={{
                       display: "flex",
