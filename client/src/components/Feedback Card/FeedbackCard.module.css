@@ -14,13 +14,6 @@
     font-weight: 500;
 }
 
-.noRev{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-}
-
 @media(max-width:900px){
     .review{
         width: 80%;
