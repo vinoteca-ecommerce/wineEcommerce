@@ -1,46 +1,106 @@
 import { useNavigate } from "react-router"
-import githubLogo from "../../images/githublogo.png"
-import linkedinLogo from "../../images/logold.png"
-import wineLogo from "../../images/winelogo2.jpg"
 
+import logoVinoteca from '../../images/logoVinoteca.png'
 //Styles
 import Style from "./Footer.module.css"
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
 
 export default function Footer(){
     
     const navigate = useNavigate()
     const handleOnClick = ()=>{
-       navigate('/about')
+       navigate('/aboutus')
     }
-    return(
-        <div className={Style.bgcolor}>
-            <div className={Style.orderDiv}>
-                <div className={Style.spacing}>
-                    <img src={wineLogo} alt="winelogo" className={Style.image} />
-                </div>
-                <div className={Style.spacing}>
-                    <p className={Style.subtitle}>TIPOS DE VINOS</p>
-                    <p className={Style.pcss}>Vino Tinto</p>
-                    <p className={Style.pcss}>Vino Blanco</p>
-                    <p className={Style.pcss}>Vino Rosado</p>
-                    <p className={Style.pcss}>Espumante</p>
-                    <button onClick={()=>handleOnClick()} className={Style.buttom}>SOBRE NOSOTROS</button>
-                </div>
-                <div>
-                    <p className={Style.subtitle}>CONTACTANOS</p>
-                    <div>
-                        <a rel="noreferrer" href="https://github.com/vinoteca-ecommerce/wineEcommerce" target="_blank">
-                        <img src={githubLogo} alt="ghlogo" className={Style.logo}/>
-                        </a>
-                        <a rel="noreferrer" href="https://www.linkedin.com/" target="_blank">
-                        <img src={linkedinLogo} alt="ldlogo" className={Style.logo}/>
-                        </a>
-                    </div>
-                    <p className={Style.pcss}>Cel: 0351 - henry</p>
-                    <p className={Style.pcss}>Mail: winestore@henry.com</p>
-                </div>
-            </div>
 
+   const dispatch = useDispatch();
+   const tintoHandler = () =>{
+     dispatch(setFilter({category:'TINTO', orden:'', producer:''}))
+   }
+   const blancoHandler = () => {
+     dispatch(setFilter({ category: "BLANCO", orden: "", producer: "" }));
+   };
+   const rosadoHandler = () => {
+     dispatch(setFilter({ category: "ROSADO", orden: "", producer: "" }));
+   };
+   const espumanteHandler = () => {
+     dispatch(setFilter({ category: "ESPUMANTE", orden: "", producer: "" }));
+   };
+    
+    return (
+      <footer className={Style.footerDistributed}>
+        <div className={Style.footerLeft}>
+          <h3>
+            VINO<span>TECA</span>
+          </h3>
+
+          <div className={Style.footerLinks}>
+            <Link to={"/"}>
+              <h4 className={Style.linkOne}>Home</h4>
+            </Link>
+            <Link to={"/products"} onClick={tintoHandler}>
+              <h4>Tinto</h4>
+            </Link>
+            <Link to={"/products"} onClick={blancoHandler}>
+              <h4>Blanco</h4>
+            </Link>
+            <Link to={"/products"} onClick={rosadoHandler}>
+              <h4>Rosado</h4>
+            </Link>
+            <Link to={"/products"} onClick={espumanteHandler}>
+              <h4>Espumante</h4>
+            </Link>
+
+            <Link to={"/contactForm"}>
+              <h4>Contacto</h4>
+            </Link>
+          </div>
+          <div>
+            <p>
+              <a className={Style.mail} href="vinotecahenry@gmail.com">
+                vinotecahenry@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <p className={Style.footerCompanyName}>Soy Henry Bootcamp © 2022</p>
         </div>
-    )
+
+        <div className={Style.footerCenter}>
+          <div>
+            <a
+              title="Ver codigo en GitHub"
+              href="https://github.com/vinoteca-ecommerce/wineEcommerce"
+              target="_blank"
+            >
+              <img src={logoVinoteca} alt="winelogo" className={Style.img} />
+            </a>
+          </div>
+        </div>
+
+        <div className={Style.footerRight}>
+          <p className={Style.footerCompanyAbout}>
+            <span>EQUIPO DE DESARROLLO</span>
+            Somos un grupo de profesionales que logramos reunir todos los
+            conocimientos necesarios para afrontar los proximos desafios dentro
+            de la industria tecnologica. Conoce mas sobre nosotros...
+            <span className={Style.arrow}>&darr;</span>
+          </p>
+
+          <div className={Style.footerIcons}>
+            <div onClick={() => handleOnClick()} className={Style.button}>
+              <div className={Style.box}>H</div>
+              <div className={Style.box}>E</div>
+              <div className={Style.box}>L</div>
+              <div className={Style.box}>L</div>
+              <div className={Style.box}>O</div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
 }
+
+
+

@@ -65,7 +65,7 @@ export const NavBar = () => {
               sx={{
                 mr: 5,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
+                fontFamily: "Open Sans",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "gray",
@@ -73,7 +73,7 @@ export const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              VINOTECA
+              VINO<span style={{ color: "#c79557" }}>TECA</span>
             </Typography>
           </Link>
 
@@ -111,7 +111,7 @@ export const NavBar = () => {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/contact" style={{ textDecoration: "none" }}>
+                <Link to="/aboutvinoteca" style={{ textDecoration: "none" }}>
                   <Button textalign="center">Nosotros</Button>
                 </Link>
               </MenuItem>
@@ -130,7 +130,7 @@ export const NavBar = () => {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "Open Sans",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 fontSize: "20px",
@@ -138,7 +138,7 @@ export const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              VINOTECA
+              VINO<span style={{ color: "#c79557" }}>TECA</span>
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -150,7 +150,7 @@ export const NavBar = () => {
                 Productos
               </Button>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/contact">
+            <Link style={{ textDecoration: "none" }} to="/aboutvinoteca">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}

@@ -44,7 +44,7 @@ import { UserOrdersRejected } from './components/UserProfile/UserOrdersRejected'
 import { PurchaseDetail } from './components/AdminDashboard/PurchaseDetail'
 import { UserOrdersApprovedId } from './components/UserProfile/UserOrdersApprovedId';
 import { UserOrdersDetail } from './components/UserProfile/UserOrdersDetails';
- 
+ import { AboutVinoteca } from './components/AboutVinoteca/AboutVinoteca'
 
 
 
@@ -60,8 +60,11 @@ function App() {
         <Route exact path='/register' element={<Register/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
-        <Route path='/about' element={<Aboutus/>}/>
-        <Route path='/contact' element={<ContactForm/>}/>
+         {/* <Route path='/aboutus' element={<Aboutus/>}/> */}
+         <Route path='/aboutus' element={<Contact/>}/>
+         <Route path='/aboutvinoteca' element={<AboutVinoteca/>}/>
+        
+       
         <Route path='/confirmmail' element={<AfterRegister/>}/>
 
         <Route path='/success' element={<Succes/>}/>
@@ -132,7 +135,7 @@ function App() {
         <Route path='/userorders/rejected' element={<UserOrdersRejected/>}/>
         <Route path='/userAddress' element={<UserAddress/>}/>
         <Route path='/userAddressForm' element={<UserAddressForm/>}/>
-        <Route path='/contact' element={<Contact/>}/>
+        
         <Route path='/contactForm' element={<ContactForm/>}/>
         <Route path='/userFavorites' element={<UserFavorites/>}/>
         <Route path='/userorders/approved/:id' element={<UserOrdersApprovedId/>}/>
