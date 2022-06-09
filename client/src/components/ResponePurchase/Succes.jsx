@@ -51,7 +51,6 @@ export function Succes() {
 
 
     if(status === 'rejected' || status === 'null'){
-      console.log(status)
       dispatch(putPurchase(idPurchase, data));
     }else if(status === "pending" ||status === "approved"){
     
@@ -63,16 +62,22 @@ export function Succes() {
           id:e.id
         }
       });
+     
       
     dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
   
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
-    localStorage.removeItem("ShoppingCar");
+    
   }
-  // 
+  return()=>{
+    setTimeout(()=>{
+      localStorage.removeItem("ShoppingCar");
+    }, 5000)
+  }
 }, []);
+ 
 
   return (
     <div className={Style.hache1}>

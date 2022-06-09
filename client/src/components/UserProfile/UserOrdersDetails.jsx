@@ -26,9 +26,9 @@ export const UserOrdersDetail = () => {
           <th> Precio</th>
           <th> Cantidad </th>
           <th> Sub-Total </th>
-          <th> </th>
           <th></th>
-          <th ></th >
+          <th></th>
+          <th></th >
           </tr> 
         </thead>
            {purchase.cart?.map(((e,index)=>
