@@ -5,6 +5,25 @@
     margin: 4em 0 15.9em 0;
     padding: 0;
 }
+.free{
+    display: flex;
+    flex-direction: column;
+}
+.number{
+    font-size: large;
+    padding-bottom: 5%;
+}
+.buttom{
+	color: red;
+    border: 2px solid 	#4d0101 ;
+    /* background-color: #4d0101; */
+    border-radius: 2rem;
+    /* padding: auto; */
+}
+.buttom:hover{
+    background-color: rgba(255, 0, 0, 0.788);
+    color:#4d0101;
+}
 .carrito{
     padding-top: 7.01%;
     font-size: 2em;

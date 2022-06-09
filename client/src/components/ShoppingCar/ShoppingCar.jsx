@@ -143,7 +143,7 @@ const handleClickAdd=(id)=>{
                         <td>{st.name}</td>
                         <td>${st.price}.00</td>
                         <td>
-                            {cantidad===false ? <div>{st.cont}<button onClick={()=>handleClickEditacion(st.id)} >EditarCantidad</button></div>
+                            {cantidad===false ? <div className={style.free}><div className={style.number}>{st.cont}</div><button onClick={()=>handleClickEditacion(st.id)} className={style.buttom} >Modificar</button></div>
                             :<div><Button onClick={()=>handleClickSub(st.id)} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px',color:'#7f0000'}}><RemoveIcon/></Button>
                             <p style={{display:'inline',color:'#7f0000',padding:'.2em .5em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1em'}}>{st.cont}</p>
                             <Button onClick={()=>handleClickAdd(st.id)} style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px',color:'#7f0000'}}><AddIcon/></Button>
