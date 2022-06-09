@@ -52,7 +52,7 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  return currentUser?.user.role === "ADMIN_ROLE" ? (
+  return currentUser?.user?.role === "ADMIN_ROLE" ? (
     <DashboardNav />
   ) : (
     <AppBar position="sticky" sx={{ background: "white" }}>
@@ -169,7 +169,7 @@ export const NavBar = () => {
           </Box>
           <Box>
             <IconButton sx={{ mr: "4px", mt: "1px", p: "6px 6px 1px 6px" }}>
-              <Link to="/shoppingCar" style={{ color: "grey" }}>
+              <Link to="/shoppingcart" style={{ color: "grey" }}>
                 <AddShoppingCartIcon fontSize="large" />
               </Link>
             </IconButton>

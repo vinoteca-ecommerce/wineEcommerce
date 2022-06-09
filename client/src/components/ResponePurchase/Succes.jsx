@@ -35,7 +35,7 @@ export function Succes() {
  let totalCost=0;
   const data = {
     payment_id: payment_id,
-    status: status,
+    status : status === 'null' ? 'rejected': status,
   };
   let STATEorders= useSelector(state=>state.orders)
   useEffect(()=>{
@@ -50,7 +50,7 @@ export function Succes() {
   useEffect(() => {
 
 
-    if(status === 'rejected'){
+    if(status === 'rejected' || status === 'null'){
       dispatch(putPurchase(idPurchase, data));
     }else if(status === "pending" ||status === "approved"){
     
@@ -62,16 +62,22 @@ export function Succes() {
           id:e.id
         }
       });
+     
       
     dispatch(updateStock(stockUpdated))
     dispatch(putPurchase(idPurchase, data));
   
     dispatch(deleteCart());
     localStorage.removeItem("idPurchase");
-    localStorage.removeItem("ShoppingCar");
+    
   }
-  // 
+  return()=>{
+    setTimeout(()=>{
+      localStorage.removeItem("ShoppingCar");
+    }, 5000)
+  }
 }, []);
+ 
 
   return (
     <div className={Style.hache1}>

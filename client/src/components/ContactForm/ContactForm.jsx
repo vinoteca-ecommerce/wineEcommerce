@@ -3,7 +3,7 @@ import React, {useRef, useState} from 'react'
 import styles from '../ContactForm/ContactForm.module.css'
 // import { useForm } from 'react-hook-form'
 import emailjs from 'emailjs-com'
-
+import iconGlass from '../../images/iconGlass.svg'
 
 export const ContactForm = () => {
   
@@ -29,12 +29,6 @@ emailjs.sendForm(
   );
   e.target.reset()
 }
-//  const {
-//    register,
-//    formState: { errors },
-//    handleSubmit,
-//  } = useForm();
-//  const onSubmit = (data) => console.log(data);
 
   return (
     <div className={styles.body}>
@@ -43,10 +37,7 @@ emailjs.sendForm(
         <div className={styles.underline}></div>
         <div className={styles.icon_wrapper}>
           <div className={styles.icon}>
-            <img
-              src="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' aria-labelledby='title' aria-describedby='desc' role='img' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3EWine Glass%3C/title%3E%3Cdesc%3EA line styled icon from Orion Icon Library.%3C/desc%3E%3Cpath data-name='layer2' d='M47.8 18C47.3 11.3 46 2 46 2H18s-1.3 9.3-1.8 16M32 39.1V62m-10 0h20' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3C/path%3E%3Cpath data-name='layer1' d='M16.2 18c-.1 1.5-.2 2.9-.2 4 0 6 5.5 16 16.2 16S48 28 48 22c0-1.1-.1-2.5-.2-4z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3C/path%3E%3C/svg%3E"
-              alt="Wine Glass"
-            />
+            <img src={iconGlass} alt="Wine Glass" />
           </div>
         </div>
         <form
@@ -92,19 +83,18 @@ emailjs.sendForm(
           <div className={styles.subject}>
             <label htmlFor="subject"></label>
             <select
-              
               className={styles.select}
               placeholder="Tipo de consulta"
               name="subject"
               id="subject_input"
               required
             >
-              <option disabled hidden selected>
+              <option value='default' hidden>
                 Tipo de consulta
               </option>
-              <option >Asesoramiento</option>
-              <option>Consulta general</option>
-              <option>Reclamos</option>
+              <option value="1">Asesoramiento</option>
+              <option value="2">Consulta general</option>
+              <option value="3">Reclamos</option>
             </select>
           </div>
           <div className={styles.message}>
