@@ -25,18 +25,20 @@ export const CardDetail = () => {
   },[dispatch,id])
 
   const handleClick = (operation)=>{
+
     if(operation === 'sub'){
-      if(cont > 1) setCont(cont-1)
+      if(cont > 1) setCont(cont-1);
+    }else{
+      if(cont >= wines.stock){
+        return  swal({
+         title: "Fuera de stock",
+         text: `No hay mas stock`,
+         icon: "error",
+         button: "Aceptar",
+       });
+       }
+      else setCont(cont+1);
     }
-    if(cont >= wines.stock){
-      return  swal({
-       title: "Fuera de stock",
-       text: `No hay mas stock`,
-       icon: "error",
-       button: "Aceptar",
-     });
-     }
-    else setCont(cont+1)
   }
 
 
