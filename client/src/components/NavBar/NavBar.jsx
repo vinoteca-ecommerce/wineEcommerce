@@ -52,7 +52,7 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  return currentUser?.user.role === "ADMIN_ROLE" ? (
+  return currentUser?.user?.role === "ADMIN_ROLE" ? (
     <DashboardNav />
   ) : (
     <AppBar position="sticky" sx={{ background: "white" }}>
