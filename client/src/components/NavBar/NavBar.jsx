@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,6 +24,9 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
 
+  const navigate = useNavigate()
+
+
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
@@ -34,6 +37,7 @@ export const NavBar = () => {
 
   const logOut = ()=>{
     authService.logout();
+    navigate('/')
     window.location.reload();
   }
 
