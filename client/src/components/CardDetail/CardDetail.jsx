@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { getWinesById } from '../../redux/actions/actions';
+import { getShoppingCar, getWinesById, getWinesCopy, setShoppingCar, updateCart } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import style from './CardDetail.module.css';
@@ -15,6 +15,14 @@ import Rating from '@mui/material/Rating';
 
 export const CardDetail = () => {
 
+
+ 
+ 
+const winesCopy = useSelector(state => state.winesCopy);
+const cart = useSelector(state => state.Cart);
+
+
+
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
@@ -22,7 +30,9 @@ export const CardDetail = () => {
   let sum = 0;
 
   useEffect(()=>{
+    dispatch(getShoppingCar())
     dispatch(getWinesById(id))
+    dispatch(getWinesCopy())
 
   },[dispatch,id])
 
@@ -46,52 +56,41 @@ export const CardDetail = () => {
 
 
 
-  const handleClickShopping = (id,name,price,img,category,stock)=>{
 
-    let state = JSON.parse(localStorage.getItem('ShoppingCar'));
-    let sum = 0;
-    let index = undefined;
-   
-    if(state){
-      for(let i=0 ; i<state?.length ; i++){
-        if(state[i].id === id){
-          sum = state[i].cont + cont;
-          index = i; 
-        }
-      }
+    const   handleClickShopping = (id)=>{
+
+
       
-      if(sum > wines.stock){
-        return  swal({
-         title: "Fuera de stock",
-         text: `${name} No hay mas stock`,
-         icon: "error",
-         button: "Aceptar",
-       });
+      let wineActual = winesCopy.result.find(e => e._id === id)
+
+     
+      console.log(cart)
+     let wineStockcarro = cart.find(e=> e.wineActual._id === id)
+     
+    
+     if(!wineStockcarro){
+      console.log('asdas')
+       let data = {
+         wineActual,
+         cant:1
        }
-
-      if(sum) state?.push({id,cont:sum,name,price,img,category,stock});
-      else state?.push({id,cont,name,price,img,category,stock});
-
-      if(index !== undefined) state.splice(index,1);
-
-      localStorage.setItem('ShoppingCar', JSON.stringify(state));
-      swal({
-        title: "Vino Añadido",
-        text: `${cont} ${name} agregado al carrito de compras`,
-        icon: "success",
-        button: "Aceptar",
-      });
-    }
-    else {
-      localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont, name,price,img,category,stock}]));
-      swal({
-        title: "Vino Añadido",
-        text: `${cont} ${name} agregado al carrito de compras`,
-        icon: "success",
-        button: "Aceptar",
-      });
-    }
-  }
+       
+     dispatch(updateCart(data))
+     dispatch(setShoppingCar(cart))
+     }else if(wineStockcarro.cant < wineActual.stock){
+       let data = {
+         wineActual,
+         cant:1
+       }
+     dispatch(updateCart(data))
+     dispatch(setShoppingCar(cart))
+     
+     }else{
+       alert('no hay mas stock')
+     }
+     }
+     
+     
 
   wines?.comment?.map(wine=>{
     sum = Number(wine.ranking) + sum
@@ -114,11 +113,11 @@ export const CardDetail = () => {
           <p className={style.border}>{wines?.description}</p>
           <div className={style.price}>
             <p>${wines?.price}.00</p>
-            <div style={{display:'flex',alignItems:'center'}}>
+            {/* <div style={{display:'flex',alignItems:'center'}}>
               <Button onClick={()=>handleClick('sub')} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#7f0000'}}><RemoveIcon/></Button>
               <p style={{display:'inline',color:'#7f0000',padding:'.2em .6em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1.2em'}}>{cont}</p>
               <Button onClick={()=>handleClick('add')} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#7f0000'}}><AddIcon/></Button>
-            </div>
+            </div> */}
           </div>
           <div className={style.btn}>
           <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category,wines.stock)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>

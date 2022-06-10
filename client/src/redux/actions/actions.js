@@ -13,11 +13,13 @@ export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';
 export const ADD_LOCAL_STORAGE = 'ADD_LOCAL_STORAGE';
 export const SUB_LOCAL_STORAGE = 'SUB_LOCAL_STORAGE';
 export const DELETE_LOCAL_STORAGE = 'DELETE_LOCAL_STORAGE';
+export const GET_WINESCOPY = 'GET_WINESCOPY'
 
 export const MERCADO_PAGO = 'MERCADO_PAGO';
 
 //export const SET_SHOPPINGCAR = 'SET_SHOPPINGCAR';
 export const GET_SHOPPINGCAR = 'GET_SHOPPINGCAR';
+export const FILTER_CART = 'FILTER_CART'
 
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
@@ -26,6 +28,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 export const GET_ORDERS = 'GET_ORDERS';
 export const USER_UPDATE = 'USER_UPDATE';
+export const UPDATE_CARTSUB = 'UPDATE_CARTSUB'
 
 export const GET_PURCHASE = 'GET_PURCHASE';
 export const POST_PURCHASE = 'POST_PURCHASE';
@@ -44,6 +47,9 @@ export const POST_USER_ADDRESS = 'POST_USER_ADDRESS';
 export const GET_USER_ADDRESS = 'GET_USER_ADDRESS';
 export const UPDATE_USER_ADDRESS = 'UPDATE_USER_ADDRESS';
 export const PUT_COMMENT ='PUT_COMMENT'
+export const UPDATE_CART = 'UPDATE_CART'
+export const FILTER_CART_DB = 'FILTER_CART_DB'
+
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
@@ -69,6 +75,20 @@ export const getWinesById = (id) => {
     .catch(err => console.error(err))
   };
 };
+
+export const getWinesCopy = () => {
+ 
+  return async function (dispatch) {
+    return axios.get("http://localhost:8000/products/")
+    .then(response => {
+      dispatch({ type: GET_WINESCOPY, payload: response.data });
+      
+    })
+    .catch(err => console.error(err))
+  };
+};
+
+
 
 export const getWineName = (name) => {
     return async function(dispatch){
@@ -413,5 +433,44 @@ export const userProfileUpd = (id, data)=>{
     .then(response =>{
       dispatch({type: USER_UPDATE, payload: response.data})
     }).catch(err => console.log(err))
+  }
+}
+
+
+export const updateCart = (data)=>{
+
+  return {type: UPDATE_CART,
+          payload: data
+  }
+
+}
+
+
+export const updateCartSub = (data)=>{
+
+  return {type: UPDATE_CARTSUB,
+          payload: data
+  }
+
+}
+
+export const filterCart = (id)=>{
+
+  return {type: FILTER_CART,
+          payload: id
+  }
+
+}
+
+
+
+
+
+export const filterCartDB = (data)=>{
+  return async function(dispatch){
+    return axios.post(`http://localhost:8000/products/cart`, data,  { headers: authHeader() })
+      /*.then(response =>{
+          dispatch({type: SET_SHOPPINGCAR, payload: response.data})
+      }).catch(err=> console.log(err))*/
   }
 }
