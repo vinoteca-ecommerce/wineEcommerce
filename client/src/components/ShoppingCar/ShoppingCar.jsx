@@ -100,13 +100,14 @@ const handleClickAdd=(id)=>{
     console.log('vino',vino)
     setCantidad(false)
     if( wine.stock <= (Number(vino?.cont))){
-        
+        if(vino.id===id){
         return swal({
            title: "Fuera de stock",
            text: `No hay mas stock`,
            icon: "error",
            button: "Aceptar",
          });
+        }
         //  console.log("hola")
         }
     else{
