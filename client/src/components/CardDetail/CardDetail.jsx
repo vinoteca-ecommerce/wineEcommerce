@@ -97,7 +97,7 @@ export const CardDetail = () => {
     sum = Number(wine.ranking) + sum
   })  
 
-  console.log(wines.comment)
+
 
   return (
     <div>
