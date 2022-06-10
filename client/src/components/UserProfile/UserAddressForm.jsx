@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import {
   postUserAddress,
   updateUserAddress,
+  getUserAddress
 } from "../../redux/actions/actions";
 
 export const UserAddressForm = () => {
@@ -15,13 +16,29 @@ export const UserAddressForm = () => {
   const [updated, setUpdated] = useState(false);
 
   const [dataState, setDataState] = useState({
-    name: userAddress?.name,
-    address: userAddress?.address,
-    city: userAddress?.city,
-    province: userAddress?.province,
-    phone_number: userAddress?.phone_number,
-    notes: userAddress?.notes,
+    name: userAddress[0]?.name,
+    address: userAddress[0]?.address,
+    city: userAddress[0]?.city,
+    province: userAddress[0]?.province,
+    phone_number: userAddress[0]?.phone_number,
+    notes: userAddress[0]?.notes,
   });
+
+  useEffect(()=>{
+    dispatch(getUserAddress())
+  },[])
+
+  useEffect(() => {
+    setDataState({
+      name: userAddress[0]?.name,
+      address: userAddress[0]?.address,
+      city: userAddress[0]?.city,
+      province: userAddress[0]?.province,
+      phone_number: userAddress[0]?.phone_number,
+      notes: userAddress[0]?.notes,
+    });
+  }, [userAddress]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,16 +96,6 @@ export const UserAddressForm = () => {
     });
   };
 
-  useEffect(() => {
-    setDataState({
-      name: userAddress?.name,
-      address: userAddress?.address,
-      city: userAddress?.city,
-      province: userAddress?.province,
-      phone_number: userAddress?.phone_number,
-      notes: userAddress?.notes,
-    });
-  }, [userAddress]);
 
   return (
     <div className={styles.body}>

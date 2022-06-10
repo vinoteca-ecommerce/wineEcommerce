@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react';
+import style from './FeedbackCard.module.css';
+import Rating from '@mui/material/Rating';
 
-export const FeedbackCard = ({name, comment}) => {
-  
+export const FeedbackCard = ({name,email, comment,title,ranking}) => {
+
 return (
-    <div>
-        {comment !== 'Este vino aun no tiene comentarios' ?
-        <div>
-        <h4>{name}:</h4> 
-        <h5> {comment} </h5>
-        </div> : <div> <p>Este vino aun no tiene comentarios</p></div>}
+    <div className={style.review}>
+        <div className={style.infoRev}>
+          <Rating name="read-only" value={ranking} readOnly />
+          <h3 className={style.h3}>{title}</h3>
+          <h4 className={style.email}>Email: {email} </h4> 
+          <h4 className={style.email}> Nombre: {name}</h4> 
+          <p className={style.p}> Comentario: {comment}</p>
+        </div>
     </div>
   )
 }

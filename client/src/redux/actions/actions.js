@@ -25,6 +25,7 @@ export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 export const GET_ORDERS = 'GET_ORDERS';
+export const USER_UPDATE = 'USER_UPDATE';
 
 export const GET_PURCHASE = 'GET_PURCHASE';
 export const POST_PURCHASE = 'POST_PURCHASE';
@@ -59,6 +60,7 @@ export const setWineClean = () => {
 };
 
 export const getWinesById = (id) => {
+ 
   return async function (dispatch) {
     return axios.get("http://localhost:8000/products/"+id)
     .then(response => {
@@ -133,6 +135,7 @@ export const updateProduct = (id, data)=>{
       }).catch(err=> console.log(err))
   }
 }
+
 
 
 //CARRITO DE COMPRAS LOCAL STORAGE
@@ -340,6 +343,7 @@ export const userUpdateRole = (id, data)=>{
 
 
 
+
 //--User Address GET,POST, PUT--//
 
 export const getUserAddress = ()=>{
@@ -384,7 +388,7 @@ export const updateStock=(data)=>{
   return async function(dispatch){
     return axios.put('http://localhost:8000/products/stock',data,{headers: authHeader()})
       .then(response=>{
-        console.log(response)
+      
         dispatch({type:UPDATE_STOCK})
       })
   }
@@ -393,12 +397,21 @@ export const updateStock=(data)=>{
 
 
 export const putComment = (id, data)=>{
-console.log(data)
+
   return async function(dispatch){
-    return axios.put(`http://localhost:8000/products/comment/${id}`, {data} ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/products/comment/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
       dispatch({type: PUT_COMMENT, payload: response.data})
       }).catch(err=> console.log(err))
   }
 }
 
+//user Perfil 
+export const userProfileUpd = (id, data)=>{
+  return async function(dispatch){
+    return axios.put(`http://localhost:8000/users/${id}`, data, {headers: authHeader()})
+    .then(response =>{
+      dispatch({type: USER_UPDATE, payload: response.data})
+    }).catch(err => console.log(err))
+  }
+}

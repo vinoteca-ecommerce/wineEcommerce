@@ -1,0 +1,49 @@
+.containerAll{
+    display: flex;
+    background-color: #F2F3EB;
+    border-radius: 0.75rem;
+    width: fit-content;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-left: 220px;
+}
+.contain{
+    display: inline;
+    text-align: center;
+}
+.image{
+    display: flex;
+    justify-content: center;
+    background-color: #F2F3EB;
+    height: 230px;
+    width: 230px;
+    border: solid;
+    border-color: black;
+    margin-top: 10px;
+}
+
+.divimg{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    font-size: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.punt{
+margin-top: 10px;
+}
+
+.textarea{
+    font-size: 30px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 15px;
+}
+.label{
+    margin-top: 100px;
+    font-size: 20px;
+}

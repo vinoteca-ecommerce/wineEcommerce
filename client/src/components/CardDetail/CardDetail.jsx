@@ -11,31 +11,36 @@ import swal from 'sweetalert';
 import { FeedbackCard } from '../Feedback Card/FeedbackCard';
 import { UserAddress } from '../UserProfile/UserAddress';
 import UserAddressCard from '../UserProfile/UserAddressCard';
+import Rating from '@mui/material/Rating';
 
 export const CardDetail = () => {
 
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
-  const [cont,setCont] = useState(1)
+  const [cont,setCont] = useState(1);
+  let sum = 0;
 
   useEffect(()=>{
     dispatch(getWinesById(id))
+
   },[dispatch,id])
 
   const handleClick = (operation)=>{
+
     if(operation === 'sub'){
-      if(cont > 1) setCont(cont-1)
+      if(cont > 1) setCont(cont-1);
+    }else{
+      if(cont >= wines.stock){
+        return  swal({
+         title: "Fuera de stock",
+         text: `No hay mas stock`,
+         icon: "error",
+         button: "Aceptar",
+       });
+       }
+      else setCont(cont+1);
     }
-    if(cont >= wines.stock){
-      return  swal({
-       title: "Fuera de stock",
-       text: `No hay mas stock`,
-       icon: "error",
-       button: "Aceptar",
-     });
-     }
-    else setCont(cont+1)
   }
 
 
@@ -46,7 +51,7 @@ export const CardDetail = () => {
     let state = JSON.parse(localStorage.getItem('ShoppingCar'));
     let sum = 0;
     let index = undefined;
-    console.log(wines.stock)
+   
     if(state){
       for(let i=0 ; i<state?.length ; i++){
         if(state[i].id === id){
@@ -86,13 +91,18 @@ export const CardDetail = () => {
         button: "Aceptar",
       });
     }
-    //localStorage.clear()
   }
+
+  wines?.comment?.map(wine=>{
+    sum = Number(wine.ranking) + sum
+  })  
+
+
 
   return (
     <div>
       {id !== wines?._id ?  <svg className={style.svg} viewBox="25 25 50 50"><circle className={style.circle} r="20" cy="50" cx="50"></circle></svg>
-      :
+      :<>
       <div className={style.container}>
         <div className={style.img}>
           <img src={wines?.img} alt={wines?.name} />
@@ -112,17 +122,36 @@ export const CardDetail = () => {
           </div>
           <div className={style.btn}>
           <Button variant="contained" onClick={()=>handleClickShopping(id,wines.name, wines.price, wines.img, wines.category,wines.stock)}>Agregar al Carrito <AddShoppingCartIcon sx={{ml:'15px'}}/></Button>
-          </div>
-          {wines?.comment.map(e=>(
-            <FeedbackCard
-            comment={e.comment}
-            mail={e.email}
-            name={e.name}
-            />
-          ))}    
+          </div>   
         </div>
       </div>
-      }
+
+      <div className={style.containerReviews}>
+        <h2 style={{marginBottom:'1em',fontWeight:'600'}}>Reseñas de Clientes</h2>
+
+        {wines?.comment.length !== 0 ?
+          <>
+            <Rating name="read-only" value={sum/wines?.comment.length} readOnly />
+            <p style={{marginBottom:'3em'}} >Basado en {wines?.comment.length} reseñas</p>
+          
+
+        {wines?.comment.map((e, i)=>(
+          <FeedbackCard
+          key={i + 1}
+          comment={e.comment}
+          email={e.email}
+          name={e.name}
+          title={e.title}
+          ranking={e.ranking} 
+          />
+        
+        )) } 
+        </>
+        :<p className={style.noRev}>Este vino aun no tiene comentarios</p>
+       }
+      </div>
+      </>}
+
     </div>
   )
 }

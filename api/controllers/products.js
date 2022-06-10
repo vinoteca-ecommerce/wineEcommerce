@@ -195,7 +195,7 @@ const getProduct = async (req, res = response) => {
 
 const productUpdate = async (req, res = response) => {
   const { id } = req.params;
-  const { state, user, category, ...data } = req.body;
+  const { state, user,  ...data } = req.body;
 
   const product = await Product.findByIdAndUpdate(id, data, { new: true });
 
@@ -205,6 +205,7 @@ const productUpdate = async (req, res = response) => {
 
 const productUpdateStock = async (req, res = response) => {
 //llega toda la info por body: [{id, stockk},{id, stockk}]
+
   req.body.map(async(e)=>{
     let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stockk}, { new: true });
   })
@@ -215,11 +216,12 @@ const productUpdateStock = async (req, res = response) => {
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
 
-  const { data } = req.body;
+  const  data = req.body;
 
+  
   const product = await Product.findById(id)
-product.comment.push(data)
-product.save()
+  product.comment.push(data)
+  product.save()
   res.json({msg: "Comentario aceptado"});
 
 };

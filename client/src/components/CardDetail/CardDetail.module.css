@@ -3,9 +3,10 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin: 5em 3em;
-    padding: 4em 0;
-    
+    margin: 5em auto;
+    padding: 5em 0 6em 0;
+    border-bottom: 1px solid #d1d1d1;
+    width: 80%;
 }
 
 .img{
@@ -120,6 +121,21 @@ h3{
      stroke-dashoffset: -125px;
     }
    }
+
+.containerReviews{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.noRev{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 4em;
+}
 
 @media(max-width:1550px){
     .container{
