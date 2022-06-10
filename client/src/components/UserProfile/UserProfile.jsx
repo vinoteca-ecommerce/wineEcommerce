@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../UserProfile/UserProfile.module.css";
 import { NavLink } from "react-router-dom";
 import { EditProfile } from "./EditProfile";
+import authService from "../services/auth-service";
+import { AdminProfile } from "../AdminDashboard/AdminProfile";
 
 export const UserProfile = () => {
-  return (
+  const [currentUser, setCurrentUser] = useState(undefined)
+
+  useEffect(()=>{
+    const user= authService.getCurrentUser();
+    if(user){
+      setCurrentUser(user)
+    }
+  },[])
+
+  return currentUser?.user?.role === "ADMIN_ROLE" ?  (
+      <AdminProfile/>
+  ):(
     <>
-   
       <div className={styles.container}>
         <div className={styles.profileTitle}>
           <h1>Mi Perfil</h1>
@@ -88,5 +100,5 @@ export const UserProfile = () => {
         </div>
       </div>
     </>
-  );
+  )
 };
