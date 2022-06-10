@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { getWinesById, putComment } from "../../redux/actions/actions";
 import swal from 'sweetalert';
 import style from './UserOrdersApprovedId.module.css'
+import SendIcon from '@mui/icons-material/Send';
 
 export function UserOrdersApprovedId() {
 const { id } = useParams();
@@ -72,31 +73,35 @@ function handleSubmit(e){
 
 
     return (
+        <div className={style.containerAll}> 
         <div className={style.contain}>
-            <div className={style.image} >
             <h1>{wine?.name}</h1>
-            <img src={wine?.img} alt="" />
+            <div className={style.divimg}>
+            <img className={style.image} src={wine?.img} alt="" />
             </div>
+            <div>
+             <h2 className={style.punt}>Puntuacion:</h2>
+             <Rating
+                 size="large"
+                name="simple-controlled"
+                 value={comment.ranking}
+                onChange={handleSelect}/>
+            </div>
+
+                <br />
             <div className={style.comment}>
                 <h2 htmlFor="">Titulo</h2>
                 <br />
             <input className={style.title} placeholder='Ingrese titulo de su reseña' name='title'onChange={handleChange}/>
             <br />
 
-            <h2 className={style.punt}>Puntuacion:</h2>
-            <Rating
-             size="large"
-                name="simple-controlled"
-                 value={comment.ranking}
-                onChange={handleSelect}/>
-                <br />
-
-
+           
             <label className={style.label} htmlFor="">Ingrese comentario sobre el vino</label>
             <br />
             <textarea className={style.textarea} onChange={handleChange} name='comment' id="" cols="50" rows="5"></textarea>
-            <Button  onClick={handleSubmit}> SEND </Button>
+            <Button style={{marginBottom:'100px'}} onClick={handleSubmit}> <SendIcon style={{color:'maroon'}}/></Button>
             </div>
+        </div>
         </div>
     )
 }
