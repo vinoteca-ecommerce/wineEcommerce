@@ -274,7 +274,7 @@ function handleClickThrash(id){
                         <tbody key={st.wineActual._id} className={style.tableBody}>
                             <tr>
                                 <td style={{width:'40px'}}><Button  onClick={()=>handleClickThrash(st.wineActual._id)} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}}><DeleteIcon fontSize='large'/></Button></td>
-                                <td><img src={st.wineActual.img} alt={st.wineActual.name} style={{width:'70px',height:'auto'}}/></td>
+                                <td><img src={st.wineActual?.img} alt={st.wineActual?.name} style={{width:'70px',height:'auto'}}/></td>
                                 <td>{st.wineActual.name}</td>
                                 <td>${st.wineActual.price}.00</td>
                                 <td>

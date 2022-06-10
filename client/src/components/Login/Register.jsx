@@ -18,7 +18,7 @@ const Register = () => {
     const id_token = response.credential;
     console.log("ID: " + response.credential);
     axios
-      .post("/auth/google", { id_token })
+      .post("http://localhost:8000/auth/google", { id_token })
       .then((resp) => {
         console.log(resp);
         if (resp.data.token) {

@@ -53,7 +53,7 @@ export const FILTER_CART_DB = 'FILTER_CART_DB'
 
 export const getWines = (num,category,orden,producer) => {
     return async function (dispatch) {
-      return axios.get(`/products?start=${num}&category=${category}&orden=${orden}&producer=${producer}`)
+      return axios.get(`http://localhost:8000/products?start=${num}&category=${category}&orden=${orden}&producer=${producer}`)
       .then(response => {
         dispatch({ type: GET_WINES, payload: response.data });
       })
@@ -92,7 +92,7 @@ export const getWinesCopy = () => {
 
 export const getWineName = (name) => {
     return async function(dispatch){
-      return axios.get(`/products/?name=${name}`)
+      return axios.get(`http://localhost:8000/products/?name=${name}`)
     .then(response => {
       dispatch({ type: GET_NAME, payload: response.data});
     })
@@ -107,7 +107,7 @@ export const setFilter = (options) => {
 
 export const postWine = (data) => {
   return async function(dispatch){
-    return axios.post('/products', data, { headers: authHeader() } )
+    return axios.post('http://localhost:8000/products', data, { headers: authHeader() } )
     .then(response => {
       dispatch({type: POST_WINE, payload: response.data})
     })
@@ -118,7 +118,7 @@ export const postWine = (data) => {
 
 export const getCategories = () => {
   return async function(dispatch){
-    return axios.get('/category')
+    return axios.get('http://localhost:8000/category')
     .then(response => {
       dispatch({type: GET_CATEGORIES, payload: response.data})
     })
@@ -128,7 +128,7 @@ export const getCategories = () => {
 
 export const getStrains = () => {
   return async function(dispatch){
-    return axios.get(`/products/producer`)
+    return axios.get(`http://localhost:8000/products/producer`)
   .then(response => {
     dispatch({ type: GET_STRAIN, payload: response.data});
   })
@@ -138,7 +138,7 @@ export const getStrains = () => {
 
 export const deleteProduct = (id)=>{
   return async function(dispatch){
-    return axios.delete(`/products/${id}`, { headers: authHeader()  } )
+    return axios.delete(`http://localhost:8000/products/${id}`, { headers: authHeader()  } )
       .then(response =>{ 
         dispatch({type: DELETE_PRODUCT, payload: response.data})
         
@@ -149,7 +149,7 @@ export const deleteProduct = (id)=>{
 
 export const updateProduct = (id, data)=>{
   return async function(dispatch){
-    return axios.put(`/products/${id}`, data ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/products/${id}`, data ,  { headers: authHeader() })
       .then(response =>{
           dispatch({type: UPDATE_PRODUCT, payload: response.data})
       }).catch(err=> console.log(err))
@@ -179,7 +179,7 @@ export const deleteLocalStorage = (data) => {
 //ADD FAVORITES
 export const addFavorites = (payload)=>{
   return async function(dispatch){
-    return axios.post(`/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
+    return axios.post(`http://localhost:8000/products/favs/${payload.id}`, payload, { headers: authHeader()  } )
     .then(response=>{
       return dispatch({
       type: ADD_FAVS,
@@ -194,7 +194,7 @@ export const addFavorites = (payload)=>{
 //DELETE FAVORITES
 export const deleteFav =(id)=>{
   return async function(dispatch){
-    return axios.delete(`/products/favs/${id}`,{ headers: authHeader()  })
+    return axios.delete(`http://localhost:8000/products/favs/${id}`,{ headers: authHeader()  })
     .then(response=>{
       // console.log(response)
       dispatch({
@@ -208,7 +208,7 @@ export const deleteFav =(id)=>{
 export const allFavs = (id)=>{
   return async function(dispatch){
     // return axios.get('http://localhost:8000/products/favs', { headers: authHeader()  })
-    return axios.get(`/users/${id}`, { headers: authHeader()  })
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  })
     .then(response => {
       // console.log(response.data.favorites)
       dispatch({ type: ALL_FAVORITES, payload: response.data.favorites });
@@ -220,7 +220,7 @@ export const allFavs = (id)=>{
 export const allFavs2 = (id)=>{
   return async function(dispatch){
     // return axios.get('http://localhost:8000/products/favs', { headers: authHeader()  })
-    return axios.get(`/users/${id}`, { headers: authHeader()  })
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  })
     .then(response => {
       // console.log(response.data.favorites)
       dispatch({ type: ALL_FAVORITES2, payload: response.data.favorites });
@@ -232,7 +232,7 @@ export const allFavs2 = (id)=>{
 //CARRITO DE COMPRAS BASE DE DATOS
 export const setShoppingCar = (data)=>{
   return async function(dispatch){
-    return axios.post(`/products/cart`, data,  { headers: authHeader() })
+    return axios.post(`http://localhost:8000/products/cart`, data,  { headers: authHeader() })
       /*.then(response =>{
           dispatch({type: SET_SHOPPINGCAR, payload: response.data})
       }).catch(err=> console.log(err))*/
@@ -241,7 +241,7 @@ export const setShoppingCar = (data)=>{
 
 export const getShoppingCar = ()=>{
   return async function(dispatch){
-    return axios.get(`/products/cart`, { headers: authHeader() })
+    return axios.get(`http://localhost:8000/products/cart`, { headers: authHeader() })
       .then(response =>{
           dispatch({type: GET_SHOPPINGCAR, payload: response.data.cart})
       }).catch(err=> console.log(err))
@@ -250,7 +250,7 @@ export const getShoppingCar = ()=>{
 
 export const getUsers = ()=>{
     return async function(dispatch){
-      return axios.get('/users', { headers: authHeader() })
+      return axios.get('http://localhost:8000/users', { headers: authHeader() })
       .then(response =>{
         dispatch({type: GET_USERS, payload: response.data})
       }).catch(err => console.log(err))
@@ -259,7 +259,7 @@ export const getUsers = ()=>{
 
 export const deleteUser = (id)=>{
   return async function(dispatch){
-    return axios.delete(`/users/${id}`, { headers: authHeader()  } )
+    return axios.delete(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
       .then(response =>{ 
         dispatch({type: DELETE_USER, payload: response.data})
         
@@ -270,7 +270,7 @@ export const deleteUser = (id)=>{
 
 export const getUserById = (id)=>{
   return async function(dispatch){
-    return axios.get(`/users/${id}`, { headers: authHeader()  } )
+    return axios.get(`http://localhost:8000/users/${id}`, { headers: authHeader()  } )
       .then(response =>{ 
         dispatch({type: GET_USER, payload: response.data})
         
@@ -281,7 +281,7 @@ export const getUserById = (id)=>{
 
 export const postMP = (data) => {
   return async function(dispatch){
-    return axios.post('/products/payment',data)
+    return axios.post('http://localhost:8000/products/payment',data)
     .then(response => { 
       
       dispatch({type: MERCADO_PAGO, payload: response.data.url})
@@ -292,7 +292,7 @@ export const postMP = (data) => {
 
 export const postPurchase = (data) => {
   return async function(dispatch){
-    return axios.post('/purchase',data,{ headers: authHeader()  } )
+    return axios.post('http://localhost:8000/purchase',data,{ headers: authHeader()  } )
     .then(response => { 
       console.log(response.data)
       dispatch({type: POST_PURCHASE, payload: response.data})
@@ -305,7 +305,7 @@ export const postPurchase = (data) => {
 export const putPurchase = (id, data)=>{
 
   return async function(dispatch){
-    return axios.put(`/purchase/${id}`, data ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/purchase/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
       dispatch({type: PUT_PURCHASE, payload: response.data})
       }).catch(err=> console.log(err))
@@ -314,7 +314,7 @@ export const putPurchase = (id, data)=>{
 
 export const getPurchase = () => {
   return async function(dispatch){
-    return axios.get('/purchase/all', {headers: authHeader()})
+    return axios.get('http://localhost:8000/purchase/all', {headers: authHeader()})
     .then(response => {
       dispatch({type: GET_PURCHASE, payload: response.data})
     })
@@ -324,7 +324,7 @@ export const getPurchase = () => {
 
 export const deleteCart = ()=>{
   return async function(dispatch){
-    return axios.delete(`/products/cart`, { headers: authHeader()  } )
+    return axios.delete(`http://localhost:8000/products/cart`, { headers: authHeader()  } )
       .then(response =>{ 
         dispatch({type: DELETE_CART, payload: response.data})
         
@@ -335,7 +335,7 @@ export const deleteCart = ()=>{
 
 export const getOrders = () =>{
   return async function(dispatch){
-    return axios.get('/purchase', {headers: authHeader()})
+    return axios.get('http://localhost:8000/purchase', {headers: authHeader()})
     .then(response =>{
       dispatch({ type: GET_ORDERS, payload: response.data})
     }).catch(err => console.log(err))
@@ -345,7 +345,7 @@ export const getOrders = () =>{
 
 export const getPurchaseId = (id)=>{
   return async function(dispatch){
-    return axios.get(`/purchase/${id}`, {headers: authHeader()})
+    return axios.get(`http://localhost:8000/purchase/${id}`, {headers: authHeader()})
       .then(response=>{
         dispatch({type: GET_PURCHASE_ID, payload: response.data})
       }).catch(err => console.log(err))
@@ -354,7 +354,7 @@ export const getPurchaseId = (id)=>{
 
 export const userUpdateRole = (id, data)=>{
   return async function(dispatch){
-    return axios.put(`/users/update/${id}`, data, {headers: authHeader()})
+    return axios.put(`http://localhost:8000/users/update/${id}`, data, {headers: authHeader()})
     .then(response =>{
       dispatch({type: UPDATE_USER, payload: response.data})
     }).catch(err => console.log(err))
@@ -368,7 +368,7 @@ export const userUpdateRole = (id, data)=>{
 
 export const getUserAddress = ()=>{
   return async function(dispatch){
-    return axios.get(`/address`, {headers: authHeader()})
+    return axios.get(`http://localhost:8000/address`, {headers: authHeader()})
       .then(response=>{
         dispatch({type: GET_USER_ADDRESS, payload: response.data})
       }).catch(err => console.log(err))
@@ -377,7 +377,7 @@ export const getUserAddress = ()=>{
 
 export const postUserAddress = (data) => {
   return async function(dispatch){
-    return axios.post('/address', data, { headers: authHeader() })
+    return axios.post('http://localhost:8000/address', data, { headers: authHeader() })
     .then(response => { 
       console.log(response.data)
       dispatch({type: POST_USER_ADDRESS, payload: response.data})  
@@ -387,7 +387,7 @@ export const postUserAddress = (data) => {
 
 export const updateUserAddress = (id, data)=>{
   return async function(dispatch){
-    return axios.put(`/address/${id}`, data ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/address/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
       dispatch({type: UPDATE_USER_ADDRESS, payload: response.data})
       }).catch(err=> console.log(err))
@@ -396,7 +396,7 @@ export const updateUserAddress = (id, data)=>{
 
 export const sendPurchaseEmail=()=>{
   return async function(dispatch){
-    return axios.get('/purchase/email',{headers: authHeader()})
+    return axios.get('http://localhost:8000/purchase/email',{headers: authHeader()})
       .then(response=>{
         dispatch({type:PURCHASE_EMAIL})
       })
@@ -406,7 +406,7 @@ export const sendPurchaseEmail=()=>{
 
 export const updateStock=(data)=>{
   return async function(dispatch){
-    return axios.put('/products/stock',data,{headers: authHeader()})
+    return axios.put('http://localhost:8000/products/stock',data,{headers: authHeader()})
       .then(response=>{
       
         dispatch({type:UPDATE_STOCK})
@@ -419,7 +419,7 @@ export const updateStock=(data)=>{
 export const putComment = (id, data)=>{
 
   return async function(dispatch){
-    return axios.put(`/products/comment/${id}`, data ,  { headers: authHeader() })
+    return axios.put(`http://localhost:8000/products/comment/${id}`, data ,  { headers: authHeader() })
     .then(response =>{
       dispatch({type: PUT_COMMENT, payload: response.data})
       }).catch(err=> console.log(err))
@@ -429,7 +429,7 @@ export const putComment = (id, data)=>{
 //user Perfil 
 export const userProfileUpd = (id, data)=>{
   return async function(dispatch){
-    return axios.put(`/users/${id}`, data, {headers: authHeader()})
+    return axios.put(`http://localhost:8000/users/${id}`, data, {headers: authHeader()})
     .then(response =>{
       dispatch({type: USER_UPDATE, payload: response.data})
     }).catch(err => console.log(err))
