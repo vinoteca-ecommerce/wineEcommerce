@@ -47,7 +47,12 @@ function handleSubmit(e){
     e.preventDefault()
 
     if(!comment.title || !comment.comment || !comment.ranking){
-      return  alert('Por Favor Complete Todos los campos correctamente')
+        return swal({
+            title: "Completa todo los campos",
+            text: 'Todos los campos son obligatorios',
+            icon: "error",
+            button: "Aceptar",
+          })
     }
 
    const filtro = wine.comment.find(e => e.email === email)
@@ -64,11 +69,13 @@ function handleSubmit(e){
    }
 }
 
+
+
     return (
         <div className={style.contain}>
             <div className={style.image} >
-            <h1>{wine.name}</h1>
-            <img src={wine.img} alt="" />
+            <h1>{wine?.name}</h1>
+            <img src={wine?.img} alt="" />
             </div>
             <div className={style.comment}>
                 <h2 htmlFor="">Titulo</h2>

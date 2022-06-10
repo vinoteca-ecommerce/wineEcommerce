@@ -28,6 +28,8 @@ export const ShoppingCar = () => {
         dispatch(setShoppingCar([]))
     }
 
+
+
     useEffect(()=>{
         const user= authService.getCurrentUser();
         if(user){
@@ -42,10 +44,10 @@ export const ShoppingCar = () => {
 
     },[dispatch])
     
-//    useEffect(()=>{
-//        dispatch(getWines("","","",""))
+   useEffect(()=>{
+       dispatch(getWines("","","",""))
 
-//    },[dispatch])
+   },[dispatch])
 
 //     const handleClick = (operation,id)=>{
 //          dispatch(getWinesById(id))
@@ -87,12 +89,12 @@ const handleClickSub=(id)=>{
     setCantidad(false)
     dispatch(subLocalStorage(id))
 }
+
 const handleClickAdd=(id)=>{
         //  dispatch(getWinesById(id))
 
     wine && wine.result && console.log("solocarro",shoppingcar.filter(w=>w.name===wine.name))
-
-    let vino= shoppingcar.find(e=>wine.name== e.name)
+    let vino= shoppingcar.find(e=>wine.name === e.name)
     // const vino=wine.result.find(we=>we.name===shoppingcar.name)
     console.log('wine.stock',wine)
     console.log('vino',vino)
@@ -113,7 +115,7 @@ const handleClickAdd=(id)=>{
      dispatch(addLocalStorage(id)) 
     //  setCantidad(false)
         }
-        else{console.log("houston tenemos un problema xd")}
+       
     }
     
 }

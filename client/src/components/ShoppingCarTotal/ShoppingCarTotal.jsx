@@ -14,9 +14,7 @@ export const ShoppingCarTotal = () => {
   const shoppingcar = useSelector((state) => state.shoppingcar);
   const wine = useSelector((state)=> state.wines)
   let arregloTest=shoppingcar.map(wine=>wine.cont>wine.stock)
-  console.log(arregloTest)
   let booleanArray=arregloTest.filter(wine=>wine===true)
-  console.log(booleanArray.length)
   //const linkmp = useSelector((state) => state.linkmp);
   const [currentUser,setCurrentUser] = useState(undefined)
   const userAddress = useSelector(state=>state.userAddress)
@@ -47,8 +45,6 @@ export const ShoppingCarTotal = () => {
   });
 
   function handleClick(){
-    // let autoFilter= shoppingcar.filter()
-    // if(autoFilter){console.log("hola")}
     setBody( shoppingcar.map(e=>body.items.push({
       title:e.name,
       unit_price:e.price,
