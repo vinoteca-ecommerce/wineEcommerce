@@ -47,8 +47,8 @@ export const ShoppingCarTotal = () => {
   });
 
   function handleClick(){
-    let autoFilter= shoppingcar.filter()
-    if(autoFilter){console.log("hola")}
+    // let autoFilter= shoppingcar.filter()
+    // if(autoFilter){console.log("hola")}
     setBody( shoppingcar.map(e=>body.items.push({
       title:e.name,
       unit_price:e.price,
