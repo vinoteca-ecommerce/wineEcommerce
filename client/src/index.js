@@ -10,7 +10,7 @@ import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
 
-axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:8000';
+axios.defaults.baseURL = process.env.REACT_APP_API || 'https://vinoteca-henry.herokuapp.com';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
