@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 
-import { deleteCart, getOrders, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
+import { deleteCart, getOrders, getShoppingCar, putPurchase ,sendPurchaseEmail,updateStock} from "../../redux/actions/actions";
 
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -18,7 +18,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TableFooter from '@mui/material/TableFooter'
 
-//styles
 import Style from "./Success.module.css";
 
 export function Succes() {
@@ -39,48 +38,94 @@ export function Succes() {
     status : status === 'null' ? 'rejected': status,
 
   };
-  let STATEorders= useSelector(state=>state.orders)
-  useEffect(()=>{
-    dispatch(getOrders())
-  },[dispatch])
   
+  const cart = useSelector(state => state.Cart)
+  let STATEorders= useSelector(state=>state.orders)
+
+
+
+
+  let x4 =[]
+  const stockUpdated=cart?.map(e=>{
+    let stockLeft=  e.wineActual.stock-e.cant
+  
+    x4.push({
+      stock:stockLeft,
+      id:e.wineActual._id
+    })
+  });
+console.log(cart)
+console.log(x4) 
+if(status === 'rejected' || status === 'null'){
+  console.log('no pasa nada')
+}else{
+if(x4.length>0){
+dispatch(updateStock(x4))
+dispatch(deleteCart())
+}
+}
+  useEffect(()=>{
+    var f5 = x4
+    
+    dispatch(getShoppingCar())
+
+    
+
+ 
+
+
+  
+
+   
+
+//   if(status === 'rejected' || status === 'null'){
+
+//    console.log('rejected')
+//   }else if(status === "pending" ||status === "approved"){
+
+//   const stockUpdated=cart?.map(e=>{
+//     let stockLeft=  e.wineActual.stock-e.cant
+    
+  
+//     return{
+//       stock:stockLeft,
+//       id:e.wineActual._id
+//     }
+//   });
+
+  
+
+//   dispatch(getOrders())
+   
+
+
+ 
+//   //dispatch(deleteCart());
+  
+// }
+
+ }, []); 
+
+
+
+
+
   const email=()=>{
     dispatch(sendPurchaseEmail());
     navigate('/userOrders/approved');
   }
-  
-  useEffect(() => {
-
-
-    if(status === 'rejected' || status === 'null'){
-      dispatch(putPurchase(idPurchase, data));
-    }else if(status === "pending" ||status === "approved"){
-    
-      let store = JSON.parse(localStorage.getItem('ShoppingCar'));
-      const stockUpdated=store?.map(e=>{
-        let stockLeft=  e.stock-e.cont
-        return{
-          stockk:stockLeft,
-          id:e.id
-        }
-      });
-     
-      
-    dispatch(updateStock(stockUpdated))
-    dispatch(putPurchase(idPurchase, data));
-  
-    dispatch(deleteCart());
-    localStorage.removeItem("idPurchase");
-
-    
-  }
-  return()=>{
-    setTimeout(()=>{
-      localStorage.removeItem("ShoppingCar");
-    }, 5000)
-  }
-}, []);
  
+ 
+
+
+
+  
+ 
+
+ 
+
+  
+
 
 
   return (

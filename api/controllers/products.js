@@ -205,13 +205,15 @@ const productUpdate = async (req, res = response) => {
 
 const productUpdateStock = async (req, res = response) => {
 //llega toda la info por body: [{id, stockk},{id, stockk}]
-
+console.log(req.body)
   req.body.map(async(e)=>{
-    let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stockk}, { new: true });
+    let product = await Product.findByIdAndUpdate(e.id,{ stock:e.stock}, { new: true });
   })
-
+  
 
   res.json({msg:'Stock de los vinos recibido actualizado correctamente!'});}
+
+  
 
 const productUpdateComment = async (req, res = response) => {
   const { id } = req.params;
@@ -389,8 +391,9 @@ const pushToCart = async (req, res = response) => {
 const paymentMP = async (req, res) => {
   const url = "https://api.mercadopago.com/checkout/preferences";
   const body = req.body;
-
+  console.log(body)
   const payment = await axios.post(url, body, {
+    
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
@@ -398,7 +401,7 @@ const paymentMP = async (req, res) => {
   });
 
   res.send({ url: payment.data.init_point });
-};
+}; 
 
 module.exports = {
   postProduct,

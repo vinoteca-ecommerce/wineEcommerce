@@ -11,10 +11,10 @@ export const ShoppingCarTotal = () => {
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const shoppingcar = useSelector((state) => state.shoppingcar);
+  const cart = useSelector((state) => state.Cart);
   const wine = useSelector((state)=> state.wines)
-  let arregloTest=shoppingcar.map(wine=>wine.cont>wine.stock)
-  let booleanArray=arregloTest.filter(wine=>wine===true)
+  
+
   //const linkmp = useSelector((state) => state.linkmp);
   const [currentUser,setCurrentUser] = useState(undefined)
   const userAddress = useSelector(state=>state.userAddress)
@@ -27,10 +27,11 @@ export const ShoppingCarTotal = () => {
     if(user) setCurrentUser(user);
   },[])
 
+console.log()
 
-
-  for(let i=0; i<shoppingcar?.length ; i++){
-    subtotal += shoppingcar[i]?.cont*shoppingcar[i]?.price;
+  for(let i=0; i<cart?.length ; i++){
+    subtotal += cart[i]?.cant*cart[i]?.wineActual.price;
+    console.log(cart)
   }
   total = subtotal;
 
@@ -45,11 +46,11 @@ export const ShoppingCarTotal = () => {
   });
 
   function handleClick(){
-    setBody( shoppingcar.map(e=>body.items.push({
-      title:e.name,
-      unit_price:e.price,
-      quantity:e.cont,
-      picture_url:e.img,
+    setBody( cart.map(e=>body.items.push({
+      title:e.wineActual.name,
+      unit_price:e.wineActual.price,
+      quantity:e.cant,
+      picture_url:e.wineActual.img,
 
       stock:e.stock,
 
@@ -76,9 +77,9 @@ export const ShoppingCarTotal = () => {
         <h4>Resumen</h4>
         <p><h5>SubTotal: </h5><h6>${subtotal}.00</h6></p>
         <p><h5>Total: </h5><h6>${total}.00</h6></p>
-        {booleanArray.length ===0 && currentUser !== undefined && userAddress.length !==0 && total > 0 && subtotal > 0?
+        
        <Button onClick={handleClick} fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button>
-        :<div><Button disabled fullWidth sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button><span className={style.spamm}>Se requiere una dirección válida</span></div>}
+     
     </div>
   )
 }

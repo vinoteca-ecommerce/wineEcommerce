@@ -85,6 +85,10 @@ useEffect(() => {
 let wineStockcarro = cart.find(e=> e.wineActual._id === id)
 
 console.log(cart)
+
+if(wineActual.stock<=0){
+return alert('no hay mas stock')
+}
 if(!wineStockcarro){
   let data = {
     wineActual,
@@ -92,14 +96,17 @@ if(!wineStockcarro){
   }
 dispatch(updateCart(data))
 dispatch(setShoppingCar(cart))
+alert('vino agregado correctamente')
 
-}else if(wineStockcarro.cant < wineActual.stock){
+}else if
+(wineStockcarro.cant  < wineActual.stock){
   let data = {
     wineActual,
     cant:1
   }
 dispatch(updateCart(data))
 dispatch(setShoppingCar(cart))
+alert('vino agregado correctamente')
 
 }else{
   alert('no hay mas stock')
