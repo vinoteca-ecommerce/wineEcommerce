@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWines, setWineClean, setFilter, getWineName, getStrains,allFavs } from '../../redux/actions/actions';
+import { getWines, setWineClean, setFilter, getWineName, getStrains,allFavs2 } from '../../redux/actions/actions';
 import { CardProduct } from '../CardProduct/CardProduct';
 // import { Container } from '@mui/system';
 import {SearchBar} from '../SearchBar/SearchBar'
@@ -50,9 +50,8 @@ export const Products = () => {
 
         if(page === 1) dispatch(getWines(0,category,orden,producer));
         else dispatch(getWines((page*10)-10,category,orden,producer));
-
         
-        if(store?.user?.uid) dispatch(allFavs(store.user.uid))
+        if(store?.user?.uid) dispatch(allFavs2(store.user.uid))
 
     },[dispatch,categoryR,category,page,orden,producer])
 

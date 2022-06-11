@@ -68,7 +68,7 @@ export const setWineClean = () => {
 export const getWinesById = (id) => {
  
   return async function (dispatch) {
-    return axios.get("/products/"+id)
+    return axios.get("http://localhost:8000/products/"+id)
     .then(response => {
       dispatch({ type: GET_WINES, payload: response.data });
     })
