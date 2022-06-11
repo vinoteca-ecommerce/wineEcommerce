@@ -67,9 +67,11 @@ const cart = useSelector(state => state.Cart);
       console.log(cart)
      let wineStockcarro = cart.find(e=> e.wineActual._id === id)
      
-    
+     if(wineActual.stock<=0){
+      return alert('no hay mas stock')
+      }
      if(!wineStockcarro){
-      console.log('asdas')
+     
        let data = {
          wineActual,
          cant:1
@@ -77,13 +79,16 @@ const cart = useSelector(state => state.Cart);
        
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
+     alert('vino agregado correctamente')
      }else if(wineStockcarro.cant < wineActual.stock){
        let data = {
          wineActual,
          cant:1
        }
+       
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
+     alert('vino agregado correctamente')
      
      }else{
        alert('no hay mas stock')

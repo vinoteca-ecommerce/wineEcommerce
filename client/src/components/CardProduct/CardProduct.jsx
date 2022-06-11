@@ -77,7 +77,49 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
     
     let wineActual = winesCopy.result.find(e => e._id === id)
 
-    let wineStockcarro = cart.find(e=> e.wineActual._id === id)
+
+    const email = store.user.email
+
+    const   handleClickShopping = (id)=>{
+
+   
+      
+ let wineActual = winesCopy.result.find(e => e._id === id)
+
+
+let wineStockcarro = cart.find(e=> e.wineActual._id === id)
+
+console.log(cart)
+
+if(wineActual.stock<=0){
+return alert('no hay mas stock')
+}
+if(!wineStockcarro){
+  let data = {
+    wineActual,
+    cant:1
+  }
+dispatch(updateCart(data))
+dispatch(setShoppingCar(cart))
+alert('vino agregado correctamente')
+
+}else if
+(wineStockcarro.cant  < wineActual.stock){
+  let data = {
+    wineActual,
+    cant:1
+  }
+dispatch(updateCart(data))
+dispatch(setShoppingCar(cart))
+alert('vino agregado correctamente')
+
+}else{
+  alert('no hay mas stock')
+}
+}
+
+
+
 
     if(!wineStockcarro){
       let data = {
