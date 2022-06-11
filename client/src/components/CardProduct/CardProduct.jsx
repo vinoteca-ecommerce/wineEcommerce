@@ -9,18 +9,19 @@ import swal from 'sweetalert';
 import { useEffect } from 'react';
 
 export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country, stock}) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [arr,setArr] = useState(localStorage.getItem('favorites'));
   const winesCopy = useSelector(state => state.winesCopy);
-    let store = JSON.parse(localStorage.getItem('user'))
-const cart = useSelector(state => state.Cart);
+  const cart = useSelector(state => state.Cart);
 
+  const [arr,setArr] = useState(JSON.parse(localStorage.getItem('favorites')));
 
-useEffect(() => {
-  dispatch(getWinesCopy())
-  dispatch(getShoppingCar())
-}, []);
+  let store = JSON.parse(localStorage.getItem('user'))
+
+  useEffect(() => {
+    dispatch(getWinesCopy())
+    dispatch(getShoppingCar())
+  }, []);
 
     const handleFavs = (name, year, description, img, strain, producer, id, price, country)=>{
       const input={
@@ -59,7 +60,7 @@ useEffect(() => {
 
         let state = JSON.parse(localStorage.getItem('favorites'));
         state = state.filter(fav=>fav !== id)
-
+        
         localStorage.setItem('favorites', JSON.stringify(state));
 
         setArr(state)
@@ -72,44 +73,32 @@ useEffect(() => {
       }
     }
 
+  const handleClickShopping = (id)=>{
+    
+    let wineActual = winesCopy.result.find(e => e._id === id)
 
-    const email = store.user.email
+    let wineStockcarro = cart.find(e=> e.wineActual._id === id)
 
-    const   handleClickShopping = (id)=>{
+    if(!wineStockcarro){
+      let data = {
+        wineActual,
+        cant:1
+      }
+    dispatch(updateCart(data))
+    dispatch(setShoppingCar(cart))
 
-   
-      
- let wineActual = winesCopy.result.find(e => e._id === id)
+    }else if(wineStockcarro.cant < wineActual.stock){
+      let data = {
+        wineActual,
+        cant:1
+      }
+    dispatch(updateCart(data))
+    dispatch(setShoppingCar(cart))
 
-
-let wineStockcarro = cart.find(e=> e.wineActual._id === id)
-
-console.log(cart)
-if(!wineStockcarro){
-  let data = {
-    wineActual,
-    cant:1
-  }
-dispatch(updateCart(data))
-dispatch(setShoppingCar(cart))
-
-}else if(wineStockcarro.cant < wineActual.stock){
-  let data = {
-    wineActual,
-    cant:1
-  }
-dispatch(updateCart(data))
-dispatch(setShoppingCar(cart))
-
-}else{
-  alert('no hay mas stock')
+    }else{
+      alert('no hay mas stock')
+    }
 }
-}
-
-
-
-
-
 
 
   return (

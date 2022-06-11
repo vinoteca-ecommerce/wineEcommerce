@@ -51,7 +51,7 @@ const cart = useSelector(state => state.Cart);
        }
       else setCont(cont+1);
     }
-  }
+  } 
 
 
 
