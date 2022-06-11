@@ -2,7 +2,7 @@ import axios from "axios";
 
 const signup = (email, password) => {
   return axios
-    .post("/auth/login", {
+    .post("http://localhost:8000/auth/login", {
       email,
       password,
     })
@@ -22,7 +22,7 @@ const signup = (email, password) => {
 
 const register = (name, password, email, role) => {
   return axios
-    .post("/users/", {
+    .post("http://localhost:8000/users/", {
       name,
       email,
       password,
@@ -38,7 +38,7 @@ const register = (name, password, email, role) => {
 
 const verifyAccount = (token) => {
   return axios
-    .get(`/auth/verify/${token}`)
+    .get(`http://localhost:8000/auth/verify/${token}`)
     .then(() => {
       localStorage.setItem("user", JSON.stringify(token));
     })

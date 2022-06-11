@@ -338,6 +338,14 @@ const addToCart = async (req, res = response) => {
   });
 };
 
+
+
+
+
+
+
+
+
 const getCart = async (req, res = response) => {
   const cart = req.user.cart;
 
