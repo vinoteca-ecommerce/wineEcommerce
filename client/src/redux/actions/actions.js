@@ -190,7 +190,6 @@ export const addFavorites = (payload)=>{
   }
 }
 
-
 //DELETE FAVORITES
 export const deleteFav =(id)=>{
   return async function(dispatch){
