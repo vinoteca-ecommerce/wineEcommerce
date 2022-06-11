@@ -37,7 +37,12 @@ import {
  UPDATE_USER_ADDRESS,
  PUT_COMMENT,
  PURCHASE_EMAIL,
-  UPDATE_STOCK
+  UPDATE_STOCK,
+  UPDATE_CART,
+  GET_WINESCOPY,
+  UPDATE_CARTSUB,
+  FILTER_CART,
+  FILTER_CART_DB
 
  
 
@@ -59,7 +64,10 @@ const initialState = {
   orders: [],
   linkmp: "",
   idPurchase: "",
-  userAddress: []
+  userAddress: [],
+  winesCopy: {},
+  Cart: []
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -68,7 +76,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         wines: action.payload,
+        
       };
+      case GET_WINESCOPY:
+        
+        return {
+          
+          ...state,
+          winesCopy: action.payload
+        };
 
     case SET_WINES_CLEAN:
       return {
@@ -190,11 +206,10 @@ const rootReducer = (state = initialState, action) => {
         shoppingcar: action.payload,
       };*/
     case GET_SHOPPINGCAR:
-      localStorage.removeItem("ShoppingCar");
-      localStorage.setItem("ShoppingCar", JSON.stringify(action.payload));
+
       return {
         ...state,
-        shoppingcar: action.payload,
+        Cart: action.payload,
       };
 
     case GET_USERS:
@@ -317,6 +332,67 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
+
+        case UPDATE_CART:
+          console.log(action.payload)
+          let cart = state.Cart
+         let wine = cart.find(e => e.wineActual._id === action.payload.wineActual._id)
+    console.log()
+          if(wine){
+            wine.cant += 1
+            
+          } else {
+            cart.push(action.payload)
+            
+          }
+         
+          return{
+            ...state,
+            Cart: cart
+            
+          };
+          case UPDATE_CARTSUB:
+         
+            let cartSUB = state.Cart
+            let wineSUB = cartSUB.find(e => e.wineActual._id === action.payload.wineActual._id)
+            if(wineSUB){
+              wineSUB.cant -= 1
+              
+            } else {
+              cartSUB.push(action.payload)
+              
+            }
+           
+            return{
+              ...state,
+              Cart: cartSUB
+              
+            }
+
+            case FILTER_CART:
+         
+              let cartSUBFILTER = state.Cart
+              console.log(cartSUBFILTER)
+              let wineSUBSILTER = cartSUBFILTER.filter(e => e.wineActual._id !== action.payload)
+            console.log(wineSUBSILTER)
+            
+             
+              return{
+                ...state,
+                Cart: wineSUBSILTER
+                
+              }
+
+              case FILTER_CART_DB:
+
+              return{
+                ...state,
+                
+              }
+
+
+          
+          
 
     default:
       return { ...state };

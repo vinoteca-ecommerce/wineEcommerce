@@ -3,16 +3,25 @@ import style from './CardProduct.module.css';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useDispatch } from 'react-redux';
-import { addFavorites, deleteFav } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorites, deleteFav, getShoppingCar, getWineName, getWines, getWinesCopy, postPurchase, setShoppingCar, updateCart } from '../../redux/actions/actions';
 import swal from 'sweetalert';
+import { useEffect } from 'react';
 
 export const CardProduct = ({id, name, price, img, category, year, description, strain, producer, country, stock}) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [arr,setArr] = useState(localStorage.getItem('favorites'));
-  
-    let store = JSON.parse(localStorage.getItem('user'))
+  const winesCopy = useSelector(state => state.winesCopy);
+  const cart = useSelector(state => state.Cart);
+
+  const [arr,setArr] = useState(JSON.parse(localStorage.getItem('favorites')));
+
+  let store = JSON.parse(localStorage.getItem('user'))
+
+  useEffect(() => {
+    dispatch(getWinesCopy())
+    dispatch(getShoppingCar())
+  }, []);
 
     const handleFavs = (name, year, description, img, strain, producer, id, price, country)=>{
       const input={
@@ -51,7 +60,7 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
 
         let state = JSON.parse(localStorage.getItem('favorites'));
         state = state.filter(fav=>fav !== id)
-
+        
         localStorage.setItem('favorites', JSON.stringify(state));
 
         setArr(state)
@@ -64,56 +73,33 @@ export const CardProduct = ({id, name, price, img, category, year, description, 
       }
     }
 
-    const   handleClickShopping = (id)=>{
-        let state = JSON.parse(localStorage.getItem('ShoppingCar'));
-        let sum = 0;
-        let index = undefined;
+  const handleClickShopping = (id)=>{
     
-        if(localStorage.id){
-         
-        }
-        if(state){
-          for(let i=0 ; i<state?.length ; i++){
-            if(state[i].id === id){
-              sum = state[i].cont + 1;
-              index = i; 
-            }
-          }
-          
-         
-        if(sum > stock){
-         return  swal({
-          title: "Fuera de stock",
-          text: `${name} No hay mas stock`,
-          icon: "error",
-          button: "Aceptar",
-        });
-        }
-       
-          if(sum) state?.push({id,cont:sum,name,price,img,category,stock});
-          else state?.push({id,cont:1,name,price,img,category,stock});
-    
-          if(index !== undefined) state.splice(index,1);
-    
-          localStorage.setItem('ShoppingCar', JSON.stringify(state));
-          
-          swal({
-            title: "Vino Añadido",
-            text: `${name} agregado al carrito de compras`,
-            icon: "success",
-            button: "Aceptar",
-          });
-        }
-        else{
-          localStorage.setItem('ShoppingCar', JSON.stringify([{id,cont:1,name,price,img,category,stock}]));
-          swal({
-            title: "Vino Añadido",
-            text: `${name} agregado al carrito de compras`,
-            icon: "success",
-            button: "Aceptar",
-          });
-        } 
+    let wineActual = winesCopy.result.find(e => e._id === id)
+
+    let wineStockcarro = cart.find(e=> e.wineActual._id === id)
+
+    if(!wineStockcarro){
+      let data = {
+        wineActual,
+        cant:1
       }
+    dispatch(updateCart(data))
+    dispatch(setShoppingCar(cart))
+
+    }else if(wineStockcarro.cant < wineActual.stock){
+      let data = {
+        wineActual,
+        cant:1
+      }
+    dispatch(updateCart(data))
+    dispatch(setShoppingCar(cart))
+
+    }else{
+      alert('no hay mas stock')
+    }
+}
+
 
   return (
     /*  name, year, description, img, strain, producer,  ID  de category, price, country */
