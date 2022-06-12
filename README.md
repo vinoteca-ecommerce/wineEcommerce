@@ -1,5 +1,6 @@
-<!-- 
-# ![Vinoteca](client/src/images/wineLanding.jpeg) -->
+
+[![Vinoteca](https://user-images.githubusercontent.com/86882630/173231206-b27568a7-3f73-48d4-b2b1-5b7c3f5e2691.png)](https://github.com/vinoteca-ecommerce)
+
 # E-Comerce Proyecto Grupal #SoyHenryBootcamp
 <table>
 <tr>
