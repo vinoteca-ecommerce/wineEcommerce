@@ -50,9 +50,9 @@ export const ShoppingCarTotal = () => {
   const [body, setBody] = useState({
     items: [],
     back_urls: {
-      failure: "https://vinoteca-henry.herokuapp.com/success",
-      pending: "https://vinoteca-henry.herokuapp.com/success",
-      success: "https://vinoteca-henry.herokuapp.com/success",
+      failure: "https://wine-ecommercew.vercel.app/success",
+      pending: "https://wine-ecommercew.vercel.app/success",
+      success: "https://wine-ecommercew.vercel.app/success",
     },
     auto_return: "approved",
   });
