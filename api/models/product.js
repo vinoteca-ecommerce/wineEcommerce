@@ -56,6 +56,10 @@ const ProductSchema = Schema({
   },
   comment: {
     type: Array
+  },
+  discount:{
+    type: Number,
+    default: 0
   }
 });
 

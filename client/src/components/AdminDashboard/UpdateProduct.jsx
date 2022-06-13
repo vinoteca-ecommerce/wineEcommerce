@@ -22,7 +22,8 @@ export const UpdateProduct = () => {
     country: wine?.country,
     strain: wine?.strain,
     producer:wine?.producer,
-    stock: wine?.stock
+    stock: wine?.stock,
+    discount: wine?.discount
   });
 
   useEffect(()=>{
@@ -36,7 +37,8 @@ export const UpdateProduct = () => {
       country: wine?.country,
       strain: wine?.strain,
       producer:wine?.producer,
-      stock: wine?.stock
+      stock: wine?.stock,
+      discount: wine?.discount
     });
   },[wine])
   
@@ -74,7 +76,8 @@ export const UpdateProduct = () => {
         country: "",
         strain: '',
         producer:'',
-        stock: ''
+        stock: '',
+        discount: wine?.discount
       })
     }
   }
@@ -246,6 +249,20 @@ export const UpdateProduct = () => {
               {error.stock && <p>{error.stock}</p>}  
           </div>
           </div>
+          <div>
+            <label>Descuento: </label>
+            <div>
+              <input      
+                type="number" 
+                placeholder={wine?.discount}
+                value={input.discount}
+                name='discount' 
+                autoComplete="off"
+                onChange={handleOnChange}
+                min='0'
+                />    
+            </div>
+        </div>
         <div>
               <label style={{marginTop:'2em'}}> Categoria: </label>
               <select style={{marginTop:'2em'}}  name="category" onChange={e=>handleOnChange(e)} className={error.category && style.danger}>
@@ -256,6 +273,7 @@ export const UpdateProduct = () => {
               </select>   
               {error.category && <p>{error.category}</p>} 
         </div>
+      
         <div>
             <label style={{marginTop:'2em'}}>Descripcion:  </label>
             <textarea style={{marginTop:'2em'}}      
@@ -268,10 +286,9 @@ export const UpdateProduct = () => {
               onChange={handleOnChange}
                 />
         </div>
-      
+          
             <Button variant="contained" className={style.button} type="submit"  disabled={Object.keys(error).length}> Actualizar </Button>
       </form>
-
       </div>
 
     </div>

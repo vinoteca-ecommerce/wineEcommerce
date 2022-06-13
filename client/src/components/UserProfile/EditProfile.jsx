@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 import { getUserById, userProfileUpd } from '../../redux/actions/actions'
 import style from './EditProfile.module.css';
 import EditIcon from '@mui/icons-material/Edit';
-
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
 export const EditProfile = () => {
@@ -101,31 +101,27 @@ export const EditProfile = () => {
 
   return (
     <div className={style.containerAllPerfil}>
-        
             <form onSubmit={handleSubmit}>
               <div className={style.ContainerPerfil}>
                 <div className={style.imgdiv}>
-            
-                    <img className={style.img} style={{width:'200px', height:'200px', borderRadius:'200px', border:'solid', borderColor:'black'}} src={store?.user.img} alt='Not Found'/>
-                    <Button  onClick={e=>handleEditimg(e)} > <EditIcon style={{color:'#6c0000'}}/></Button>
-               {img === false ? <div>
 
-                </div>:(
+                <img className={style.img} style={{width:'160px', height:'auto', borderRadius:'200px'}} src={store?.user.img} alt='Not Found'/>
+                {img === false ? 
+                    <Button style={{marginLeft:'4px',maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",marginTop:'9em'}} onClick={e=>handleEditimg(e)} > <EditIcon style={{color:'#6c0000'}}/></Button>
+                :<div>
                     <input
-                    
                     type='url'
                     name='img'
                     onChange={handleOnChange}
                     className={style.imgurl}
                     placeholder='Url de la imagen'/>
-
-                )}   
+                  <Button onClick={e=>handleEditimg(e)} style={{marginLeft:'4px',maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",}}><CancelIcon  style={{color:'#6c0000'}}/></Button>
+                </div>}   
                 </div>
              <div className={style.namediv}>
                       
-                        <label className={style.labelname}> Nombre: {input.name}<Button onClick={e=>handleEdit(e)}><EditIcon  style={{color:'#6c0000'}}/></Button></label>
-                        {nombre === false ? <div>
-                        </div>: (
+                {nombre === false ?<label className={style.labelname}>{input.name}<Button onClick={e=>handleEdit(e)} style={{paddingLeft:'20px',maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",}}><EditIcon  style={{color:'#6c0000'}}/></Button></label>
+                : 
                           <div className={style.nameinputdiv}>
                                 <input
                                 type='text'
@@ -135,19 +131,16 @@ export const EditProfile = () => {
                                 value={input.name}
                                 onChange={handleOnChange}
                                 />
-    
-                            </div>
-                        )}
-                    </div>
+                          <Button onClick={e=>handleEdit(e)} style={{marginLeft:'4px',maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",}}><CancelIcon  style={{color:'#6c0000'}}/></Button>
+                          </div>
+                }
+              </div>
                     <div className={style.emaildiv}>
-                    <label className={style.email}> Email: {user.email}</label>
+                    <label className={style.email}>{user.email}</label>
                 </div>
                 <div className={style.btn}>
-                <Button variant="contained" type="submit" onSubmit={handleSubmit}   style={{backgroundColor:'#6c0000'}}> Actualizar </Button>
+                <Button variant="contained" type="submit" onSubmit={handleSubmit}   style={{backgroundColor:'#6c0000',marginBottom:'.8em'}}> Actualizar </Button>
                 </div>
-                      
-                
-         
             </div>
             </form>
     </div>
