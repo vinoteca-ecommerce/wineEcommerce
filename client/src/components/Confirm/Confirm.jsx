@@ -6,23 +6,27 @@ import authService from '../services/auth-service';
 
 
 export function Confirm() {
-    const shoppingcar = useSelector((state) => state.shoppingcar);
+    const cart = useSelector((state) => state.Cart);
     const linkmp = useSelector((state) => state.linkmp);
     const [currentUser,setCurrentUser] = useState(undefined)
 
     useEffect(()=>{
         const user= authService.getCurrentUser();
         if(user) setCurrentUser(user);
+        console.log(cart)
       },[])
+
 
     let subtotal = 0;
     let total = 0;
   
-    for(let i=0; i<shoppingcar?.length ; i++){
-        subtotal += shoppingcar[i]?.cont*shoppingcar[i]?.price;
-    }
-    total = subtotal;
 
+    
+    for(let i=0; i<cart?.length ; i++){
+        subtotal += cart[i]?.cant*cart[i]?.wineActual.price;
+        console.log(cart)
+      }
+      total = subtotal;
 
     return (
         <div className={style.container}>

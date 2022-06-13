@@ -73,6 +73,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_WINES:
+      
       return {
         ...state,
         wines: action.payload,
@@ -334,10 +335,10 @@ const rootReducer = (state = initialState, action) => {
         };
 
         case UPDATE_CART:
-          console.log(action.payload)
+          
           let cart = state.Cart
          let wine = cart.find(e => e.wineActual._id === action.payload.wineActual._id)
-    console.log()
+   
           if(wine){
             wine.cant += 1
             
@@ -372,9 +373,9 @@ const rootReducer = (state = initialState, action) => {
             case FILTER_CART:
          
               let cartSUBFILTER = state.Cart
-              console.log(cartSUBFILTER)
+             
               let wineSUBSILTER = cartSUBFILTER.filter(e => e.wineActual._id !== action.payload)
-            console.log(wineSUBSILTER)
+           
             
              
               return{

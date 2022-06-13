@@ -8,11 +8,17 @@ import Button from "@mui/material/Button";
 
 //STYLES
 import Style from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { setShoppingCar } from "../../redux/actions/actions";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const cartLocalStorage = JSON.parse(localStorage.getItem("productsInCart"));
+  const dispatch = useDispatch()
+
+
 
   function handleCredentialResponse(response) {
     const id_token = response.credential;
@@ -49,6 +55,10 @@ const Login = () => {
     try {
       await authService.signup(email, password).then(
         (resp) => {
+          if(cartLocalStorage){
+            dispatch(setShoppingCar(cartLocalStorage))
+            window.localStorage.removeItem("productsInCart");
+          }
           navigate("/");
           window.location.reload();
         },

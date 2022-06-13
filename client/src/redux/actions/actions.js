@@ -70,6 +70,7 @@ export const getWinesById = (id) => {
   return async function (dispatch) {
     return axios.get("https://vinoteca-henry.herokuapp.com/products/"+id)
     .then(response => {
+     
       dispatch({ type: GET_WINES, payload: response.data });
     })
     .catch(err => console.error(err))
