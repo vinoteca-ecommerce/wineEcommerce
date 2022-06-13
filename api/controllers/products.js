@@ -405,7 +405,7 @@ const paymentMP = async (req, res) => {
 
 const paymentProduct = async(req,res)=>{
   console.log(req.body)
-  res.status(200).send("OK")
+  res.status(200).send("OK") 
 }
 
 module.exports = {
