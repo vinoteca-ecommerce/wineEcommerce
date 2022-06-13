@@ -12,7 +12,7 @@ const { id } = useParams();
 const [comment, setComment] = useState({email:"",
                                         name: '', 
                                         title:'',
-                                        ranking:'',           
+                                        ranking: '',           
                                         comment:"" });
 
 
@@ -21,13 +21,14 @@ const wine = useSelector(state => state.wines);
 const user = JSON.parse(localStorage.getItem('user'))
 const email = user.user.email
 const name = user.user.name
+
 useEffect(() => {
     dispatch(getWinesById(id))
 }, []);
 
 
-
 function handleChange(e){
+
 setComment({
             ...comment,
             email: email,
@@ -39,6 +40,7 @@ setComment({
 
 
 function handleSelect(e){
+    console.log(e.target.value)
     setComment({
         ...comment,
         ranking: e.target.value
@@ -84,7 +86,7 @@ function handleSubmit(e){
              <Rating
                  size="large"
                 name="simple-controlled"
-                 value={comment.ranking}
+                 value={Number(comment.ranking)}
                 onChange={handleSelect}/>
             </div>
 

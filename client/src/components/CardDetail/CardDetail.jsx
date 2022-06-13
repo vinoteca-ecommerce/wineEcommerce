@@ -22,53 +22,82 @@ const winesCopy = useSelector(state => state.winesCopy);
 const cart = useSelector(state => state.Cart);
 
 
-
+  let store = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
   const [cont,setCont] = useState(1);
   let sum = 0;
+ 
+
+
 
   useEffect(()=>{
-    dispatch(getShoppingCar())
-    dispatch(getWinesById(id))
-    dispatch(getWinesCopy())
-
-  },[dispatch,id])
-
-  const handleClick = (operation)=>{
-
-    if(operation === 'sub'){
-      if(cont > 1) setCont(cont-1);
+    if(!store){
+      dispatch(getWinesCopy())
+      dispatch(getWinesById(id))  
     }else{
-      if(cont >= wines.stock){
-        return  swal({
-         title: "Fuera de stock",
-         text: `No hay mas stock`,
-         icon: "error",
-         button: "Aceptar",
-       });
-       }
-      else setCont(cont+1);
+      dispatch(getWinesCopy())
+      dispatch(getWinesById(id))
+      dispatch(getShoppingCar())
+    
     }
-  } 
-
-
-
+  },[dispatch,id])
 
 
     const   handleClickShopping = (id)=>{
-
-
-      
+      if (!store) {
+        let products = JSON.parse(localStorage.getItem("productsInCart") || "[]");
+        let wineActual = winesCopy.result.find((e) => e._id === id);
+  
+        let vinoSum = products.find((e) => e.wineActual._id === wineActual._id);
+       
+       
+        if(wineActual.stock <= 0){
+          return swal({
+            title: "Fuera de stock",
+            text: `Vino fuera de stock`,
+            icon: "error",
+            button: "Aceptar",
+          });
+        }
+        if (vinoSum ) {
+          vinoSum.cant += 1;
+  
+          localStorage.setItem("productsInCart", JSON.stringify(products));
+          return swal({
+            title: "Vino Añadido",
+            text: `Vino agregado a carrito`,
+            icon: "success",
+            button: "Aceptar",
+          });
+        }
+        if (wineActual && !vinoSum) {
+          let data = {
+            wineActual,
+            cant: 1,
+          };
+          products.push(data);
+          localStorage.setItem("productsInCart", JSON.stringify(products));
+          return swal({
+            title: "Vino Añadido",
+            text: `Vino agregado a carrito`,
+            icon: "success",
+            button: "Aceptar",
+          });
+        }
+      }else{
       let wineActual = winesCopy.result.find(e => e._id === id)
 
-     
-      console.log(cart)
      let wineStockcarro = cart.find(e=> e.wineActual._id === id)
      
      if(wineActual.stock<=0){
-      return alert('no hay mas stock')
+      return swal({
+        title: "Fuera de stock",
+        text: `se encuentra fuera de stock`,
+        icon: "error",
+        button: "Aceptar",
+      });
       }
      if(!wineStockcarro){
      
@@ -79,7 +108,12 @@ const cart = useSelector(state => state.Cart);
        
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
-     alert('vino agregado correctamente')
+     return swal({
+      title: "Vino Añadido",
+      text: `agregado a carrito`,
+      icon: "success",
+      button: "Aceptar",
+    });
      }else if(wineStockcarro.cant < wineActual.stock){
        let data = {
          wineActual,
@@ -88,13 +122,23 @@ const cart = useSelector(state => state.Cart);
        
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
-     alert('vino agregado correctamente')
+     return swal({
+      title: "Vino Añadido",
+      text: ` agregado a carrito`,
+      icon: "success",
+      button: "Aceptar",
+    });
      
      }else{
-       alert('no hay mas stock')
+      return swal({
+        title: "Fuera de stock",
+        text: `se encuentra fuera de stock`,
+        icon: "error",
+        button: "Aceptar",
+      });
      }
      }
-     
+    }  
      
 
   wines?.comment?.map(wine=>{
@@ -157,8 +201,5 @@ const cart = useSelector(state => state.Cart);
       </>}
 
     </div>
-  )
-}
-
-
+  )}
 
