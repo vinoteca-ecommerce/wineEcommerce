@@ -51,7 +51,7 @@ export const PreCategory = () => {
 
         <Link to={`/products`} style={{textDecoration:'none', color:'black'}} onClick={()=>dispatch(setFilter({category:"",orden:"",producer:""}))}>
             <div className={style.card}>
-                <div className={style.cardImage}></div>
+                <div className={style.cardImageVerTodo}></div>
                 <div className={style.cardDescriptionAll}>
                     <p className={style.textTitleAll}><AddIcon/></p>
                     <p className={style.textBody}>Ver Todo</p>

@@ -110,14 +110,16 @@
     
 }
 
-.cardImage {
+.cardImageVerTodo {
     height: 100%;
     width: 100%;
     border-radius: .8em;
     position: absolute;
     transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    background: #0a3394;
-    background: linear-gradient(to top, #0a3394, #4286f4);
+    background: url("../../images/todosVinos.jpeg"); 
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 
 .cardDescriptionAll {
