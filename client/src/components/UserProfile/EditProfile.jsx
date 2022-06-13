@@ -105,13 +105,11 @@ export const EditProfile = () => {
             <form onSubmit={handleSubmit}>
               <div className={style.ContainerPerfil}>
                 <div className={style.imgdiv}>
-            
-                    <img className={style.img} style={{width:'160px', height:'auto', borderRadius:'200px'}} src={store?.user.img} alt='Not Found'/>
-                    <Button className={img && style.none} onClick={e=>handleEditimg(e)} style={{maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",marginTop:'9em'}} > <EditIcon style={{color:'#6c0000'}}/></Button>
-               {img === false ? <div>
 
-                </div>:
-                <div>
+                <img className={style.img} style={{width:'160px', height:'auto', borderRadius:'200px'}} src={store?.user.img} alt='Not Found'/>
+                {img === false ? 
+                    <Button style={{marginLeft:'4px',maxWidth: "30px", maxHeight: "30px",minWidth: "30px",minHeight: "30px",marginTop:'9em'}} onClick={e=>handleEditimg(e)} > <EditIcon style={{color:'#6c0000'}}/></Button>
+                :<div>
                     <input
                     type='url'
                     name='img'
