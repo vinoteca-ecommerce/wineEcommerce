@@ -161,7 +161,7 @@ const cart = useSelector(state => state.Cart);
           <h5 className={style.p}>{wines?.category?.name}</h5>
           <p className={style.border}>{wines?.description}</p>
           <div className={style.price}>
-            <p>${wines?.price}.00</p>
+            <p>${Math.round(wines?.price * (100 - wines?.discount) / 100)}.00</p>
             {/* <div style={{display:'flex',alignItems:'center'}}>
               <Button onClick={()=>handleClick('sub')} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#7f0000'}}><RemoveIcon/></Button>
               <p style={{display:'inline',color:'#7f0000',padding:'.2em .6em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1.2em'}}>{cont}</p>

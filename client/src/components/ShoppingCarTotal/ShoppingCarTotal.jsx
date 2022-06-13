@@ -37,12 +37,12 @@ export const ShoppingCarTotal = () => {
   if (!userNoId) {
     for (let i = 0; i < cartLocalStorage?.length; i++) {
       subtotal +=
-        cartLocalStorage[i]?.cant * cartLocalStorage[i]?.wineActual.price;
+        cartLocalStorage[i]?.cant * (Math.round(cartLocalStorage[i]?.wineActual.price * (100 - cartLocalStorage[i]?.wineActual.discount) / 100));
     }
     total = subtotal;
   } else {
     for (let i = 0; i < cart?.length; i++) {
-      subtotal += cart[i]?.cant * cart[i]?.wineActual.price;
+      subtotal += cart[i]?.cant * (Math.round(cart[i]?.wineActual.price * (100 - cart[i]?.wineActual.discount ) / 100));
     }
     total = subtotal;
   }
@@ -62,7 +62,7 @@ export const ShoppingCarTotal = () => {
       cart.map((e) =>
         body.items.push({
           title: e.wineActual.name,
-          unit_price: e.wineActual.price,
+          unit_price: Math.round(e.wineActual.price * (100 - e.wineActual.discount) / 100),
           quantity: e.cant,
           picture_url: e.wineActual.img,
 
@@ -93,11 +93,11 @@ export const ShoppingCarTotal = () => {
           <h4>Resumen</h4>
           <p>
             <h5>SubTotal: </h5>
-            <h6>${subtotal}.00</h6>
+            <h6>$ {subtotal}.00</h6>
           </p>
           <p>
             <h5>Total: </h5>
-            <h6>${total}.00</h6>
+            <h6>$ {total}.00</h6>
           </p>
        
          <Link  to='/login'>

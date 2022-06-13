@@ -129,7 +129,7 @@ export const Products = () => {
                 {wines?.result?.length !== 0 && wines_paginates.map(wine =>(
                     
                     <div key={wine._id}>
-                        <CardProduct stock={wine.stock} id={wine._id} name={wine.name} year={wine.year} strain={wine.strain} producer={wine.producer} country={wine.producer} price={wine.price} img={wine.img} category={wine.category.name} description={wine.description}/>
+                        <CardProduct stock={wine.stock} id={wine._id} name={wine.name} year={wine.year} strain={wine.strain} producer={wine.producer} country={wine.producer} price={Math.round(wine.price *(100 - wine.discount) / 100)} img={wine.img} category={wine.category.name} discount={wine.discount} description={wine.description}/>
                     </div>
                 ))} 
             </div> 

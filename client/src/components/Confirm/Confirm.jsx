@@ -23,14 +23,14 @@ export function Confirm() {
 
     
     for(let i=0; i<cart?.length ; i++){
-        subtotal += cart[i]?.cant*cart[i]?.wineActual.price;
+        subtotal += cart[i]?.cant* (Math.round(cart[i]?.wineActual.price * (100 - cart[i]?.wineActual.discount) / 100));
         console.log(cart)
       }
       total = subtotal;
 
     return (
         <div className={style.container}>
-            <h3>Total: ${total}.00</h3>
+            <h3>Total: $ {total}.00</h3>
             {currentUser !== undefined && total > 0 && subtotal > 0?
             <a href={linkmp} style={{textDecoration:'none', color:'black', margin:'0'}}> <Button variant="contained"  sx={{mt:'100px'}}> CONFIRMAR PAGO </Button></a>
             :<Button disabled sx={{mt:'10px'}}  variant="contained" >  COMPRAR  </Button>}
