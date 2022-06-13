@@ -56,7 +56,6 @@ const cart = useSelector(state => state.Cart);
         if(wineActual.stock <= 0){
           return swal({
             title: "Fuera de stock",
-            text: `Vino fuera de stock`,
             icon: "error",
             button: "Aceptar",
           });
@@ -66,8 +65,7 @@ const cart = useSelector(state => state.Cart);
   
           localStorage.setItem("productsInCart", JSON.stringify(products));
           return swal({
-            title: "Vino Añadido",
-            text: `Vino agregado a carrito`,
+            title: "Vino añadido a carrito",
             icon: "success",
             button: "Aceptar",
           });
@@ -80,8 +78,7 @@ const cart = useSelector(state => state.Cart);
           products.push(data);
           localStorage.setItem("productsInCart", JSON.stringify(products));
           return swal({
-            title: "Vino Añadido",
-            text: `Vino agregado a carrito`,
+            title: "Vino añadido a carrito",
             icon: "success",
             button: "Aceptar",
           });
@@ -94,7 +91,6 @@ const cart = useSelector(state => state.Cart);
      if(wineActual.stock<=0){
       return swal({
         title: "Fuera de stock",
-        text: `se encuentra fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
@@ -109,8 +105,7 @@ const cart = useSelector(state => state.Cart);
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
      return swal({
-      title: "Vino Añadido",
-      text: `agregado a carrito`,
+      title: "Vino añadido a carrito",
       icon: "success",
       button: "Aceptar",
     });
@@ -123,8 +118,7 @@ const cart = useSelector(state => state.Cart);
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
      return swal({
-      title: "Vino Añadido",
-      text: ` agregado a carrito`,
+      title: "Vino añadido a carrito",
       icon: "success",
       button: "Aceptar",
     });
@@ -132,7 +126,6 @@ const cart = useSelector(state => state.Cart);
      }else{
       return swal({
         title: "Fuera de stock",
-        text: `se encuentra fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
