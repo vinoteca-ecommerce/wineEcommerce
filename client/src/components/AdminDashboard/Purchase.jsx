@@ -34,7 +34,7 @@ export const Purchase = () => {
           <tbody key={e._id} className={style.tableBody}>
             <tr>
             <td  style={{width:'50px'}}>{index + 1}</td>
-            <td>{e.user.name}</td>
+            <td>{e.user?.name}</td>
             <td > $  {e.cart.map(e=>
             e.unit_price * e.quantity).reduce((acc, e) => acc + e ,0)}
             </td>
