@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Style from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { setShoppingCar } from "../../redux/actions/actions";
+import swal from "sweetalert";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,10 @@ const Login = () => {
         console.log(resp);
         if (resp.data.token) {
           localStorage.setItem("user", JSON.stringify(resp.data));
+        }
+        if(cartLocalStorage){
+          dispatch(setShoppingCar(cartLocalStorage))
+          window.localStorage.removeItem("productsInCart");
         }
         navigate("/");
         window.location.reload();
@@ -59,10 +64,28 @@ const Login = () => {
             dispatch(setShoppingCar(cartLocalStorage))
             window.localStorage.removeItem("productsInCart");
           }
-          navigate("/");
-          window.location.reload();
+          console.log(resp)
+          if(resp){
+              swal({
+              title: "Logueado correctamente!",
+              icon: "success",
+              button: "Aceptar",
+            }).then(()=>{
+              navigate("/");
+              window.location.reload();
+            })
+        }
+          else{
+            swal({
+              title: "Usuario o contraseña incorrecto",
+              text: ` Porfavor intente nuevamente`,
+              icon: "error",
+              button: "Aceptar",
+            });
+          }
         },
         (error) => {
+
           console.log(error);
         }
       );

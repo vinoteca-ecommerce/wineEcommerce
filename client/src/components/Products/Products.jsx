@@ -80,7 +80,7 @@ export const Products = () => {
             <div className={style.filtersCard}>
                 <h4>Filtros</h4>
                 <div>
-                    <Button fullWidth size="small" variant="contained" onClick={HandleReload} >Refresh <RefreshIcon sx={{ml:'5px'}}/></Button>
+                    <Button fullWidth size="small" variant="contained" onClick={HandleReload} >Limpiar Filtros <RefreshIcon sx={{ml:'5px'}}/></Button>
                 </div>
                 
                 <div>

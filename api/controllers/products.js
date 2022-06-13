@@ -403,6 +403,11 @@ const paymentMP = async (req, res) => {
   res.send({ url: payment.data.init_point });
 }; 
 
+const paymentProduct = async(req,res)=>{
+  console.log(req.body)
+  res.status(200).send("OK") 
+}
+
 module.exports = {
   postProduct,
   getAll,
@@ -418,8 +423,7 @@ module.exports = {
   getCart,
   getAllProducers,
   paymentMP,
-
-
+  paymentProduct,
   productUpdateStock,
   productUpdateComment
 }
