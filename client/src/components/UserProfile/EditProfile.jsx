@@ -101,7 +101,6 @@ export const EditProfile = () => {
 
   return (
     <div className={style.containerAllPerfil}>
-        
             <form onSubmit={handleSubmit}>
               <div className={style.ContainerPerfil}>
                 <div className={style.imgdiv}>
@@ -142,9 +141,6 @@ export const EditProfile = () => {
                 <div className={style.btn}>
                 <Button variant="contained" type="submit" onSubmit={handleSubmit}   style={{backgroundColor:'#6c0000',marginBottom:'.8em'}}> Actualizar </Button>
                 </div>
-                      
-                
-         
             </div>
             </form>
     </div>
