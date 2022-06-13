@@ -5,14 +5,17 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 
 import Style from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { setShoppingCar } from "../../redux/actions/actions";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const cartLocalStorage = JSON.parse(localStorage.getItem("productsInCart"));
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   function handleCredentialResponse(response) {
     const id_token = response.credential;
@@ -20,9 +23,12 @@ const Register = () => {
     axios
       .post("http://localhost:8000/auth/google", { id_token })
       .then((resp) => {
-        console.log(resp);
         if (resp.data.token) {
           localStorage.setItem("user", JSON.stringify(resp.data));
+        }
+        if(cartLocalStorage){
+          dispatch(setShoppingCar(cartLocalStorage))
+          window.localStorage.removeItem("productsInCart");
         }
         navigate("/");
         window.location.reload();

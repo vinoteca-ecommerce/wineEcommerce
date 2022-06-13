@@ -358,7 +358,7 @@ export function Succes() {
   let totalCost = 0;
   const data = {
     payment_id: payment_id,
-
+    
     status: status === "null" ? "rejected" : status,
   };
 

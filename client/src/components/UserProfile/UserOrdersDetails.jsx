@@ -14,7 +14,9 @@ export const UserOrdersDetail = () => {
   useEffect(()=>{
     dispatch(getPurchaseId(id))
   },[dispatch])
-  
+
+  console.log(purchase)
+
   return (
     <div className={style.container}>
       <h2><strong>Detalle de compra</strong></h2>
