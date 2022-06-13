@@ -50,9 +50,9 @@ export const ShoppingCarTotal = () => {
   const [body, setBody] = useState({
     items: [],
     back_urls: {
-      failure: "https://vinoteca-henry.herokuapp.com/success",
-      pending: "https://vinoteca-henry.herokuapp.com/success",
-      success: "https://vinoteca-henry.herokuapp.com/success",
+      failure: "http://localhost:8000/success",
+      pending: "http://localhost:8000/success",
+      success: "http://localhost:8000/success",
     },
     auto_return: "approved",
   });
