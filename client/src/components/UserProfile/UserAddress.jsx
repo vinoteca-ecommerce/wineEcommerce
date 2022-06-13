@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getUserAddress } from "../../redux/actions/actions";
 import UserAddressCard from "../UserProfile/UserAddressCard";
+import {UserAddressForm} from "../UserProfile/UserAddressForm";
 
 export const UserAddress = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,7 @@ export const UserAddress = () => {
 
   return (
     <div>
-      <h1>Mi direccion</h1>
-      {userAddress?.map((e) => (
+      {userAddress?.length!==0 ? userAddress?.map((e) => (
         <UserAddressCard
           address={e.address}
           name={e.name}
@@ -24,7 +24,8 @@ export const UserAddress = () => {
           phone_number={e.phone_number}
           notes={e.notes}
         />
-      ))}
+      ))
+    :<UserAddressForm/>}
     </div>
   );
 };
