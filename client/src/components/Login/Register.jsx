@@ -91,11 +91,10 @@ const Register = () => {
       return alert("Por favor ingrese un email correcto");
     }
 
-    console.log(ValidarName(name));
-    console.log(name);
 
+   
     try {
-      console.log(2);
+   
       await authService.register(name, password, email).then((response) => {
         
         swal({

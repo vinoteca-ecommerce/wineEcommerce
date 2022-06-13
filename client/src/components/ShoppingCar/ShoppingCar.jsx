@@ -60,7 +60,6 @@ export function ShoppingCar() {
     } else {
       return swal({
         title: "Fuera de stock",
-        text: `fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
@@ -281,7 +280,7 @@ export function ShoppingCar() {
                           onClick={() =>
                             swal({
                               title: "Porfavor ingresa o crea una cuenta",
-                              text: `Debes estar resgistrado`,
+                              text: `Debes estar registrado`,
                               icon: "info",
                               button: "Aceptar",
                             })
@@ -313,7 +312,7 @@ export function ShoppingCar() {
                           onClick={() =>
                             swal({
                               title: "Porfavor ingresa o crea una cuenta",
-                              text: `Debes estar resgistrado`,
+                              text: `Debes estar registrado`,
                               icon: "info",
                               button: "Aceptar",
                             })
