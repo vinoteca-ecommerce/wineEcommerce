@@ -3,6 +3,7 @@ import style from "./CardProduct.module.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useDispatch, useSelector } from "react-redux";
 import {
   addFavorites,
@@ -30,6 +31,7 @@ export const CardProduct = ({
   producer,
   country,
   stock,
+  discount
 }) => {
   const dispatch = useDispatch();
 
@@ -200,9 +202,13 @@ export const CardProduct = ({
     }
   };
 
+
+
   return (
     /*  name, year, description, img, strain, producer,  ID  de category, price, country */
+    
     <div className={style.card}>
+       {discount >= 1 && <p> <LocalOfferIcon style={{fontSize:'300%',color:'#efb810', marginLeft:'80%', position:'absolute'}}/></p>}
       <Link
         to={`/cardDetail/${id}`}
         style={{ textDecoration: "none", color: "black" }}
@@ -248,5 +254,6 @@ export const CardProduct = ({
         </div>
       </div>
     </div>
-  );
+  )
+  
 };

@@ -48,6 +48,7 @@ import { UserOrdersDetail } from './components/UserProfile/UserOrdersDetails';
  import { AboutVinoteca } from './components/AboutVinoteca/AboutVinoteca'
 
 import {EditProfile} from './components/UserProfile/EditProfile'
+import { Offers } from './components/Products/Offers';
 
 
 
@@ -146,7 +147,7 @@ function App() {
         <Route path='/userorders/approved/:id' element={<UserOrdersApprovedId/>}/>
         <Route path='/user/purchase/detail/:id' element={<UserOrdersDetail/>}/>
         <Route path='/editProfile' element={<EditProfile/>}/>
-      
+        <Route path='/Offers' element={<Offers/>}/>
         
 
       </Routes></div>
