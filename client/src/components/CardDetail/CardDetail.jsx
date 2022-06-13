@@ -12,6 +12,8 @@ import { FeedbackCard } from '../Feedback Card/FeedbackCard';
 import { UserAddress } from '../UserProfile/UserAddress';
 import UserAddressCard from '../UserProfile/UserAddressCard';
 import Rating from '@mui/material/Rating';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
 
 export const CardDetail = () => {
 
@@ -150,6 +152,12 @@ const cart = useSelector(state => state.Cart);
         </div>
 
         <div className={style.datail}>
+          {wines?.discount>0 && 
+          <>
+          <strong className={style.discuento}>{wines?.discount}%</strong>
+          <LocalOfferIcon style={{fontSize:'350%',color:'#efb810', marginLeft:'90%'}}/>
+          </>}
+
           <h3>{wines?.name}</h3>
           <h5 className={style.p}>{wines?.category?.name}</h5>
           <p className={style.border}>{wines?.description}</p>

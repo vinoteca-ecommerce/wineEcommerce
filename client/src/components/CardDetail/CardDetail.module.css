@@ -9,6 +9,14 @@
     width: 80%;
 }
 
+.discuento{
+    padding-top: 1.4%;
+    margin-left: 29.7%;
+    z-index: 120;
+    position: absolute;
+    z-index: 10;
+}
+
 .img{
     margin-right: 3em;
     /*border: 1px solid red;*/
