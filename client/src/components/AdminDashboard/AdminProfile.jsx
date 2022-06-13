@@ -60,8 +60,7 @@ export const AdminProfile = () => {
     function handleOnChange(e) {
         e.preventDefault()
         acuser.user.img = input.img
-        console.log(input.img)
-        console.log(acuser)
+  
         setInput((state) => {
           const newState = {
             ...state,

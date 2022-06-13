@@ -6,13 +6,15 @@
 }
 
 .ContainerPerfil{
-    padding-top: 20px;
+    display: flex;
+    padding: 1em;
     align-items: center;
     width: fit-content;
     justify-content: right;
     border-radius: 0.75rem;;
     background-color:  #F2F3EB;
     margin-bottom: 30px;
+    flex-direction: column;
 }
 .imgdiv{
     display: flex;
@@ -27,14 +29,14 @@
 .imgurl{
     background-color: white;
     border-radius: 5px;
-    margin-top: 90px;
-    height: fit-content;
-    margin-right: 5px;
+    margin-top: 65px;
+
+    margin-left: 10px;
 }
 .namediv{
     display: flex;
     border: 30px;
-    border-color: black;
+
     justify-content: center;
     margin: 10px 0px 0px;
     font-size: 15px;
@@ -56,4 +58,18 @@
     display: flex;
     justify-content: center;
     color: #6c0000;
+}
+
+.none{
+    display: none;
+}
+
+@media screen and (max-width: 850px){
+
+    .ContainerPerfil{
+        padding: 1em 0;
+    }
+    .imgurl{
+        width: 110px;
+    }
 }

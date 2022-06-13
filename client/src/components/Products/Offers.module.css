@@ -1,0 +1,157 @@
+.mainContainer{
+    background: #fff;
+    width: 90%;
+    
+    margin: 1.5em auto;
+    display: grid;
+    gap: 1.2em;
+    grid-template-columns: 100% ;
+    
+    }
+    /* TITLE OFERTAS */
+    
+    .banner{
+        grid-column: span 2;
+        background-image: url('../../images/0_0-BANNERS_DDP_JUN19-01_LANDING.jpg');
+        background-size: contain;
+        background-repeat: repeat;
+        
+        height: 140px;
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.406);
+        cursor: pointer;
+    }
+    
+    .containerCards{
+        
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* gap: 5px; */
+        /* border: 1px solid #000000;  */
+    }
+    
+    
+    .pagination{
+        grid-column: span 2;
+         padding: 20px;
+       font-size: 20px; 
+    }
+    
+    
+    /*LOADER*/
+    .svg {
+      width:150px;
+      height:150px;
+      position: fixed;
+      top: 50%;
+      left: 52%;
+      margin-top: -100px;
+      margin-left: -100px;
+      animation: rotate4 2s linear infinite;
+     }
+     
+     .circle {
+      fill: none;
+      stroke: hsl(214, 97%, 59%);
+      stroke-width: 2;
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash4 1.5s ease-in-out infinite;
+     }
+     
+     @keyframes rotate4 {
+      100% {
+       transform: rotate(360deg);
+      }
+     }
+     
+     @keyframes dash4 {
+      0% {
+       stroke-dasharray: 1, 200;
+       stroke-dashoffset: 0;
+      }
+     
+      50% {
+       stroke-dasharray: 90, 200;
+       stroke-dashoffset: -35px;
+      }
+     
+      100% {
+       stroke-dashoffset: -125px;
+      }
+     }
+     
+    .containerMsg{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      align-self: center;
+      justify-self: center;
+      margin-left: -6em;
+    }
+    
+    /* MEDIA-RESPONSIVE */
+    
+    @media (max-width: 412px){
+        .mainContainer{
+    
+    width: 95%;
+    margin: 1em auto;
+    gap: 1em;
+    
+    }
+     
+    .banner{
+        grid-column: span 2;
+        padding: 2px;
+        height: 80px; 
+    }
+    
+    .banner span::before {
+      width: 100%;
+      height: 20px;
+    }
+    .banner span::after {
+      width: 5px;
+      bottom: 0;
+      left: 0;
+      height:0;
+    }
+    
+    
+    .containerCards{
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+       
+    }
+    
+    .containerCards{
+        justify-content: center;
+        margin-top: 3em;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        height:auto;
+    }
+    
+    .pagination{
+        grid-column: span 2;
+         padding: 5px;
+       
+    }
+    
+    .containerMsg{
+      grid-column: span 2;
+      margin: 2em auto;
+      font-size: 15px;
+    }
+    
+    }
+    @media (max-width: 390px){
+        .banner{
+
+        }
+    }

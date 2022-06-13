@@ -22,53 +22,78 @@ const winesCopy = useSelector(state => state.winesCopy);
 const cart = useSelector(state => state.Cart);
 
 
-
+  let store = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const wines = useSelector((state) => state.wines);
   const {id} = useParams();
   const [cont,setCont] = useState(1);
   let sum = 0;
+ 
+
+
 
   useEffect(()=>{
-    dispatch(getShoppingCar())
-    dispatch(getWinesById(id))
-    dispatch(getWinesCopy())
-
-  },[dispatch,id])
-
-  const handleClick = (operation)=>{
-
-    if(operation === 'sub'){
-      if(cont > 1) setCont(cont-1);
+    if(!store){
+      dispatch(getWinesCopy())
+      dispatch(getWinesById(id))  
     }else{
-      if(cont >= wines.stock){
-        return  swal({
-         title: "Fuera de stock",
-         text: `No hay mas stock`,
-         icon: "error",
-         button: "Aceptar",
-       });
-       }
-      else setCont(cont+1);
+      dispatch(getWinesCopy())
+      dispatch(getWinesById(id))
+      dispatch(getShoppingCar())
+    
     }
-  } 
-
-
-
+  },[dispatch,id])
 
 
     const   handleClickShopping = (id)=>{
-
-
-      
+      if (!store) {
+        let products = JSON.parse(localStorage.getItem("productsInCart") || "[]");
+        let wineActual = winesCopy.result.find((e) => e._id === id);
+  
+        let vinoSum = products.find((e) => e.wineActual._id === wineActual._id);
+       
+       
+        if(wineActual.stock <= 0){
+          return swal({
+            title: "Fuera de stock",
+            icon: "error",
+            button: "Aceptar",
+          });
+        }
+        if (vinoSum ) {
+          vinoSum.cant += 1;
+  
+          localStorage.setItem("productsInCart", JSON.stringify(products));
+          return swal({
+            title: "Vino añadido a carrito",
+            icon: "success",
+            button: "Aceptar",
+          });
+        }
+        if (wineActual && !vinoSum) {
+          let data = {
+            wineActual,
+            cant: 1,
+          };
+          products.push(data);
+          localStorage.setItem("productsInCart", JSON.stringify(products));
+          return swal({
+            title: "Vino añadido a carrito",
+            icon: "success",
+            button: "Aceptar",
+          });
+        }
+      }else{
       let wineActual = winesCopy.result.find(e => e._id === id)
 
-     
-      console.log(cart)
      let wineStockcarro = cart.find(e=> e.wineActual._id === id)
      
      if(wineActual.stock<=0){
-      return alert('no hay mas stock')
+      return swal({
+        title: "Fuera de stock",
+        icon: "error",
+        button: "Aceptar",
+      });
       }
      if(!wineStockcarro){
      
@@ -79,7 +104,11 @@ const cart = useSelector(state => state.Cart);
        
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
-     alert('vino agregado correctamente')
+     return swal({
+      title: "Vino añadido a carrito",
+      icon: "success",
+      button: "Aceptar",
+    });
      }else if(wineStockcarro.cant < wineActual.stock){
        let data = {
          wineActual,
@@ -88,13 +117,21 @@ const cart = useSelector(state => state.Cart);
        
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
-     alert('vino agregado correctamente')
+     return swal({
+      title: "Vino añadido a carrito",
+      icon: "success",
+      button: "Aceptar",
+    });
      
      }else{
-       alert('no hay mas stock')
+      return swal({
+        title: "Fuera de stock",
+        icon: "error",
+        button: "Aceptar",
+      });
      }
      }
-     
+    }  
      
 
   wines?.comment?.map(wine=>{
@@ -117,7 +154,7 @@ const cart = useSelector(state => state.Cart);
           <h5 className={style.p}>{wines?.category?.name}</h5>
           <p className={style.border}>{wines?.description}</p>
           <div className={style.price}>
-            <p>${wines?.price}.00</p>
+            <p>${Math.round(wines?.price * (100 - wines?.discount) / 100)}.00</p>
             {/* <div style={{display:'flex',alignItems:'center'}}>
               <Button onClick={()=>handleClick('sub')} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#7f0000'}}><RemoveIcon/></Button>
               <p style={{display:'inline',color:'#7f0000',padding:'.2em .6em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1.2em'}}>{cont}</p>
@@ -157,8 +194,5 @@ const cart = useSelector(state => state.Cart);
       </>}
 
     </div>
-  )
-}
-
-
+  )}
 

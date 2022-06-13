@@ -5,14 +5,19 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 
 import Style from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { setShoppingCar } from "../../redux/actions/actions";
+import swal from "sweetalert";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
+  const cartLocalStorage = JSON.parse(localStorage.getItem("productsInCart"));
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   function handleCredentialResponse(response) {
     const id_token = response.credential;
@@ -20,12 +25,21 @@ const Register = () => {
     axios
       .post("http://localhost:8000/auth/google", { id_token })
       .then((resp) => {
-        console.log(resp);
         if (resp.data.token) {
           localStorage.setItem("user", JSON.stringify(resp.data));
         }
-        navigate("/");
-        window.location.reload();
+        if(cartLocalStorage){
+          dispatch(setShoppingCar(cartLocalStorage))
+          window.localStorage.removeItem("productsInCart");
+        }
+        swal({
+          title: "Cuenta creada correctamente!",
+          icon: "succes",
+          button: "Aceptar",
+        }).then(()=>{
+          navigate("/");
+          window.location.reload();
+        })
         return resp.data;
       })
       .catch((err) => console.log("hubo un error", err));
@@ -77,14 +91,19 @@ const Register = () => {
       return alert("Por favor ingrese un email correcto");
     }
 
-    console.log(ValidarName(name));
-    console.log(name);
 
+   
     try {
-      console.log(2);
+   
       await authService.register(name, password, email).then((response) => {
-        navigate("/confirmmail");
-        window.location.reload();
+        
+        swal({
+          title: "Usuario creado correctamente!",
+          icon: "success",
+          button: "Aceptar",
+        }).then(()=>{
+          navigate("/confirmmail");
+        })
       });
     } catch (error) {
       console.log(error);

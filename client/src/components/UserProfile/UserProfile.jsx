@@ -26,7 +26,7 @@ export const UserProfile = () => {
         <EditProfile/>
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <NavLink to="/userorders/approved">
+            <NavLink to="/userorders/approved" style={{textDecoration:'none',color:'#5A5A5A'}}>
               <h3 className={styles.card__title}>Mis Pedidos</h3>
             </NavLink>
             <p className={styles.card__content}>
@@ -51,7 +51,7 @@ export const UserProfile = () => {
           </div>
 
           <div className={styles.card}>
-            <NavLink to="/useraddress">
+            <NavLink to="/useraddress" style={{textDecoration:'none',color:'#5A5A5A'}}>
               <h3 className={styles.card__title}>Direcciones</h3>
             </NavLink>
             <p className={styles.card__content}>
@@ -75,7 +75,7 @@ export const UserProfile = () => {
           </div>
 
           <div className={styles.card}>
-            <NavLink to="/contactform">
+            <NavLink to="/contactform" style={{textDecoration:'none',color:'#5A5A5A'}}>
               <h3 className={styles.card__title}>Ayuda</h3>
             </NavLink>
             <p className={styles.card__content}>

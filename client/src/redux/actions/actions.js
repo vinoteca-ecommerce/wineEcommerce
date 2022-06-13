@@ -70,6 +70,7 @@ export const getWinesById = (id) => {
   return async function (dispatch) {
     return axios.get("http://localhost:8000/products/"+id)
     .then(response => {
+     
       dispatch({ type: GET_WINES, payload: response.data });
     })
     .catch(err => console.error(err))
@@ -189,7 +190,6 @@ export const addFavorites = (payload)=>{
     .catch(err=>console.log(err)) 
   }
 }
-
 
 //DELETE FAVORITES
 export const deleteFav =(id)=>{
