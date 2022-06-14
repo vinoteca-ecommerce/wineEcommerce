@@ -1,15 +1,16 @@
 .containerAll{
     display: flex;
-    background-color: #F2F3EB;
     border-radius: 0.75rem;
-    width: fit-content;
-    padding-left: 20px;
-    padding-top: 20px;
-    margin-left: 220px;
+    width: auto;
+    margin-top: 30px;
+    
 }
 .contain{
-    display: inline;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    background-color: #F2F3EB;
+    width: 100%;
 }
 .image{
     display: flex;
@@ -46,4 +47,9 @@ margin-top: 10px;
 .label{
     margin-top: 100px;
     font-size: 20px;
+}
+@media (max-width:412px){
+    .textarea{
+        width: 100%;
+    }
 }

@@ -23,7 +23,7 @@ export const PurchaseDetail = () => {
           <th> Nombre </th>
           <th> Precio</th>
           <th> Cantidad </th>
-          <th> Sub-Total </ th>
+          <th className={style.subtotal}> Sub-Total </ th>
           <th> Total</th>
           <th> Estado</th>
           </tr> 
@@ -35,7 +35,7 @@ export const PurchaseDetail = () => {
             <td>{e.title}</td>
             <td>$ {e.unit_price}</td>
             <td>{e.quantity}</td>
-            <td>$ {e.unit_price * e.quantity}</td>
+            <td className={style.subtotal}>$ {e.unit_price * e.quantity}</td>
             <td> <p>{purchase.cart?.map(e=>e.unit_price * e.quantity).reduce((acc, e)=> acc + e , 0)}</p></td>
             <td><p>{purchase.status === 'approved'? 'Aprobado' : purchase.status === 'rejected'? 'Rechazado' : purchase.status === 'pending' ? 'Pendiente' : 'Estado no disponible'} </p></td>
             </tr>       
