@@ -16,7 +16,13 @@
     position: absolute;
     z-index: 111;
 }
-   
+.discuentoPrincipal{
+    padding-top: 5%;
+    margin-left: 43.2%;
+    z-index: 120;
+    position: absolute;
+    z-index: 111;
+}
    .cardImg {
     /*background-color: #ffcaa6;*/
     height: 70%;

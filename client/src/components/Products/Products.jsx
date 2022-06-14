@@ -1,13 +1,14 @@
 import React,{useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWines, setWineClean, setFilter, getWineName, getStrains,allFavs2 } from '../../redux/actions/actions';
-import { CardProduct } from '../CardProduct/CardProduct';
+// import { CardProduct } from '../CardProduct/CardProduct';
 // import { Container } from '@mui/system';
 import {SearchBar} from '../SearchBar/SearchBar'
 import { ProductsPagination } from '../Pagination/ProductsPagination';
 import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { CardProductPrincipal } from '../CardProduct/CardProductPrincipal';
 
 export const Products = () => {
     
@@ -159,7 +160,7 @@ export const Products = () => {
                 {wines?.result?.length !== 0 &&
                   wines_paginates.map((wine) => (
                     <div key={wine._id} className={style.content}>
-                      <CardProduct
+                      <CardProductPrincipal
                         stock={wine.stock}
                         id={wine._id}
                         name={wine.name}
