@@ -1,7 +1,7 @@
 import { Button, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getWinesById, putComment } from "../../redux/actions/actions";
 import swal from 'sweetalert';
 import style from './UserOrdersApprovedId.module.css'
@@ -21,6 +21,8 @@ const wine = useSelector(state => state.wines);
 const user = JSON.parse(localStorage.getItem('user'))
 const email = user.user.email
 const name = user.user.name
+const navigate = useNavigate()
+
 
 useEffect(() => {
     dispatch(getWinesById(id))
@@ -68,7 +70,7 @@ function handleSubmit(e){
         button: "Aceptar",
       })}else{
     dispatch(putComment(id,comment))
-    window.location.reload()
+    navigate('/userorders/approved')
    }
 }
 
