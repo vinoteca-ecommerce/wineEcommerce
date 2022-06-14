@@ -26,7 +26,7 @@ export const DeleteProduct= () => {
   
 
 
-   
+
   return (
     <div className={Style.backg}>
         <div>

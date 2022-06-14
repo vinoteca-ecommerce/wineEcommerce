@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,20 +18,24 @@ import authService from '../services/auth-service';
 import DashboardNav from '../AdminDashboard/DashboardNav';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import NoiseControlOffIcon from '@mui/icons-material/NoiseControlOff';
+
 
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
-
-  const navigate = useNavigate()
-
+  const cart = useSelector((state) => state.Cart);
+  const cartLocalStorage = JSON.parse(localStorage.getItem("productsInCart"));
+  const navigate = useNavigate();
+ 
 
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
+   
     }
   },[])
 
@@ -125,6 +130,11 @@ export const NavBar = () => {
                   <Button textalign="center">Contacto</Button>
                 </Link>
               </MenuItem>
+              <MenuItem>
+                <Link to="/Offers" style={{ textDecoration: "none" }}>
+                  <Button textalign="center">Ofertas</Button>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -171,11 +181,20 @@ export const NavBar = () => {
                 Contacto
               </Button>
             </Link>
+            <Link style={{ textDecoration: "none" }} to="/Offers">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                Ofertas
+              </Button>
+            </Link>
           </Box>
           <Box>
-            <IconButton sx={{ mr: "4px", mt: "1px", p: "6px 6px 1px 6px" }}>
+            <IconButton sx={{ mr: "6px", mt: "4px", p: "9px 6px 8px 6px" }}>
               <Link to="/shoppingcart" style={{ color: "grey" }}>
-                <AddShoppingCartIcon fontSize="large" />
+                <AddShoppingCartIcon  fontSize="large"/>
+                {( cart?.length!==0 || cartLocalStorage !== null) && <NoiseControlOffIcon sx={{color:'#7f0000',verticalAlign: 'top',ml:'-8px'}}/>}
               </Link>
             </IconButton>
           </Box>

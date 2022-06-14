@@ -33,6 +33,19 @@ grid-template-rows: repeat(3,auto);
   min-height: 100px;
 }
 
+.banner{
+  grid-column: span 2;
+  background-image: url('../../images/0_0-BANNERS_DDP_JUN19-01_LANDING.jpg');
+  background-size: contain;
+  background-repeat: repeat;
+  height: 140px;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.406);
+  cursor: pointer;
+}
+
+
 .card {
  height: 500px;
  width: auto;

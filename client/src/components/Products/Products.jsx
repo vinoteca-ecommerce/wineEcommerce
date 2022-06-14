@@ -1,18 +1,23 @@
 import React,{useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWines, setWineClean, setFilter, getWineName, getStrains,allFavs2 } from '../../redux/actions/actions';
-import { CardProduct } from '../CardProduct/CardProduct';
+// import { CardProduct } from '../CardProduct/CardProduct';
 // import { Container } from '@mui/system';
 import {SearchBar} from '../SearchBar/SearchBar'
 import { ProductsPagination } from '../Pagination/ProductsPagination';
 import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
+
 import Offers from '../Products/Offers'
 
 
+import { CardProductPrincipal } from '../CardProduct/CardProductPrincipal';
+import { useNavigate } from 'react-router-dom';
+
+
 export const Products = () => {
-    
+    const navigate= useNavigate(); 
     const dispatch = useDispatch();
     let wines = useSelector((state) => state.wines);
     let allProducers = useSelector((state) => state.allProducers);
@@ -36,7 +41,11 @@ export const Products = () => {
         dispatch(getWineName(value))
         setPage(1)
     }
-    
+
+    const handleOffer = () =>{
+      navigate('/Offers')
+    }
+
     //reload
     const HandleReload = () => {
         window.location.reload();
@@ -44,7 +53,7 @@ export const Products = () => {
 
     //Filter Config
     useEffect(()=>{
-        dispatch(setWineClean());
+      
         let op ={};
         op = {category, orden, producer};
         dispatch(setFilter(op));
@@ -54,6 +63,7 @@ export const Products = () => {
         else dispatch(getWines((page*10)-10,category,orden,producer));
         
         if(store?.user?.uid) dispatch(allFavs2(store.user.uid))
+      
 
     },[dispatch,categoryR,category,page,orden,producer])
 
@@ -61,6 +71,7 @@ export const Products = () => {
     useEffect(()=>{
         let num = Math.ceil((wines?.total / 9))
         if(typeof num === 'number') setTotalPage(num)
+        
     },[wines?.total])
 
     //Pagination
@@ -82,9 +93,9 @@ export const Products = () => {
         </svg>
       ) : (
         <div className={style.mainContainer}>
-          <header className={style.banner}>
-            <h2>BANNER OFERTAS</h2>
-          </header>
+          <div onClick={handleOffer} className={style.banner}>
+                <span ></span>
+            </div>
 
           <aside className={style.sidebarFilters}>
             <div className={style.card}>
@@ -160,7 +171,7 @@ export const Products = () => {
                 {wines?.result?.length !== 0 &&
                   wines_paginates.map((wine) => (
                     <div key={wine._id} className={style.content}>
-                      <CardProduct
+                      <CardProductPrincipal
                         stock={wine.stock}
                         id={wine._id}
                         name={wine.name}
@@ -168,7 +179,8 @@ export const Products = () => {
                         strain={wine.strain}
                         producer={wine.producer}
                         country={wine.producer}
-                        price={wine.price}
+                        discount={wine.discount}
+                        price={Math.round(wine.price *(100 - wine.discount) / 100)}
                         img={wine.img}
                         category={wine.category.name}
                         description={wine.description}

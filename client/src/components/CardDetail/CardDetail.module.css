@@ -10,9 +10,8 @@
 }
 
 .discuento{
-    padding-top: 1.4%;
-    margin-left: 29.7%;
-    z-index: 120;
+    padding-top: 1%;
+    margin-left: 22.3%;
     position: absolute;
     z-index: 10;
 }
@@ -155,6 +154,13 @@ h3{
     .img{
         margin-right: 1em;
     }
+    .discuento{
+        padding-top: 1.4%;
+        margin-left: 29.7%;
+        z-index: 120;
+        position: absolute;
+        z-index: 10;
+    }
 }
 @media(max-width:800px){
     .container{
@@ -166,6 +172,13 @@ h3{
     }
     .img{
         margin-right: 0;
+    }
+    .discuento{
+    padding-top: 2.3%;
+    margin-left: 58.7%;
+    z-index: 120;
+    position: absolute;
+    z-index: 10;
     }
 }
 

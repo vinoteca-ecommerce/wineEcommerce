@@ -13,18 +13,20 @@ export const UserAddress = () => {
     dispatch(getUserAddress());
   }, [dispatch]);
 
+
+
   return (
     <div>
-      {userAddress?.length!==0 ? userAddress?.map((e) => (
+      {userAddress?.length!==0 ? (
         <UserAddressCard
-          address={e.address}
-          name={e.name}
-          city={e.city}
-          province={e.province}
-          phone_number={e.phone_number}
-          notes={e.notes}
+          address={userAddress[0]?.address}
+          name={userAddress[0]?.name}
+          city={userAddress[0]?.city}
+          province={userAddress[0]?.province}
+          phone_number={userAddress[0]?.phone_number}
+          notes={userAddress[0]?.notes}
         />
-      ))
+      )
     :<UserAddressForm/>}
     </div>
   );
