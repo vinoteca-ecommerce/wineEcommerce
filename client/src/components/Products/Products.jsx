@@ -8,6 +8,8 @@ import { ProductsPagination } from '../Pagination/ProductsPagination';
 import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import Offers from '../Products/Offers'
+
 
 export const Products = () => {
     
@@ -93,7 +95,6 @@ export const Products = () => {
               </div>
               <div>
                 <select
-                  fullWidth
                   value={orden}
                   onChange={(e) => setOrden(e.target.value)}
                 >
