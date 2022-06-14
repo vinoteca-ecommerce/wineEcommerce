@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../UserProfile/UserAddressForm.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   postUserAddress,
   updateUserAddress,
@@ -16,6 +16,11 @@ export const UserAddressForm = () => {
   const { id } = useParams();
   const userAddress = useSelector((state) => state.userAddress);
   const [updated, setUpdated] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const adressId = userAddress[0]?._id
+  const navigate = useNavigate()
+
+
 
   const [dataState, setDataState] = useState({
     name: userAddress[0]?.name,
@@ -41,7 +46,7 @@ export const UserAddressForm = () => {
     });
   }, [userAddress]);
 
-  console.log(id)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!dataState.name) {
@@ -56,18 +61,24 @@ export const UserAddressForm = () => {
       setValidator("La provincia es requerida");
     } else {
       if (dataState) {
-        if (!id) {
+        if (userAddress.length === 0) {
+       
           dispatch(postUserAddress(dataState));
          return swal({
             title: "Direccion creada corectamente",
             icon: "success",
             button: "Aceptar",})
-        } else {
-          dispatch(updateUserAddress(id, dataState));
+        } else  {
+         
+          dispatch(updateUserAddress(adressId, dataState));
           return swal({
             title: "Direccion actualizada corectamente",
             icon: "success",
             button: "Aceptar",})
+            .then(()=>{
+              navigate("/useraddress");
+            })
+
         }
       }
       setValidator("");
