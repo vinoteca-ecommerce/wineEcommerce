@@ -39,7 +39,10 @@ export const Offers = () => {
 
         
         if(store?.user?.uid) dispatch(allFavs(store.user.uid))
-
+        
+        return()=>{
+            dispatch(setWineClean())
+        }
     },[dispatch,categoryR,category,page,orden,producer])
 
     //Total pages
