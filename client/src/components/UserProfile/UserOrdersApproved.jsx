@@ -52,7 +52,7 @@ export const UserOrdersApproved = () => {
                 <thead className={style.tableHead}>
                   <tr>
                     <th>Nº</th>
-                    <th>ID</th>
+                    <th  className={styles.id}>ID</th>
                     <th> Cantidad </th>
                     <th>Precio</th>
                     <th>Detalle</th>
@@ -66,10 +66,10 @@ export const UserOrdersApproved = () => {
                   .filter((e) => e.status === "approved")
                   ?.map((e, i) => {
                     return (
-                      <tbody key={e._id}>
+                      <tbody className={style.tableBody} key={e._id}>
                         <tr>
                           <td>{i + 1}</td>
-                          <td>{e._id}</td>
+                          <td className={styles.id}>{e._id}</td>
                           <td>
                             {" "}
                             x
