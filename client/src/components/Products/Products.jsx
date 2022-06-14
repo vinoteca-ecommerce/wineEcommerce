@@ -9,9 +9,10 @@ import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { CardProductPrincipal } from '../CardProduct/CardProductPrincipal';
+import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
-    
+    const navigate= useNavigate(); 
     const dispatch = useDispatch();
     let wines = useSelector((state) => state.wines);
     let allProducers = useSelector((state) => state.allProducers);
@@ -35,7 +36,11 @@ export const Products = () => {
         dispatch(getWineName(value))
         setPage(1)
     }
-    
+
+    const handleOffer = () =>{
+      navigate('/Offers')
+    }
+
     //reload
     const HandleReload = () => {
         window.location.reload();
@@ -81,9 +86,9 @@ export const Products = () => {
         </svg>
       ) : (
         <div className={style.mainContainer}>
-          <header className={style.banner}>
-            <h2>BANNER OFERTAS</h2>
-          </header>
+          <div onClick={handleOffer} className={style.banner}>
+                <span ></span>
+            </div>
 
           <aside className={style.sidebarFilters}>
             <div className={style.card}>
