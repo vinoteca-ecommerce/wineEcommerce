@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,8 +19,6 @@ import DashboardNav from '../AdminDashboard/DashboardNav';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NoiseControlOffIcon from '@mui/icons-material/NoiseControlOff';
-import {getShoppingCar} from "../../redux/actions/actions";
-
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -29,16 +27,13 @@ export const NavBar = () => {
   const cart = useSelector((state) => state.Cart);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
-      //dispatch(getShoppingCar())
     }
-  },[dispatch])
-
+  },[])
 
   const logOut = ()=>{
     authService.logout();
@@ -130,11 +125,6 @@ export const NavBar = () => {
                   <Button textalign="center">Contacto</Button>
                 </Link>
               </MenuItem>
-              <MenuItem>
-                <Link to="/Offers" style={{ textDecoration: "none" }}>
-                  <Button textalign="center">Ofertas</Button>
-                </Link>
-              </MenuItem>
             </Menu>
           </Box>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -179,14 +169,6 @@ export const NavBar = () => {
                 sx={{ my: 2, color: "black", display: "block" }}
               >
                 Contacto
-              </Button>
-            </Link>
-            <Link style={{ textDecoration: "none" }} to="/Offers">
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                Ofertas
               </Button>
             </Link>
           </Box>
