@@ -48,7 +48,7 @@ export const Products = () => {
 
     //Filter Config
     useEffect(()=>{
-        dispatch(setWineClean());
+      
         let op ={};
         op = {category, orden, producer};
         dispatch(setFilter(op));
@@ -58,6 +58,7 @@ export const Products = () => {
         else dispatch(getWines((page*10)-10,category,orden,producer));
         
         if(store?.user?.uid) dispatch(allFavs2(store.user.uid))
+      
 
     },[dispatch,categoryR,category,page,orden,producer])
 
@@ -65,6 +66,7 @@ export const Products = () => {
     useEffect(()=>{
         let num = Math.ceil((wines?.total / 9))
         if(typeof num === 'number') setTotalPage(num)
+        
     },[wines?.total])
 
     //Pagination

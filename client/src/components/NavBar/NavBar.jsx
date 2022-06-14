@@ -19,7 +19,7 @@ import DashboardNav from '../AdminDashboard/DashboardNav';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NoiseControlOffIcon from '@mui/icons-material/NoiseControlOff';
-import {getShoppingCar} from "../../redux/actions/actions";
+
 
 
 export const NavBar = () => {
@@ -27,17 +27,17 @@ export const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
   const cart = useSelector((state) => state.Cart);
-
+  const cartLocalStorage = JSON.parse(localStorage.getItem("productsInCart"));
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+ 
 
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
-      //dispatch(getShoppingCar())
+   
     }
-  },[dispatch])
+  },[])
 
 
   const logOut = ()=>{
@@ -194,7 +194,7 @@ export const NavBar = () => {
             <IconButton sx={{ mr: "6px", mt: "4px", p: "9px 6px 8px 6px" }}>
               <Link to="/shoppingcart" style={{ color: "grey" }}>
                 <AddShoppingCartIcon  fontSize="large"/>
-                {( cart?.length!==0 || JSON.parse(localStorage.getItem("productsInCart"))!==null) && <NoiseControlOffIcon sx={{color:'#7f0000',verticalAlign: 'top',ml:'-8px'}}/>}
+                {( cart?.length!==0 || cartLocalStorage !== null) && <NoiseControlOffIcon sx={{color:'#7f0000',verticalAlign: 'top',ml:'-8px'}}/>}
               </Link>
             </IconButton>
           </Box>
