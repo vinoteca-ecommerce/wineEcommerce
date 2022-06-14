@@ -8,8 +8,13 @@ import { ProductsPagination } from '../Pagination/ProductsPagination';
 import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
+
+import Offers from '../Products/Offers'
+
+
 import { CardProductPrincipal } from '../CardProduct/CardProductPrincipal';
 import { useNavigate } from 'react-router-dom';
+
 
 export const Products = () => {
     const navigate= useNavigate(); 
@@ -101,7 +106,6 @@ export const Products = () => {
               </div>
               <div>
                 <select
-                  fullWidth
                   value={orden}
                   onChange={(e) => setOrden(e.target.value)}
                 >
