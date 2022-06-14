@@ -8,6 +8,8 @@ import {
   getUserAddress
 } from "../../redux/actions/actions";
 
+import swal from "sweetalert";
+
 export const UserAddressForm = () => {
   const dispatch = useDispatch();
   const [validator, setValidator] = useState("");
@@ -39,7 +41,7 @@ export const UserAddressForm = () => {
     });
   }, [userAddress]);
 
-
+  console.log(id)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!dataState.name) {
@@ -56,10 +58,16 @@ export const UserAddressForm = () => {
       if (dataState) {
         if (!id) {
           dispatch(postUserAddress(dataState));
-          alert("Tus datos se agregaron correctamente");
+         return swal({
+            title: "Direccion creada corectamente",
+            icon: "success",
+            button: "Aceptar",})
         } else {
           dispatch(updateUserAddress(id, dataState));
-          alert("Tus datos se actualizaron correctamente");
+          return swal({
+            title: "Direccion actualizada corectamente",
+            icon: "success",
+            button: "Aceptar",})
         }
       }
       setValidator("");
