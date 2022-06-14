@@ -24,10 +24,10 @@ export const Purchase = () => {
         <tr>      
           <th> Nº </th>
           <th> Nombre </th>
-          <th> Precio Total</th>
-          <th> Id de Compra </th>
-          <th> Estado Compra </th>
-          <th> Detalle Venta </th>
+          <th> Precio </th>
+          <th className={style.id}> Id </th>
+          <th> Estado </th>
+          <th> Detalle </th>
       </tr>
         </thead>
            { purchase.result?.map(((e,index)=>
@@ -38,7 +38,7 @@ export const Purchase = () => {
             <td > $  {e.cart.map(e=>
             e.unit_price * e.quantity).reduce((acc, e) => acc + e ,0)}
             </td>
-            <td>{e._id}</td>
+            <td className={style.id}>{e._id}</td> 
             <td>{e.status === 'approved'? 'Aprobado' : e.status === 'rejected'? 'Rechazado' : e.status === 'pending' ? 'Pendiente' : 'Estado no disponible'}</td>
             <td style={{width:'50px'}}><Link to={'/admin/purchase/detail/' + e._id}><Button style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px'}}> <EditIcon/> </Button></Link></td>
             </tr>

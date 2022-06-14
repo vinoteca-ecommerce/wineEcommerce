@@ -69,6 +69,7 @@ export const NavBar = () => {
               sx={{
                 mr: 5,
                 display: { xs: "none", md: "flex" },
+                justifyContent:'center',
                 fontFamily: "Open Sans",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
