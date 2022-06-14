@@ -81,7 +81,7 @@ export const UserAdmin= () => {
              <tr>      
               <th> Nº </th>
               <th> Nombre </th>
-              <th> Email </th>
+              <th className={style.email}> Email </th>
               <th> Rol </th>
               <th>  </th>
               <th> Privilegios </th>
@@ -92,7 +92,7 @@ export const UserAdmin= () => {
                 <tr >
                 <td style={{width:'50px'}}>{index + 1}</td>
                 <td>{e.name}</td>
-                <td>{e.email}</td>
+                <td className={style.email}>{e.email}</td>
                 <td>{e.role}</td>
                 <td style={{width:'50px'}}>
                   <Button style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#ff0000'}} onClick={()=>handleDelete(e.uid)}> <DeleteIcon/>  </Button>

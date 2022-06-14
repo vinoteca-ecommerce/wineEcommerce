@@ -71,7 +71,7 @@ const  DashboardNav = () => {
             textDecoration: 'none',
           }}
         >
-         VINOTECA
+         VINO<span style={{ color: "#c79557" }}>TECA</span>
         </Typography>
         </Link>
 
@@ -81,6 +81,7 @@ const  DashboardNav = () => {
             aria-label="account of current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"
+            sx={{color:'rgba(245, 245, 220, 0.76)'}}
             onClick={handleOpenNavMenu}
           >
             <MenuIcon />
@@ -131,7 +132,7 @@ const  DashboardNav = () => {
           noWrap
           // component="a"
           sx={{
-            mr: 2,
+            mr: 8,
             display: { xs: 'flex', md: 'none' },
             flexGrow: 1,
             fontFamily: 'monospace',
@@ -141,7 +142,7 @@ const  DashboardNav = () => {
             textDecoration: 'none',
           }}
         >
-          VINOTECA
+          VINO<span style={{ color: "#c79557" }}>TECA</span>
         </Typography>
         </Link>
 
@@ -203,14 +204,6 @@ const  DashboardNav = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem>
-           <Link to={'/userprofile'}><Typography 
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}> Perfil </Typography> </Link> 
-            </MenuItem>
               <MenuItem >
               <Typography sx={{
                       display: "flex",
