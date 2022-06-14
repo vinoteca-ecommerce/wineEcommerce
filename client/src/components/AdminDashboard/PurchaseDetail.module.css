@@ -26,7 +26,7 @@
     background-color: #f5f5f5;
 }
 
-.table .tableHead td{
+.table .tableHead th{
     padding: 0.2em 2em;
 }
 
@@ -43,13 +43,13 @@
         flex-direction: column;  
     }
     .table{
-        display: flex;
-        flex-direction: column;
+        /* display: flex;
+        flex-direction: column; */
         width: 100%;
         margin: 0 0 2em 0;
     }
 
-    .table .tableHead td{
+    .table .tableHead th{
         padding: 0.2em .47em;
         font-size: 15px;
     }
@@ -57,5 +57,14 @@
     .table .tableBody tr td{
         font-size: 14px;
     }
+    .table .tableBody td{
+        
+        /* padding: 0.2em 0em; */
+        margin: 0 0 0 0 ;
+        padding: 0 0 0 0;
+    }
+
+}
+@media(max-width:390px){
 
 }
