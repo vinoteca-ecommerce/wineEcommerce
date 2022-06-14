@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,22 +18,26 @@ import authService from '../services/auth-service';
 import DashboardNav from '../AdminDashboard/DashboardNav';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import NoiseControlOffIcon from '@mui/icons-material/NoiseControlOff';
+import {getShoppingCar} from "../../redux/actions/actions";
 
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [currentUser, setCurrentUser] = useState(undefined)
+  const cart = useSelector((state) => state.Cart);
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     const user = authService.getCurrentUser();
     if(user){
       setCurrentUser(user)
+      //dispatch(getShoppingCar())
     }
-  },[])
+  },[dispatch])
 
 
   const logOut = ()=>{
@@ -173,9 +178,10 @@ export const NavBar = () => {
             </Link>
           </Box>
           <Box>
-            <IconButton sx={{ mr: "4px", mt: "1px", p: "6px 6px 1px 6px" }}>
+            <IconButton sx={{ mr: "6px", mt: "4px", p: "9px 6px 8px 6px" }}>
               <Link to="/shoppingcart" style={{ color: "grey" }}>
-                <AddShoppingCartIcon fontSize="large" />
+                <AddShoppingCartIcon  fontSize="large"/>
+                {( cart?.length!==0 || JSON.parse(localStorage.getItem("productsInCart"))!==null) && <NoiseControlOffIcon sx={{color:'#7f0000',verticalAlign: 'top',ml:'-8px'}}/>}
               </Link>
             </IconButton>
           </Box>
