@@ -167,7 +167,8 @@ export const Products = () => {
                         strain={wine.strain}
                         producer={wine.producer}
                         country={wine.producer}
-                        price={wine.price}
+                        discount={wine.discount}
+                        price={Math.round(wine.price *(100 - wine.discount) / 100)}
                         img={wine.img}
                         category={wine.category.name}
                         description={wine.description}
