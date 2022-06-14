@@ -112,17 +112,17 @@ th, td{
 
 @media screen and (max-width: 412px){
     .container{
-        flex-direction: column;  
+        display: table; 
     }
     .table{
-        display: flex;
+        display: table;
         flex-direction: column;
         width: 100%;
         margin: 0 0 2em 0;
     }
 
     .table .tableHead th{
-        padding: 0.4em 1.6em;
+        padding: 0.2em .1em;
         font-size: 15px;
     }
 
@@ -131,7 +131,7 @@ th, td{
     }
 
     .table .tableBody tr td{
-        padding: 1em .30em;
+        padding: 1em .1em;
         font-size: 14px;
     }
     

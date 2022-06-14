@@ -43,7 +43,7 @@
   color: #01447e;
   text-decoration: underline;
 }
-@media(max-width:390px){
+@media(max-width:412px){
   .id{
     display: none;
   }
