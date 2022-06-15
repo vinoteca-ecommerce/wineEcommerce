@@ -14,7 +14,7 @@ export const Home = () => {
           dispatch(allFavs(store.user.uid))
           dispatch(getShoppingCar());
         } 
-    },[])
+    },[]) 
 
   return (
     <>
