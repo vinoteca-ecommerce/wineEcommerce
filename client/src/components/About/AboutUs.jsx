@@ -8,7 +8,12 @@ import git from "../../images/git.svg";
 import redux from "../../images/redux.svg";
 import GitHubIcon from '../../images/github.svg'
 import LinkedInIcon from '../../images/linkedin.svg'
-
+import materialui from "../../images/materialui.svg";
+import express from "../../images/express.svg";
+import nodejs from "../../images/nodejs.svg";
+import css from "../../images/css.svg";
+import npm from "../../images/npm.svg";
+import postman from "../../images/postman.svg";
 export const AboutUs = () => {
   return (
     <div className={style.container}>
@@ -17,20 +22,26 @@ export const AboutUs = () => {
       </header>
       <div className={style.text1}>
         <p>
-          Somos un equipo de 7 desarrolladored full stack.La idea principal de este proyecto fue realizar un e-commerce orientado al comercio de vinos. 
-          <br />
-          <br />
-          Te invitamos a que te pongas en contacto con nosotros:
+          Somos un equipo de 7 desarrolladores Full Stack.
+          Para nuestra ultima etapa del bootcamp decidimos realizar un e-commerce donde la idea principal es el comercio de vinos.
         </p>
+        <p>Te invitamos a que te pongas en contacto con nosotros:</p>
       </div>
 
       <div className={style.text2}>
+        {/* ----LOGOS TECH ---- */}
         <p>En este proyecto utilizamos los siguientes tecnologias:</p>
         <img className={style.techIcons} src={javascript} />
         <img className={style.techIcons} src={mongoDB} />
+        <img className={style.techIcons} src={nodejs} />
+        <img className={style.techIcons} src={express} />
         <img className={style.techIcons} src={reactJs} />
         <img className={style.techIcons} src={redux} />
+        <img className={style.techIcons} src={materialui} />
+        <img className={style.techIcons} src={css} />
         <img className={style.techIcons} src={git} />
+        <img className={style.techIcons} src={npm} />
+        <img className={style.techIcons} src={postman} />
       </div>
       <div className={style.cardContainer}>
         <div className={style.cardClient}>
@@ -180,7 +191,7 @@ export const AboutUs = () => {
         <div className={style.cardClient}>
           <div className={style.userPicture}>
             <img
-              src="https://avatars.githubusercontent.com/u/97595427?v=4"
+              src="https://media-exp2.licdn.com/dms/image/C4D03AQHP8ZDPxVAKug/profile-displayphoto-shrink_800_800/0/1655246675248?e=1660780800&v=beta&t=HfMqv7PGrtNcaUE7w6V-MPajRZTEUTCae219yj6t9tY"
               alt="Person"
               className={style.cardImage}
             />

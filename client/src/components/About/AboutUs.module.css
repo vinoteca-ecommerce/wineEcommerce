@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700,800);
+@import url(https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@1,400;1,500&display=swap);
 
 .container{
     background:#fff6e9;
@@ -22,6 +23,7 @@
     grid-column-end: -1;
 }
 .header span{
+  font-family: 'open sans', sans-serif;
    font-size: 20px;
   text-decoration: none;
   font-weight: 800;
@@ -29,26 +31,31 @@
 }
 
 .text1{
-    margin: 5px;
+    
+    /* margin: 5px; */
     text-align: center;
     grid-column-start: 1;
     grid-column-end: -1;
     min-height: 100px;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    /* grid-row-start: 2;
+    grid-row-end: 2; */
+
+    
 }
 .text1 p{
-  font-size: 15px;
-    font-weight: 500;
-    font-family: 'Open Sans';
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Fira Sans Condensed', sans-serif;
 }
 
 
 .text2{
+   
+  background: #f7e1c6;
     font-weight: 400;
-    font-family: 'Open Sans';
+    font-family: 'Fira Sans Condensed', sans-serif;
     text-align: center;
-    background: #fff6e9;
+    /* background: #fff6e9; */
     grid-column: 4/5;
     min-height: 100px;
     grid-column-start: 1;
@@ -188,8 +195,8 @@
 }
 
 .techIcons{
-    width: 80px;
-    height: 70px;
+    width: 75px;
+    height: 60px;
     /* padding: 2px; */
     margin: 5px 5px;
 }
