@@ -129,15 +129,16 @@ justify-content: center;
 /* MEDIA-RESPONSIVE */
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 412px){
  .mainContainer .containerCards{
   grid-column: 1 / -1;
+  justify-content: center;
  }
 
 .mainContainer .sidebarFilters{
  grid-column: 1 / -1;
  padding: auto;
- margin: 30px 30px;
+ margin: 50px 50px;
 }
 
 .card{
@@ -166,12 +167,11 @@ min-width: 100px;
 }
 
 @media (max-Width: 412px){
- .containerCards{
-width: 100%;
-max-width: 421px;
-justify-content: center;
+  .mainContainer .containerCards{
+    width: 100%;
+    overflow: hidden;
+   }
 
-}
 }
 
 
