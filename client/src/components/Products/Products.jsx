@@ -56,7 +56,7 @@ export const Products = () => {
 
     //Filter Config
     useEffect(()=>{
-      
+        dispatch(setWineClean());
         let op ={};
         op = {category, orden, producer};
         dispatch(setFilter(op));
