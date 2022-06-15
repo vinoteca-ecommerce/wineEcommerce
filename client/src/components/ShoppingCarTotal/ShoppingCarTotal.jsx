@@ -50,9 +50,9 @@ export const ShoppingCarTotal = () => {
   const [body, setBody] = useState({
     items: [],
     back_urls: {
-      failure: "http://localhost:3000/success",
-      pending: "http://localhost:3000/success",
-      success: "http://localhost:3000/success",
+      failure: "https://wine-ecommercew.vercel.app/success",
+      pending: "https://wine-ecommercew.vercel.app/success",
+      success: "https://wine-ecommercew.vercel.app/success",
     },
     auto_return: "approved",
   });

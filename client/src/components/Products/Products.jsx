@@ -62,13 +62,13 @@ export const Products = () => {
         dispatch(setFilter(op));
         dispatch(getStrains());
 
-        if(page === 1) dispatch(getWines(0,category,orden,producer));
-        else dispatch(getWines((page*10)-10,category,orden,producer));
+        //if(page === 1) dispatch(getWines(0,category,orden,producer));
+        dispatch(getWines(category,orden,producer));
         
         if(store?.user?.uid) dispatch(allFavs2(store.user.uid))
       
 
-    },[dispatch,categoryR,category,page,orden,producer])
+    },[dispatch,categoryR,category,orden,producer])
 
     //Total pages
     useEffect(()=>{
