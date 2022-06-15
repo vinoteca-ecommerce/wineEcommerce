@@ -51,17 +51,24 @@ grid-template-rows: repeat(3,auto);
  height: 450px;
  width: 250px;
  background: #b6b6b677;
- box-shadow: #7f0000 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+ box-shadow: #c79557 0px 2px 4px, #7f0000 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
 }
+/* #7f0000 */
+/* #c79557; */
 
-
-.card div{
+.card .search{
 margin: 35px 20px;
 display: flex;
 justify-content: center;
 
 }
+.search select{
+  flex: 1;
+  color:#830404;
+  /* text-align: center; */
+}
+
 
 .mainContainer .pagination{
  
@@ -142,14 +149,18 @@ justify-content: center;
 min-width: 100px;
 
 }
-.card div{
+.card .search{
  margin: 5px 5px;
  text-align: center;
  justify-content:center;
  display: flex;
- flex-wrap: nowrap;
- flex-direction: column;
+ flex-direction: row;
 }
+
+.search select{
+  flex: 1;
+}
+
     
 }
 
