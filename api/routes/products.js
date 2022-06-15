@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
 
-const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart,getAllProducers,paymentMP, pushToCart, productUpdateComment, productUpdateStock } = require('../controllers/products');
+const { postProduct, getAll , getProduct, productUpdate, deleteProduct, addFav, getFavs, deleteFavs, addToCart, getCart, deleteCart,getAllProducers,paymentMP, pushToCart, productUpdateComment, productUpdateStock, paymentProduct } = require('../controllers/products');
 
 const {jwtValidator, adminRole} = require('../middlewares')
 const { validation } = require('../middlewares/validator')
@@ -93,6 +93,8 @@ router.post('/payment', paymentMP)
 router.put('/comment/:id',[
     jwtValidator]
      ,productUpdateComment)
+
+router.post('/notificaciones',paymentProduct)
 
 
 module.exports = router;

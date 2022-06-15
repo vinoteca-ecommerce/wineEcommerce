@@ -2,7 +2,7 @@ import axios from "axios";
 
 const signup = (email, password) => {
   return axios
-    .post("http://localhost:8000/auth/login", {
+    .post("https://vinoteca-henry.herokuapp.com/auth/login", {
       email,
       password,
     })
@@ -22,7 +22,7 @@ const signup = (email, password) => {
 
 const register = (name, password, email, role) => {
   return axios
-    .post("http://localhost:8000/users/", {
+    .post("https://vinoteca-henry.herokuapp.com/users/", {
       name,
       email,
       password,
@@ -38,7 +38,7 @@ const register = (name, password, email, role) => {
 
 const verifyAccount = (token) => {
   return axios
-    .get(`http://localhost:8000/auth/verify/${token}`)
+    .get(`https://vinoteca-henry.herokuapp.com/auth/verify/${token}`)
     .then(() => {
       localStorage.setItem("user", JSON.stringify(token));
     })
