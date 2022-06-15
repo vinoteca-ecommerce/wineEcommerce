@@ -68,6 +68,9 @@ export const UserAddressForm = () => {
             title: "Direccion creada corectamente",
             icon: "success",
             button: "Aceptar",})
+            .then(()=>{
+              navigate("/useraddress");
+            })
         } else  {
          
           dispatch(updateUserAddress(adressId, dataState));
