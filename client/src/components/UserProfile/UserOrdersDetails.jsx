@@ -28,14 +28,13 @@ export const UserOrdersDetail = () => {
           <th> Cantidad </th>
           <th> Precio</th>
           <th></th>
-          <th></th>
           <th></th >
           </tr> 
         </thead>
            {purchase.cart?.map(((e,index)=>
           <tbody key={e.title} className={style.tableBody} >
             <tr>
-            <td  style={{width:'2px'}}>{index + 1}</td>
+            <td>{index + 1}</td>
             <td>{e.title}</td>
             <td>x{e.quantity}</td>
             <td>$ {e.unit_price}</td>
@@ -57,10 +56,10 @@ export const UserOrdersDetail = () => {
           ))
         }
         <tr>
-        <td style={{fontSize:'25px'}}>Total:${purchase.cart?.map(e=>e.unit_price * e.quantity).reduce((acc, e)=> acc + e, 0)}</td>
-        <td></td>  
+        <td style={{fontSize:'17px'}}>Total:</td>
         <td></td>
         <td></td>
+        <td>${purchase.cart?.map(e=>e.unit_price * e.quantity).reduce((acc, e)=> acc + e, 0)}</td>  
         <td></td>
         </tr>    
         </table>
