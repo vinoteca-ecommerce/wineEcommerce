@@ -96,8 +96,16 @@ input, textarea, select {
    }
    
    
-   
-   
-   
-   
-   
+   @media (max-width:412px){
+    .form form div input, .form form div textarea, .form form div select{
+        width: 200px;
+    }
+
+    .form form div textarea{
+        min-width: 200px;
+        min-height: 50px;
+        max-width: 500px;
+        max-height: 200px;
+        margin-bottom: 1.5em;
+    }
+   }

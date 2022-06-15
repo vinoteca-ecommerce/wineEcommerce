@@ -60,7 +60,7 @@ export const UserOrdersRejected= () => {
               <thead className={style.tableHead}>
                     <tr>
                       <th>Nº</th>
-                      <th>ID</th>
+                      <th className={styles.id}>ID</th>
                       <th> Cantidad </th>
                       <th>Precio</th>
                       <th>Detalle</th>
@@ -77,7 +77,7 @@ export const UserOrdersRejected= () => {
                 <tbody key={e._id}>
                   <tr>
                     <td>{i+1}</td>
-                    <td>{e._id}</td>
+                    <td className={styles.id}>{e._id}</td>
                     <td> x{e.cart.map(e=> e.quantity).reduce((acc, e) => acc + e , 0)}</td>
                     <td>$ 
                     {e.cart.map(e=>

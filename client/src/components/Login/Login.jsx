@@ -64,7 +64,6 @@ const Login = () => {
             dispatch(setShoppingCar(cartLocalStorage))
             window.localStorage.removeItem("productsInCart");
           }
-          console.log(resp)
           if(resp){
               swal({
               title: "Logueado correctamente!",

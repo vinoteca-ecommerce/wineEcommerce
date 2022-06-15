@@ -12,6 +12,8 @@ import { FeedbackCard } from '../Feedback Card/FeedbackCard';
 import { UserAddress } from '../UserProfile/UserAddress';
 import UserAddressCard from '../UserProfile/UserAddressCard';
 import Rating from '@mui/material/Rating';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
 
 export const CardDetail = () => {
 
@@ -56,7 +58,6 @@ const cart = useSelector(state => state.Cart);
         if(wineActual.stock <= 0){
           return swal({
             title: "Fuera de stock",
-            text: `Vino fuera de stock`,
             icon: "error",
             button: "Aceptar",
           });
@@ -66,8 +67,7 @@ const cart = useSelector(state => state.Cart);
   
           localStorage.setItem("productsInCart", JSON.stringify(products));
           return swal({
-            title: "Vino Añadido",
-            text: `Vino agregado a carrito`,
+            title: "Vino añadido a carrito",
             icon: "success",
             button: "Aceptar",
           });
@@ -80,8 +80,7 @@ const cart = useSelector(state => state.Cart);
           products.push(data);
           localStorage.setItem("productsInCart", JSON.stringify(products));
           return swal({
-            title: "Vino Añadido",
-            text: `Vino agregado a carrito`,
+            title: "Vino añadido a carrito",
             icon: "success",
             button: "Aceptar",
           });
@@ -94,7 +93,6 @@ const cart = useSelector(state => state.Cart);
      if(wineActual.stock<=0){
       return swal({
         title: "Fuera de stock",
-        text: `se encuentra fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
@@ -109,8 +107,7 @@ const cart = useSelector(state => state.Cart);
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
      return swal({
-      title: "Vino Añadido",
-      text: `agregado a carrito`,
+      title: "Vino añadido a carrito",
       icon: "success",
       button: "Aceptar",
     });
@@ -123,8 +120,7 @@ const cart = useSelector(state => state.Cart);
      dispatch(updateCart(data))
      dispatch(setShoppingCar(cart))
      return swal({
-      title: "Vino Añadido",
-      text: ` agregado a carrito`,
+      title: "Vino añadido a carrito",
       icon: "success",
       button: "Aceptar",
     });
@@ -132,7 +128,6 @@ const cart = useSelector(state => state.Cart);
      }else{
       return swal({
         title: "Fuera de stock",
-        text: `se encuentra fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
@@ -157,11 +152,17 @@ const cart = useSelector(state => state.Cart);
         </div>
 
         <div className={style.datail}>
+          {wines?.discount>0 && 
+          <>
+          <strong className={style.discuento}>{wines?.discount}%</strong>
+          <LocalOfferIcon style={{fontSize:'350%',color:'#efb810', marginLeft:'90%'}}/>
+          </>}
+
           <h3>{wines?.name}</h3>
           <h5 className={style.p}>{wines?.category?.name}</h5>
           <p className={style.border}>{wines?.description}</p>
           <div className={style.price}>
-            <p>${wines?.price}.00</p>
+            <p>${Math.round(wines?.price * (100 - wines?.discount) / 100)}.00</p>
             {/* <div style={{display:'flex',alignItems:'center'}}>
               <Button onClick={()=>handleClick('sub')} style={{maxWidth: '35px', maxHeight: '35px', minWidth: '35px', minHeight: '35px',color:'#7f0000'}}><RemoveIcon/></Button>
               <p style={{display:'inline',color:'#7f0000',padding:'.2em .6em',margin:'.5em',border:'2px solid #7f0000', borderRadius:'1em', fontSize:'1.2em'}}>{cont}</p>

@@ -1,6 +1,6 @@
 const nodemailer=require('nodemailer');
 const user = require('../models/user');
-
+const logo= require=('logo')
 
 
 
@@ -21,7 +21,13 @@ const sendConfirmationEmail= async(user,token)=>{
       from:'Vinoteca Henry🍷 <vinotecahenry@gmail.com>',
       to:user.email,
       subject:"Please confirm your email",
-      html:`<p>Click the following link to confirm your email <a href="${urlConfirm}"> Confirm </a></p>`
+      html:`
+     <center>
+     <h3>Gracias por registrarte!</h3>
+     <p>Haz click en el siguiente link para confirmar tu cuenta:<a href="${urlConfirm}"> Confirm </a></p>
+     <img src=https://res.cloudinary.com/dwtkwakbc/image/upload/v1655222412/logoVinoteca_ozquit.png width="250px" height="250px" />
+     </center>
+      `
   }).then(()=>user)
 }
 
@@ -39,7 +45,12 @@ const purchaseEmail=(user)=>{
     from:'Vinoteca Henry🍷 <vinotecahenry@gmail.com>',
     to:user.email,
     subject:"Confirmacion de compra",
-    html:`<p>Muchas gracias por tu compra! tu pedido a sido recibido por nuestro equipo y sera enviado en la brevedad.</p>`
+    html:`
+    <center>
+    <h4>Muchas gracias por tu compra! tu pedido a sido recibido por nuestro equipo y sera enviado en la brevedad.</h4>
+    <img src=https://res.cloudinary.com/dwtkwakbc/image/upload/v1655222412/logoVinoteca_ozquit.png width="250px" height="250px" />
+    </center>
+    `
 }).then(()=>user)
 
 }

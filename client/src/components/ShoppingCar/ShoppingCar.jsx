@@ -60,7 +60,6 @@ export function ShoppingCar() {
     } else {
       return swal({
         title: "Fuera de stock",
-        text: `fuera de stock`,
         icon: "error",
         button: "Aceptar",
       });
@@ -165,7 +164,7 @@ export function ShoppingCar() {
                     />
                   </td>
                   <td>{st.wineActual.name}</td>
-                  <td>${st.wineActual.price}.00</td>
+                  <td>${Math.round(st.wineActual.price * (100 - st.wineActual?.discount) / 100)}.00</td>
                   <td>
                     {
                       <div>
@@ -209,7 +208,7 @@ export function ShoppingCar() {
                       </div>
                     }
                   </td>
-                  <td>${st.cant * st.wineActual.price}.00</td>
+                  <td>${st.cant * (Math.round(st.wineActual.price * (100 - st.wineActual.discount) / 100))}.00</td>
                 </tr>
               </tbody>
             ))}
@@ -273,7 +272,7 @@ export function ShoppingCar() {
                     />
                   </td>
                   <td>{st.wineActual.name}</td>
-                  <td>${st.wineActual.price}.00</td>
+                  <td>${Math.round(st.wineActual.price * (100 - st.wineActual.discount) / 100)}.00</td>
                   <td>
                     {
                       <div>
@@ -281,7 +280,7 @@ export function ShoppingCar() {
                           onClick={() =>
                             swal({
                               title: "Porfavor ingresa o crea una cuenta",
-                              text: `Debes estar resgistrado`,
+                              text: `Debes estar registrado`,
                               icon: "info",
                               button: "Aceptar",
                             })
@@ -313,7 +312,7 @@ export function ShoppingCar() {
                           onClick={() =>
                             swal({
                               title: "Porfavor ingresa o crea una cuenta",
-                              text: `Debes estar resgistrado`,
+                              text: `Debes estar registrado`,
                               icon: "info",
                               button: "Aceptar",
                             })
@@ -331,7 +330,7 @@ export function ShoppingCar() {
                       </div>
                     }
                   </td>
-                  <td>${st.cant * st.wineActual.price}.00</td>
+                  <td>${st.cant * (Math.round(st.wineActual.price * (100 - st.wineActual.discount) / 100))}.00</td>
                 </tr>
               </tbody>
             ))}

@@ -8,7 +8,21 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     margin: 1.5em;
    }
-   
+
+   .discuento{
+    padding-top: 5%;
+    margin-left: 83.2%;
+    z-index: 120;
+    position: absolute;
+    z-index: 111;
+}
+.discuentoPrincipal{
+    padding-top: 5%;
+    margin-left: 43.2%;
+    z-index: 120;
+    position: absolute;
+    z-index: 111;
+}
    .cardImg {
     /*background-color: #ffcaa6;*/
     height: 70%;

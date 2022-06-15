@@ -5,9 +5,8 @@ import styles from "../UserProfile/UserOrders.module.css";
 import { Link } from "react-router-dom";
 import WineBarIcon from "@mui/icons-material/WineBar";
 // styles
-import Style from "./UserOrderRejected.module.css";
 import { Button } from "@mui/material";
-import style from "../AdminDashboard/PurchaseDetail.module.css";
+import style from '../UserProfile/UserOrderRejected.module.css';
 
 export const UserOrdersApproved = () => {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ export const UserOrdersApproved = () => {
           </ul>
         </nav>
         <div className={styles.card}>
-          <div className={Style.backg}>
+          <div className={style.backg}>
             <table className={style.table}>
               {userHistory.filter((e) => e.status === "approved").length ===
               0 ? (
@@ -52,7 +51,7 @@ export const UserOrdersApproved = () => {
                 <thead className={style.tableHead}>
                   <tr>
                     <th>Nº</th>
-                    <th>ID</th>
+                    <th  className={styles.id}>ID</th>
                     <th> Cantidad </th>
                     <th>Precio</th>
                     <th>Detalle</th>
@@ -66,10 +65,10 @@ export const UserOrdersApproved = () => {
                   .filter((e) => e.status === "approved")
                   ?.map((e, i) => {
                     return (
-                      <tbody key={e._id}>
+                      <tbody className={style.tableBody} key={e._id}>
                         <tr>
                           <td>{i + 1}</td>
-                          <td>{e._id}</td>
+                          <td className={styles.id}>{e._id}</td>
                           <td>
                             {" "}
                             x

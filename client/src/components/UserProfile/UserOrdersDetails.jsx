@@ -25,10 +25,8 @@ export const UserOrdersDetail = () => {
           <tr className={style.tittle}> 
           <th> Nº </th>      
           <th> Nombre </th>
-          <th> Precio</th>
           <th> Cantidad </th>
-          <th> Sub-Total </th>
-          <th></th>
+          <th> Precio</th>
           <th></th>
           <th></th >
           </tr> 
@@ -36,11 +34,10 @@ export const UserOrdersDetail = () => {
            {purchase.cart?.map(((e,index)=>
           <tbody key={e.title} className={style.tableBody} >
             <tr>
-            <td  style={{width:'50px'}}>{index + 1}</td>
+            <td>{index + 1}</td>
             <td>{e.title}</td>
             <td>x{e.quantity}</td>
             <td>$ {e.unit_price}</td>
-            <td>$ {e.unit_price * e.quantity}</td>
             {/* <td>{e.status}</td> */}
             <td ><img style={{width:'50px'}} src={e.picture_url} alt='not found'/></td>
             
@@ -59,13 +56,12 @@ export const UserOrdersDetail = () => {
           ))
         }
         <tr>
+        <td style={{fontSize:'17px'}}>Total:</td>
         <td></td>
-        <td></td>  
         <td></td>
-        <td><h1>Total: </h1></td>
-        <td><h1>$ {purchase.cart?.map(e=>e.unit_price * e.quantity).reduce((acc, e)=> acc + e, 0)} </h1></td>
-        </tr>
-              
+        <td>${purchase.cart?.map(e=>e.unit_price * e.quantity).reduce((acc, e)=> acc + e, 0)}</td>  
+        <td></td>
+        </tr>    
         </table>
     </div>
   )

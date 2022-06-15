@@ -14,19 +14,7 @@ export default function Footer(){
        navigate('/aboutus')
     }
 
-   const dispatch = useDispatch();
-   const tintoHandler = () =>{
-     dispatch(setFilter({category:'TINTO', orden:'', producer:''}))
-   }
-   const blancoHandler = () => {
-     dispatch(setFilter({ category: "BLANCO", orden: "", producer: "" }));
-   };
-   const rosadoHandler = () => {
-     dispatch(setFilter({ category: "ROSADO", orden: "", producer: "" }));
-   };
-   const espumanteHandler = () => {
-     dispatch(setFilter({ category: "ESPUMANTE", orden: "", producer: "" }));
-   };
+ 
     
     return (
       <footer className={Style.footerDistributed}>
@@ -39,19 +27,10 @@ export default function Footer(){
             <Link to={"/"}>
               <h4 className={Style.linkOne}>Home</h4>
             </Link>
-            <Link to={"/products"} onClick={tintoHandler}>
-              <h4>Tinto</h4>
+            <Link to={"/products"}>
+              <h4>Productos</h4>
             </Link>
-            <Link to={"/products"} onClick={blancoHandler}>
-              <h4>Blanco</h4>
-            </Link>
-            <Link to={"/products"} onClick={rosadoHandler}>
-              <h4>Rosado</h4>
-            </Link>
-            <Link to={"/products"} onClick={espumanteHandler}>
-              <h4>Espumante</h4>
-            </Link>
-
+          
             <Link to={"/contactForm"}>
               <h4>Contacto</h4>
             </Link>

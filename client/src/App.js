@@ -4,10 +4,10 @@ import { NavBar } from './components/NavBar/NavBar';
 import { Home } from './components/Home/Home';
 import { Products } from './components/Products/Products';
 import { CardDetail } from './components/CardDetail/CardDetail';
-import {Aboutus} from './components/About/About.jsx'
+import {AboutUs} from './components/About/AboutUs';
 import Footer from './components/Footer/Footer';
 import { AddProduct } from './components/AdminDashboard/AddProduct';
-import {Contact} from './components/Contact/Contact';
+
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 //import {  DeleteProduct } from './components/AdminDashboard/DeleteProduct';
@@ -48,6 +48,7 @@ import { UserOrdersDetail } from './components/UserProfile/UserOrdersDetails';
  import { AboutVinoteca } from './components/AboutVinoteca/AboutVinoteca'
 
 import {EditProfile} from './components/UserProfile/EditProfile'
+import { Offers } from './components/Products/Offers';
 
 
 
@@ -65,8 +66,8 @@ function App() {
         <Route exact path='/register' element={<Register/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path={`/cardDetail/:id`} element={<CardDetail/>}/>
-         {/* <Route path='/aboutus' element={<Aboutus/>}/> */}
-         <Route path='/aboutus' element={<Contact/>}/>
+        
+         <Route path='/aboutus' element={<AboutUs/>}/>
          <Route path='/aboutvinoteca' element={<AboutVinoteca/>}/>
         
        
@@ -146,7 +147,7 @@ function App() {
         <Route path='/userorders/approved/:id' element={<UserOrdersApprovedId/>}/>
         <Route path='/user/purchase/detail/:id' element={<UserOrdersDetail/>}/>
         <Route path='/editProfile' element={<EditProfile/>}/>
-      
+        <Route path='/Offers' element={<Offers/>}/>
         
 
       </Routes></div>
