@@ -157,7 +157,7 @@ export const Products = () => {
                 </select>
               </div>
               <div className={style.search}>
-                <Button size="small" variant="contained" onClick={HandleReload}>
+                <Button   size="small" variant="contained" onClick={HandleReload}>
                   Recargar <RefreshIcon sx={{ ml: "5px" }} />
                 </Button>
               </div>

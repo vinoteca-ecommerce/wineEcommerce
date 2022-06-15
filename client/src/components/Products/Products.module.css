@@ -1,3 +1,4 @@
+
 .mainContainer{
  
 width: 100%;
@@ -38,7 +39,7 @@ grid-template-rows: repeat(3,auto);
   background-image: url('../../images/0_0-BANNERS_DDP_JUN19-01_LANDING.jpg');
   background-size: contain;
   background-repeat: repeat;
-  height: 140px;
+  height: 98px;
   border-radius: 20px;
   position: relative;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.406);
@@ -51,7 +52,7 @@ grid-template-rows: repeat(3,auto);
  height: 450px;
  width: 250px;
  background: #b6b6b677;
- box-shadow: #c79557 0px 2px 4px, #7f0000 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+ box-shadow: 0 10px 10px rgba(0, 0, 0, 0.406);
 
 }
 /* #7f0000 */
@@ -65,7 +66,7 @@ justify-content: center;
 }
 .search select{
   flex: 1;
-  color:#830404;
+
   /* text-align: center; */
 }
 
@@ -164,7 +165,14 @@ min-width: 100px;
     
 }
 
+@media (max-Width: 412px){
+ .containerCards{
+width: 100%;
+max-width: 421px;
+justify-content: center;
 
+}
+}
 
 
 

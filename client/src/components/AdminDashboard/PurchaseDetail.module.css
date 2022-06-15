@@ -1,5 +1,5 @@
 .container{
-    display: flex;
+    display: table;
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
@@ -66,24 +66,23 @@
 
 }
 @media(max-width:412px){
-    .container{
-       width: 80%; 
-    }
-    .subtotal{
-        display: none;
-    }
+.container{
+    width: fit-content; 
+ }
 
-    .table .tableHead th{
-        padding: 0.3em .7em;
-        font-size: 15px;
-    }
+ .subtotal{
+     display: none;
+ }
 
-    .table .tableBody tr td{
-        font-size: 14px;
-    }
-    .table .tableBody td{
-        
-       padding: 0.2em 0em; 
-       
-    }
+ .table .tableHead th{
+     padding: 0.3em .2em;
+     font-size: 15px;
+ }
+
+ .table .tableBody tr td{
+     font-size: 14px;
+ }
+ .table .tableBody td{
+    padding: 0.2em 0em;  
+ }
 }
