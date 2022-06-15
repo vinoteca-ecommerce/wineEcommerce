@@ -128,6 +128,40 @@ justify-content: center;
 
 /* MEDIA-RESPONSIVE */
 
+@media screen and (max-width: 768px){
+  .mainContainer .containerCards{
+  grid-column: 1 / -1;
+  justify-content: center;
+ }
+
+.mainContainer .sidebarFilters{
+ grid-column: 1 / -1;
+ padding: auto;
+ margin: 50px 50px;
+}
+
+.card{
+   text-align: center;
+    display: flex;
+    /* margin: 5px 5px; */
+    height: 350px;
+    width: 300px;
+    flex-direction: column;
+min-width: 100px;
+
+}
+.card .search{
+ margin: 5px 5px;
+ text-align: center;
+ justify-content:center;
+ display: flex;
+ flex-direction: row;
+}
+
+.search select{
+  flex: 1;
+}
+}
 
 @media screen and (max-width: 412px){
  .mainContainer .containerCards{
