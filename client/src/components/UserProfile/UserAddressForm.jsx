@@ -62,14 +62,14 @@ export const UserAddressForm = () => {
     } else {
       if (dataState) {
         if (userAddress.length === 0) {
-       
-          dispatch(postUserAddress(dataState));
+        
+        dispatch(postUserAddress(dataState))
          return swal({
             title: "Direccion creada corectamente",
             icon: "success",
             button: "Aceptar",})
             .then(()=>{
-              navigate("/useraddress");
+            window.location.reload()
             })
         } else  {
          
