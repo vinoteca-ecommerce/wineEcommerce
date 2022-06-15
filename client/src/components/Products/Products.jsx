@@ -103,10 +103,12 @@ export const Products = () => {
 
           <aside className={style.sidebarFilters}>
             <div className={style.card}>
-              <div>
+              <div className={style.search}>
+                
                 <SearchBar onSearch={handleSearch} />
+                
               </div>
-              <div>
+              <div className={style.search}>
                 <select
                   value={orden}
                   onChange={(e) => setOrden(e.target.value)}
@@ -117,7 +119,7 @@ export const Products = () => {
                 </select>
               </div>
 
-              <div>
+              <div className={style.search}>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
@@ -130,7 +132,7 @@ export const Products = () => {
                 </select>
               </div>
 
-              <div>
+              <div className={style.search}>
                 <select
                   value={producer}
                   onChange={(e) => setProducer(e.target.value)}
@@ -144,7 +146,7 @@ export const Products = () => {
                 </select>
               </div>
 
-              <div>
+              <div className={style.search}>
                 <select
                   value={orden}
                   onChange={(e) => setOrden(e.target.value)}
@@ -154,7 +156,7 @@ export const Products = () => {
                   <option value="cba">Z-A</option>
                 </select>
               </div>
-              <div>
+              <div className={style.search}>
                 <Button size="small" variant="contained" onClick={HandleReload}>
                   Recargar <RefreshIcon sx={{ ml: "5px" }} />
                 </Button>
