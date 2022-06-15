@@ -3,7 +3,7 @@ import styles from "../UserProfile/UserProfile.module.css";
 import { NavLink } from "react-router-dom";
 import { EditProfile } from "./EditProfile";
 import authService from "../services/auth-service";
-import { AdminProfile } from "../AdminDashboard/AdminProfile";
+
 
 export const UserProfile = () => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -15,9 +15,7 @@ export const UserProfile = () => {
     }
   },[])
 
-  return currentUser?.user?.role === "ADMIN_ROLE" ?  (
-      <AdminProfile/>
-  ):(
+  return(
     <>
       <div className={styles.container}>
         <div className={styles.profileTitle}>

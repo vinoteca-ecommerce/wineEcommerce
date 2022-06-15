@@ -53,8 +53,33 @@
         margin: 0 0 2em 0;
     }
 
-    .table .tableHead td{
+    .table .tableHead th{
         padding: 0.2em .47em;
+        font-size: 15px;
+    }
+
+    .table .tableBody tr td{
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 412px){
+    .container{
+        flex-direction: column;  
+    }
+    .table{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 0 2em 0;
+    }
+    .id{
+        display: none;
+    }
+
+    .table .tableHead th{
+        padding: 0.2em 1.3em;
         font-size: 15px;
     }
 

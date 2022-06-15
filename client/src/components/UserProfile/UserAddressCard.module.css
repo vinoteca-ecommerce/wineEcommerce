@@ -2,14 +2,13 @@
 
 
 .container{
-  height: 50vh;
   width: 31%;
-  /* max-width: 1200px; */
   margin: auto;
-  padding: 40px 0;
-  
-  display: grid;
-  grid-template-columns: 1fr;
+  padding: 4.5em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .dirTitle{
    margin-top: 15px;
@@ -39,6 +38,7 @@
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
+ text-align: center;
 }
 
 .cardDetails {
@@ -71,11 +71,11 @@
 }
 
 /*Text*/
-.textTitle {
+/*.textTitle {
   font-family: 'Montserrat',sans-serif;
- font-size: 1.5em;
- font-weight: bold;
-}
+ font-size: 1.4em;
+ font-weight: 500;
+}*/
 
 /*Hover*/
 .card:hover {

@@ -19,7 +19,7 @@ import {
 import swal from "sweetalert";
 import { useEffect } from "react";
 
-export const CardProduct = ({
+export const CardProductPrincipal = ({
   id,
   name,
   price,
@@ -208,7 +208,7 @@ export const CardProduct = ({
     /*  name, year, description, img, strain, producer,  ID  de category, price, country */
     
     <div className={style.card}>
-       {discount >= 1 ? <p><strong className={style.discuento}>{discount}%</strong> <LocalOfferIcon style={{fontSize:'300%',color:'#efb810', marginLeft:'80%', position:'absolute', zIndex:'110'}}/></p>: <p> <LocalOfferIcon style={{fontSize:'300%',color:'transparent', marginLeft:'80%', position:'absolute'}}/></p> }
+       {discount >= 1 ? <p><strong className={style.discuentoPrincipal}>{discount}%</strong> <LocalOfferIcon style={{fontSize:'300%',color:'#efb810', marginLeft:'40%', position:'absolute', zIndex:'110'}}/></p>: <p> <LocalOfferIcon style={{fontSize:'300%',color:'transparent', marginLeft:'80%', position:'absolute'}}/></p> }
       <Link
         to={`/cardDetail/${id}`}
         style={{ textDecoration: "none", color: "black" }}
