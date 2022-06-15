@@ -12,7 +12,7 @@ grid-template-rows: repeat(3,auto);
 
 .mainContainer .banner{
   text-align: center;
-  /* background: cadetblue; */
+  
   grid-column-start: 1;
   grid-column-end: -1;
 }
@@ -45,12 +45,14 @@ grid-template-rows: repeat(3,auto);
   cursor: pointer;
 }
 
-
+/* #7f0000; */
 .card {
- height: 500px;
- width: auto;
- background: rgb(236, 236, 236);
- box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 20px;
+ height: 450px;
+ width: 250px;
+ background: #b6b6b677;
+ box-shadow: #7f0000 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 
@@ -123,32 +125,32 @@ justify-content: center;
  .mainContainer .containerCards{
   grid-column: 1 / -1;
  }
- /* .mainContainer .banner{
-  
-} */
 
 .mainContainer .sidebarFilters{
  grid-column: 1 / -1;
- align-items: center;
+ padding: auto;
+ margin: 30px 30px;
 }
 
 .card{
- text-align: center;
- justify-content:center;
- display: flex;
- margin: 10px 10px;
- height: 400px;
- flex-direction: column;
+   text-align: center;
+    display: flex;
+    /* margin: 5px 5px; */
+    height: 350px;
+    width: 300px;
+    flex-direction: column;
+min-width: 100px;
 
 }
 .card div{
- margin: 10px 10px;
-text-align: center;
+ margin: 5px 5px;
+ text-align: center;
  justify-content:center;
  display: flex;
  flex-wrap: nowrap;
  flex-direction: column;
 }
+    
 }
 
 
