@@ -1,5 +1,4 @@
 import React from "react";
-import "../Contact/Contact.css";
 import style from '../About/AboutUs.module.css'
 import mongoDB from '../../images/mongodb.svg'
 import reactJs from "../../images/react.svg";
