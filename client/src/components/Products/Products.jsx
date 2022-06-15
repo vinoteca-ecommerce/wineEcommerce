@@ -9,11 +9,14 @@ import style from '../Products/Products.module.css'
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
+
 import Offers from '../Products/Offers'
 
 
 import { CardProductPrincipal } from '../CardProduct/CardProductPrincipal';
 import { useNavigate } from 'react-router-dom';
+
+
 
 
 export const Products = () => {
@@ -81,6 +84,7 @@ export const Products = () => {
         }
     }
 
+  
   return (
     <div>
       {Object.keys(wines).length === 0 ? (
@@ -94,15 +98,13 @@ export const Products = () => {
       ) : (
         <div className={style.mainContainer}>
           <div onClick={handleOffer} className={style.banner}>
-                <span ></span>
-            </div>
+            <span></span>
+          </div>
 
           <aside className={style.sidebarFilters}>
             <div className={style.card}>
               <div>
-                <SearchBar
-                  onSearch={handleSearch}
-                />
+                <SearchBar onSearch={handleSearch} />
               </div>
               <div>
                 <select
@@ -160,7 +162,6 @@ export const Products = () => {
             </div>
           </aside>
 
-
           {wines?.msg ? (
             <div className={style.containerMsg}>
               <h2>{wines.msg}</h2>
@@ -180,7 +181,9 @@ export const Products = () => {
                         producer={wine.producer}
                         country={wine.producer}
                         discount={wine.discount}
-                        price={Math.round(wine.price *(100 - wine.discount) / 100)}
+                        price={Math.round(
+                          (wine.price * (100 - wine.discount)) / 100
+                        )}
                         img={wine.img}
                         category={wine.category.name}
                         description={wine.description}
