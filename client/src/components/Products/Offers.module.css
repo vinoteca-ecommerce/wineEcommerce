@@ -119,7 +119,6 @@
       height:0;
     }
     
-    
     .containerCards{
         grid-column: span 2;
         display: grid;
@@ -151,7 +150,5 @@
     
     }
     @media (max-width: 390px){
-        .banner{
 
-        }
     }
