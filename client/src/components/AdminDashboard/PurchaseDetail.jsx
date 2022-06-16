@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getPurchaseId } from '../../redux/actions/actions'
-import style from './PurchaseDetail.module.css'
+import style from './PurchaseDetaiil.module.css'
 
 export const PurchaseDetail = () => {
   const dispatch = useDispatch()

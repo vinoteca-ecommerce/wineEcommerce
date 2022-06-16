@@ -1,86 +1,43 @@
 
-[![Vinoteca](https://user-images.githubusercontent.com/86882630/173231206-b27568a7-3f73-48d4-b2b1-5b7c3f5e2691.png)](https://github.com/vinoteca-ecommerce)
 
-# E-Comerce Proyecto Grupal #SoyHenryBootcamp
-<table>
-<tr>
-<td>
-<!--   A webapp using Quandl API to display history of stock growth in a given period of time. It helps predict the growth of stocks from the  charts of stock performace in any period of time. It helps to judge stocks, with the principle of momentum investing, which returns 1% per month on average. -->
-</td>
+<h1 align="center">🍷 Welcome to VINOTECA</h1>
+<h2 align="center">A wine e-commerce app built for our final group project at Soy Henry's Bootcamp <a href='https://www.soyhenry.com/' target="_blank" rel="noreferrer" text='go to soyHenry'><img width="25" height="25" src='https://user-images.githubusercontent.com/86882630/174009890-4daeb2e8-054f-49b5-909f-67789a6b6e03.jpeg'/></a></h2>
+
+
+ 
+<p align="center"><img width="472" alt="Screenshot 2022-06-15 at 20 34 29" src="https://user-images.githubusercontent.com/86882630/173900999-a35a99b9-6134-434e-867b-23d2b59723b3.png"></p>
+
+
+
+<h2 align="center">🚀Site Demo</h2> 
+<h3 align="center">📲Take a look in the following link: https://wine-ecommercew.vercel.app/</h3>
+
+</br>
+
+
+<table align="center" style="background-color:#FFFFFF">
+<tr style="background-color:#FFFFFF">
+<th><h2>⚙Built with --> </h2></th>
+<th><img align="center" alt="javascript" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864252-6fab4ba3-38cc-4ecf-a948-cbf84367feb9.svg"/></th> 
+<th><img align="center" alt="express" width="40" height="40" background='white' src="https://user-images.githubusercontent.com/86882630/174008427-01e86351-8228-448c-901f-119f4ff8099f.svg"/></th>
+ <th><img align="center" alt="nodejs" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864575-3201ee72-d00e-44ba-9425-cf08d251c1c2.svg"/></th>
+ <th><img align="center" alt="mongodb" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864331-d0dd7419-7614-4d42-971c-02b420991451.svg"/></th>
+ <th><img align="center" alt="react" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864477-2a2ede98-60c3-4002-9ef0-24a6161c70b4.svg"/></th>
+ <th><img align="center" alt="redux" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864516-ee3498ac-9733-4e0e-8f1c-c0c2311fe73f.svg"/></th>
+ <th><img align="center" alt="materialui" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864668-569a7a14-8525-497d-a365-92f913e70a7f.svg"/></th>
+ <th><img align="center"alt="css" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864635-2c02e6a7-1409-45a9-b92f-e81729e93721.svg"/></th>
+ <th><img align="center" alt="npm" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864698-025a2b98-6152-4d7d-8d76-f84e0c5634d7.svg"/></th>
+ <th><img align="center" alt="postman" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864726-bbefc845-d7e2-464e-8cf1-bdcee40dcffb.svg"/></th>
 </tr>
-</table>
 
+</br>
 
-## Demo
-Podes ver una demo de la pagina en el siguiente enlace : <!-- https://wine-ecommercew.vercel.app/ -->
-
-
-## Site
-
-### Landing Page
-<!-- Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
-
-![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG) -->
-
-### Productos
-<!-- ![](https://iharsh234.github.io/WebApp/images/demo/demo_query.JPG) -->
-
-### Dashboard
-<!-- ![](https://iharsh234.github.io/WebApp/images/demo/demo_chart1.JPG)
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart2.JPG)
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart3.JPG) -->
-
-### ContactForm
-
-## UserProfile
-<!-- The WebApp is compatible with devices of all sizes and all OS's, and consistent improvements are being made. -->
-
-<!-- ![](https://iharsh234.github.io/WebApp/images/demo/mobile.png) -->
-
-
-
-
-<!-- ## [Usage](https://iharsh234.github.io/WebApp/) 
-
-### Development
-Want to contribute? Great!
-
-To fix a bug or enhance an existing module, follow these steps:
-
-- Fork the repo
-- Create a new branch (`git checkout -b improve-feature`)
-- Make the appropriate changes in the files
-- Add changes to reflect the changes made
-- Commit your changes (`git commit -am 'Improve feature'`)
-- Push to the branch (`git push origin improve-feature`)
-- Create a Pull Request 
-
-### Bug / Feature Request
-
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/iharsh234/WebApp/issues/new) by including your search query and the expected result.
-
-If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/iharsh234/WebApp/issues/new). Please include sample queries and their corresponding results.
-
-
-## Built with 
-
-- [jQuery - Ajax](http://www.w3schools.com/jquery/jquery_ref_ajax.asp) - jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
-- [Google Chart API](https://developers.google.com/chart/interactive/docs/quick_start) - Free , Rich Gallery , Customizable and Cross-browser compatible.
-- [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
-
-
-## To-do
-- Add BSE (India) Symbol to the current App.
-- Decide comparison models of Stocks. (suggestions are most welcome).
-- Another WebApp, capable of comparing at least 10 stocks.
- -->
-## Conoce al equipo!
-
-<!-- [![Harsh Vijay](https://avatars1.githubusercontent.com/u/12688534?v=3&s=144)](https://github.com/iharsh234)  | [![Quandl.com](https://github.com/iharsh234/WebApp/blob/master/images/quandl.jpg)](https://www.quandl.com/) -->
----|---
-<!-- [Harsh Vijay ](https://github.com/iharsh234) |[Quandl](https://www.quandl.com)
-
-## [License](https://github.com/iharsh234/WebApp/blob/master/LICENSE.md)
-
-MIT © [Harsh Vijay ](https://github.com/iharsh234) -->
-
+<h3 align="center">🧑‍💻Meet the team!</h3>
+<p align="center"> 
+<a href='https://github.com/c4miloarriagada' target="_blank" rel="noreferrer"><img align="center" alt="camilo" width="50" height="50" src="https://avatars.githubusercontent.com/u/95378920?v=4"/></a>
+<a href='https://github.com/MarcoLopezf' target="_blank" rel="noreferrer"><img align="center" alt="marco" width="50" height="50" src="https://avatars.githubusercontent.com/u/95639496?v=4"/></a>
+<a href='https://github.com/RomaGarcia' target="_blank" rel="noreferrer"><img align="center" alt="roman" width="50" height="50"  src="https://avatars.githubusercontent.com/u/97261206?v=4"/></a>
+<a href='https://github.com/MartinNicolasRusso' target="_blank" rel="noreferrer"><img align="center" alt="martin" width="50" height="50" src="https://avatars.githubusercontent.com/u/97547435?v=4"/></a>
+<a href='https://github.com/Agustin2214' target="_blank" rel="noreferrer"><img align="center" alt="agustin" width="50" height="50" src="https://avatars.githubusercontent.com/u/97566586?v=4"/></a>
+<a href='https://github.com/gxwgonza' target="_blank" rel="noreferrer"><img align="center" alt="gonzalo" width="50" height="50" src="https://avatars.githubusercontent.com/u/97595427?v=4"/></a>
+<a href='https://github.com/MaiBP' target="_blank" rel="noreferrer"><img align="center" alt="maira" width="50" height="50" src="https://avatars.githubusercontent.com/u/86882630?v=4"/></a></p>
