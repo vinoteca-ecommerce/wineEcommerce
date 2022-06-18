@@ -17,7 +17,9 @@
 
 <table align="center" style="background-color:#FFFFFF">
 <tr style="background-color:#FFFFFF">
-<th><h2>⚙Built with --> </h2></th>
+
+<th><h2>⚙Built with </h2></th>
+
 <th><img align="center" alt="javascript" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864252-6fab4ba3-38cc-4ecf-a948-cbf84367feb9.svg"/></th> 
 <th><img align="center" alt="express" width="40" height="40" background='white' src="https://user-images.githubusercontent.com/86882630/174008427-01e86351-8228-448c-901f-119f4ff8099f.svg"/></th>
  <th><img align="center" alt="nodejs" width="40" height="40" src="https://user-images.githubusercontent.com/86882630/173864575-3201ee72-d00e-44ba-9425-cf08d251c1c2.svg"/></th>
